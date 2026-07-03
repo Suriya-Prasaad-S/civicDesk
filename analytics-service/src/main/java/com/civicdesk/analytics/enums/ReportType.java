@@ -1,0 +1,12 @@
+package com.civicdesk.analytics.enums;
+
+public enum ReportType {
+    GRIEVANCE_SUMMARY,
+    PERMIT_SUMMARY,
+    SERVICE_REQUEST_SUMMARY,
+    WORK_ORDER_SUMMARY,
+    SLA_COMPLIANCE,
+    BUDGET_UTILISATION,
+    USER_ACTIVITY,
+    DEPARTMENT_PERFORMANCE
+}

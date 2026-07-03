@@ -1,0 +1,9 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="AuthService" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <module name="auth-service" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="com.civicdesk.auth.AuthServiceApplication" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

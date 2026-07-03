@@ -1,0 +1,13 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="CivicDesk - All Services" type="CompoundRunConfigurationType">
+    <toRun name="AuthService" type="SpringBootApplicationConfigurationType" />
+    <toRun name="CitizenService" type="SpringBootApplicationConfigurationType" />
+    <toRun name="ServiceRequestService" type="SpringBootApplicationConfigurationType" />
+    <toRun name="PermitService" type="SpringBootApplicationConfigurationType" />
+    <toRun name="GrievanceService" type="SpringBootApplicationConfigurationType" />
+    <toRun name="PublicWorksService" type="SpringBootApplicationConfigurationType" />
+    <toRun name="NotificationService" type="SpringBootApplicationConfigurationType" />
+    <toRun name="AnalyticsService" type="SpringBootApplicationConfigurationType" />
+    <toRun name="ApiGateway" type="SpringBootApplicationConfigurationType" />
+  </configuration>
+</component>

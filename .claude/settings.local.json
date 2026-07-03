@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(New-Item -ItemType Directory -Force -Path \"C:\\\\Users\\\\2506602\\\\Downloads\\\\civicdesk \\(1\\)\\\\auth-service\\\\src\\\\main\\\\java\\\\com\\\\civicdesk\\\\auth\\\\config\")",
+      "Bash(Out-Null)",
+      "Bash(New-Item -ItemType Directory -Force -Path \"C:\\\\Users\\\\2506602\\\\Downloads\\\\civicdesk \\(1\\)\\\\auth-service\\\\src\\\\main\\\\java\\\\com\\\\civicdesk\\\\auth\\\\controller\")",
+      "Bash(New-Item -ItemType Directory -Force -Path \"C:\\\\Users\\\\2506602\\\\Downloads\\\\civicdesk \\(1\\)\\\\auth-service\\\\src\\\\main\\\\java\\\\com\\\\civicdesk\\\\auth\\\\dto\")",
+      "Bash(New-Item -ItemType Directory -Force -Path \"C:\\\\Users\\\\2506602\\\\Downloads\\\\civicdesk \\(1\\)\\\\auth-service\\\\src\\\\main\\\\java\\\\com\\\\civicdesk\\\\auth\\\\entity\")",
+      "Bash(New-Item -ItemType Directory -Force -Path \"C:\\\\Users\\\\2506602\\\\Downloads\\\\civicdesk \\(1\\)\\\\auth-service\\\\src\\\\main\\\\java\\\\com\\\\civicdesk\\\\auth\\\\enums\")",
+      "Bash(New-Item -ItemType Directory -Force -Path \"C:\\\\Users\\\\2506602\\\\Downloads\\\\civicdesk \\(1\\)\\\\auth-service\\\\src\\\\main\\\\java\\\\com\\\\civicdesk\\\\auth\\\\exception\")",
+      "Bash(New-Item -ItemType Directory -Force -Path \"C:\\\\Users\\\\2506602\\\\Downloads\\\\civicdesk \\(1\\)\\\\auth-service\\\\src\\\\main\\\\java\\\\com\\\\civicdesk\\\\auth\\\\repository\")",
+      "Bash(New-Item -ItemType Directory -Force -Path \"C:\\\\Users\\\\2506602\\\\Downloads\\\\civicdesk \\(1\\)\\\\auth-service\\\\src\\\\main\\\\java\\\\com\\\\civicdesk\\\\auth\\\\security\")",
+      "Bash(New-Item -ItemType Directory -Force -Path \"C:\\\\Users\\\\2506602\\\\Downloads\\\\civicdesk \\(1\\)\\\\auth-service\\\\src\\\\main\\\\java\\\\com\\\\civicdesk\\\\auth\\\\service\")",
+      "Bash(New-Item -ItemType Directory -Force -Path \"C:\\\\Users\\\\2506602\\\\Downloads\\\\civicdesk \\(1\\)\\\\auth-service\\\\src\\\\main\\\\resources\")",
+      "Bash(Write-Host \"Directories created\")",
+      "PowerShell(Get-ChildItem -Recurse \"C:\\\\Users\\\\2506602\\\\Downloads\\\\civicdesk \\(1\\)\\\\auth-service\" | Where-Object { !$_.PSIsContainer } | Select-Object -ExpandProperty FullName | ForEach-Object { $_.Replace\\(\"C:\\\\Users\\\\2506602\\\\Downloads\\\\civicdesk \\(1\\)\\\\auth-service\\\\\", \"\"\\) })",
+      "Read(//c/Users/2506602/AppData/Roaming/Claude/local-agent-mode-sessions/skills-plugin/d0eaddda-89b6-4146-8a96-6ca8e8e440e7/8e2e5ae0-12d4-468f-bf20-6509d4a6b3b8/skills/xlsx/**)",
+      "Bash(python -c ' *)",
+      "mcp__visualize__read_me",
+      "mcp__visualize__show_widget",
+      "PowerShell(\\(Get-Content \"C:\\\\Users\\\\2506602\\\\Downloads\\\\civicdesk \\(1\\)\\\\CivicDesk_Postman_Collection.json\"\\) -replace 'CERTIFICATES', 'CERTIFICATE' | Set-Content \"C:\\\\Users\\\\2506602\\\\Downloads\\\\civicdesk \\(1\\)\\\\CivicDesk_Postman_Collection.json\" -Encoding utf8)",
+      "PowerShell(node \"C:\\\\Users\\\\2506602\\\\AppData\\\\Local\\\\Temp\\\\create_permit_doc.js\")"
+    ]
+  }
+}

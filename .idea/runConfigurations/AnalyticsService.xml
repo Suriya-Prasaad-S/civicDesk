@@ -1,0 +1,9 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="AnalyticsService" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <module name="analytics-service" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="com.civicdesk.analytics.AnalyticsServiceApplication" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

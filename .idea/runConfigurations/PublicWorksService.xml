@@ -1,0 +1,9 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="PublicWorksService" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <module name="public-works-service" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="com.civicdesk.publicworks.PublicWorksServiceApplication" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

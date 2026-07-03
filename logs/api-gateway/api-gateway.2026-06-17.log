@@ -1,0 +1,315 @@
+2026-06-17 12:24:34 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+2026-06-17 12:24:34 [main] INFO  c.c.gateway.ApiGatewayApplication - Starting ApiGatewayApplication using Java 21.0.2 with PID 21800 (C:\Users\2506602\Downloads\civicdesk (1)\api-gateway\target\classes started by 2506602 in C:\Users\2506602\Downloads\civicdesk (1))
+2026-06-17 12:24:34 [main] INFO  c.c.gateway.ApiGatewayApplication - No active profile set, falling back to 1 default profile: "default"
+2026-06-17 12:24:36 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=ecba11d8-380f-358e-85e4-0c6ec30a760e
+2026-06-17 12:24:37 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [After]
+2026-06-17 12:24:37 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Before]
+2026-06-17 12:24:37 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Between]
+2026-06-17 12:24:37 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Cookie]
+2026-06-17 12:24:37 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Header]
+2026-06-17 12:24:37 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Host]
+2026-06-17 12:24:37 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Method]
+2026-06-17 12:24:37 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Path]
+2026-06-17 12:24:37 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Query]
+2026-06-17 12:24:37 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [ReadBody]
+2026-06-17 12:24:37 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [RemoteAddr]
+2026-06-17 12:24:37 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [XForwardedRemoteAddr]
+2026-06-17 12:24:37 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Weight]
+2026-06-17 12:24:37 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [CloudFoundryRouteService]
+2026-06-17 12:24:40 [main] WARN  o.s.b.w.r.c.AnnotationConfigReactiveWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2026-06-17 12:24:40 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2026-06-17 12:24:40 [main] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+
+2026-06-17 12:38:20 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+2026-06-17 12:38:20 [main] INFO  c.c.gateway.ApiGatewayApplication - Starting ApiGatewayApplication using Java 21.0.2 with PID 10788 (C:\Users\2506602\Downloads\civicdesk (1)\api-gateway\target\classes started by 2506602 in C:\Users\2506602\Downloads\civicdesk (1))
+2026-06-17 12:38:20 [main] INFO  c.c.gateway.ApiGatewayApplication - No active profile set, falling back to 1 default profile: "default"
+2026-06-17 12:38:22 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=ecba11d8-380f-358e-85e4-0c6ec30a760e
+2026-06-17 12:38:23 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [After]
+2026-06-17 12:38:23 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Before]
+2026-06-17 12:38:23 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Between]
+2026-06-17 12:38:23 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Cookie]
+2026-06-17 12:38:23 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Header]
+2026-06-17 12:38:23 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Host]
+2026-06-17 12:38:23 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Method]
+2026-06-17 12:38:23 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Path]
+2026-06-17 12:38:23 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Query]
+2026-06-17 12:38:23 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [ReadBody]
+2026-06-17 12:38:23 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [RemoteAddr]
+2026-06-17 12:38:23 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [XForwardedRemoteAddr]
+2026-06-17 12:38:23 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Weight]
+2026-06-17 12:38:23 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [CloudFoundryRouteService]
+2026-06-17 12:38:24 [main] INFO  o.s.b.w.e.netty.NettyWebServer - Netty started on port 9090
+2026-06-17 12:38:24 [main] INFO  c.c.gateway.ApiGatewayApplication - Started ApiGatewayApplication in 4.961 seconds (process running for 5.714)
+2026-06-17 12:38:55 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway → POST /api/auth/register [from /0:0:0:0:0:0:0:1]
+2026-06-17 12:39:01 [reactor-http-nio-3] ERROR o.s.b.a.w.r.e.AbstractErrorWebExceptionHandler - [320c7e34-1]  500 Server Error for HTTP POST "/api/auth/register"
+java.net.UnknownHostException: Failed to resolve 'auth-service' [A(1)] after 2 queries 
+	at io.netty.resolver.dns.DnsResolveContext.finishResolve(DnsResolveContext.java:1151)
+	Suppressed: reactor.core.publisher.FluxOnAssembly$OnAssemblyException: 
+Error has been observed at the following site(s):
+	*__checkpoint ⇢ org.springframework.cloud.gateway.filter.WeightCalculatorWebFilter [DefaultWebFilterChain]
+	*__checkpoint ⇢ HTTP POST "/api/auth/register" [ExceptionHandlingWebHandler]
+Original Stack Trace:
+		at io.netty.resolver.dns.DnsResolveContext.finishResolve(DnsResolveContext.java:1151)
+		at io.netty.resolver.dns.DnsResolveContext.tryToFinishResolve(DnsResolveContext.java:1098)
+		at io.netty.resolver.dns.DnsResolveContext.query(DnsResolveContext.java:457)
+		at io.netty.resolver.dns.DnsResolveContext.access$700(DnsResolveContext.java:69)
+		at io.netty.resolver.dns.DnsResolveContext$2.operationComplete(DnsResolveContext.java:526)
+		at io.netty.util.concurrent.DefaultPromise.notifyListener0(DefaultPromise.java:590)
+		at io.netty.util.concurrent.DefaultPromise.notifyListeners0(DefaultPromise.java:583)
+		at io.netty.util.concurrent.DefaultPromise.notifyListenersNow(DefaultPromise.java:559)
+		at io.netty.util.concurrent.DefaultPromise.notifyListeners(DefaultPromise.java:492)
+		at io.netty.util.concurrent.DefaultPromise.setValue0(DefaultPromise.java:636)
+		at io.netty.util.concurrent.DefaultPromise.setFailure0(DefaultPromise.java:629)
+		at io.netty.util.concurrent.DefaultPromise.tryFailure(DefaultPromise.java:118)
+		at io.netty.resolver.dns.DnsQueryContext.finishFailure(DnsQueryContext.java:380)
+		at io.netty.resolver.dns.DnsQueryContext$5.run(DnsQueryContext.java:315)
+		at io.netty.util.concurrent.PromiseTask.runTask(PromiseTask.java:98)
+		at io.netty.util.concurrent.ScheduledFutureTask.run(ScheduledFutureTask.java:153)
+		at io.netty.util.concurrent.AbstractEventExecutor.runTask(AbstractEventExecutor.java:173)
+		at io.netty.util.concurrent.AbstractEventExecutor.safeExecute(AbstractEventExecutor.java:166)
+		at io.netty.util.concurrent.SingleThreadEventExecutor.runAllTasks(SingleThreadEventExecutor.java:470)
+		at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:569)
+		at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997)
+		at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+		at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+		at java.base/java.lang.Thread.run(Thread.java:1583)
+Caused by: io.netty.resolver.dns.DnsNameResolverTimeoutException: [11108: /10.251.96.25:53] DefaultDnsQuestion(auth-service. IN A) query '11108' via UDP timed out after 5000 milliseconds (no stack trace available)
+2026-06-17 12:39:02 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 500 INTERNAL_SERVER_ERROR /api/auth/register 6274ms
+2026-06-17 12:41:08 [reactor-http-nio-5] INFO  c.c.gateway.filter.LoggingFilter - Gateway → POST /api/auth/register [from /0:0:0:0:0:0:0:1]
+2026-06-17 12:41:13 [reactor-http-nio-3] ERROR o.s.b.a.w.r.e.AbstractErrorWebExceptionHandler - [014f3135-2]  500 Server Error for HTTP POST "/api/auth/register"
+java.net.UnknownHostException: Failed to resolve 'auth-service' [A(1)] after 2 queries 
+	at io.netty.resolver.dns.DnsResolveContext.finishResolve(DnsResolveContext.java:1151)
+	Suppressed: reactor.core.publisher.FluxOnAssembly$OnAssemblyException: 
+Error has been observed at the following site(s):
+	*__checkpoint ⇢ org.springframework.cloud.gateway.filter.WeightCalculatorWebFilter [DefaultWebFilterChain]
+	*__checkpoint ⇢ HTTP POST "/api/auth/register" [ExceptionHandlingWebHandler]
+Original Stack Trace:
+		at io.netty.resolver.dns.DnsResolveContext.finishResolve(DnsResolveContext.java:1151)
+		at io.netty.resolver.dns.DnsResolveContext.tryToFinishResolve(DnsResolveContext.java:1098)
+		at io.netty.resolver.dns.DnsResolveContext.query(DnsResolveContext.java:457)
+		at io.netty.resolver.dns.DnsResolveContext.access$700(DnsResolveContext.java:69)
+		at io.netty.resolver.dns.DnsResolveContext$2.operationComplete(DnsResolveContext.java:526)
+		at io.netty.util.concurrent.DefaultPromise.notifyListener0(DefaultPromise.java:590)
+		at io.netty.util.concurrent.DefaultPromise.notifyListeners0(DefaultPromise.java:583)
+		at io.netty.util.concurrent.DefaultPromise.notifyListenersNow(DefaultPromise.java:559)
+		at io.netty.util.concurrent.DefaultPromise.notifyListeners(DefaultPromise.java:492)
+		at io.netty.util.concurrent.DefaultPromise.setValue0(DefaultPromise.java:636)
+		at io.netty.util.concurrent.DefaultPromise.setFailure0(DefaultPromise.java:629)
+		at io.netty.util.concurrent.DefaultPromise.tryFailure(DefaultPromise.java:118)
+		at io.netty.resolver.dns.DnsQueryContext.finishFailure(DnsQueryContext.java:380)
+		at io.netty.resolver.dns.DnsQueryContext$5.run(DnsQueryContext.java:315)
+		at io.netty.util.concurrent.PromiseTask.runTask(PromiseTask.java:98)
+		at io.netty.util.concurrent.ScheduledFutureTask.run(ScheduledFutureTask.java:153)
+		at io.netty.util.concurrent.AbstractEventExecutor.runTask(AbstractEventExecutor.java:173)
+		at io.netty.util.concurrent.AbstractEventExecutor.safeExecute(AbstractEventExecutor.java:166)
+		at io.netty.util.concurrent.SingleThreadEventExecutor.runAllTasks(SingleThreadEventExecutor.java:470)
+		at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:569)
+		at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997)
+		at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+		at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+		at java.base/java.lang.Thread.run(Thread.java:1583)
+Caused by: io.netty.resolver.dns.DnsNameResolverTimeoutException: [10183: /10.251.96.25:53] DefaultDnsQuestion(auth-service. IN A) query '10183' via UDP timed out after 5000 milliseconds (no stack trace available)
+2026-06-17 12:41:13 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 500 INTERNAL_SERVER_ERROR /api/auth/register 5067ms
+2026-06-17 12:44:41 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+2026-06-17 12:44:41 [main] INFO  c.c.gateway.ApiGatewayApplication - Starting ApiGatewayApplication using Java 21.0.2 with PID 21904 (C:\Users\2506602\Downloads\civicdesk (1)\api-gateway\target\classes started by 2506602 in C:\Users\2506602\Downloads\civicdesk (1))
+2026-06-17 12:44:41 [main] INFO  c.c.gateway.ApiGatewayApplication - No active profile set, falling back to 1 default profile: "default"
+2026-06-17 12:44:43 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=ecba11d8-380f-358e-85e4-0c6ec30a760e
+2026-06-17 12:44:45 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [After]
+2026-06-17 12:44:45 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Before]
+2026-06-17 12:44:45 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Between]
+2026-06-17 12:44:45 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Cookie]
+2026-06-17 12:44:45 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Header]
+2026-06-17 12:44:45 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Host]
+2026-06-17 12:44:45 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Method]
+2026-06-17 12:44:45 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Path]
+2026-06-17 12:44:45 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Query]
+2026-06-17 12:44:45 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [ReadBody]
+2026-06-17 12:44:45 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [RemoteAddr]
+2026-06-17 12:44:45 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [XForwardedRemoteAddr]
+2026-06-17 12:44:45 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Weight]
+2026-06-17 12:44:45 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [CloudFoundryRouteService]
+2026-06-17 12:44:45 [main] INFO  o.s.b.w.e.netty.NettyWebServer - Netty started on port 9090
+2026-06-17 12:44:45 [main] INFO  c.c.gateway.ApiGatewayApplication - Started ApiGatewayApplication in 5.236 seconds (process running for 5.937)
+2026-06-17 12:45:16 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway → POST /api/auth/register [from /0:0:0:0:0:0:0:1]
+2026-06-17 12:45:17 [reactor-http-nio-3] ERROR o.s.b.a.w.r.e.AbstractErrorWebExceptionHandler - [08324e97-1]  500 Server Error for HTTP POST "/api/auth/register"
+io.netty.channel.AbstractChannel$AnnotatedConnectException: Connection refused: getsockopt: localhost/127.0.0.1:8081
+	Suppressed: reactor.core.publisher.FluxOnAssembly$OnAssemblyException: 
+Error has been observed at the following site(s):
+	*__checkpoint ⇢ org.springframework.cloud.gateway.filter.WeightCalculatorWebFilter [DefaultWebFilterChain]
+	*__checkpoint ⇢ HTTP POST "/api/auth/register" [ExceptionHandlingWebHandler]
+Original Stack Trace:
+Caused by: java.net.ConnectException: Connection refused: getsockopt
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:682)
+	at java.base/sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:973)
+	at io.netty.channel.socket.nio.NioSocketChannel.doFinishConnect(NioSocketChannel.java:337)
+	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.finishConnect(AbstractNioChannel.java:339)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:776)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:724)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:650)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2026-06-17 12:45:17 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 500 INTERNAL_SERVER_ERROR /api/auth/register 1051ms
+2026-06-17 12:45:51 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway → POST /api/auth/register [from /0:0:0:0:0:0:0:1]
+2026-06-17 12:45:51 [reactor-http-nio-3] ERROR o.s.b.a.w.r.e.AbstractErrorWebExceptionHandler - [08324e97-3]  500 Server Error for HTTP POST "/api/auth/register"
+io.netty.channel.AbstractChannel$AnnotatedConnectException: Connection refused: getsockopt: localhost/127.0.0.1:8081
+	Suppressed: reactor.core.publisher.FluxOnAssembly$OnAssemblyException: 
+Error has been observed at the following site(s):
+	*__checkpoint ⇢ org.springframework.cloud.gateway.filter.WeightCalculatorWebFilter [DefaultWebFilterChain]
+	*__checkpoint ⇢ HTTP POST "/api/auth/register" [ExceptionHandlingWebHandler]
+Original Stack Trace:
+Caused by: java.net.ConnectException: Connection refused: getsockopt
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:682)
+	at java.base/sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:973)
+	at io.netty.channel.socket.nio.NioSocketChannel.doFinishConnect(NioSocketChannel.java:337)
+	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.finishConnect(AbstractNioChannel.java:339)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:776)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:724)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:650)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2026-06-17 12:45:51 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 500 INTERNAL_SERVER_ERROR /api/auth/register 9ms
+2026-06-17 12:50:08 [reactor-http-nio-5] INFO  c.c.gateway.filter.LoggingFilter - Gateway → POST /api/auth/register [from /0:0:0:0:0:0:0:1]
+2026-06-17 12:50:10 [reactor-http-nio-5] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 201 CREATED /api/auth/register 1691ms
+2026-06-17 13:32:49 [reactor-http-nio-7] INFO  c.c.gateway.filter.LoggingFilter - Gateway → POST /api/auth/register [from /0:0:0:0:0:0:0:1]
+2026-06-17 13:32:49 [reactor-http-nio-7] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 201 CREATED /api/auth/register 230ms
+2026-06-17 13:34:00 [reactor-http-nio-9] INFO  c.c.gateway.filter.LoggingFilter - Gateway → POST /api/auth/register [from /0:0:0:0:0:0:0:1]
+2026-06-17 13:34:00 [reactor-http-nio-9] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 400 BAD_REQUEST /api/auth/register 30ms
+2026-06-17 13:34:06 [reactor-http-nio-9] INFO  c.c.gateway.filter.LoggingFilter - Gateway → POST /api/auth/register [from /0:0:0:0:0:0:0:1]
+2026-06-17 13:34:06 [reactor-http-nio-9] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 201 CREATED /api/auth/register 199ms
+2026-06-17 13:34:48 [reactor-http-nio-9] INFO  c.c.gateway.filter.LoggingFilter - Gateway → POST /api/auth/login [from /0:0:0:0:0:0:0:1]
+2026-06-17 13:34:49 [reactor-http-nio-9] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 200 OK /api/auth/login 812ms
+2026-06-17 13:35:10 [reactor-http-nio-9] INFO  c.c.gateway.filter.LoggingFilter - Gateway → GET /api/auth/me [from /0:0:0:0:0:0:0:1]
+2026-06-17 13:35:11 [reactor-http-nio-9] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 200 OK /api/auth/me 541ms
+2026-06-17 14:12:20 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+2026-06-17 14:12:20 [main] INFO  c.c.gateway.ApiGatewayApplication - Starting ApiGatewayApplication using Java 21.0.2 with PID 31132 (C:\Users\2506602\Downloads\civicdesk (1)\api-gateway\target\classes started by 2506602 in C:\Users\2506602\Downloads\civicdesk (1))
+2026-06-17 14:12:20 [main] INFO  c.c.gateway.ApiGatewayApplication - No active profile set, falling back to 1 default profile: "default"
+2026-06-17 14:12:22 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=ecba11d8-380f-358e-85e4-0c6ec30a760e
+2026-06-17 14:12:24 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [After]
+2026-06-17 14:12:24 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Before]
+2026-06-17 14:12:24 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Between]
+2026-06-17 14:12:24 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Cookie]
+2026-06-17 14:12:24 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Header]
+2026-06-17 14:12:24 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Host]
+2026-06-17 14:12:24 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Method]
+2026-06-17 14:12:24 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Path]
+2026-06-17 14:12:24 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Query]
+2026-06-17 14:12:24 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [ReadBody]
+2026-06-17 14:12:24 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [RemoteAddr]
+2026-06-17 14:12:24 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [XForwardedRemoteAddr]
+2026-06-17 14:12:24 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Weight]
+2026-06-17 14:12:24 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [CloudFoundryRouteService]
+2026-06-17 14:12:26 [main] INFO  o.s.b.w.e.netty.NettyWebServer - Netty started on port 9090
+2026-06-17 14:12:26 [main] INFO  c.c.gateway.ApiGatewayApplication - Started ApiGatewayApplication in 8.295 seconds (process running for 9.741)
+2026-06-17 14:20:36 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway → POST /civicDesk/iam/auth/register [from /0:0:0:0:0:0:0:1]
+2026-06-17 14:20:39 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 400 BAD_REQUEST /civicDesk/iam/auth/register 2158ms
+2026-06-17 14:20:47 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway → POST /civicDesk/iam/auth/register [from /0:0:0:0:0:0:0:1]
+2026-06-17 14:20:47 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 400 BAD_REQUEST /civicDesk/iam/auth/register 30ms
+2026-06-17 14:38:16 [reactor-http-nio-5] INFO  c.c.gateway.filter.LoggingFilter - Gateway → POST /civicDesk/iam/auth/register [from /0:0:0:0:0:0:0:1]
+2026-06-17 14:38:19 [reactor-http-nio-5] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 201 CREATED /civicDesk/iam/auth/register 2570ms
+2026-06-17 14:38:50 [reactor-http-nio-5] INFO  c.c.gateway.filter.LoggingFilter - Gateway → POST /civicDesk/iam/auth/citizen-login [from /0:0:0:0:0:0:0:1]
+2026-06-17 14:38:52 [reactor-http-nio-5] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 200 OK /civicDesk/iam/auth/citizen-login 1340ms
+2026-06-17 14:39:26 [reactor-http-nio-5] INFO  c.c.gateway.filter.LoggingFilter - Gateway → GET /civicDesk/iam/auth/me [from /0:0:0:0:0:0:0:1]
+2026-06-17 14:39:27 [reactor-http-nio-5] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 200 OK /civicDesk/iam/auth/me 1598ms
+2026-06-17 14:39:41 [reactor-http-nio-5] INFO  c.c.gateway.filter.LoggingFilter - Gateway → GET /civicDesk/iam/users [from /0:0:0:0:0:0:0:1]
+2026-06-17 14:39:41 [reactor-http-nio-5] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 403 FORBIDDEN /civicDesk/iam/users 144ms
+2026-06-17 14:46:49 [reactor-http-nio-7] INFO  c.c.gateway.filter.LoggingFilter - Gateway → POST /civicDesk/iam/auth/register [from /0:0:0:0:0:0:0:1]
+2026-06-17 14:46:50 [reactor-http-nio-7] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 400 BAD_REQUEST /civicDesk/iam/auth/register 79ms
+2026-06-17 14:47:04 [reactor-http-nio-7] INFO  c.c.gateway.filter.LoggingFilter - Gateway → POST /civicDesk/iam/auth/citizen-login [from /0:0:0:0:0:0:0:1]
+2026-06-17 14:47:04 [reactor-http-nio-7] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 200 OK /civicDesk/iam/auth/citizen-login 396ms
+2026-06-17 14:47:49 [reactor-http-nio-7] INFO  c.c.gateway.filter.LoggingFilter - Gateway → POST /civicDesk/serviceRequest/createService [from /0:0:0:0:0:0:0:1]
+2026-06-17 14:47:54 [reactor-http-nio-7] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 500 INTERNAL_SERVER_ERROR /civicDesk/serviceRequest/createService 4187ms
+2026-06-17 14:51:33 [reactor-http-nio-9] INFO  c.c.gateway.filter.LoggingFilter - Gateway → POST /civicDesk/serviceRequest/createService [from /0:0:0:0:0:0:0:1]
+2026-06-17 14:51:33 [reactor-http-nio-9] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 500 INTERNAL_SERVER_ERROR /civicDesk/serviceRequest/createService 74ms
+2026-06-17 14:51:39 [reactor-http-nio-9] INFO  c.c.gateway.filter.LoggingFilter - Gateway → POST /civicDesk/serviceRequest/createService [from /0:0:0:0:0:0:0:1]
+2026-06-17 14:51:39 [reactor-http-nio-9] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 500 INTERNAL_SERVER_ERROR /civicDesk/serviceRequest/createService 107ms
+2026-06-17 14:53:15 [reactor-http-nio-11] INFO  c.c.gateway.filter.LoggingFilter - Gateway → POST /civicDesk/iam/auth/register [from /0:0:0:0:0:0:0:1]
+2026-06-17 14:53:15 [reactor-http-nio-11] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 400 BAD_REQUEST /civicDesk/iam/auth/register 62ms
+2026-06-17 14:53:40 [reactor-http-nio-11] INFO  c.c.gateway.filter.LoggingFilter - Gateway → POST /civicDesk/serviceRequest/createService [from /0:0:0:0:0:0:0:1]
+2026-06-17 14:53:40 [reactor-http-nio-11] WARN  c.c.g.filter.JwtAuthenticationFilter - Missing or malformed Authorization header for path: /civicDesk/serviceRequest/createService
+2026-06-17 14:53:40 [reactor-http-nio-11] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 401 UNAUTHORIZED /civicDesk/serviceRequest/createService 50ms
+2026-06-17 14:54:03 [reactor-http-nio-11] INFO  c.c.gateway.filter.LoggingFilter - Gateway → POST /civicDesk/iam/auth/citizen-login [from /0:0:0:0:0:0:0:1]
+2026-06-17 14:54:03 [reactor-http-nio-11] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 200 OK /civicDesk/iam/auth/citizen-login 265ms
+2026-06-17 14:54:22 [reactor-http-nio-11] INFO  c.c.gateway.filter.LoggingFilter - Gateway → POST /civicDesk/serviceRequest/createService [from /0:0:0:0:0:0:0:1]
+2026-06-17 14:54:22 [reactor-http-nio-11] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 500 INTERNAL_SERVER_ERROR /civicDesk/serviceRequest/createService 46ms
+2026-06-17 14:54:43 [reactor-http-nio-11] INFO  c.c.gateway.filter.LoggingFilter - Gateway → POST /civicDesk/serviceRequest/createService [from /0:0:0:0:0:0:0:1]
+2026-06-17 14:54:43 [reactor-http-nio-11] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 500 INTERNAL_SERVER_ERROR /civicDesk/serviceRequest/createService 52ms
+2026-06-17 14:55:10 [reactor-http-nio-11] INFO  c.c.gateway.filter.LoggingFilter - Gateway → POST /civicDesk/serviceRequest/createService [from /0:0:0:0:0:0:0:1]
+2026-06-17 14:55:10 [reactor-http-nio-11] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 500 INTERNAL_SERVER_ERROR /civicDesk/serviceRequest/createService 43ms
+2026-06-17 14:55:15 [reactor-http-nio-11] INFO  c.c.gateway.filter.LoggingFilter - Gateway → POST /civicDesk/serviceRequest/createService [from /0:0:0:0:0:0:0:1]
+2026-06-17 14:55:16 [reactor-http-nio-11] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 500 INTERNAL_SERVER_ERROR /civicDesk/serviceRequest/createService 55ms
+2026-06-17 23:34:21 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+2026-06-17 23:34:21 [main] INFO  c.c.gateway.ApiGatewayApplication - Starting ApiGatewayApplication using Java 21.0.2 with PID 19672 (C:\Users\2506602\Downloads\civicdesk (1)\api-gateway\target\classes started by 2506602 in C:\Users\2506602\Downloads\civicdesk (1))
+2026-06-17 23:34:21 [main] INFO  c.c.gateway.ApiGatewayApplication - No active profile set, falling back to 1 default profile: "default"
+2026-06-17 23:34:23 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=ecba11d8-380f-358e-85e4-0c6ec30a760e
+2026-06-17 23:34:25 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [After]
+2026-06-17 23:34:25 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Before]
+2026-06-17 23:34:25 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Between]
+2026-06-17 23:34:25 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Cookie]
+2026-06-17 23:34:25 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Header]
+2026-06-17 23:34:25 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Host]
+2026-06-17 23:34:25 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Method]
+2026-06-17 23:34:25 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Path]
+2026-06-17 23:34:25 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Query]
+2026-06-17 23:34:25 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [ReadBody]
+2026-06-17 23:34:25 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [RemoteAddr]
+2026-06-17 23:34:25 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [XForwardedRemoteAddr]
+2026-06-17 23:34:25 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Weight]
+2026-06-17 23:34:25 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [CloudFoundryRouteService]
+2026-06-17 23:34:27 [main] INFO  o.s.b.w.e.netty.NettyWebServer - Netty started on port 9090
+2026-06-17 23:34:27 [main] INFO  c.c.gateway.ApiGatewayApplication - Started ApiGatewayApplication in 6.997 seconds (process running for 7.935)
+2026-06-17 23:41:57 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway → POST /civicDesk/iam/auth/register [from /0:0:0:0:0:0:0:1]
+2026-06-17 23:41:59 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 400 BAD_REQUEST /civicDesk/iam/auth/register 1944ms
+2026-06-17 23:42:24 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway → POST /civicDesk/iam/auth/register [from /0:0:0:0:0:0:0:1]
+2026-06-17 23:42:25 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 201 CREATED /civicDesk/iam/auth/register 385ms
+2026-06-17 23:42:43 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway → POST /civicDesk/iam/auth/citizen-login [from /0:0:0:0:0:0:0:1]
+2026-06-17 23:42:44 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 200 OK /civicDesk/iam/auth/citizen-login 1086ms
+2026-06-17 23:43:02 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway → POST /civicDesk/iam/auth/staff-login [from /0:0:0:0:0:0:0:1]
+2026-06-17 23:43:03 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 200 OK /civicDesk/iam/auth/staff-login 336ms
+2026-06-17 23:43:36 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway → GET /civicDesk/iam/auth/me [from /0:0:0:0:0:0:0:1]
+2026-06-17 23:43:37 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 200 OK /civicDesk/iam/auth/me 783ms
+2026-06-17 23:44:05 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway → POST /civicDesk/iam/users/create [from /0:0:0:0:0:0:0:1]
+2026-06-17 23:44:05 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 400 BAD_REQUEST /civicDesk/iam/users/create 82ms
+2026-06-17 23:44:27 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway → POST /civicDesk/iam/users/create [from /0:0:0:0:0:0:0:1]
+2026-06-17 23:44:28 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 201 CREATED /civicDesk/iam/users/create 409ms
+2026-06-17 23:44:59 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway → POST /civicDesk/permit/createPermit [from /0:0:0:0:0:0:0:1]
+2026-06-17 23:45:00 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 403 FORBIDDEN /civicDesk/permit/createPermit 1708ms
+2026-06-17 23:45:46 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway → POST /civicDesk/permit/createPermit [from /0:0:0:0:0:0:0:1]
+2026-06-17 23:45:47 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 200 OK /civicDesk/permit/createPermit 392ms
+2026-06-17 23:46:11 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway → GET /civicDesk/permit/getAllPermits [from /0:0:0:0:0:0:0:1]
+2026-06-17 23:46:12 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 200 OK /civicDesk/permit/getAllPermits 648ms
+2026-06-17 23:46:35 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway → GET /civicDesk/permit/1 [from /0:0:0:0:0:0:0:1]
+2026-06-17 23:46:36 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 200 OK /civicDesk/permit/1 104ms
+2026-06-17 23:47:09 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway → POST /civicDesk/permit/uploadDocument/1 [from /0:0:0:0:0:0:0:1]
+2026-06-17 23:47:09 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 403 FORBIDDEN /civicDesk/permit/uploadDocument/1 50ms
+2026-06-17 23:47:48 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway → POST /civicDesk/permit/uploadDocument/1 [from /0:0:0:0:0:0:0:1]
+2026-06-17 23:47:48 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 400 BAD_REQUEST /civicDesk/permit/uploadDocument/1 41ms
+2026-06-17 23:47:59 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway → POST /civicDesk/permit/uploadDocument/1 [from /0:0:0:0:0:0:0:1]
+2026-06-17 23:47:59 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 200 OK /civicDesk/permit/uploadDocument/1 40ms
+2026-06-17 23:48:22 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway → GET /civicDesk/permit/documents/1 [from /0:0:0:0:0:0:0:1]
+2026-06-17 23:48:22 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 200 OK /civicDesk/permit/documents/1 42ms
+2026-06-17 23:48:43 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway → POST /civicDesk/permit/renew/1 [from /0:0:0:0:0:0:0:1]
+2026-06-17 23:48:43 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 403 FORBIDDEN /civicDesk/permit/renew/1 46ms
+2026-06-17 23:49:01 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway → POST /civicDesk/permit/renew/1 [from /0:0:0:0:0:0:0:1]
+2026-06-17 23:49:01 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 400 BAD_REQUEST /civicDesk/permit/renew/1 94ms
