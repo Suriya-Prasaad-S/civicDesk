@@ -79,4 +79,14 @@ public class ServiceRequestController {
         return ResponseEntity.ok(ApiResponse.<ServiceRequestResponse>builder()
                 .success(true).message("Request status updated to " + request.getStatus()).data(updated).build());
     }
+
+    @PostMapping("/getServiceRequestAnalytics")
+    @PreAuthorize("hasAnyAuthority('ROLE_ADM','ROLE_DS','ROLE_CO','ROLE_FO')")
+    @Operation(summary = "Get service request analytics for dashboards")
+    public ResponseEntity<ApiResponse<ServiceRequestAnalyticsResponse>> getServiceRequestAnalytics(
+            @Valid @RequestBody ServiceRequestAnalyticsRequest request) {
+        return ResponseEntity.ok(ApiResponse.<ServiceRequestAnalyticsResponse>builder()
+                .success(true).message("Service request analytics fetched")
+                .data(requestService.getServiceRequestAnalytics(request)).build());
+    }
 }

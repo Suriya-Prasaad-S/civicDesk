@@ -12,6 +12,6 @@ import java.util.List;
 public interface ServiceCatalogRepository extends JpaRepository<ServiceCatalog, Long> {
     List<ServiceCatalog> findByStatus(ServiceStatus status);
     List<ServiceCatalog> findByCategory(ServiceCategory category);
-    List<ServiceCatalog> findByDepartmentId(Long departmentId);
+    List<ServiceCatalog> findByDepartmentId(String departmentId);
     List<ServiceCatalog> findByCategoryAndStatus(ServiceCategory category, ServiceStatus status);
 }

@@ -1,5 +1,7 @@
 package com.civicdesk.servicerequest.service;
 
+import com.civicdesk.servicerequest.dto.ServiceRequestAnalyticsRequest;
+import com.civicdesk.servicerequest.dto.ServiceRequestAnalyticsResponse;
 import com.civicdesk.servicerequest.dto.ServiceRequestCreateRequest;
 import com.civicdesk.servicerequest.dto.ServiceRequestResponse;
 import com.civicdesk.servicerequest.entity.ServiceCatalog;
@@ -9,6 +11,7 @@ import com.civicdesk.servicerequest.enums.ServiceStatus;
 import com.civicdesk.servicerequest.exception.BadRequestException;
 import com.civicdesk.servicerequest.exception.ForbiddenException;
 import com.civicdesk.servicerequest.exception.ResourceNotFoundException;
+import com.civicdesk.servicerequest.repository.ServiceCatalogRepository;
 import com.civicdesk.servicerequest.repository.ServiceRequestRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -16,7 +19,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -25,6 +33,7 @@ public class ServiceRequestService {
 
     private final ServiceRequestRepository requestRepository;
     private final ServiceCatalogService catalogService;
+    private final ServiceCatalogRepository catalogRepository;
 
     // ─── CITIZEN ─────────────────────────────────────────────────────────────
 
@@ -88,6 +97,52 @@ public class ServiceRequestService {
 
     public List<ServiceRequestResponse> getByStatus(RequestStatus status) {
         return requestRepository.findByStatus(status).stream().map(this::mapToResponse).toList();
+    }
+
+    @Transactional(readOnly = true)
+    public ServiceRequestAnalyticsResponse getServiceRequestAnalytics(ServiceRequestAnalyticsRequest request) {
+        Long deptId = request.deptId();
+        LocalDate fromDate = request.fromDate();
+        LocalDate toDate = request.toDate();
+
+        long totalRequests = requestRepository.countRequests(deptId, fromDate, toDate);
+        long overdueRequests = requestRepository.countOverdueRequests(deptId, fromDate, toDate, LocalDate.now());
+
+        Map<RequestStatus, Long> statusMap = Arrays.stream(RequestStatus.values())
+                .collect(Collectors.toMap(
+                        Function.identity(),
+                        status -> 0L,
+                        (existing, replacement) -> existing,
+                        LinkedHashMap::new));
+        requestRepository.getStatusBreakdown(deptId, fromDate, toDate)
+                .forEach(row -> statusMap.put((RequestStatus) row[0], ((Number) row[1]).longValue()));
+        List<ServiceRequestAnalyticsResponse.LabelCount> statusBreakdown = statusMap.entrySet().stream()
+                .map(entry -> new ServiceRequestAnalyticsResponse.LabelCount(entry.getKey().name(), entry.getValue()))
+                .toList();
+
+        Map<String, Long> serviceMap = catalogRepository.findByStatus(ServiceStatus.ACTIVE).stream()
+                .collect(Collectors.toMap(
+                        ServiceCatalog::getServiceName,
+                        service -> 0L,
+                        (existing, replacement) -> existing,
+                        LinkedHashMap::new));
+        requestRepository.getServiceBreakdown(deptId, fromDate, toDate)
+                .forEach(row -> serviceMap.put((String) row[0], ((Number) row[1]).longValue()));
+        List<ServiceRequestAnalyticsResponse.LabelCount> serviceBreakdown = serviceMap.entrySet().stream()
+                .map(entry -> new ServiceRequestAnalyticsResponse.LabelCount(entry.getKey(), entry.getValue()))
+                .toList();
+
+        List<ServiceRequestAnalyticsResponse.DateCount> trend = requestRepository.getTrend(deptId, fromDate, toDate)
+                .stream()
+                .map(row -> new ServiceRequestAnalyticsResponse.DateCount((LocalDate) row[0], ((Number) row[1]).longValue()))
+                .toList();
+
+        return new ServiceRequestAnalyticsResponse(
+                totalRequests,
+                statusBreakdown,
+                serviceBreakdown,
+                trend,
+                overdueRequests);
     }
 
     @Transactional

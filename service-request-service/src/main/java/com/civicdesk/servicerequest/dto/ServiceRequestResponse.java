@@ -17,7 +17,7 @@ public class ServiceRequestResponse {
     private Long serviceId;
     private String serviceName;
     private String serviceCategory;
-    private Long departmentId;
+    private String departmentId;
     private LocalDate submissionDate;
     private Long assignedOfficerId;
     private BigDecimal fee;

@@ -269,3 +269,122 @@
 2026-06-18 14:55:48 [reactor-http-nio-5] WARN  c.c.g.security.JwtTokenProvider - JWT validation failed at gateway: JWT expired 542288 milliseconds ago at 2026-06-18T09:16:46.000Z. Current time: 2026-06-18T09:25:48.288Z. Allowed clock skew: 0 milliseconds.
 2026-06-18 14:55:48 [reactor-http-nio-5] WARN  c.c.g.filter.JwtAuthenticationFilter - Invalid JWT token for path: /civicDesk/permits/createPermit
 2026-06-18 14:55:48 [reactor-http-nio-5] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 401 UNAUTHORIZED /civicDesk/permits/createPermit 17ms
+2026-07-04 21:58:41 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+2026-07-04 21:58:41 [main] INFO  c.c.gateway.ApiGatewayApplication - Starting ApiGatewayApplication using Java 21.0.2 with PID 20512 (C:\Users\2506484\Documents\civicDesk-1\api-gateway\target\classes started by 2506484 in C:\Users\2506484\Documents\civicDesk-1)
+2026-07-04 21:58:41 [main] INFO  c.c.gateway.ApiGatewayApplication - No active profile set, falling back to 1 default profile: "default"
+2026-07-04 21:58:44 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=e5eb0134-8f0d-3750-b411-d859af6998f0
+2026-07-04 21:58:45 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [After]
+2026-07-04 21:58:45 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Before]
+2026-07-04 21:58:45 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Between]
+2026-07-04 21:58:45 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Cookie]
+2026-07-04 21:58:45 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Header]
+2026-07-04 21:58:45 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Host]
+2026-07-04 21:58:45 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Method]
+2026-07-04 21:58:45 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Path]
+2026-07-04 21:58:45 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Query]
+2026-07-04 21:58:45 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [ReadBody]
+2026-07-04 21:58:45 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [RemoteAddr]
+2026-07-04 21:58:45 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [XForwardedRemoteAddr]
+2026-07-04 21:58:45 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Weight]
+2026-07-04 21:58:45 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [CloudFoundryRouteService]
+2026-07-04 21:58:47 [main] INFO  o.s.b.w.e.netty.NettyWebServer - Netty started on port 9090
+2026-07-04 21:58:47 [main] INFO  c.c.gateway.ApiGatewayApplication - Started ApiGatewayApplication in 6.393 seconds (process running for 7.005)
+2026-07-04 22:13:59 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway -> POST /civicDesk/iam/auth/staff/login [from /0:0:0:0:0:0:0:1]
+2026-07-04 22:14:00 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway <- 401 UNAUTHORIZED /civicDesk/iam/auth/staff/login 715ms
+2026-07-04 22:18:47 [reactor-http-nio-5] INFO  c.c.gateway.filter.LoggingFilter - Gateway -> POST /civicDesk/iam/auth/staff/login [from /0:0:0:0:0:0:0:1]
+2026-07-04 22:18:47 [reactor-http-nio-5] INFO  c.c.gateway.filter.LoggingFilter - Gateway <- 401 UNAUTHORIZED /civicDesk/iam/auth/staff/login 165ms
+2026-07-04 22:18:54 [reactor-http-nio-5] INFO  c.c.gateway.filter.LoggingFilter - Gateway -> POST /civicDesk/iam/auth/staff/login [from /0:0:0:0:0:0:0:1]
+2026-07-04 22:18:54 [reactor-http-nio-5] INFO  c.c.gateway.filter.LoggingFilter - Gateway <- 401 UNAUTHORIZED /civicDesk/iam/auth/staff/login 180ms
+2026-07-04 22:23:02 [reactor-http-nio-7] INFO  c.c.gateway.filter.LoggingFilter - Gateway -> POST /civicDesk/iam/auth/staff/login [from /0:0:0:0:0:0:0:1]
+2026-07-04 22:23:02 [reactor-http-nio-7] INFO  c.c.gateway.filter.LoggingFilter - Gateway <- 401 UNAUTHORIZED /civicDesk/iam/auth/staff/login 182ms
+2026-07-04 22:23:25 [reactor-http-nio-7] INFO  c.c.gateway.filter.LoggingFilter - Gateway -> POST /civicDesk/iam/auth/staff/login [from /0:0:0:0:0:0:0:1]
+2026-07-04 22:23:25 [reactor-http-nio-7] INFO  c.c.gateway.filter.LoggingFilter - Gateway <- 401 UNAUTHORIZED /civicDesk/iam/auth/staff/login 156ms
+2026-07-04 22:24:20 [reactor-http-nio-7] INFO  c.c.gateway.filter.LoggingFilter - Gateway -> POST /civicDesk/iam/auth/staff/login [from /0:0:0:0:0:0:0:1]
+2026-07-04 22:24:20 [reactor-http-nio-7] INFO  c.c.gateway.filter.LoggingFilter - Gateway <- 401 UNAUTHORIZED /civicDesk/iam/auth/staff/login 171ms
+2026-07-04 22:27:28 [reactor-http-nio-9] INFO  c.c.gateway.filter.LoggingFilter - Gateway -> POST /civicDesk/iam/auth/staff/login [from /0:0:0:0:0:0:0:1]
+2026-07-04 22:27:28 [reactor-http-nio-9] INFO  c.c.gateway.filter.LoggingFilter - Gateway <- 401 UNAUTHORIZED /civicDesk/iam/auth/staff/login 219ms
+2026-07-04 22:27:51 [reactor-http-nio-9] INFO  c.c.gateway.filter.LoggingFilter - Gateway -> POST /civicDesk/iam/auth/staff/login [from /0:0:0:0:0:0:0:1]
+2026-07-04 22:27:51 [reactor-http-nio-9] INFO  c.c.gateway.filter.LoggingFilter - Gateway <- 401 UNAUTHORIZED /civicDesk/iam/auth/staff/login 198ms
+2026-07-04 22:28:06 [reactor-http-nio-9] INFO  c.c.gateway.filter.LoggingFilter - Gateway -> POST /civicDesk/iam/auth/staff/login [from /0:0:0:0:0:0:0:1]
+2026-07-04 22:28:06 [reactor-http-nio-9] INFO  c.c.gateway.filter.LoggingFilter - Gateway <- 401 UNAUTHORIZED /civicDesk/iam/auth/staff/login 185ms
+2026-07-04 22:28:55 [reactor-http-nio-9] INFO  c.c.gateway.filter.LoggingFilter - Gateway -> POST /civicDesk/iam/auth/staff/login [from /0:0:0:0:0:0:0:1]
+2026-07-04 22:28:56 [reactor-http-nio-9] INFO  c.c.gateway.filter.LoggingFilter - Gateway <- 200 OK /civicDesk/iam/auth/staff/login 595ms
+2026-07-04 22:31:03 [reactor-http-nio-11] INFO  c.c.gateway.filter.LoggingFilter - Gateway -> GET /civicDesk/iam/auth/staff/user [from /0:0:0:0:0:0:0:1]
+2026-07-04 22:31:05 [reactor-http-nio-11] INFO  c.c.gateway.filter.LoggingFilter - Gateway <- 500 INTERNAL_SERVER_ERROR /civicDesk/iam/auth/staff/user 1457ms
+2026-07-04 22:31:30 [reactor-http-nio-11] INFO  c.c.gateway.filter.LoggingFilter - Gateway -> POST /civicDesk/iam/auth/staff/login [from /0:0:0:0:0:0:0:1]
+2026-07-04 22:31:30 [reactor-http-nio-11] INFO  c.c.gateway.filter.LoggingFilter - Gateway <- 200 OK /civicDesk/iam/auth/staff/login 201ms
+2026-07-04 22:32:03 [reactor-http-nio-11] INFO  c.c.gateway.filter.LoggingFilter - Gateway -> POST /civicDesk/iam/auth/staff/user [from /0:0:0:0:0:0:0:1]
+2026-07-04 22:32:04 [reactor-http-nio-11] INFO  c.c.gateway.filter.LoggingFilter - Gateway <- 500 INTERNAL_SERVER_ERROR /civicDesk/iam/auth/staff/user 63ms
+2026-07-04 22:32:28 [reactor-http-nio-11] INFO  c.c.gateway.filter.LoggingFilter - Gateway -> POST /civicDesk/iam/auth/staff/users [from /0:0:0:0:0:0:0:1]
+2026-07-04 22:32:28 [reactor-http-nio-11] INFO  c.c.gateway.filter.LoggingFilter - Gateway <- 500 INTERNAL_SERVER_ERROR /civicDesk/iam/auth/staff/users 57ms
+2026-07-04 22:32:39 [reactor-http-nio-11] INFO  c.c.gateway.filter.LoggingFilter - Gateway -> POST /civicDesk/iam/auth/users [from /0:0:0:0:0:0:0:1]
+2026-07-04 22:32:39 [reactor-http-nio-11] INFO  c.c.gateway.filter.LoggingFilter - Gateway <- 500 INTERNAL_SERVER_ERROR /civicDesk/iam/auth/users 65ms
+2026-07-04 22:33:15 [reactor-http-nio-11] INFO  c.c.gateway.filter.LoggingFilter - Gateway -> POST /civicDesk/iam/users [from /0:0:0:0:0:0:0:1]
+2026-07-04 22:33:15 [reactor-http-nio-11] INFO  c.c.gateway.filter.LoggingFilter - Gateway <- 400 BAD_REQUEST /civicDesk/iam/users 124ms
+2026-07-04 22:33:33 [reactor-http-nio-11] INFO  c.c.gateway.filter.LoggingFilter - Gateway -> POST /civicDesk/iam/users [from /0:0:0:0:0:0:0:1]
+2026-07-04 22:33:33 [reactor-http-nio-11] INFO  c.c.gateway.filter.LoggingFilter - Gateway <- 400 BAD_REQUEST /civicDesk/iam/users 195ms
+2026-07-04 22:34:01 [reactor-http-nio-11] INFO  c.c.gateway.filter.LoggingFilter - Gateway -> POST /civicDesk/iam/users [from /0:0:0:0:0:0:0:1]
+2026-07-04 22:34:01 [reactor-http-nio-11] INFO  c.c.gateway.filter.LoggingFilter - Gateway <- 201 CREATED /civicDesk/iam/users 226ms
+2026-07-04 22:35:27 [reactor-http-nio-1] INFO  c.c.gateway.filter.LoggingFilter - Gateway -> POST /civicDesk/iam/auth/setPassword [from /0:0:0:0:0:0:0:1]
+2026-07-04 22:35:27 [reactor-http-nio-1] INFO  c.c.gateway.filter.LoggingFilter - Gateway <- 200 OK /civicDesk/iam/auth/setPassword 246ms
+2026-07-04 22:37:30 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway -> POST /civicDesk/iam/auth/staff/login [from /0:0:0:0:0:0:0:1]
+2026-07-04 22:37:30 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway <- 200 OK /civicDesk/iam/auth/staff/login 219ms
+2026-07-04 22:39:46 [reactor-http-nio-5] INFO  c.c.gateway.filter.LoggingFilter - Gateway -> POST /civicDesk/iam/users [from /0:0:0:0:0:0:0:1]
+2026-07-04 22:39:46 [reactor-http-nio-5] INFO  c.c.gateway.filter.LoggingFilter - Gateway <- 201 CREATED /civicDesk/iam/users 149ms
+2026-07-04 22:41:01 [reactor-http-nio-7] INFO  c.c.gateway.filter.LoggingFilter - Gateway -> POST /civicDesk/iam/setPassword [from /0:0:0:0:0:0:0:1]
+2026-07-04 22:41:01 [reactor-http-nio-7] WARN  c.c.g.filter.JwtAuthenticationFilter - Missing or malformed Authorization header for path: /civicDesk/iam/setPassword
+2026-07-04 22:41:01 [reactor-http-nio-7] INFO  c.c.gateway.filter.LoggingFilter - Gateway <- 401 UNAUTHORIZED /civicDesk/iam/setPassword 33ms
+2026-07-04 22:41:30 [reactor-http-nio-7] INFO  c.c.gateway.filter.LoggingFilter - Gateway -> POST /civicDesk/iam/auth/setPassword [from /0:0:0:0:0:0:0:1]
+2026-07-04 22:41:30 [reactor-http-nio-7] INFO  c.c.gateway.filter.LoggingFilter - Gateway <- 200 OK /civicDesk/iam/auth/setPassword 233ms
+2026-07-04 22:42:32 [reactor-http-nio-9] INFO  c.c.gateway.filter.LoggingFilter - Gateway -> POST /civicDesk/iam/auth/staff/login [from /0:0:0:0:0:0:0:1]
+2026-07-04 22:42:32 [reactor-http-nio-9] INFO  c.c.gateway.filter.LoggingFilter - Gateway <- 200 OK /civicDesk/iam/auth/staff/login 195ms
+2026-07-04 22:43:52 [reactor-http-nio-11] INFO  c.c.gateway.filter.LoggingFilter - Gateway -> GET /civicDesk/iam/users/me [from /0:0:0:0:0:0:0:1]
+2026-07-04 22:43:52 [reactor-http-nio-11] INFO  c.c.gateway.filter.LoggingFilter - Gateway <- 200 OK /civicDesk/iam/users/me 78ms
+2026-07-04 22:47:51 [reactor-http-nio-1] INFO  c.c.gateway.filter.LoggingFilter - Gateway -> POST /civicDesk/iam/auth/register [from /0:0:0:0:0:0:0:1]
+2026-07-04 22:47:51 [reactor-http-nio-1] INFO  c.c.gateway.filter.LoggingFilter - Gateway <- 201 CREATED /civicDesk/iam/auth/register 225ms
+2026-07-04 22:48:51 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway -> POST /civicDesk/iam/auth/citizen/login [from /0:0:0:0:0:0:0:1]
+2026-07-04 22:48:51 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway <- 200 OK /civicDesk/iam/auth/citizen/login 223ms
+2026-07-04 22:49:50 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway -> GET /civicDesk/iam/auth/citizen/login [from /0:0:0:0:0:0:0:1]
+2026-07-04 22:49:50 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway <- 500 INTERNAL_SERVER_ERROR /civicDesk/iam/auth/citizen/login 21ms
+2026-07-04 22:49:54 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway -> POST /civicDesk/iam/auth/citizen/login [from /0:0:0:0:0:0:0:1]
+2026-07-04 22:49:54 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway <- 200 OK /civicDesk/iam/auth/citizen/login 204ms
+2026-07-04 22:55:03 [reactor-http-nio-5] INFO  c.c.gateway.filter.LoggingFilter - Gateway -> POST /civicDesk/serviceRequest/createService [from /0:0:0:0:0:0:0:1]
+2026-07-04 22:55:04 [reactor-http-nio-5] INFO  c.c.gateway.filter.LoggingFilter - Gateway <- 400 BAD_REQUEST /civicDesk/serviceRequest/createService 895ms
+2026-07-04 22:56:02 [reactor-http-nio-5] INFO  c.c.gateway.filter.LoggingFilter - Gateway -> POST /civicDesk/serviceRequest/createService [from /0:0:0:0:0:0:0:1]
+2026-07-04 22:56:02 [reactor-http-nio-5] INFO  c.c.gateway.filter.LoggingFilter - Gateway <- 400 BAD_REQUEST /civicDesk/serviceRequest/createService 48ms
+2026-07-04 22:56:35 [reactor-http-nio-5] INFO  c.c.gateway.filter.LoggingFilter - Gateway -> POST /civicDesk/serviceRequest/createServices [from /0:0:0:0:0:0:0:1]
+2026-07-04 22:56:35 [reactor-http-nio-5] INFO  c.c.gateway.filter.LoggingFilter - Gateway <- 500 INTERNAL_SERVER_ERROR /civicDesk/serviceRequest/createServices 68ms
+2026-07-04 22:57:10 [reactor-http-nio-5] INFO  c.c.gateway.filter.LoggingFilter - Gateway -> POST /civicDesk/serviceRequest/createService [from /0:0:0:0:0:0:0:1]
+2026-07-04 22:57:10 [reactor-http-nio-5] INFO  c.c.gateway.filter.LoggingFilter - Gateway <- 400 BAD_REQUEST /civicDesk/serviceRequest/createService 58ms
+2026-07-04 22:58:40 [reactor-http-nio-7] INFO  c.c.gateway.filter.LoggingFilter - Gateway -> POST /civicDesk/serviceRequest/createService [from /0:0:0:0:0:0:0:1]
+2026-07-04 22:58:41 [reactor-http-nio-7] INFO  c.c.gateway.filter.LoggingFilter - Gateway <- 400 BAD_REQUEST /civicDesk/serviceRequest/createService 40ms
+2026-07-04 23:02:09 [reactor-http-nio-9] INFO  c.c.gateway.filter.LoggingFilter - Gateway -> POST /civicDesk/serviceRequest/createService [from /0:0:0:0:0:0:0:1]
+2026-07-04 23:02:09 [reactor-http-nio-9] WARN  c.c.g.security.JwtTokenProvider - JWT validation failed at gateway: JWT expired 39023 milliseconds ago at 2026-07-04T17:31:30.000Z. Current time: 2026-07-04T17:32:09.023Z. Allowed clock skew: 0 milliseconds.
+2026-07-04 23:02:09 [reactor-http-nio-9] WARN  c.c.g.filter.JwtAuthenticationFilter - Invalid JWT token for path: /civicDesk/serviceRequest/createService
+2026-07-04 23:02:09 [reactor-http-nio-9] INFO  c.c.gateway.filter.LoggingFilter - Gateway <- 401 UNAUTHORIZED /civicDesk/serviceRequest/createService 24ms
+2026-07-04 23:02:22 [reactor-http-nio-9] INFO  c.c.gateway.filter.LoggingFilter - Gateway -> POST /civicDesk/iam/auth/staff/login [from /0:0:0:0:0:0:0:1]
+2026-07-04 23:02:23 [reactor-http-nio-9] INFO  c.c.gateway.filter.LoggingFilter - Gateway <- 200 OK /civicDesk/iam/auth/staff/login 272ms
+2026-07-04 23:02:51 [reactor-http-nio-9] INFO  c.c.gateway.filter.LoggingFilter - Gateway -> POST /civicDesk/serviceRequest/createService [from /0:0:0:0:0:0:0:1]
+2026-07-04 23:02:51 [reactor-http-nio-9] INFO  c.c.gateway.filter.LoggingFilter - Gateway <- 400 BAD_REQUEST /civicDesk/serviceRequest/createService 46ms
+2026-07-04 23:03:00 [reactor-http-nio-9] INFO  c.c.gateway.filter.LoggingFilter - Gateway -> POST /civicDesk/serviceRequest/createService [from /0:0:0:0:0:0:0:1]
+2026-07-04 23:03:01 [reactor-http-nio-9] INFO  c.c.gateway.filter.LoggingFilter - Gateway <- 400 BAD_REQUEST /civicDesk/serviceRequest/createService 54ms
+2026-07-04 23:03:13 [reactor-http-nio-9] INFO  c.c.gateway.filter.LoggingFilter - Gateway -> POST /civicDesk/serviceRequest/createService [from /0:0:0:0:0:0:0:1]
+2026-07-04 23:03:13 [reactor-http-nio-9] INFO  c.c.gateway.filter.LoggingFilter - Gateway <- 400 BAD_REQUEST /civicDesk/serviceRequest/createService 43ms
+2026-07-04 23:03:24 [reactor-http-nio-9] INFO  c.c.gateway.filter.LoggingFilter - Gateway -> POST /civicDesk/serviceRequest/createService [from /0:0:0:0:0:0:0:1]
+2026-07-04 23:03:24 [reactor-http-nio-9] INFO  c.c.gateway.filter.LoggingFilter - Gateway <- 400 BAD_REQUEST /civicDesk/serviceRequest/createService 50ms
+2026-07-04 23:03:53 [reactor-http-nio-9] INFO  c.c.gateway.filter.LoggingFilter - Gateway -> POST /civicDesk/serviceRequest/createService [from /0:0:0:0:0:0:0:1]
+2026-07-04 23:03:53 [reactor-http-nio-9] INFO  c.c.gateway.filter.LoggingFilter - Gateway <- 400 BAD_REQUEST /civicDesk/serviceRequest/createService 37ms
+2026-07-04 23:08:06 [reactor-http-nio-11] INFO  c.c.gateway.filter.LoggingFilter - Gateway -> POST /civicDesk/serviceRequest/createService [from /0:0:0:0:0:0:0:1]
+2026-07-04 23:08:06 [reactor-http-nio-11] INFO  c.c.gateway.filter.LoggingFilter - Gateway <- 400 BAD_REQUEST /civicDesk/serviceRequest/createService 63ms
+2026-07-04 23:12:28 [reactor-http-nio-1] INFO  c.c.gateway.filter.LoggingFilter - Gateway -> POST /civicDesk/serviceRequest/createService [from /0:0:0:0:0:0:0:1]
+2026-07-04 23:12:28 [reactor-http-nio-1] INFO  c.c.gateway.filter.LoggingFilter - Gateway <- 400 BAD_REQUEST /civicDesk/serviceRequest/createService 34ms
+2026-07-04 23:13:54 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway -> POST /civicDesk/serviceRequest/createService [from /0:0:0:0:0:0:0:1]
+2026-07-04 23:13:54 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway <- 400 BAD_REQUEST /civicDesk/serviceRequest/createService 43ms
+2026-07-04 23:14:01 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway -> POST /civicDesk/serviceRequest/createService [from /0:0:0:0:0:0:0:1]
+2026-07-04 23:14:01 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway <- 400 BAD_REQUEST /civicDesk/serviceRequest/createService 35ms
+2026-07-04 23:19:20 [reactor-http-nio-5] INFO  c.c.gateway.filter.LoggingFilter - Gateway -> POST /civicDesk/serviceRequest/createService [from /0:0:0:0:0:0:0:1]
+2026-07-04 23:19:21 [reactor-http-nio-5] INFO  c.c.gateway.filter.LoggingFilter - Gateway <- 400 BAD_REQUEST /civicDesk/serviceRequest/createService 951ms
+2026-07-04 23:19:40 [reactor-http-nio-5] INFO  c.c.gateway.filter.LoggingFilter - Gateway -> POST /civicDesk/serviceRequest/createService [from /0:0:0:0:0:0:0:1]
+2026-07-04 23:19:40 [reactor-http-nio-5] INFO  c.c.gateway.filter.LoggingFilter - Gateway <- 400 BAD_REQUEST /civicDesk/serviceRequest/createService 52ms
+2026-07-04 23:24:44 [reactor-http-nio-7] INFO  c.c.gateway.filter.LoggingFilter - Gateway -> POST /civicDesk/serviceRequest/createService [from /0:0:0:0:0:0:0:1]
+2026-07-04 23:24:46 [reactor-http-nio-7] INFO  c.c.gateway.filter.LoggingFilter - Gateway <- 201 CREATED /civicDesk/serviceRequest/createService 1366ms

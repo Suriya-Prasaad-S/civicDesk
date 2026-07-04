@@ -28,7 +28,7 @@ public class ServiceCatalog {
     private String serviceName;
 
     @Column(name = "department_id", nullable = false)
-    private Long departmentId;
+    private String departmentId;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)

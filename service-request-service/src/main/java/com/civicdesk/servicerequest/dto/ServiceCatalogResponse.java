@@ -7,16 +7,17 @@ import lombok.Data;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @Builder
 public class ServiceCatalogResponse {
     private Long serviceId;
     private String serviceName;
-    private Long departmentId;
+    private String departmentId;
     private ServiceCategory category;
     private Integer processingDays;
-    private String requiredDocuments;
+    private List<String> requiredDocuments;
     private BigDecimal fee;
     private ServiceStatus status;
     private LocalDateTime createdAt;
