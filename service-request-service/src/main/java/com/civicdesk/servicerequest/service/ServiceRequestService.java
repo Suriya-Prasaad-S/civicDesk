@@ -71,7 +71,7 @@ public class ServiceRequestService {
                     .userId(userId)
                     .title("Request Submitted")
                     .message("Service request submitted successfully. Your request has been received and assigned to an officer. Expected completion date is " + service.getProcessingDays() + " working days from today.")
-                    .notificationType("INFO")
+                    .notificationType("SERVICE_REQUEST_UPDATE")
                     .referenceId(saved.getRequestId())
                     .referenceType("SERVICE_REQUEST")
                     .build();
@@ -206,7 +206,7 @@ public class ServiceRequestService {
                     .userId(updated.getUserId())
                     .title("Request Status Updated")
                     .message("Request status updated successfully. Status has been moved to " + formatStatus(newStatus) + ".")
-                    .notificationType("ALERT")
+                    .notificationType("SERVICE_REQUEST_UPDATE")
                     .referenceId(updated.getRequestId())
                     .referenceType("SERVICE_REQUEST")
                     .build();
