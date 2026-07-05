@@ -17,6 +17,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/civicDesk/serviceRequest")
@@ -28,37 +29,35 @@ public class ServiceCatalogController {
 
     @GetMapping("/getAllServices")
     @Operation(summary = "Get all active services (PUBLIC)")
-    public ResponseEntity<ApiResponse<List<ServiceCatalogResponse>>> getAllActive() {
-        return ResponseEntity.ok(ApiResponse.<List<ServiceCatalogResponse>>builder()
-                .success(true).message("Active services fetched").data(catalogService.getAllActive()).build());
+    public ResponseEntity<List<ServiceCatalogResponse>> getAllActive() {
+        return ResponseEntity.ok(catalogService.getAllActive());
     }
 
     @GetMapping("/getService/{serviceId}")
     @Operation(summary = "Get service by ID (PUBLIC)")
-    public ResponseEntity<ApiResponse<ServiceCatalogResponse>> getById(@PathVariable Long serviceId) {
-        return ResponseEntity.ok(ApiResponse.<ServiceCatalogResponse>builder()
-                .success(true).message("Service fetched").data(catalogService.getById(serviceId)).build());
+    public ResponseEntity<ServiceCatalogResponse> getById(@PathVariable Long serviceId) {
+        return ResponseEntity.ok(catalogService.getById(serviceId));
     }
 
     @PostMapping("/createService")
     @PreAuthorize("hasAuthority('ROLE_ADM')")
     @SecurityRequirement(name = "BearerAuth")
     @Operation(summary = "Create a new service (Admin)")
-    public ResponseEntity<ApiResponse<ServiceCatalogResponse>> createService(
+    public ResponseEntity<Map<String, String>> createService(
             @Valid @RequestBody ServiceCatalogRequest request) {
+        ServiceCatalogResponse res = catalogService.create(request);
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(ApiResponse.<ServiceCatalogResponse>builder()
-                        .success(true).message("Service created successfully").data(catalogService.create(request)).build());
+                .body(Map.of("message", res.getMessage()));
     }
 
     @PutMapping("/updateService/{serviceId}")
     @PreAuthorize("hasAuthority('ROLE_ADM')")
     @SecurityRequirement(name = "BearerAuth")
     @Operation(summary = "Update a service (Admin)")
-    public ResponseEntity<ApiResponse<ServiceCatalogResponse>> updateService(
+    public ResponseEntity<Map<String, String>> updateService(
             @PathVariable Long serviceId,
             @Valid @RequestBody ServiceCatalogRequest request) {
-        return ResponseEntity.ok(ApiResponse.<ServiceCatalogResponse>builder()
-                .success(true).message("Service updated").data(catalogService.update(serviceId, request)).build());
+        ServiceCatalogResponse res = catalogService.update(serviceId, request);
+        return ResponseEntity.ok(Map.of("message", res.getMessage()));
     }
 }
