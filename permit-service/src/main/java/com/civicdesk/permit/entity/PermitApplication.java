@@ -62,6 +62,9 @@ public class PermitApplication {
     @Column(name = "expiry_date")
     private LocalDate expiryDate;
 
+    @Column(name = "decision_date")
+    private LocalDate decisionDate;
+
     // Which department is handling this permit
     @Column(name = "department_id")
     private Long departmentId;

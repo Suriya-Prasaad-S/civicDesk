@@ -17,7 +17,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-
+import com.civicdesk.permit.client.NotificationClient;
+import com.civicdesk.permit.dto.NotificationRequest;
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -25,6 +26,7 @@ public class InspectionService {
 
     private final InspectionRepository inspectionRepository;
     private final PermitService permitService;
+    private final NotificationClient notificationClient;
 
     // ─── SUPERVISOR ──────────────────────────────────────────────────────────
 
@@ -45,6 +47,28 @@ public class InspectionService {
                 .build();
 
         Inspection saved = inspectionRepository.save(inspection);
+        try {
+
+            NotificationRequest payload =
+                    NotificationRequest.builder()
+                            .userId(permit.getUserId())
+                            .title("Inspection Scheduled")
+                            .message(
+                                    "An inspection has been scheduled on "
+                                            + request.getScheduledDate())
+                            .notificationType("PERMIT_UPDATE")
+                            .referenceId(permit.getPermitId())
+                            .referenceType("PERMIT")
+                            .build();
+
+            notificationClient.sendNotification(payload);
+
+        } catch (Exception ex) {
+
+            log.error(
+                    "Notification dispatch failed: {}",
+                    ex.getMessage());
+        }
 
         // Move permit status to INSPECTION_SCHEDULED
         permitService.updateStatus(permitId, PermitStatus.INSPECTION_SCHEDULED,
@@ -96,6 +120,31 @@ public class InspectionService {
         inspection.setStatus(InspectionStatus.COMPLETED);
 
         Inspection saved = inspectionRepository.save(inspection);
+        try {
+
+            NotificationRequest payload =
+                    NotificationRequest.builder()
+                            .userId(
+                                    inspection.getPermitApplication()
+                                            .getUserId())
+                            .title("Inspection Completed")
+                            .message(
+                                    "The inspection for your permit has been completed.")
+                            .notificationType("PERMIT_UPDATE")
+                            .referenceId(
+                                    inspection.getPermitApplication()
+                                            .getPermitId())
+                            .referenceType("PERMIT")
+                            .build();
+
+            notificationClient.sendNotification(payload);
+
+        } catch (Exception ex) {
+
+            log.error(
+                    "Notification dispatch failed: {}",
+                    ex.getMessage());
+        }
 
         // Auto-apply outcome to permit
         permitService.applyInspectionOutcome(inspection.getPermitApplication().getPermitId(), request.getOutcome());

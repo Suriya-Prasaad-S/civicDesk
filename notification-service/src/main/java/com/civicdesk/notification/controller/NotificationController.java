@@ -89,7 +89,8 @@ public class NotificationController {
     // ─── ADMIN ────────────────────────────────────────────────────────────────
 
     @PostMapping("/createNotification")
-    @PreAuthorize("hasRole('ADM')")
+    //@PreAuthorize("hasRole('ADM')")
+    @PreAuthorize("isAuthenticated()")
     @Operation(summary = "Create/Send notification to a specific user")
     public ResponseEntity<Map<String, String>> send(
             @Valid @RequestBody SendNotificationRequest request) {

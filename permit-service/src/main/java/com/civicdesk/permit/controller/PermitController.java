@@ -16,6 +16,7 @@ import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -27,7 +28,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Map;
-
+import com.civicdesk.permit.dto.PermitAnalyticsRequest;
+import com.civicdesk.permit.dto.PermitAnalyticsResponse;
 @RestController
 @RequestMapping("/civicDesk/permits")
 @RequiredArgsConstructor
@@ -37,15 +39,35 @@ public class PermitController {
 
     private final PermitService permitService;
 
+   // @PostMapping("/createPermit")
+  //  @PreAuthorize("hasRole('CIT')")
+ /*   public ResponseEntity<ApiResponse<Void>> apply(
+            @Valid @RequestBody PermitApplicationRequest request) {
+
+        Long userId = JwtUserContext.getCurrentUserId();
+
+        permitService.applyForPermit(request, userId);
+
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(ApiResponse.<Void>builder()
+                        .success(true)
+                        .message("Permit application created successfully")
+                        .build());
+    }
+*/
     @PostMapping("/createPermit")
     @PreAuthorize("hasRole('CIT')")
-    @Operation(summary = "Apply for a permit")
-    public ResponseEntity<ApiResponse<PermitApplicationResponse>> apply(
+    public ResponseEntity<Map<String, String>> apply(
             @Valid @RequestBody PermitApplicationRequest request) {
+
         Long userId = JwtUserContext.getCurrentUserId();
-        PermitApplicationResponse response = permitService.applyForPermit(request, userId);
-        return ResponseEntity.status(HttpStatus.CREATED).body(ApiResponse.<PermitApplicationResponse>builder()
-                .success(true).message("Permit application created successfully").data(response).build());
+
+        permitService.applyForPermit(request, userId);
+
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(Map.of(
+                        "message",
+                        "Permit application created successfully"));
     }
 
     @GetMapping("/getAllPermits")
@@ -134,18 +156,44 @@ public class PermitController {
                 .body(fileBytes);
     }
 
+/*
     @PostMapping("/renew/{permitId}")
     @PreAuthorize("hasRole('CIT')")
-    @Operation(summary = "Renew a permit")
-    public ResponseEntity<ApiResponse<PermitApplicationResponse>> renew(
+    public ResponseEntity<ApiResponse<Void>> renew(
             @PathVariable Long permitId,
             @Valid @RequestBody RenewPermitRequest request) {
-        Long userId = JwtUserContext.getCurrentUserId();
-        PermitApplicationResponse response = permitService.renewPermit(permitId, request, userId);
-        return ResponseEntity.ok(ApiResponse.<PermitApplicationResponse>builder()
-                .success(true).message("Permit renewal submitted.").data(response).build());
-    }
 
+        Long userId = JwtUserContext.getCurrentUserId();
+
+        permitService.renewPermit(
+                permitId,
+                request,
+                userId);
+
+        return ResponseEntity.ok(
+                ApiResponse.<Void>builder()
+                        .success(true)
+                        .message("Permit renewal submitted.")
+                        .build());
+    }
+*/
+@PostMapping("/renew/{permitId}")
+public ResponseEntity<Map<String, String>> renew(
+        @PathVariable Long permitId,
+        @Valid @RequestBody RenewPermitRequest request) {
+
+    Long userId = JwtUserContext.getCurrentUserId();
+
+    permitService.renewPermit(
+            permitId,
+            request,
+            userId);
+
+    return ResponseEntity.ok(
+            Map.of(
+                    "message",
+                    "Permit renewal submitted."));
+}
     @GetMapping("/queue")
     @PreAuthorize("hasAnyRole('DS','CO','ADM')")
     @Operation(summary = "Get permit processing queue")
@@ -168,22 +216,58 @@ public class PermitController {
     }
 
     // PUT /{permitId}/decision  — body: {"decision":"Approved","rejectionReason":null}
+
     @PutMapping("/{permitId}/decision")
     @PreAuthorize("hasAnyRole('DS','ADM')")
     @Operation(summary = "Approve or reject permit")
-    public ResponseEntity<ApiResponse<PermitApplicationResponse>> makeDecision(
+    public ResponseEntity<Map<String, String>> makeDecision(
             @PathVariable Long permitId,
             @RequestBody Map<String, String> body) {
+
         String decision = body.get("decision");
         String rejectionReason = body.get("rejectionReason");
+
         PermitStatus status;
+
         try {
-            status = PermitStatus.valueOf(decision != null ? decision.toUpperCase() : "REJECTED");
+            status = PermitStatus.valueOf(
+                    decision != null
+                            ? decision.toUpperCase()
+                            : "REJECTED");
         } catch (IllegalArgumentException e) {
-            status = "Approved".equalsIgnoreCase(decision) ? PermitStatus.APPROVED : PermitStatus.REJECTED;
+            status = "Approved".equalsIgnoreCase(decision)
+                    ? PermitStatus.APPROVED
+                    : PermitStatus.REJECTED;
         }
-        PermitApplicationResponse response = permitService.updateStatus(permitId, status, rejectionReason);
-        return ResponseEntity.ok(ApiResponse.<PermitApplicationResponse>builder()
-                .success(true).message("Permit decision updated successfully").data(response).build());
+
+        permitService.updateStatus(
+                permitId,
+                status,
+                rejectionReason);
+
+        return ResponseEntity.ok(
+                Map.of(
+                        "message",
+                        "Permit decision updated successfully"));
+    }
+
+
+
+    @PostMapping("/analytics")
+    @PreAuthorize("hasAnyRole('DS','CO','ADM')")
+    public ResponseEntity<ApiResponse<PermitAnalyticsResponse>> getAnalytics(
+            @RequestBody PermitAnalyticsRequest request) {
+
+        PermitAnalyticsResponse response =
+                permitService.getPermitAnalytics(
+                        request.getFromDate(),
+                        request.getToDate());
+
+        return ResponseEntity.ok(
+                ApiResponse.<PermitAnalyticsResponse>builder()
+                        .success(true)
+                        .message("Permit analytics fetched successfully")
+                        .data(response)
+                        .build());
     }
 }
