@@ -1,5 +1,6 @@
 package com.civicdesk.notification.controller;
 
+import com.civicdesk.notification.client.AuditLogClient;
 import com.civicdesk.notification.dto.*;
 import com.civicdesk.notification.security.JwtUserContext;
 import com.civicdesk.notification.service.NotificationService;
@@ -24,6 +25,7 @@ import java.util.Map;
 public class NotificationController {
 
     private final NotificationService notificationService;
+    private final AuditLogClient auditLogClient;
 
     // ─── ALL AUTHENTICATED USERS ─────────────────────────────────────────────
 
@@ -101,6 +103,9 @@ public class NotificationController {
     @PreAuthorize("hasRole('ADM')")
     @Operation(summary = "Trigger SLA check for overdue items")
     public ResponseEntity<Map<String, String>> triggerSLACheck() {
+        Long currentUserId = JwtUserContext.getCurrentUserId();
+        String userIdStr = currentUserId != null ? String.valueOf(currentUserId) : "SYSTEM";
+        auditLogClient.log(userIdStr, "TRIGGER_SLA_CHECK", "NOTIFICATION");
         return ResponseEntity.ok(Map.of("message", "SLA check completed. 3 breach notifications and 2 warning notifications created."));
     }
 

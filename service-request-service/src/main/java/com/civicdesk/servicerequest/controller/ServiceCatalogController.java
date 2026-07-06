@@ -50,8 +50,6 @@ public class ServiceCatalogController {
         return ResponseEntity.status(HttpStatus.CREATED)
             .body(MessageResponse.builder()
                 .message(res.getMessage())
-                .id(res.getServiceId())
-                .data(res)
                 .build());
         }
 
@@ -65,8 +63,6 @@ public class ServiceCatalogController {
         ServiceCatalogResponse res = catalogService.update(serviceId, request);
         return ResponseEntity.ok(MessageResponse.builder()
                 .message(res.getMessage())
-                .id(res.getServiceId())
-                .data(res)
                 .build());
     }
 }

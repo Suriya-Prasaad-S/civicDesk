@@ -9,6 +9,8 @@ import com.civicdesk.servicerequest.enums.ServiceCategory;
 import com.civicdesk.servicerequest.enums.ServiceStatus;
 import com.civicdesk.servicerequest.exception.ResourceNotFoundException;
 import com.civicdesk.servicerequest.repository.ServiceCatalogRepository;
+import com.civicdesk.servicerequest.client.AuditLogClient;
+import com.civicdesk.servicerequest.security.JwtUserContext;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -25,6 +27,7 @@ import java.util.stream.Collectors;
 public class ServiceCatalogService {
 
     private final ServiceCatalogRepository catalogRepository;
+    private final AuditLogClient auditLogClient;
 
     @Transactional
     public ServiceCatalogResponse create(ServiceCatalogRequest request) {
@@ -39,6 +42,11 @@ public class ServiceCatalogService {
                 .build();
         ServiceCatalog saved = catalogRepository.save(catalog);
         log.info("Service created: serviceId={} name={}", saved.getServiceId(), saved.getServiceName());
+        
+        Long currentUserId = JwtUserContext.getCurrentUserId();
+        String actorUserIdStr = currentUserId != null ? String.valueOf(currentUserId) : "SYSTEM";
+        auditLogClient.log(actorUserIdStr, "CREATE_SERVICE", "SERVICE_REQUEST");
+
         ServiceCatalogResponse response = mapToResponse(saved);
         response.setMessage("Service created successfully. New service has been added to the catalog.");
         return response;
@@ -55,6 +63,11 @@ public class ServiceCatalogService {
         catalog.setFee(request.getFee());
         log.info("Service updated: serviceId={}", serviceId);
         ServiceCatalogResponse response = mapToResponse(catalogRepository.save(catalog));
+        
+        Long currentUserId = JwtUserContext.getCurrentUserId();
+        String actorUserIdStr = currentUserId != null ? String.valueOf(currentUserId) : "SYSTEM";
+        auditLogClient.log(actorUserIdStr, "UPDATE_SERVICE", "SERVICE_REQUEST");
+
         response.setMessage("Service updated successfully.");
         return response;
     }

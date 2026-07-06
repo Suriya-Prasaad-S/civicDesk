@@ -16,10 +16,13 @@ import com.civicdesk.servicerequest.exception.BadRequestException;
 import com.civicdesk.servicerequest.exception.ForbiddenException;
 import com.civicdesk.servicerequest.exception.InactiveServiceException;
 import com.civicdesk.servicerequest.exception.ResourceNotFoundException;
+import com.civicdesk.servicerequest.client.AuthServiceClient;
+import com.civicdesk.servicerequest.client.AuditLogClient;
 import com.civicdesk.servicerequest.client.NotificationClient;
 import com.civicdesk.servicerequest.dto.request.NotificationRequest;
 import com.civicdesk.servicerequest.repository.ServiceCatalogRepository;
 import com.civicdesk.servicerequest.repository.ServiceRequestRepository;
+import com.civicdesk.servicerequest.security.JwtUserContext;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -42,6 +45,8 @@ public class ServiceRequestService {
     private final ServiceCatalogService catalogService;
     private final ServiceCatalogRepository catalogRepository;
     private final NotificationClient notificationClient;
+    private final AuthServiceClient authServiceClient;
+    private final AuditLogClient auditLogClient;
 
     // ─── CITIZEN ─────────────────────────────────────────────────────────────
 
@@ -56,6 +61,13 @@ public class ServiceRequestService {
         LocalDate submissionDate = LocalDate.now();
         LocalDate expectedCompletion = submissionDate.plusDays(service.getProcessingDays());
 
+        Long supervisorId = null;
+        try {
+            supervisorId = authServiceClient.getDepartmentSupervisorId(service.getDepartmentId());
+        } catch (Exception e) {
+            log.error("Failed to fetch department supervisor for departmentId={}: {}", service.getDepartmentId(), e.getMessage());
+        }
+
         ServiceRequest serviceRequest = ServiceRequest.builder()
                 .citizenId(request.getCitizenId())
                 .userId(userId)
@@ -64,11 +76,13 @@ public class ServiceRequestService {
                 .fee(service.getFee())
                 .expectedCompletionDate(expectedCompletion)
                 .status(RequestStatus.SUBMITTED)
+                .assignedOfficerId(supervisorId)
                 .build();
 
         ServiceRequest saved = requestRepository.save(serviceRequest);
         log.info("Service request submitted: requestId={} citizenId={} serviceId={}",
                 saved.getRequestId(), request.getCitizenId(), request.getServiceId());
+        auditLogClient.log(String.valueOf(userId), "SUBMIT_REQUEST", "SERVICE_REQUEST");
         
         try {
             NotificationRequest notificationPayload = NotificationRequest.builder()
@@ -142,7 +156,7 @@ public class ServiceRequestService {
     }
 
     public List<CitizenRequestItemResponse> getByCitizenIdAsCitizenItems(Long citizenId) {
-        return requestRepository.findByUserId(citizenId).stream().map(this::mapToCitizenItemResponse).toList();
+        return requestRepository.findByCitizenId(citizenId).stream().map(this::mapToCitizenItemResponse).toList();
     }
 
     @Transactional(readOnly = true)
@@ -203,6 +217,9 @@ public class ServiceRequestService {
         }
         ServiceRequest updated = requestRepository.save(sr);
         log.info("Officer assigned: requestId={} officerId={}", requestId, officerId);
+        Long currentUserId = JwtUserContext.getCurrentUserId();
+        String actorUserIdStr = currentUserId != null ? String.valueOf(currentUserId) : "SYSTEM";
+        auditLogClient.log(actorUserIdStr, "UPDATE_REQUEST_STATUS", "SERVICE_REQUEST");
         return mapToResponse(updated);
     }
 
@@ -225,6 +242,7 @@ public class ServiceRequestService {
 
         ServiceRequest updated = requestRepository.save(sr);
         log.info("Request status updated: requestId={} status={} by userId={}", requestId, newStatus, actorUserId);
+        auditLogClient.log(String.valueOf(actorUserId), "UPDATE_REQUEST_STATUS", "SERVICE_REQUEST");
         
         try {
             NotificationRequest notificationPayload = NotificationRequest.builder()

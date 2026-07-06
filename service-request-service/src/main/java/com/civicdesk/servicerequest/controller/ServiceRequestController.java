@@ -42,7 +42,6 @@ public class ServiceRequestController {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(MessageResponse.builder()
                         .message(res.getMessage())
-                        .id(res.getRequestId())
                         .build());
     }
 
@@ -85,8 +84,6 @@ public class ServiceRequestController {
                 JwtUserContext.getCurrentUserId(), JwtUserContext.getCurrentRole());
         return ResponseEntity.ok(MessageResponse.builder()
                 .message(res.getMessage())
-                .id(res.getRequestId())
-                .data(res)
                 .build());
     }
  

@@ -28,8 +28,10 @@ com\civicdesk\servicerequest\dto\request\NotificationRequest$NotificationRequest
 com\civicdesk\servicerequest\entity\ServiceCatalog.class
 com\civicdesk\servicerequest\service\RequestDocumentService.class
 com\civicdesk\servicerequest\enums\ServiceStatus.class
+com\civicdesk\servicerequest\client\AuthServiceClient.class
 com\civicdesk\servicerequest\exception\InactiveServiceException.class
 com\civicdesk\servicerequest\repository\ServiceRequestRepository.class
+com\civicdesk\servicerequest\client\AuditLogClient.class
 com\civicdesk\servicerequest\service\ServiceCatalogService.class
 com\civicdesk\servicerequest\dto\response\RequestDetailResponse.class
 com\civicdesk\servicerequest\dto\response\MessageResponse.class
