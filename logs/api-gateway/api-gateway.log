@@ -388,3 +388,43 @@
 2026-07-04 23:19:40 [reactor-http-nio-5] INFO  c.c.gateway.filter.LoggingFilter - Gateway <- 400 BAD_REQUEST /civicDesk/serviceRequest/createService 52ms
 2026-07-04 23:24:44 [reactor-http-nio-7] INFO  c.c.gateway.filter.LoggingFilter - Gateway -> POST /civicDesk/serviceRequest/createService [from /0:0:0:0:0:0:0:1]
 2026-07-04 23:24:46 [reactor-http-nio-7] INFO  c.c.gateway.filter.LoggingFilter - Gateway <- 201 CREATED /civicDesk/serviceRequest/createService 1366ms
+2026-07-06 21:52:00 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+2026-07-06 21:52:00 [main] INFO  c.c.gateway.ApiGatewayApplication - Starting ApiGatewayApplication using Java 21.0.2 with PID 13044 (C:\Users\2506484\Documents\civicDesk-1\api-gateway\target\classes started by 2506484 in C:\Users\2506484\Documents\civicDesk-1)
+2026-07-06 21:52:00 [main] INFO  c.c.gateway.ApiGatewayApplication - No active profile set, falling back to 1 default profile: "default"
+2026-07-06 21:52:03 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=e5eb0134-8f0d-3750-b411-d859af6998f0
+2026-07-06 21:52:05 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [After]
+2026-07-06 21:52:05 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Before]
+2026-07-06 21:52:05 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Between]
+2026-07-06 21:52:05 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Cookie]
+2026-07-06 21:52:05 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Header]
+2026-07-06 21:52:05 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Host]
+2026-07-06 21:52:05 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Method]
+2026-07-06 21:52:05 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Path]
+2026-07-06 21:52:05 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Query]
+2026-07-06 21:52:05 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [ReadBody]
+2026-07-06 21:52:05 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [RemoteAddr]
+2026-07-06 21:52:05 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [XForwardedRemoteAddr]
+2026-07-06 21:52:05 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Weight]
+2026-07-06 21:52:05 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [CloudFoundryRouteService]
+2026-07-06 21:52:06 [main] INFO  o.s.b.w.e.netty.NettyWebServer - Netty started on port 9090
+2026-07-06 21:52:06 [main] INFO  c.c.gateway.ApiGatewayApplication - Started ApiGatewayApplication in 6.927 seconds (process running for 8.146)
+2026-07-06 21:57:48 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway -> POST /civicDesk/iam/auth/citizen/login [from /0:0:0:0:0:0:0:1]
+2026-07-06 21:57:52 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway <- 200 OK /civicDesk/iam/auth/citizen/login 3180ms
+2026-07-06 21:58:14 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway -> POST /civicDesk/iam/auth/staff/login [from /0:0:0:0:0:0:0:1]
+2026-07-06 21:58:14 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway <- 200 OK /civicDesk/iam/auth/staff/login 343ms
+2026-07-06 21:58:33 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway -> POST /civicDesk/iam/auth/staff/login [from /0:0:0:0:0:0:0:1]
+2026-07-06 21:58:33 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway <- 200 OK /civicDesk/iam/auth/staff/login 338ms
+2026-07-06 21:59:04 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway -> GET /civicDesk/serviceRequest/getAllRequests [from /0:0:0:0:0:0:0:1]
+2026-07-06 21:59:06 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway <- 403 FORBIDDEN /civicDesk/serviceRequest/getAllRequests 1797ms
+2026-07-06 21:59:16 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway -> GET /civicDesk/serviceRequest/getAllRequests [from /0:0:0:0:0:0:0:1]
+2026-07-06 21:59:17 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway <- 200 OK /civicDesk/serviceRequest/getAllRequests 759ms
+2026-07-06 22:00:26 [reactor-http-nio-5] INFO  c.c.gateway.filter.LoggingFilter - Gateway -> POST /civicDesk/serviceRequest/submitRequest [from /0:0:0:0:0:0:0:1]
+2026-07-06 22:00:29 [reactor-http-nio-5] INFO  c.c.gateway.filter.LoggingFilter - Gateway <- 201 CREATED /civicDesk/serviceRequest/submitRequest 2314ms
+2026-07-06 22:03:10 [reactor-http-nio-7] INFO  c.c.gateway.filter.LoggingFilter - Gateway -> POST /civicDesk/serviceRequest/createService [from /0:0:0:0:0:0:0:1]
+2026-07-06 22:03:10 [reactor-http-nio-7] INFO  c.c.gateway.filter.LoggingFilter - Gateway <- 400 BAD_REQUEST /civicDesk/serviceRequest/createService 127ms
+2026-07-06 22:06:31 [reactor-http-nio-9] INFO  c.c.gateway.filter.LoggingFilter - Gateway -> POST /civicDesk/serviceRequest/createService [from /0:0:0:0:0:0:0:1]
+2026-07-06 22:06:31 [reactor-http-nio-9] INFO  c.c.gateway.filter.LoggingFilter - Gateway <- 201 CREATED /civicDesk/serviceRequest/createService 197ms
+2026-07-06 22:18:47 [reactor-http-nio-11] INFO  c.c.gateway.filter.LoggingFilter - Gateway -> GET /civicDesk/serviceRequest/getRequestsByCitizen/1 [from /0:0:0:0:0:0:0:1]
+2026-07-06 22:18:47 [reactor-http-nio-11] INFO  c.c.gateway.filter.LoggingFilter - Gateway <- 200 OK /civicDesk/serviceRequest/getRequestsByCitizen/1 183ms
+2026-07-06 22:19:02 [reactor-http-nio-11] INFO  c.c.gateway.filter.LoggingFilter - Gateway -> GET /civicDesk/serviceRequest/getAllRequests [from /0:0:0:0:0:0:0:1]
+2026-07-06 22:19:02 [reactor-http-nio-11] INFO  c.c.gateway.filter.LoggingFilter - Gateway <- 200 OK /civicDesk/serviceRequest/getAllRequests 80ms
