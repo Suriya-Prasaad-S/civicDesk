@@ -1,8 +1,8 @@
 package com.civicdesk.servicerequest.service;
 
 import com.civicdesk.servicerequest.client.NotificationClient;
-import com.civicdesk.servicerequest.dto.ServiceRequestCreateRequest;
-import com.civicdesk.servicerequest.dto.ServiceRequestResponse;
+import com.civicdesk.servicerequest.dto.request.ServiceRequestCreateRequest;
+import com.civicdesk.servicerequest.dto.response.ServiceRequestResponse;
 import com.civicdesk.servicerequest.entity.ServiceCatalog;
 import com.civicdesk.servicerequest.entity.ServiceRequest;
 import com.civicdesk.servicerequest.enums.RequestStatus;

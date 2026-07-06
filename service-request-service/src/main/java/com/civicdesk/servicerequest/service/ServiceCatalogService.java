@@ -1,7 +1,9 @@
 package com.civicdesk.servicerequest.service;
 
-import com.civicdesk.servicerequest.dto.ServiceCatalogRequest;
-import com.civicdesk.servicerequest.dto.ServiceCatalogResponse;
+import com.civicdesk.servicerequest.dto.request.ServiceCatalogRequest;
+import com.civicdesk.servicerequest.dto.response.ServiceCatalogResponse;
+import com.civicdesk.servicerequest.dto.response.ServiceDetailResponse;
+import com.civicdesk.servicerequest.dto.response.ServiceListItemResponse;
 import com.civicdesk.servicerequest.entity.ServiceCatalog;
 import com.civicdesk.servicerequest.enums.ServiceCategory;
 import com.civicdesk.servicerequest.enums.ServiceStatus;
@@ -77,6 +79,17 @@ public class ServiceCatalogService {
         return catalogRepository.findByStatus(ServiceStatus.ACTIVE).stream().map(this::mapToResponse).toList();
     }
 
+        public ServiceDetailResponse getByIdAsDetail(Long serviceId) {
+            return mapToDetailResponse(getEntityById(serviceId));
+        }
+
+        public List<ServiceListItemResponse> getAllAsListItems() {
+            return catalogRepository.findAll().stream().map(this::mapToListItemResponse).toList();
+        }
+
+        public List<ServiceListItemResponse> getAllActiveAsListItems() {
+            return catalogRepository.findByStatus(ServiceStatus.ACTIVE).stream().map(this::mapToListItemResponse).toList();
+        }
     public List<ServiceCatalogResponse> getByCategory(ServiceCategory category) {
         return catalogRepository.findByCategoryAndStatus(category, ServiceStatus.ACTIVE)
                 .stream().map(this::mapToResponse).toList();
@@ -116,4 +129,28 @@ public class ServiceCatalogService {
                 .createdAt(s.getCreatedAt())
                 .build();
     }
+
+    private ServiceDetailResponse mapToDetailResponse(ServiceCatalog s) {
+        return ServiceDetailResponse.builder()
+                .serviceId(s.getServiceId())
+                .serviceName(s.getServiceName())
+                .category(s.getCategory())
+                .departmentId(s.getDepartmentId())
+                .estimatedFee(s.getFee())
+                .estimatedDays(s.getProcessingDays())
+                .status(s.getStatus())
+                .requiredDocuments(s.getRequiredDocuments())
+                .build();
+    }
+
+    private ServiceListItemResponse mapToListItemResponse(ServiceCatalog s) {
+        return ServiceListItemResponse.builder()
+                .serviceId(s.getServiceId())
+                .serviceName(s.getServiceName())
+                .category(s.getCategory())
+                .status(s.getStatus())
+                .departmentId(s.getDepartmentId())
+                .build();
+    }
+
 }

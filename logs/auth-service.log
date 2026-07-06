@@ -320,3 +320,46 @@ This generated password is for development use only. Your security configuration
 2026-07-04 21:58:11.055 [main] INFO  [c.c.auth.AuthServiceApplication] -   Swagger UI: http://localhost:8081/swagger-ui.html
 2026-07-04 21:58:11.056 [main] INFO  [c.c.auth.AuthServiceApplication] - ===========================================
 2026-07-04 22:06:47.142 [http-nio-8081-exec-6] INFO  [o.s.api.AbstractOpenApiResource] - Init duration for springdoc-openapi is: 1704 ms
+2026-07-06 17:57:29.403 [background-preinit] INFO  [o.h.validator.internal.util.Version] - HV000001: Hibernate Validator 8.0.1.Final
+2026-07-06 17:57:29.583 [main] INFO  [c.c.auth.AuthServiceApplication] - Starting AuthServiceApplication using Java 21.0.2 with PID 1756 (C:\Users\2506484\Documents\civicDesk-1\auth-service\target\classes started by 2506484 in C:\Users\2506484\Documents\civicDesk-1)
+2026-07-06 17:57:29.583 [main] DEBUG [c.c.auth.AuthServiceApplication] - Running with Spring Boot v3.2.5, Spring v6.1.6
+2026-07-06 17:57:29.589 [main] INFO  [c.c.auth.AuthServiceApplication] - No active profile set, falling back to 1 default profile: "default"
+2026-07-06 17:57:33.227 [main] INFO  [o.s.d.r.c.RepositoryConfigurationDelegate] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-07-06 17:57:33.541 [main] INFO  [o.s.d.r.c.RepositoryConfigurationDelegate] - Finished Spring Data repository scanning in 288 ms. Found 5 JPA repository interfaces.
+2026-07-06 17:57:35.654 [main] INFO  [o.s.b.w.e.tomcat.TomcatWebServer] - Tomcat initialized with port 8081 (http)
+2026-07-06 17:57:35.693 [main] INFO  [o.a.coyote.http11.Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8081"]
+2026-07-06 17:57:35.703 [main] INFO  [o.a.catalina.core.StandardService] - Starting service [Tomcat]
+2026-07-06 17:57:35.704 [main] INFO  [o.a.catalina.core.StandardEngine] - Starting Servlet engine: [Apache Tomcat/10.1.20]
+2026-07-06 17:57:35.910 [main] INFO  [o.a.c.c.C.[.[localhost].[/civicDesk]] - Initializing Spring embedded WebApplicationContext
+2026-07-06 17:57:35.912 [main] INFO  [o.s.b.w.s.c.ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 6167 ms
+2026-07-06 17:57:37.154 [main] INFO  [o.h.jpa.internal.util.LogHelper] - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-07-06 17:57:37.515 [main] INFO  [org.hibernate.Version] - HHH000412: Hibernate ORM core version 6.4.4.Final
+2026-07-06 17:57:37.806 [main] INFO  [o.h.c.i.RegionFactoryInitiator] - HHH000026: Second-level cache disabled
+2026-07-06 17:57:38.844 [main] INFO  [o.s.o.j.p.SpringPersistenceUnitInfo] - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-07-06 17:57:38.957 [main] INFO  [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Starting...
+2026-07-06 17:57:39.444 [main] INFO  [com.zaxxer.hikari.pool.HikariPool] - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7affee54
+2026-07-06 17:57:39.450 [main] INFO  [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Start completed.
+2026-07-06 17:57:39.566 [main] WARN  [org.hibernate.orm.deprecation] - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-07-06 17:57:42.143 [main] INFO  [o.h.e.t.j.p.i.JtaPlatformInitiator] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-07-06 17:57:42.299 [main] INFO  [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-07-06 17:57:43.084 [main] DEBUG [c.c.auth.security.JwtAuthFilter] - Filter 'jwtAuthFilter' configured for use
+2026-07-06 17:57:44.195 [main] WARN  [o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-07-06 17:57:44.324 [main] WARN  [o.s.b.a.s.s.UserDetailsServiceAutoConfiguration] - 
+
+Using generated security password: 6df5dbe8-3e7b-42d0-9ed8-6ebb55f4a1ca
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-07-06 17:57:45.652 [main] INFO  [o.s.b.a.e.web.EndpointLinksResolver] - Exposing 4 endpoint(s) beneath base path '/actuator'
+2026-07-06 17:57:45.832 [main] INFO  [o.s.s.web.DefaultSecurityFilterChain] - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@5d0ea2af, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7fec354, org.springframework.security.web.context.SecurityContextHolderFilter@5d8edf2, org.springframework.security.web.header.HeaderWriterFilter@2e3c5ecc, org.springframework.web.filter.CorsFilter@1828eff, org.springframework.security.web.authentication.logout.LogoutFilter@32b5b8f8, com.civicdesk.auth.security.JwtAuthFilter@5b132063, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7d4bb16b, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@35307365, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5118c7fb, org.springframework.security.web.session.SessionManagementFilter@18bd3135, org.springframework.security.web.access.ExceptionTranslationFilter@cb29b75, org.springframework.security.web.access.intercept.AuthorizationFilter@1925b113]
+2026-07-06 17:57:48.056 [main] INFO  [o.a.coyote.http11.Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8081"]
+2026-07-06 17:57:48.116 [main] INFO  [o.s.b.w.e.tomcat.TomcatWebServer] - Tomcat started on port 8081 (http) with context path '/civicDesk'
+2026-07-06 17:57:48.145 [main] INFO  [c.c.auth.AuthServiceApplication] - Started AuthServiceApplication in 19.918 seconds (process running for 21.902)
+2026-07-06 17:57:48.584 [main] INFO  [c.civicdesk.auth.config.DataSeeder] - Default ADM 'admin@civicdesk.gov' already present — skipping seed.
+2026-07-06 17:57:48.589 [main] INFO  [c.c.auth.AuthServiceApplication] - ===========================================
+2026-07-06 17:57:48.590 [main] INFO  [c.c.auth.AuthServiceApplication] -   CivicDesk Auth Service — STARTED
+2026-07-06 17:57:48.591 [main] INFO  [c.c.auth.AuthServiceApplication] -   Swagger UI: http://localhost:8081/swagger-ui.html
+2026-07-06 17:57:48.591 [main] INFO  [c.c.auth.AuthServiceApplication] - ===========================================
+2026-07-06 17:57:49.478 [RMI TCP Connection(2)-127.0.0.1] INFO  [o.a.c.c.C.[.[localhost].[/civicDesk]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-07-06 17:57:49.479 [RMI TCP Connection(2)-127.0.0.1] INFO  [o.s.web.servlet.DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
+2026-07-06 17:57:49.481 [RMI TCP Connection(2)-127.0.0.1] INFO  [o.s.web.servlet.DispatcherServlet] - Completed initialization in 2 ms

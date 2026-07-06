@@ -1,9 +1,13 @@
 package com.civicdesk.servicerequest.service;
 
-import com.civicdesk.servicerequest.dto.ServiceRequestAnalyticsRequest;
-import com.civicdesk.servicerequest.dto.ServiceRequestAnalyticsResponse;
-import com.civicdesk.servicerequest.dto.ServiceRequestCreateRequest;
-import com.civicdesk.servicerequest.dto.ServiceRequestResponse;
+import com.civicdesk.servicerequest.dto.request.ServiceRequestAnalyticsRequest;
+import com.civicdesk.servicerequest.dto.response.ServiceRequestAnalyticsResponse;
+import com.civicdesk.servicerequest.dto.request.ServiceRequestCreateRequest;
+import com.civicdesk.servicerequest.dto.response.ServiceRequestResponse;
+import com.civicdesk.servicerequest.dto.response.RequestListItemResponse;
+import com.civicdesk.servicerequest.dto.response.CitizenRequestItemResponse;
+import com.civicdesk.servicerequest.dto.response.RequestDetailResponse;
+import com.civicdesk.servicerequest.dto.response.DocumentItemResponse;
 import com.civicdesk.servicerequest.entity.ServiceCatalog;
 import com.civicdesk.servicerequest.entity.ServiceRequest;
 import com.civicdesk.servicerequest.enums.RequestStatus;
@@ -13,7 +17,7 @@ import com.civicdesk.servicerequest.exception.ForbiddenException;
 import com.civicdesk.servicerequest.exception.InactiveServiceException;
 import com.civicdesk.servicerequest.exception.ResourceNotFoundException;
 import com.civicdesk.servicerequest.client.NotificationClient;
-import com.civicdesk.servicerequest.dto.NotificationRequest;
+import com.civicdesk.servicerequest.dto.request.NotificationRequest;
 import com.civicdesk.servicerequest.repository.ServiceCatalogRepository;
 import com.civicdesk.servicerequest.repository.ServiceRequestRepository;
 import lombok.RequiredArgsConstructor;
@@ -97,6 +101,13 @@ public class ServiceRequestService {
         return mapToResponse(sr);
     }
 
+        public RequestDetailResponse getByIdAsDetail(Long requestId, Long userId, String role) {
+            ServiceRequest sr = getEntityById(requestId);
+            if ("CIT".equals(role) && !sr.getUserId().equals(userId)) {
+                throw new ForbiddenException("Access denied. You can only view your own requests.");
+            }
+            return mapToDetailResponse(sr);
+        }
     // ─── STAFF ───────────────────────────────────────────────────────────────
 
     public List<ServiceRequestResponse> getAll() {
@@ -118,6 +129,20 @@ public class ServiceRequestService {
 
     public List<ServiceRequestResponse> getByStatus(RequestStatus status) {
         return requestRepository.findByStatus(status).stream().map(this::mapToResponse).toList();
+    }
+
+    // ─── LIST ITEM RESPONSES ──────────────────────────────────────────────────
+
+    public List<RequestListItemResponse> getAllAsListItems() {
+        return requestRepository.findAll().stream().map(this::mapToListItemResponse).toList();
+    }
+
+    public List<RequestListItemResponse> getByStatusAsListItems(RequestStatus status) {
+        return requestRepository.findByStatus(status).stream().map(this::mapToListItemResponse).toList();
+    }
+
+    public List<CitizenRequestItemResponse> getByCitizenIdAsCitizenItems(Long citizenId) {
+        return requestRepository.findByUserId(citizenId).stream().map(this::mapToCitizenItemResponse).toList();
     }
 
     @Transactional(readOnly = true)
@@ -271,4 +296,46 @@ public class ServiceRequestService {
                 .createdAt(sr.getCreatedAt())
                 .build();
     }
+
+    private RequestListItemResponse mapToListItemResponse(ServiceRequest sr) {
+        return RequestListItemResponse.builder()
+                .requestId(sr.getRequestId())
+                .citizenId(sr.getCitizenId())
+                .serviceId(sr.getService().getServiceId())
+                .serviceName(sr.getService().getServiceName())
+                .submissionDate(sr.getSubmissionDate())
+                .status(sr.getStatus())
+                .assignedOfficerId(sr.getAssignedOfficerId())
+                .build();
+    }
+
+    private CitizenRequestItemResponse mapToCitizenItemResponse(ServiceRequest sr) {
+        return CitizenRequestItemResponse.builder()
+                .requestId(sr.getRequestId())
+                .serviceId(sr.getService().getServiceId())
+                .serviceName(sr.getService().getServiceName())
+                .submissionDate(sr.getSubmissionDate())
+                .status(sr.getStatus())
+                .assignedOfficerId(sr.getAssignedOfficerId())
+                .build();
+    }
+    
+        private RequestDetailResponse mapToDetailResponse(ServiceRequest sr) {
+            return RequestDetailResponse.builder()
+                    .requestId(sr.getRequestId())
+                    .citizenId(sr.getCitizenId())
+                    .userId(sr.getUserId())
+                    .serviceId(sr.getService().getServiceId())
+                    .serviceName(sr.getService().getServiceName())
+                    .serviceCategory(sr.getService().getCategory().name())
+                    .departmentId(sr.getService().getDepartmentId())
+                    .submissionDate(sr.getSubmissionDate())
+                    .assignedOfficerId(sr.getAssignedOfficerId())
+                    .fee(sr.getFee())
+                    .expectedCompletionDate(sr.getExpectedCompletionDate())
+                    .status(sr.getStatus())
+                    .remarks(sr.getRemarks())
+                    .createdAt(sr.getCreatedAt())
+                    .build();
+        }
 }

@@ -1,6 +1,8 @@
 package com.civicdesk.servicerequest.service;
 
-import com.civicdesk.servicerequest.dto.RequestDocumentResponse;
+import com.civicdesk.servicerequest.dto.response.RequestDocumentResponse;
+import com.civicdesk.servicerequest.dto.response.DocumentItemResponse;
+import com.civicdesk.servicerequest.dto.response.MessageResponse;
 import com.civicdesk.servicerequest.entity.RequestDocument;
 import com.civicdesk.servicerequest.entity.ServiceRequest;
 import com.civicdesk.servicerequest.enums.RequestStatus;
@@ -33,7 +35,7 @@ public class RequestDocumentService {
     private final ServiceRequestRepository requestRepository;
 
     @Transactional
-    public RequestDocumentResponse uploadDocument(Long requestId, String documentType, MultipartFile file, Long userId) {
+    public MessageResponse uploadDocument(Long requestId, String documentType, MultipartFile file, Long userId) {
         ServiceRequest serviceRequest = requestRepository.findById(requestId)
                 .orElseThrow(() -> new ResourceNotFoundException("Request not found. No request exists with the given requestId."));
 
@@ -76,12 +78,15 @@ public class RequestDocumentService {
             log.info("Request status transitioned from PENDING_DOCUMENTS to UNDER_REVIEW due to document upload: requestId={}", requestId);
         }
 
-        RequestDocumentResponse response = mapToResponse(saved);
-        response.setMessage("Document uploaded successfully");
-        return response;
+        DocumentItemResponse item = mapToDocumentItem(saved);
+        return MessageResponse.builder()
+                .message("Document uploaded successfully")
+                .id(saved.getDocSubmissionId())
+                .data(item)
+                .build();
     }
 
-    public List<RequestDocumentResponse> getByRequestId(Long requestId, Long userId, String role) {
+    public List<DocumentItemResponse> getByRequestId(Long requestId, Long userId, String role) {
         ServiceRequest serviceRequest = requestRepository.findById(requestId)
                 .orElseThrow(() -> new ResourceNotFoundException("Request not found. No request exists with the given requestId."));
 
@@ -90,11 +95,11 @@ public class RequestDocumentService {
         }
 
         return documentRepository.findByServiceRequest_RequestId(requestId)
-                .stream().map(this::mapToResponse).toList();
+            .stream().map(this::mapToDocumentItem).toList();
     }
 
     @Transactional
-    public RequestDocumentResponse verifyDocument(Long docId, VerificationStatus status) {
+    public MessageResponse verifyDocument(Long docId, VerificationStatus status) {
         RequestDocument doc = documentRepository.findById(docId)
                 .orElseThrow(() -> new ResourceNotFoundException("Document not found. No document exists with the given docId."));
 
@@ -109,23 +114,30 @@ public class RequestDocumentService {
             log.info("Request status transitioned from UNDER_REVIEW to PENDING_DOCUMENTS due to document rejection: requestId={}", serviceRequest.getRequestId());
         }
         
-        RequestDocumentResponse response = mapToResponse(updated);
+        DocumentItemResponse item = mapToDocumentItem(updated);
         String message;
         if (status == VerificationStatus.VERIFIED) {
             message = "Document verified successfully. Document status has been updated to Verified.";
         } else {
             message = "Document rejected. Document status has been set to Rejected. Request status has been moved to PendingDocuments. Citizen has been notified to re-upload.";
         }
-        response.setMessage(message);
-        return response;
+        return MessageResponse.builder()
+            .message(message)
+            .id(updated.getDocSubmissionId())
+            .data(item)
+            .build();
     }
 
-    private RequestDocumentResponse mapToResponse(RequestDocument doc) {
-        return RequestDocumentResponse.builder()
-                .docId("doc-" + String.format("%04d", doc.getDocSubmissionId()))
-                .documentType(doc.getDocumentType())
+    private DocumentItemResponse mapToDocumentItem(RequestDocument doc) {
+        return DocumentItemResponse.builder()
+                .documentId(doc.getDocSubmissionId())
+                .requestId(doc.getServiceRequest().getRequestId())
+                .fileName(doc.getFilePath())
+                .fileType(null)
+                .fileSize(0L)
+                .downloadUrl("/downloads/" + doc.getFilePath())
                 .verificationStatus(doc.getVerificationStatus())
-                .uploadedOn(doc.getUploadedDate().toLocalDate())
+                .verificationRemarks(null)
                 .build();
     }
 }

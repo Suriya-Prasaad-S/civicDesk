@@ -1,6 +1,14 @@
 package com.civicdesk.servicerequest.controller;
 
-import com.civicdesk.servicerequest.dto.*;
+import com.civicdesk.servicerequest.dto.request.ServiceRequestCreateRequest;
+import com.civicdesk.servicerequest.dto.request.UpdateRequestStatusRequest;
+import com.civicdesk.servicerequest.dto.request.ServiceRequestAnalyticsRequest;
+import com.civicdesk.servicerequest.dto.response.MessageResponse;
+import com.civicdesk.servicerequest.dto.response.RequestListItemResponse;
+import com.civicdesk.servicerequest.dto.response.RequestDetailResponse;
+import com.civicdesk.servicerequest.dto.response.CitizenRequestItemResponse;
+import com.civicdesk.servicerequest.dto.response.ServiceRequestAnalyticsResponse;
+import com.civicdesk.servicerequest.dto.response.ServiceRequestResponse;
 import com.civicdesk.servicerequest.enums.RequestStatus;
 import com.civicdesk.servicerequest.security.JwtUserContext;
 import com.civicdesk.servicerequest.service.ServiceRequestService;
@@ -15,7 +23,6 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/civicDesk/serviceRequest")
@@ -29,51 +36,58 @@ public class ServiceRequestController {
     @PostMapping("/submitRequest")
     @PreAuthorize("hasAuthority('ROLE_CIT')")
     @Operation(summary = "Submit a new service request")
-    public ResponseEntity<Map<String, String>> submitRequest(
+    public ResponseEntity<MessageResponse> submitRequest(
             @Valid @RequestBody ServiceRequestCreateRequest request) {
         ServiceRequestResponse res = requestService.submitRequest(request, JwtUserContext.getCurrentUserId());
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(Map.of("message", res.getMessage()));
+                .body(MessageResponse.builder()
+                        .message(res.getMessage())
+                        .id(res.getRequestId())
+                        .build());
     }
 
     @GetMapping("/getAllRequests")
     @PreAuthorize("hasAnyAuthority('ROLE_ADM','ROLE_DS','ROLE_CO','ROLE_FO')")
     @Operation(summary = "Get all service requests (Staff)")
-    public ResponseEntity<List<ServiceRequestResponse>> getAll(
+    public ResponseEntity<List<RequestListItemResponse>> getAll(
             @RequestParam(required = false) RequestStatus status) {
-        List<ServiceRequestResponse> data = (status != null)
-                ? requestService.getByStatus(status)
-                : requestService.getAll();
+        List<RequestListItemResponse> data = (status != null)
+                ? requestService.getByStatusAsListItems(status)
+                : requestService.getAllAsListItems();
         return ResponseEntity.ok(data);
     }
 
     @GetMapping("/getRequest/{requestId}")
     @PreAuthorize("isAuthenticated()")
     @Operation(summary = "Get service request by ID")
-    public ResponseEntity<ServiceRequestResponse> getById(@PathVariable Long requestId) {
-        ServiceRequestResponse response = requestService.getById(
-                requestId, JwtUserContext.getCurrentUserId(), JwtUserContext.getCurrentRole());
-        return ResponseEntity.ok(response);
+        public ResponseEntity<RequestDetailResponse> getById(@PathVariable Long requestId) {
+            RequestDetailResponse response = requestService.getByIdAsDetail(
+                    requestId, JwtUserContext.getCurrentUserId(), JwtUserContext.getCurrentRole());
+            return ResponseEntity.ok(response);
     }
 
     @GetMapping("/getRequestsByCitizen/{citizenId}")
     @PreAuthorize("hasAnyAuthority('ROLE_CIT','ROLE_ADM','ROLE_DS')")
     @Operation(summary = "Get service requests by citizen ID")
-    public ResponseEntity<List<ServiceRequestResponse>> getByCitizen(
+    public ResponseEntity<List<CitizenRequestItemResponse>> getByCitizen(
             @PathVariable Long citizenId) {
-        return ResponseEntity.ok(requestService.getMyRequests(citizenId));
+        return ResponseEntity.ok(requestService.getByCitizenIdAsCitizenItems(citizenId));
     }
 
     @PutMapping("/updateRequestStatus/{requestId}")
     @PreAuthorize("hasAnyAuthority('ROLE_ADM','ROLE_DS','ROLE_FO')")
     @Operation(summary = "Update request status")
-    public ResponseEntity<Map<String, String>> updateStatus(
+    public ResponseEntity<MessageResponse> updateStatus(
             @PathVariable Long requestId,
             @Valid @RequestBody UpdateRequestStatusRequest request) {
         ServiceRequestResponse res = requestService.updateStatus(
                 requestId, request.getStatus(), request.getRemarks(),
                 JwtUserContext.getCurrentUserId(), JwtUserContext.getCurrentRole());
-        return ResponseEntity.ok(Map.of("message", res.getMessage()));
+        return ResponseEntity.ok(MessageResponse.builder()
+                .message(res.getMessage())
+                .id(res.getRequestId())
+                .data(res)
+                .build());
     }
  
     @PostMapping("/getServiceRequestAnalytics")

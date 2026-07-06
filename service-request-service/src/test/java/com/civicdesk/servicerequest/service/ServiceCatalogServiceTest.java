@@ -1,7 +1,7 @@
 package com.civicdesk.servicerequest.service;
 
-import com.civicdesk.servicerequest.dto.ServiceCatalogRequest;
-import com.civicdesk.servicerequest.dto.ServiceCatalogResponse;
+import com.civicdesk.servicerequest.dto.request.ServiceCatalogRequest;
+import com.civicdesk.servicerequest.dto.response.ServiceCatalogResponse;
 import com.civicdesk.servicerequest.entity.ServiceCatalog;
 import com.civicdesk.servicerequest.enums.ServiceCategory;
 import com.civicdesk.servicerequest.enums.ServiceStatus;

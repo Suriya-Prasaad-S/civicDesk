@@ -1,6 +1,7 @@
 package com.civicdesk.servicerequest.service;
 
-import com.civicdesk.servicerequest.dto.RequestDocumentResponse;
+import com.civicdesk.servicerequest.dto.response.DocumentItemResponse;
+import com.civicdesk.servicerequest.dto.response.MessageResponse;
 import com.civicdesk.servicerequest.entity.RequestDocument;
 import com.civicdesk.servicerequest.entity.ServiceRequest;
 import com.civicdesk.servicerequest.enums.RequestStatus;
@@ -69,13 +70,16 @@ public class RequestDocumentServiceTest {
 
         when(documentRepository.save(any(RequestDocument.class))).thenReturn(savedDoc);
 
-        RequestDocumentResponse response = requestDocumentService.uploadDocument(
+            MessageResponse response = requestDocumentService.uploadDocument(
                 100L, "ID_PROOF", mockFile, 1L
         );
 
         assertNotNull(response);
-        assertEquals("doc-0500", response.getDocId());
-        assertEquals(VerificationStatus.PENDING, response.getVerificationStatus());
+            assertEquals("Document uploaded successfully", response.getMessage());
+            DocumentItemResponse item = (DocumentItemResponse) response.getData();
+            assertNotNull(item);
+            assertEquals(500L, item.getDocumentId());
+            assertEquals(VerificationStatus.PENDING, item.getVerificationStatus());
         verify(documentRepository, times(1)).save(any());
         verify(requestRepository, never()).save(userRequest); // Not in PENDING_DOCUMENTS
     }
@@ -95,7 +99,7 @@ public class RequestDocumentServiceTest {
 
         when(documentRepository.save(any(RequestDocument.class))).thenReturn(savedDoc);
 
-        RequestDocumentResponse response = requestDocumentService.uploadDocument(
+            MessageResponse response = requestDocumentService.uploadDocument(
                 100L, "ID_PROOF", mockFile, 1L
         );
 
@@ -132,7 +136,7 @@ public class RequestDocumentServiceTest {
         when(requestRepository.findById(100L)).thenReturn(Optional.of(userRequest));
         when(documentRepository.findByServiceRequest_RequestId(100L)).thenReturn(Collections.emptyList());
 
-        List<RequestDocumentResponse> docs = requestDocumentService.getByRequestId(100L, 1L, "CIT");
+            List<DocumentItemResponse> docs = requestDocumentService.getByRequestId(100L, 1L, "CIT");
         assertNotNull(docs);
         assertTrue(docs.isEmpty());
     }
@@ -158,10 +162,12 @@ public class RequestDocumentServiceTest {
         when(documentRepository.findById(500L)).thenReturn(Optional.of(doc));
         when(documentRepository.save(any(RequestDocument.class))).thenAnswer(i -> i.getArgument(0));
 
-        RequestDocumentResponse response = requestDocumentService.verifyDocument(500L, VerificationStatus.VERIFIED);
+            MessageResponse response = requestDocumentService.verifyDocument(500L, VerificationStatus.VERIFIED);
 
         assertNotNull(response);
-        assertEquals(VerificationStatus.VERIFIED, response.getVerificationStatus());
+            DocumentItemResponse item = (DocumentItemResponse) response.getData();
+            assertNotNull(item);
+            assertEquals(VerificationStatus.VERIFIED, item.getVerificationStatus());
         assertEquals(RequestStatus.SUBMITTED, userRequest.getStatus()); // Does not transition
     }
 
@@ -178,10 +184,12 @@ public class RequestDocumentServiceTest {
         when(documentRepository.findById(500L)).thenReturn(Optional.of(doc));
         when(documentRepository.save(any(RequestDocument.class))).thenAnswer(i -> i.getArgument(0));
 
-        RequestDocumentResponse response = requestDocumentService.verifyDocument(500L, VerificationStatus.REJECTED);
+            MessageResponse response = requestDocumentService.verifyDocument(500L, VerificationStatus.REJECTED);
 
         assertNotNull(response);
-        assertEquals(VerificationStatus.REJECTED, response.getVerificationStatus());
+            DocumentItemResponse item = (DocumentItemResponse) response.getData();
+            assertNotNull(item);
+            assertEquals(VerificationStatus.REJECTED, item.getVerificationStatus());
         assertEquals(RequestStatus.PENDING_DOCUMENTS, userRequest.getStatus()); // Transitions back!
         verify(requestRepository, times(1)).save(userRequest);
     }

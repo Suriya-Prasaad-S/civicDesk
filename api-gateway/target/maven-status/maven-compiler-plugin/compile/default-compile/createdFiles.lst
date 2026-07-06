@@ -1,6 +1,0 @@
-com\civicdesk\gateway\config\GatewayConfig.class
-com\civicdesk\gateway\config\OpenApiConfig.class
-com\civicdesk\gateway\security\JwtTokenProvider.class
-com\civicdesk\gateway\ApiGatewayApplication.class
-com\civicdesk\gateway\filter\JwtAuthenticationFilter.class
-com\civicdesk\gateway\filter\LoggingFilter.class
