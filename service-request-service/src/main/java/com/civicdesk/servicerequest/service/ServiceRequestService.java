@@ -1,5 +1,7 @@
 package com.civicdesk.servicerequest.service;
 
+import com.civicdesk.servicerequest.dto.ServiceRequestAnalyticsRequest;
+import com.civicdesk.servicerequest.dto.ServiceRequestAnalyticsResponse;
 import com.civicdesk.servicerequest.dto.ServiceRequestCreateRequest;
 import com.civicdesk.servicerequest.dto.ServiceRequestResponse;
 import com.civicdesk.servicerequest.entity.ServiceCatalog;
@@ -8,7 +10,11 @@ import com.civicdesk.servicerequest.enums.RequestStatus;
 import com.civicdesk.servicerequest.enums.ServiceStatus;
 import com.civicdesk.servicerequest.exception.BadRequestException;
 import com.civicdesk.servicerequest.exception.ForbiddenException;
+import com.civicdesk.servicerequest.exception.InactiveServiceException;
 import com.civicdesk.servicerequest.exception.ResourceNotFoundException;
+import com.civicdesk.servicerequest.client.NotificationClient;
+import com.civicdesk.servicerequest.dto.NotificationRequest;
+import com.civicdesk.servicerequest.repository.ServiceCatalogRepository;
 import com.civicdesk.servicerequest.repository.ServiceRequestRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -16,7 +22,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -25,6 +36,8 @@ public class ServiceRequestService {
 
     private final ServiceRequestRepository requestRepository;
     private final ServiceCatalogService catalogService;
+    private final ServiceCatalogRepository catalogRepository;
+    private final NotificationClient notificationClient;
 
     // ─── CITIZEN ─────────────────────────────────────────────────────────────
 
@@ -33,7 +46,7 @@ public class ServiceRequestService {
         ServiceCatalog service = catalogService.getEntityById(request.getServiceId());
 
         if (service.getStatus() != ServiceStatus.ACTIVE) {
-            throw new BadRequestException("Service is not currently available: " + service.getServiceName());
+            throw new InactiveServiceException("Request cannot be submitted. The selected service is currently inactive and not accepting new requests.");
         }
 
         LocalDate submissionDate = LocalDate.now();
@@ -52,7 +65,24 @@ public class ServiceRequestService {
         ServiceRequest saved = requestRepository.save(serviceRequest);
         log.info("Service request submitted: requestId={} citizenId={} serviceId={}",
                 saved.getRequestId(), request.getCitizenId(), request.getServiceId());
-        return mapToResponse(saved);
+        
+        try {
+            NotificationRequest notificationPayload = NotificationRequest.builder()
+                    .userId(userId)
+                    .title("Request Submitted")
+                    .message("Service request submitted successfully. Your request has been received and assigned to an officer. Expected completion date is " + service.getProcessingDays() + " working days from today.")
+                    .notificationType("SERVICE_REQUEST_UPDATE")
+                    .referenceId(saved.getRequestId())
+                    .referenceType("SERVICE_REQUEST")
+                    .build();
+            notificationClient.sendNotification(notificationPayload);
+        } catch (Exception ex) {
+            log.error("Failed to send submission notification: {}", ex.getMessage());
+        }
+
+        ServiceRequestResponse response = mapToResponse(saved);
+        response.setMessage("Service request submitted successfully. Your request has been received and assigned to an officer. Expected completion date is " + service.getProcessingDays() + " working days from today.");
+        return response;
     }
 
     public List<ServiceRequestResponse> getMyRequests(Long userId) {
@@ -90,6 +120,52 @@ public class ServiceRequestService {
         return requestRepository.findByStatus(status).stream().map(this::mapToResponse).toList();
     }
 
+    @Transactional(readOnly = true)
+    public ServiceRequestAnalyticsResponse getServiceRequestAnalytics(ServiceRequestAnalyticsRequest request) {
+        Long deptId = request.deptId();
+        LocalDate fromDate = request.fromDate();
+        LocalDate toDate = request.toDate();
+
+        long totalRequests = requestRepository.countRequests(deptId, fromDate, toDate);
+        long overdueRequests = requestRepository.countOverdueRequests(deptId, fromDate, toDate, LocalDate.now());
+
+        Map<RequestStatus, Long> statusMap = Arrays.stream(RequestStatus.values())
+                .collect(Collectors.toMap(
+                        Function.identity(),
+                        status -> 0L,
+                        (existing, replacement) -> existing,
+                        LinkedHashMap::new));
+        requestRepository.getStatusBreakdown(deptId, fromDate, toDate)
+                .forEach(row -> statusMap.put((RequestStatus) row[0], ((Number) row[1]).longValue()));
+        List<ServiceRequestAnalyticsResponse.LabelCount> statusBreakdown = statusMap.entrySet().stream()
+                .map(entry -> new ServiceRequestAnalyticsResponse.LabelCount(entry.getKey().name(), entry.getValue()))
+                .toList();
+
+        Map<String, Long> serviceMap = catalogRepository.findByStatus(ServiceStatus.ACTIVE).stream()
+                .collect(Collectors.toMap(
+                        ServiceCatalog::getServiceName,
+                        service -> 0L,
+                        (existing, replacement) -> existing,
+                        LinkedHashMap::new));
+        requestRepository.getServiceBreakdown(deptId, fromDate, toDate)
+                .forEach(row -> serviceMap.put((String) row[0], ((Number) row[1]).longValue()));
+        List<ServiceRequestAnalyticsResponse.LabelCount> serviceBreakdown = serviceMap.entrySet().stream()
+                .map(entry -> new ServiceRequestAnalyticsResponse.LabelCount(entry.getKey(), entry.getValue()))
+                .toList();
+
+        List<ServiceRequestAnalyticsResponse.DateCount> trend = requestRepository.getTrend(deptId, fromDate, toDate)
+                .stream()
+                .map(row -> new ServiceRequestAnalyticsResponse.DateCount((LocalDate) row[0], ((Number) row[1]).longValue()))
+                .toList();
+
+        return new ServiceRequestAnalyticsResponse(
+                totalRequests,
+                statusBreakdown,
+                serviceBreakdown,
+                trend,
+                overdueRequests);
+    }
+
     @Transactional
     public ServiceRequestResponse assignOfficer(Long requestId, Long officerId) {
         ServiceRequest sr = getEntityById(requestId);
@@ -124,23 +200,43 @@ public class ServiceRequestService {
 
         ServiceRequest updated = requestRepository.save(sr);
         log.info("Request status updated: requestId={} status={} by userId={}", requestId, newStatus, actorUserId);
-        return mapToResponse(updated);
+        
+        try {
+            NotificationRequest notificationPayload = NotificationRequest.builder()
+                    .userId(updated.getUserId())
+                    .title("Request Status Updated")
+                    .message("Request status updated successfully. Status has been moved to " + formatStatus(newStatus) + ".")
+                    .notificationType("SERVICE_REQUEST_UPDATE")
+                    .referenceId(updated.getRequestId())
+                    .referenceType("SERVICE_REQUEST")
+                    .build();
+            notificationClient.sendNotification(notificationPayload);
+        } catch (Exception ex) {
+            log.error("Failed to send status update notification: {}", ex.getMessage());
+        }
+
+        ServiceRequestResponse response = mapToResponse(updated);
+        response.setMessage("Request status updated successfully. Status has been moved to " + formatStatus(newStatus) + ".");
+        return response;
+    }
+
+    private String formatStatus(RequestStatus status) {
+        if (status == null) return "";
+        String name = status.name().replace("_", " ").toLowerCase();
+        String[] words = name.split(" ");
+        StringBuilder sb = new StringBuilder();
+        for (String w : words) {
+            if (!w.isEmpty()) {
+                sb.append(Character.toUpperCase(w.charAt(0))).append(w.substring(1)).append(" ");
+            }
+        }
+        return sb.toString().trim();
     }
 
     // ─── HELPERS ─────────────────────────────────────────────────────────────
 
     private void validateStatusTransition(RequestStatus current, RequestStatus next, String role) {
-        boolean valid = switch (current) {
-            case SUBMITTED -> next == RequestStatus.UNDER_REVIEW || next == RequestStatus.REJECTED;
-            case UNDER_REVIEW -> next == RequestStatus.PENDING_DOCUMENTS
-                    || next == RequestStatus.APPROVED
-                    || next == RequestStatus.REJECTED;
-            case PENDING_DOCUMENTS -> next == RequestStatus.UNDER_REVIEW || next == RequestStatus.REJECTED;
-            case APPROVED -> next == RequestStatus.COMPLETED;
-            case COMPLETED, REJECTED -> false;
-        };
-
-        if (!valid) {
+        if (!current.allowedNextStates().contains(next)) {
             throw new BadRequestException(
                     String.format("Invalid status transition: %s → %s", current, next));
         }
@@ -154,7 +250,7 @@ public class ServiceRequestService {
 
     private ServiceRequest getEntityById(Long requestId) {
         return requestRepository.findById(requestId)
-                .orElseThrow(() -> new ResourceNotFoundException("Request not found with id: " + requestId));
+                .orElseThrow(() -> new ResourceNotFoundException("Request not found. No request exists with the given requestId."));
     }
 
     private ServiceRequestResponse mapToResponse(ServiceRequest sr) {

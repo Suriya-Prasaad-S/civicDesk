@@ -8,6 +8,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Data
 public class ServiceCatalogRequest {
@@ -16,7 +17,7 @@ public class ServiceCatalogRequest {
     private String serviceName;
 
     @NotNull(message = "Department ID is required")
-    private Long departmentId;
+    private String departmentId;
 
     @NotNull(message = "Category is required")
     private ServiceCategory category;
@@ -25,7 +26,7 @@ public class ServiceCatalogRequest {
     @Min(value = 1, message = "Processing days must be at least 1")
     private Integer processingDays;
 
-    private String requiredDocuments;
+    private List<String> requiredDocuments;
 
     @NotNull(message = "Fee is required")
     @DecimalMin(value = "0.00", message = "Fee cannot be negative")

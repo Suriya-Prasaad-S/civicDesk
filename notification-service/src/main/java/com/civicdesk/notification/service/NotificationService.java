@@ -127,6 +127,22 @@ public class NotificationService {
         return notificationRepository.findAll().stream().map(this::mapToResponse).toList();
     }
 
+    public List<NotificationResponse> getByCategory(String category) {
+        String cat = category == null ? "" : category.toLowerCase();
+        return notificationRepository.findAll().stream()
+                .filter(n -> n.getNotificationType() != null && n.getNotificationType().name().toLowerCase().contains(cat))
+                .sorted((a, b) -> b.getCreatedAt().compareTo(a.getCreatedAt()))
+                .map(this::mapToResponse).toList();
+    }
+
+    @Transactional
+    public void deleteNotification(Long notificationId) {
+        Notification notification = notificationRepository.findById(notificationId)
+                .orElseThrow(() -> new ResourceNotFoundException("Notification not found: " + notificationId));
+        notificationRepository.delete(notification);
+        log.info("Notification deleted: id={}", notificationId);
+    }
+
     // ─── HELPERS ─────────────────────────────────────────────────────────────
 
     private NotificationResponse mapToResponse(Notification n) {

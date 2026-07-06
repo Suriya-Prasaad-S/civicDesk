@@ -35,7 +35,7 @@ public class RequestDocumentService {
     @Transactional
     public RequestDocumentResponse uploadDocument(Long requestId, String documentType, MultipartFile file, Long userId) {
         ServiceRequest serviceRequest = requestRepository.findById(requestId)
-                .orElseThrow(() -> new ResourceNotFoundException("Request not found: " + requestId));
+                .orElseThrow(() -> new ResourceNotFoundException("Request not found. No request exists with the given requestId."));
 
         if (!serviceRequest.getUserId().equals(userId)) {
             throw new ForbiddenException("You can only upload documents to your own requests.");
@@ -69,15 +69,24 @@ public class RequestDocumentService {
 
         RequestDocument saved = documentRepository.save(doc);
         log.info("Document uploaded: docId={} requestId={}", saved.getDocSubmissionId(), requestId);
-        return mapToResponse(saved);
+
+        if (serviceRequest.getStatus() == RequestStatus.PENDING_DOCUMENTS) {
+            serviceRequest.setStatus(RequestStatus.UNDER_REVIEW);
+            requestRepository.save(serviceRequest);
+            log.info("Request status transitioned from PENDING_DOCUMENTS to UNDER_REVIEW due to document upload: requestId={}", requestId);
+        }
+
+        RequestDocumentResponse response = mapToResponse(saved);
+        response.setMessage("Document uploaded successfully");
+        return response;
     }
 
     public List<RequestDocumentResponse> getByRequestId(Long requestId, Long userId, String role) {
         ServiceRequest serviceRequest = requestRepository.findById(requestId)
-                .orElseThrow(() -> new ResourceNotFoundException("Request not found: " + requestId));
+                .orElseThrow(() -> new ResourceNotFoundException("Request not found. No request exists with the given requestId."));
 
         if ("CIT".equals(role) && !serviceRequest.getUserId().equals(userId)) {
-            throw new ForbiddenException("Access denied.");
+            throw new ForbiddenException("Access denied. You are not authorized to view these documents.");
         }
 
         return documentRepository.findByServiceRequest_RequestId(requestId)
@@ -92,17 +101,31 @@ public class RequestDocumentService {
         doc.setVerificationStatus(status);
         RequestDocument updated = documentRepository.save(doc);
         log.info("Document verified: docId={} status={}", docId, status);
-        return mapToResponse(updated);
+
+        ServiceRequest serviceRequest = doc.getServiceRequest();
+        if (status == VerificationStatus.REJECTED && serviceRequest.getStatus() == RequestStatus.UNDER_REVIEW) {
+            serviceRequest.setStatus(RequestStatus.PENDING_DOCUMENTS);
+            requestRepository.save(serviceRequest);
+            log.info("Request status transitioned from UNDER_REVIEW to PENDING_DOCUMENTS due to document rejection: requestId={}", serviceRequest.getRequestId());
+        }
+        
+        RequestDocumentResponse response = mapToResponse(updated);
+        String message;
+        if (status == VerificationStatus.VERIFIED) {
+            message = "Document verified successfully. Document status has been updated to Verified.";
+        } else {
+            message = "Document rejected. Document status has been set to Rejected. Request status has been moved to PendingDocuments. Citizen has been notified to re-upload.";
+        }
+        response.setMessage(message);
+        return response;
     }
 
     private RequestDocumentResponse mapToResponse(RequestDocument doc) {
         return RequestDocumentResponse.builder()
-                .docSubmissionId(doc.getDocSubmissionId())
-                .requestId(doc.getServiceRequest().getRequestId())
+                .docId("doc-" + String.format("%04d", doc.getDocSubmissionId()))
                 .documentType(doc.getDocumentType())
-                .filePath(doc.getFilePath())
-                .uploadedDate(doc.getUploadedDate())
                 .verificationStatus(doc.getVerificationStatus())
+                .uploadedOn(doc.getUploadedDate().toLocalDate())
                 .build();
     }
 }

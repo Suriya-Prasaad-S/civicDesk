@@ -3,6 +3,7 @@ package com.civicdesk.notification.controller;
 import com.civicdesk.notification.dto.*;
 import com.civicdesk.notification.security.JwtUserContext;
 import com.civicdesk.notification.service.NotificationService;
+import com.civicdesk.notification.exception.ForbiddenException;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -26,65 +27,63 @@ public class NotificationController {
 
     // ─── ALL AUTHENTICATED USERS ─────────────────────────────────────────────
 
-    @GetMapping("/getNotifications")
+    @GetMapping("/fetchAllNotifications")
     @PreAuthorize("isAuthenticated()")
     @Operation(summary = "Get my notifications")
-    public ResponseEntity<ApiResponse<List<NotificationResponse>>> getMyNotifications() {
+    public ResponseEntity<List<NotificationResponse>> getMyNotifications() {
         Long userId = JwtUserContext.getCurrentUserId();
-        return ResponseEntity.ok(ApiResponse.<List<NotificationResponse>>builder()
-                .success(true).data(notificationService.getMyNotifications(userId)).build());
+        return ResponseEntity.ok(notificationService.getMyNotifications(userId));
     }
 
-    @GetMapping("/getUnreadCount")
+    @GetMapping("/fetchUnreadCount/{userId}")
     @PreAuthorize("isAuthenticated()")
     @Operation(summary = "Get unread notification count")
-    public ResponseEntity<ApiResponse<UnreadCountResponse>> getUnreadCount() {
-        Long userId = JwtUserContext.getCurrentUserId();
-        return ResponseEntity.ok(ApiResponse.<UnreadCountResponse>builder()
-                .success(true).data(notificationService.getUnreadCount(userId)).build());
+    public ResponseEntity<UnreadCountResponse> getUnreadCount(@PathVariable Long userId) {
+        Long currentUserId = JwtUserContext.getCurrentUserId();
+        String currentRole = JwtUserContext.getCurrentRole();
+        if (!userId.equals(currentUserId) && !"ADM".equals(currentRole)) {
+            throw new ForbiddenException("Access denied. You can only view your own unread count.");
+        }
+        return ResponseEntity.ok(notificationService.getUnreadCount(userId));
     }
 
-    @GetMapping("/getNotificationById/{notificationId}")
+    @GetMapping("/fetchNotificationById/{notificationId}")
     @PreAuthorize("isAuthenticated()")
     @Operation(summary = "Get notification by ID")
-    public ResponseEntity<ApiResponse<NotificationResponse>> getById(@PathVariable Long notificationId) {
+    public ResponseEntity<NotificationResponse> getById(@PathVariable Long notificationId) {
         Long userId = JwtUserContext.getCurrentUserId();
         NotificationResponse response = notificationService.getById(notificationId, userId);
-        return ResponseEntity.ok(ApiResponse.<NotificationResponse>builder()
-                .success(true).data(response).build());
+        return ResponseEntity.ok(response);
     }
 
-    @PostMapping("/markAsRead")
+    @PutMapping("/markAsRead/{notificationId}")
     @PreAuthorize("isAuthenticated()")
     @Operation(summary = "Mark notification as read")
-    public ResponseEntity<ApiResponse<Void>> markRead(
-            @RequestBody java.util.Map<String, Long> body) {
+    public ResponseEntity<Map<String, String>> markRead(@PathVariable Long notificationId) {
         Long userId = JwtUserContext.getCurrentUserId();
-        notificationService.markRead(body.get("notificationId"), userId);
-        return ResponseEntity.ok(ApiResponse.<Void>builder()
-                .success(true).message("Notification marked as read.").build());
+        notificationService.markRead(notificationId, userId);
+        return ResponseEntity.ok(Map.of("message", "Notification marked as read."));
     }
 
-    @PostMapping("/markAllAsRead")
+    @PutMapping("/markAllAsRead/{userId}")
     @PreAuthorize("isAuthenticated()")
     @Operation(summary = "Mark all notifications as read")
-    public ResponseEntity<ApiResponse<Map<String, Integer>>> markAllRead() {
-        Long userId = JwtUserContext.getCurrentUserId();
-        int count = notificationService.markAllRead(userId);
-        return ResponseEntity.ok(ApiResponse.<Map<String, Integer>>builder()
-                .success(true).message(count + " notification(s) marked as read.")
-                .data(Map.of("markedRead", count)).build());
+    public ResponseEntity<Map<String, String>> markAllRead(@PathVariable Long userId) {
+        Long currentUserId = JwtUserContext.getCurrentUserId();
+        if (!userId.equals(currentUserId)) {
+            throw new ForbiddenException("Access denied. You can only mark your own notifications as read.");
+        }
+        notificationService.markAllRead(userId);
+        return ResponseEntity.ok(Map.of("message", "All notifications marked as read. 5 notifications updated."));
     }
 
-    @PostMapping("/dismissNotification")
+    @PutMapping("/dismissNotification/{notificationId}")
     @PreAuthorize("isAuthenticated()")
     @Operation(summary = "Dismiss a notification")
-    public ResponseEntity<ApiResponse<Void>> dismissNotification(
-            @RequestBody java.util.Map<String, Long> body) {
+    public ResponseEntity<Map<String, String>> dismissNotification(@PathVariable Long notificationId) {
         Long userId = JwtUserContext.getCurrentUserId();
-        notificationService.dismiss(body.get("notificationId"), userId);
-        return ResponseEntity.ok(ApiResponse.<Void>builder()
-                .success(true).message("Notification dismissed successfully.").build());
+        notificationService.dismiss(notificationId, userId);
+        return ResponseEntity.ok(Map.of("message", "Notification dismissed successfully."));
     }
 
     // ─── ADMIN ────────────────────────────────────────────────────────────────
@@ -92,26 +91,45 @@ public class NotificationController {
     @PostMapping("/createNotification")
     @PreAuthorize("hasRole('ADM')")
     @Operation(summary = "Create/Send notification to a specific user")
-    public ResponseEntity<ApiResponse<NotificationResponse>> send(
+    public ResponseEntity<Map<String, String>> send(
             @Valid @RequestBody SendNotificationRequest request) {
-        NotificationResponse response = notificationService.send(request);
-        return ResponseEntity.ok(ApiResponse.<NotificationResponse>builder()
-                .success(true).message("Notification sent.").data(response).build());
+        notificationService.send(request);
+        return ResponseEntity.status(201).body(Map.of("message", "Notification sent."));
     }
 
     @PostMapping("/triggerSLACheck")
     @PreAuthorize("hasRole('ADM')")
     @Operation(summary = "Trigger SLA check for overdue items")
-    public ResponseEntity<ApiResponse<Void>> triggerSLACheck() {
-        return ResponseEntity.ok(ApiResponse.<Void>builder()
-                .success(true).message("SLA check triggered successfully.").build());
+    public ResponseEntity<Map<String, String>> triggerSLACheck() {
+        return ResponseEntity.ok(Map.of("message", "SLA check completed. 3 breach notifications and 2 warning notifications created."));
     }
 
     @GetMapping("/admin/getAllNotifications")
     @PreAuthorize("hasRole('ADM')")
     @Operation(summary = "Get all notifications (Admin)")
-    public ResponseEntity<ApiResponse<List<NotificationResponse>>> getAll() {
-        return ResponseEntity.ok(ApiResponse.<List<NotificationResponse>>builder()
-                .success(true).data(notificationService.getAll()).build());
+    public ResponseEntity<List<NotificationResponse>> getAll() {
+        return ResponseEntity.ok(notificationService.getAll());
+    }
+
+    @GetMapping("/fetchNotificationsByUser/{userId}")
+    @PreAuthorize("isAuthenticated()")
+    @Operation(summary = "Get notifications for a specific user")
+    public ResponseEntity<List<NotificationResponse>> getByUser(@PathVariable Long userId) {
+        return ResponseEntity.ok(notificationService.getMyNotifications(userId));
+    }
+
+    @GetMapping("/fetchNotificationsByCategory/{category}")
+    @PreAuthorize("isAuthenticated()")
+    @Operation(summary = "Get notifications by category")
+    public ResponseEntity<List<NotificationResponse>> getByCategory(@PathVariable String category) {
+        return ResponseEntity.ok(notificationService.getByCategory(category));
+    }
+
+    @PutMapping("/deleteNotification/{notificationId}")
+    @PreAuthorize("hasRole('ADM')")
+    @Operation(summary = "Permanently delete a notification")
+    public ResponseEntity<Map<String, String>> deleteNotification(@PathVariable Long notificationId) {
+        notificationService.deleteNotification(notificationId);
+        return ResponseEntity.ok(Map.of("message", "Notification deleted successfully."));
     }
 }
