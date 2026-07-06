@@ -679,3 +679,42 @@ This generated password is for development use only. Your security configuration
 2026-07-06 17:58:06.805 [http-nio-8083-exec-4] INFO  [o.s.web.servlet.DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
 2026-07-06 17:58:06.830 [http-nio-8083-exec-4] INFO  [o.s.web.servlet.DispatcherServlet] - Completed initialization in 19 ms
 2026-07-06 17:58:10.958 [http-nio-8083-exec-7] INFO  [o.s.api.AbstractOpenApiResource] - Init duration for springdoc-openapi is: 2959 ms
+2026-07-06 21:52:47.660 [background-preinit] INFO  [o.h.validator.internal.util.Version] - HV000001: Hibernate Validator 8.0.1.Final
+2026-07-06 21:52:47.696 [main] INFO  [c.c.s.ServiceRequestApplication] - Starting ServiceRequestApplication using Java 21.0.11 with PID 18516 (C:\Users\Harishraj\Downloads\civicDesk\service-request-service\target\classes started by Harishraj in C:\Users\Harishraj\Downloads\civicDesk)
+2026-07-06 21:52:47.696 [main] DEBUG [c.c.s.ServiceRequestApplication] - Running with Spring Boot v3.2.5, Spring v6.1.6
+2026-07-06 21:52:47.697 [main] INFO  [c.c.s.ServiceRequestApplication] - No active profile set, falling back to 1 default profile: "default"
+2026-07-06 21:52:48.642 [main] INFO  [o.s.d.r.c.RepositoryConfigurationDelegate] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-07-06 21:52:48.704 [main] INFO  [o.s.d.r.c.RepositoryConfigurationDelegate] - Finished Spring Data repository scanning in 55 ms. Found 3 JPA repository interfaces.
+2026-07-06 21:52:49.406 [main] INFO  [o.s.b.w.e.tomcat.TomcatWebServer] - Tomcat initialized with port 8083 (http)
+2026-07-06 21:52:49.426 [main] INFO  [o.a.coyote.http11.Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8083"]
+2026-07-06 21:52:49.429 [main] INFO  [o.a.catalina.core.StandardService] - Starting service [Tomcat]
+2026-07-06 21:52:49.430 [main] INFO  [o.a.catalina.core.StandardEngine] - Starting Servlet engine: [Apache Tomcat/10.1.20]
+2026-07-06 21:52:49.512 [main] INFO  [o.a.c.c.C.[Tomcat].[localhost].[/]] - Initializing Spring embedded WebApplicationContext
+2026-07-06 21:52:49.513 [main] INFO  [o.s.b.w.s.c.ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 1775 ms
+2026-07-06 21:52:49.575 [main] DEBUG [c.c.s.security.JwtAuthFilter] - Filter 'jwtAuthFilter' configured for use
+2026-07-06 21:52:49.813 [main] INFO  [o.h.jpa.internal.util.LogHelper] - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-07-06 21:52:49.886 [main] INFO  [org.hibernate.Version] - HHH000412: Hibernate ORM core version 6.4.4.Final
+2026-07-06 21:52:49.926 [main] INFO  [o.h.c.i.RegionFactoryInitiator] - HHH000026: Second-level cache disabled
+2026-07-06 21:52:50.137 [main] INFO  [o.s.o.j.p.SpringPersistenceUnitInfo] - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-07-06 21:52:50.156 [main] INFO  [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Starting...
+2026-07-06 21:52:50.411 [main] INFO  [com.zaxxer.hikari.pool.HikariPool] - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3c71cf3e
+2026-07-06 21:52:50.415 [main] INFO  [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Start completed.
+2026-07-06 21:52:50.487 [main] WARN  [org.hibernate.orm.deprecation] - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-07-06 21:52:51.250 [main] INFO  [o.h.e.t.j.p.i.JtaPlatformInitiator] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-07-06 21:52:51.585 [main] INFO  [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-07-06 21:52:51.870 [main] INFO  [o.s.d.j.r.query.QueryEnhancerFactory] - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-07-06 21:52:52.815 [main] WARN  [o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-07-06 21:52:52.844 [main] WARN  [o.s.b.a.s.s.UserDetailsServiceAutoConfiguration] - 
+
+Using generated security password: aac7f4aa-b422-4f3c-b6fa-cd9bfce903dd
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-07-06 21:52:53.211 [main] INFO  [o.s.s.web.DefaultSecurityFilterChain] - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@240c170a, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5e077a32, org.springframework.security.web.context.SecurityContextHolderFilter@2c47135c, org.springframework.security.web.header.HeaderWriterFilter@5b0af511, org.springframework.web.filter.CorsFilter@55c7ba5, org.springframework.security.web.authentication.logout.LogoutFilter@44ba9865, com.civicdesk.servicerequest.security.JwtAuthFilter@76437e9b, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6acec4a1, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@24a26847, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@48715ab, org.springframework.security.web.session.SessionManagementFilter@735c0454, org.springframework.security.web.access.ExceptionTranslationFilter@279afa4e, org.springframework.security.web.access.intercept.AuthorizationFilter@5af410a1]
+2026-07-06 21:52:53.559 [main] INFO  [o.a.coyote.http11.Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8083"]
+2026-07-06 21:52:53.582 [main] INFO  [o.s.b.w.e.tomcat.TomcatWebServer] - Tomcat started on port 8083 (http) with context path ''
+2026-07-06 21:52:53.598 [main] INFO  [c.c.s.ServiceRequestApplication] - Started ServiceRequestApplication in 6.412 seconds (process running for 6.71)
+2026-07-06 21:52:53.605 [main] INFO  [c.c.s.ServiceRequestApplication] - ===========================================
+2026-07-06 21:52:53.605 [main] INFO  [c.c.s.ServiceRequestApplication] -   CivicDesk Service Request Service — STARTED
+2026-07-06 21:52:53.606 [main] INFO  [c.c.s.ServiceRequestApplication] -   Swagger UI: http://localhost:8083/swagger-ui.html
+2026-07-06 21:52:53.606 [main] INFO  [c.c.s.ServiceRequestApplication] - ===========================================

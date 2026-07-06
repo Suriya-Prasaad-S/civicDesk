@@ -4,8 +4,10 @@ com\civicdesk\notification\dto\ApiResponse$ApiResponseBuilder.class
 com\civicdesk\notification\entity\Notification$NotificationBuilder.class
 com\civicdesk\notification\dto\ApiResponse.class
 com\civicdesk\notification\exception\ResourceNotFoundException.class
+com\civicdesk\notification\client\AuditLogClient.class
 com\civicdesk\notification\security\JwtAuthFilter.class
 com\civicdesk\notification\config\SwaggerConfig.class
+com\civicdesk\notification\config\RestTemplateConfig.class
 com\civicdesk\notification\dto\UnreadCountResponse.class
 com\civicdesk\notification\enums\NotificationType.class
 com\civicdesk\notification\enums\ReferenceType.class

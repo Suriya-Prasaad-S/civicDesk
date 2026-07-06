@@ -38,7 +38,10 @@ public class RequestDocumentController {
             @RequestParam("file") MultipartFile file) {
         MessageResponse res = documentService.uploadDocument(
             requestId, documentType, file, JwtUserContext.getCurrentUserId());
-        return ResponseEntity.status(HttpStatus.CREATED).body(res);
+        return ResponseEntity.status(HttpStatus.CREATED)
+            .body(MessageResponse.builder()
+                .message(res.getMessage())
+                .build());
         }
 
         @GetMapping("/getDocuments/{requestId}")
@@ -63,6 +66,8 @@ public class RequestDocumentController {
         }
         
         MessageResponse res = documentService.verifyDocument(docId, request.getVerificationStatus());
-        return ResponseEntity.ok(res);
+        return ResponseEntity.ok(MessageResponse.builder()
+            .message(res.getMessage())
+            .build());
     }
 }

@@ -1,0 +1,6 @@
+C:\Users\Harishraj\Downloads\civicDesk\api-gateway\src\main\java\com\civicdesk\gateway\config\OpenApiConfig.java
+C:\Users\Harishraj\Downloads\civicDesk\api-gateway\src\main\java\com\civicdesk\gateway\filter\JwtAuthenticationFilter.java
+C:\Users\Harishraj\Downloads\civicDesk\api-gateway\src\main\java\com\civicdesk\gateway\ApiGatewayApplication.java
+C:\Users\Harishraj\Downloads\civicDesk\api-gateway\src\main\java\com\civicdesk\gateway\config\GatewayConfig.java
+C:\Users\Harishraj\Downloads\civicDesk\api-gateway\src\main\java\com\civicdesk\gateway\filter\LoggingFilter.java
+C:\Users\Harishraj\Downloads\civicDesk\api-gateway\src\main\java\com\civicdesk\gateway\security\JwtTokenProvider.java

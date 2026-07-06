@@ -1,11 +1,13 @@
 package com.civicdesk.notification.service;
 
+import com.civicdesk.notification.client.AuditLogClient;
 import com.civicdesk.notification.dto.*;
 import com.civicdesk.notification.entity.Notification;
 import com.civicdesk.notification.enums.ReferenceType;
 import com.civicdesk.notification.exception.ForbiddenException;
 import com.civicdesk.notification.exception.ResourceNotFoundException;
 import com.civicdesk.notification.repository.NotificationRepository;
+import com.civicdesk.notification.security.JwtUserContext;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -19,6 +21,7 @@ import java.util.List;
 public class NotificationService {
 
     private final NotificationRepository notificationRepository;
+    private final AuditLogClient auditLogClient;
 
     // ─── SEND ─────────────────────────────────────────────────────────────────
 
@@ -38,6 +41,7 @@ public class NotificationService {
         Notification saved = notificationRepository.save(notification);
         log.info("Notification sent: id={} userId={} type={}", saved.getNotificationId(),
                 saved.getUserId(), saved.getNotificationType());
+        auditLogClient.log(getAuditUserId(saved.getUserId()), "CREATE_NOTIFICATION", "NOTIFICATION");
         return mapToResponse(saved);
     }
 
@@ -56,6 +60,7 @@ public class NotificationService {
 
         List<Notification> saved = notificationRepository.saveAll(notifications);
         log.info("Broadcast sent to {} users: type={}", saved.size(), request.getNotificationType());
+        auditLogClient.log(getAuditUserId(null), "BROADCAST_NOTIFICATIONS", "NOTIFICATION");
         return saved.stream().map(this::mapToResponse).toList();
     }
 
@@ -88,13 +93,16 @@ public class NotificationService {
         }
 
         notification.setIsRead(true);
-        return mapToResponse(notificationRepository.save(notification));
+        NotificationResponse res = mapToResponse(notificationRepository.save(notification));
+        auditLogClient.log(getAuditUserId(userId), "MARK_NOTIFICATION_READ", "NOTIFICATION");
+        return res;
     }
 
     @Transactional
     public int markAllRead(Long userId) {
         int count = notificationRepository.markAllReadForUser(userId);
         log.info("Marked {} notifications as read for userId={}", count, userId);
+        auditLogClient.log(getAuditUserId(userId), "MARK_ALL_NOTIFICATIONS_READ", "NOTIFICATION");
         return count;
     }
 
@@ -118,7 +126,9 @@ public class NotificationService {
             throw new com.civicdesk.notification.exception.BadRequestException("Notification is already dismissed.");
         }
         notification.setIsDismissed(true);
-        return mapToResponse(notificationRepository.save(notification));
+        NotificationResponse res = mapToResponse(notificationRepository.save(notification));
+        auditLogClient.log(getAuditUserId(userId), "DISMISS_NOTIFICATION", "NOTIFICATION");
+        return res;
     }
 
     // ─── ADMIN ────────────────────────────────────────────────────────────────
@@ -141,6 +151,17 @@ public class NotificationService {
                 .orElseThrow(() -> new ResourceNotFoundException("Notification not found: " + notificationId));
         notificationRepository.delete(notification);
         log.info("Notification deleted: id={}", notificationId);
+        auditLogClient.log(getAuditUserId(null), "DELETE_NOTIFICATION", "NOTIFICATION");
+    }
+
+    // ─── HELPERS ─────────────────────────────────────────────────────────────
+
+    private String getAuditUserId(Long userId) {
+        if (userId != null) {
+            return String.valueOf(userId);
+        }
+        Long current = JwtUserContext.getCurrentUserId();
+        return current != null ? String.valueOf(current) : "SYSTEM";
     }
 
     // ─── HELPERS ─────────────────────────────────────────────────────────────

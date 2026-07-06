@@ -11,6 +11,8 @@ import com.civicdesk.servicerequest.exception.BadRequestException;
 import com.civicdesk.servicerequest.exception.InactiveServiceException;
 import com.civicdesk.servicerequest.repository.ServiceCatalogRepository;
 import com.civicdesk.servicerequest.repository.ServiceRequestRepository;
+import com.civicdesk.servicerequest.client.AuthServiceClient;
+import com.civicdesk.servicerequest.client.AuditLogClient;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -41,6 +43,12 @@ public class ServiceRequestServiceTest {
 
     @Mock
     private NotificationClient notificationClient;
+
+    @Mock
+    private AuthServiceClient authServiceClient;
+
+    @Mock
+    private AuditLogClient auditLogClient;
 
     @InjectMocks
     private ServiceRequestService serviceRequestService;
