@@ -1,8 +1,8 @@
 package com.civicdesk.servicerequest.controller;
 
-import com.civicdesk.servicerequest.dto.ApiResponse;
-import com.civicdesk.servicerequest.dto.RequestDocumentResponse;
-import com.civicdesk.servicerequest.dto.VerifyDocumentRequest;
+import com.civicdesk.servicerequest.dto.response.DocumentItemResponse;
+import com.civicdesk.servicerequest.dto.response.MessageResponse;
+import com.civicdesk.servicerequest.dto.request.VerifyDocumentRequest;
 import com.civicdesk.servicerequest.exception.BadRequestException;
 import com.civicdesk.servicerequest.security.JwtUserContext;
 import com.civicdesk.servicerequest.service.RequestDocumentService;
@@ -29,33 +29,35 @@ public class RequestDocumentController {
 
     private final RequestDocumentService documentService;
 
-    @PostMapping("/uploadDocument/{requestId}")
-    @PreAuthorize("hasAuthority('ROLE_CIT')")
-    @Operation(summary = "Upload document for a service request — multipart/form-data")
-    public ResponseEntity<Map<String, String>> uploadDocument(
+        @PostMapping("/uploadDocument/{requestId}")
+        @PreAuthorize("hasAuthority('ROLE_CIT')")
+        @Operation(summary = "Upload document for a service request — multipart/form-data")
+        public ResponseEntity<MessageResponse> uploadDocument(
             @PathVariable Long requestId,
             @RequestParam("documentType") String documentType,
             @RequestParam("file") MultipartFile file) {
-        RequestDocumentResponse res = documentService.uploadDocument(
-                requestId, documentType, file, JwtUserContext.getCurrentUserId());
+        MessageResponse res = documentService.uploadDocument(
+            requestId, documentType, file, JwtUserContext.getCurrentUserId());
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(Map.of("message", res.getMessage()));
-    }
+            .body(MessageResponse.builder()
+                .message(res.getMessage())
+                .build());
+        }
 
-    @GetMapping("/getDocuments/{requestId}")
-    @PreAuthorize("isAuthenticated()")
-    @Operation(summary = "Get all documents for a request")
-    public ResponseEntity<List<RequestDocumentResponse>> getDocuments(
+        @GetMapping("/getDocuments/{requestId}")
+        @PreAuthorize("isAuthenticated()")
+        @Operation(summary = "Get all documents for a request")
+        public ResponseEntity<List<DocumentItemResponse>> getDocuments(
             @PathVariable Long requestId) {
-        List<RequestDocumentResponse> docs = documentService.getByRequestId(
-                requestId, JwtUserContext.getCurrentUserId(), JwtUserContext.getCurrentRole());
+        List<DocumentItemResponse> docs = documentService.getByRequestId(
+            requestId, JwtUserContext.getCurrentUserId(), JwtUserContext.getCurrentRole());
         return ResponseEntity.ok(docs);
-    }
+        }
 
     @PutMapping("/verifyDocument/{docId}")
     @PreAuthorize("hasAnyAuthority('ROLE_ADM','ROLE_DS','ROLE_FO')")
     @Operation(summary = "Verify a request document (Staff)")
-    public ResponseEntity<Map<String, String>> verifyDocument(
+    public ResponseEntity<MessageResponse> verifyDocument(
             @PathVariable Long docId,
             @Valid @RequestBody VerifyDocumentRequest request) {
         if (request.getVerificationStatus() == null || 
@@ -63,7 +65,9 @@ public class RequestDocumentController {
             throw new BadRequestException("Validation failed. verificationStatus must be Verified or Rejected.");
         }
         
-        RequestDocumentResponse res = documentService.verifyDocument(docId, request.getVerificationStatus());
-        return ResponseEntity.ok(Map.of("message", res.getMessage()));
+        MessageResponse res = documentService.verifyDocument(docId, request.getVerificationStatus());
+        return ResponseEntity.ok(MessageResponse.builder()
+            .message(res.getMessage())
+            .build());
     }
 }

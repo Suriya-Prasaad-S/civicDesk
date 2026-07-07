@@ -5,6 +5,7 @@ import com.civicdesk.notification.entity.Notification;
 import com.civicdesk.notification.enums.NotificationType;
 import com.civicdesk.notification.exception.ForbiddenException;
 import com.civicdesk.notification.repository.NotificationRepository;
+import com.civicdesk.notification.client.AuditLogClient;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -25,6 +26,9 @@ public class NotificationServiceTest {
 
     @Mock
     private NotificationRepository notificationRepository;
+
+    @Mock
+    private AuditLogClient auditLogClient;
 
     @InjectMocks
     private NotificationService notificationService;
