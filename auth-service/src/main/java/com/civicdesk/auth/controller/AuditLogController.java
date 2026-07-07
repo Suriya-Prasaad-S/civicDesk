@@ -48,7 +48,8 @@ public class AuditLogController {
 
     @PostMapping
     // allow only authenticated service accounts / admin roles to post audit entries
-    @PreAuthorize("hasAnyRole('ADM', 'CO')")
+    //@PreAuthorize("hasAnyRole('ADM', 'CO')")
+    @PreAuthorize("authenticated")
     public ResponseEntity<ApiResponse> createAuditLog(HttpServletRequest request,
                                                       @RequestBody CreateAuditLogRequest req) {
         if (req.getUserId() == null || req.getUserId().isBlank()) {

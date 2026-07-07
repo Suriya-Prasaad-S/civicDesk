@@ -1,512 +1,184 @@
-2026-06-18 08:56:50.786 [background-preinit] INFO  [o.h.validator.internal.util.Version] - HV000001: Hibernate Validator 8.0.1.Final
-2026-06-18 08:56:50.915 [main] INFO  [c.c.auth.AuthServiceApplication] - Starting AuthServiceApplication using Java 21.0.2 with PID 32116 (C:\Users\2506602\Downloads\civicdesk (1)\auth-service\target\classes started by 2506602 in C:\Users\2506602\Downloads\civicdesk (1))
-2026-06-18 08:56:50.915 [main] DEBUG [c.c.auth.AuthServiceApplication] - Running with Spring Boot v3.2.5, Spring v6.1.6
-2026-06-18 08:56:50.915 [main] INFO  [c.c.auth.AuthServiceApplication] - No active profile set, falling back to 1 default profile: "default"
-2026-06-18 08:56:53.750 [main] INFO  [o.s.d.r.c.RepositoryConfigurationDelegate] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2026-06-18 08:56:53.991 [main] INFO  [o.s.d.r.c.RepositoryConfigurationDelegate] - Finished Spring Data repository scanning in 219 ms. Found 2 JPA repository interfaces.
-2026-06-18 08:56:55.367 [main] INFO  [o.s.b.w.e.tomcat.TomcatWebServer] - Tomcat initialized with port 8081 (http)
-2026-06-18 08:56:55.388 [main] INFO  [o.a.coyote.http11.Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8081"]
-2026-06-18 08:56:55.392 [main] INFO  [o.a.catalina.core.StandardService] - Starting service [Tomcat]
-2026-06-18 08:56:55.392 [main] INFO  [o.a.catalina.core.StandardEngine] - Starting Servlet engine: [Apache Tomcat/10.1.20]
-2026-06-18 08:56:55.557 [main] INFO  [o.a.c.c.C.[Tomcat].[localhost].[/]] - Initializing Spring embedded WebApplicationContext
-2026-06-18 08:56:55.586 [main] INFO  [o.s.b.w.s.c.ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 4453 ms
-2026-06-18 08:56:55.944 [main] INFO  [o.h.jpa.internal.util.LogHelper] - HHH000204: Processing PersistenceUnitInfo [name: default]
-2026-06-18 08:56:56.054 [main] INFO  [org.hibernate.Version] - HHH000412: Hibernate ORM core version 6.4.4.Final
-2026-06-18 08:56:56.117 [main] INFO  [o.h.c.i.RegionFactoryInitiator] - HHH000026: Second-level cache disabled
-2026-06-18 08:56:56.656 [main] INFO  [o.s.o.j.p.SpringPersistenceUnitInfo] - No LoadTimeWeaver setup: ignoring JPA class transformer
-2026-06-18 08:56:56.717 [main] INFO  [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Starting...
-2026-06-18 08:56:57.006 [main] INFO  [com.zaxxer.hikari.pool.HikariPool] - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@214fba74
-2026-06-18 08:56:57.011 [main] INFO  [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Start completed.
-2026-06-18 08:56:57.099 [main] WARN  [org.hibernate.orm.deprecation] - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2026-06-18 08:56:59.775 [main] INFO  [o.h.e.t.j.p.i.JtaPlatformInitiator] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2026-06-18 08:56:59.904 [main] INFO  [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2026-06-18 08:57:00.724 [main] DEBUG [c.c.auth.security.JwtAuthFilter] - Filter 'jwtAuthFilter' configured for use
-2026-06-18 08:57:01.487 [main] WARN  [o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2026-06-18 08:57:02.324 [main] INFO  [o.s.s.web.DefaultSecurityFilterChain] - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@542c6165, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@539f2fec, org.springframework.security.web.context.SecurityContextHolderFilter@420068a, org.springframework.security.web.header.HeaderWriterFilter@7c4697fc, org.springframework.web.filter.CorsFilter@a4e1ca7, org.springframework.security.web.authentication.logout.LogoutFilter@5cb4ba80, com.civicdesk.auth.security.JwtAuthFilter@74d3b331, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4d4337f9, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1e6f7c25, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7d466ef9, org.springframework.security.web.session.SessionManagementFilter@642334d6, org.springframework.security.web.access.ExceptionTranslationFilter@627cb3ed, org.springframework.security.web.access.intercept.AuthorizationFilter@1f3310fc]
-2026-06-18 08:57:02.879 [main] INFO  [o.a.coyote.http11.Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8081"]
-2026-06-18 08:57:02.930 [main] INFO  [o.s.b.w.e.tomcat.TomcatWebServer] - Tomcat started on port 8081 (http) with context path ''
-2026-06-18 08:57:02.944 [main] INFO  [c.c.auth.AuthServiceApplication] - Started AuthServiceApplication in 13.315 seconds (process running for 14.276)
-2026-06-18 08:57:03.243 [main] INFO  [c.civicdesk.auth.config.DataSeeder] - Admin account 'admin@civicdesk.gov' already exists — skipping seed.
-2026-06-18 08:57:03.245 [main] INFO  [c.c.auth.AuthServiceApplication] - ===========================================
-2026-06-18 08:57:03.245 [main] INFO  [c.c.auth.AuthServiceApplication] -   CivicDesk Auth Service — STARTED
-2026-06-18 08:57:03.245 [main] INFO  [c.c.auth.AuthServiceApplication] -   Swagger UI: http://localhost:8081/swagger-ui.html
-2026-06-18 08:57:03.246 [main] INFO  [c.c.auth.AuthServiceApplication] - ===========================================
-2026-06-18 09:19:12.889 [http-nio-8081-exec-1] INFO  [o.a.c.c.C.[Tomcat].[localhost].[/]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2026-06-18 09:19:12.906 [http-nio-8081-exec-1] INFO  [o.s.web.servlet.DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
-2026-06-18 09:19:13.105 [http-nio-8081-exec-1] INFO  [o.s.web.servlet.DispatcherServlet] - Completed initialization in 199 ms
-2026-06-18 09:19:15.052 [http-nio-8081-exec-1] INFO  [c.civicdesk.auth.service.AuthService] - Citizen registered: citizen@test.com
-2026-06-18 09:19:15.069 [http-nio-8081-exec-1] INFO  [c.c.auth.service.AuditLogService] - AUDIT | userId=9 | action=CITIZEN_REGISTERED | module=AUTH | ip=0:0:0:0:0:0:0:1
-2026-06-18 09:33:27.811 [http-nio-8081-exec-3] ERROR [c.c.a.e.GlobalExceptionHandler] - Bad request: Email is already registered: citizen@test.com
-2026-06-18 09:34:10.247 [SpringApplicationShutdownHook] INFO  [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Closing JPA EntityManagerFactory for persistence unit 'default'
-2026-06-18 09:34:10.323 [SpringApplicationShutdownHook] INFO  [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown initiated...
-2026-06-18 09:34:10.382 [SpringApplicationShutdownHook] INFO  [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown completed.
-2026-06-18 09:36:44.616 [background-preinit] INFO  [o.h.validator.internal.util.Version] - HV000001: Hibernate Validator 8.0.1.Final
-2026-06-18 09:36:44.739 [main] INFO  [c.c.auth.AuthServiceApplication] - Starting AuthServiceApplication using Java 21.0.2 with PID 28680 (C:\Users\2506602\Downloads\civicdesk (1)\auth-service\target\classes started by 2506602 in C:\Users\2506602\Downloads\civicdesk (1))
-2026-06-18 09:36:44.739 [main] DEBUG [c.c.auth.AuthServiceApplication] - Running with Spring Boot v3.2.5, Spring v6.1.6
-2026-06-18 09:36:44.739 [main] INFO  [c.c.auth.AuthServiceApplication] - No active profile set, falling back to 1 default profile: "default"
-2026-06-18 09:36:46.989 [main] INFO  [o.s.d.r.c.RepositoryConfigurationDelegate] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2026-06-18 09:36:47.198 [main] INFO  [o.s.d.r.c.RepositoryConfigurationDelegate] - Finished Spring Data repository scanning in 177 ms. Found 2 JPA repository interfaces.
-2026-06-18 09:36:48.488 [main] INFO  [o.s.b.w.e.tomcat.TomcatWebServer] - Tomcat initialized with port 8081 (http)
-2026-06-18 09:36:48.506 [main] INFO  [o.a.coyote.http11.Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8081"]
-2026-06-18 09:36:48.514 [main] INFO  [o.a.catalina.core.StandardService] - Starting service [Tomcat]
-2026-06-18 09:36:48.516 [main] INFO  [o.a.catalina.core.StandardEngine] - Starting Servlet engine: [Apache Tomcat/10.1.20]
-2026-06-18 09:36:48.712 [main] INFO  [o.a.c.c.C.[Tomcat].[localhost].[/]] - Initializing Spring embedded WebApplicationContext
-2026-06-18 09:36:48.715 [main] INFO  [o.s.b.w.s.c.ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 3842 ms
-2026-06-18 09:36:49.067 [main] INFO  [o.h.jpa.internal.util.LogHelper] - HHH000204: Processing PersistenceUnitInfo [name: default]
-2026-06-18 09:36:49.178 [main] INFO  [org.hibernate.Version] - HHH000412: Hibernate ORM core version 6.4.4.Final
-2026-06-18 09:36:49.248 [main] INFO  [o.h.c.i.RegionFactoryInitiator] - HHH000026: Second-level cache disabled
-2026-06-18 09:36:49.813 [main] INFO  [o.s.o.j.p.SpringPersistenceUnitInfo] - No LoadTimeWeaver setup: ignoring JPA class transformer
-2026-06-18 09:36:49.876 [main] INFO  [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Starting...
-2026-06-18 09:36:50.188 [main] INFO  [com.zaxxer.hikari.pool.HikariPool] - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@61c87f1b
-2026-06-18 09:36:50.197 [main] INFO  [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Start completed.
-2026-06-18 09:36:50.292 [main] WARN  [org.hibernate.orm.deprecation] - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2026-06-18 09:36:52.427 [main] INFO  [o.h.e.t.j.p.i.JtaPlatformInitiator] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2026-06-18 09:36:52.554 [main] INFO  [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2026-06-18 09:36:53.150 [main] DEBUG [c.c.auth.security.JwtAuthFilter] - Filter 'jwtAuthFilter' configured for use
-2026-06-18 09:36:53.576 [main] WARN  [o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2026-06-18 09:36:54.086 [main] INFO  [o.s.s.web.DefaultSecurityFilterChain] - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@a4e1ca7, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7d466ef9, org.springframework.security.web.context.SecurityContextHolderFilter@4d4337f9, org.springframework.security.web.header.HeaderWriterFilter@e6fbf82, org.springframework.web.filter.CorsFilter@4a561f7d, org.springframework.security.web.authentication.logout.LogoutFilter@507187c1, com.civicdesk.auth.security.JwtAuthFilter@6705fb02, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1a7f2d34, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@23243bc0, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@601ca994, org.springframework.security.web.session.SessionManagementFilter@7c55e559, org.springframework.security.web.access.ExceptionTranslationFilter@7c4697fc, org.springframework.security.web.access.intercept.AuthorizationFilter@2d5b549b]
-2026-06-18 09:36:54.616 [main] INFO  [o.a.coyote.http11.Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8081"]
-2026-06-18 09:36:54.662 [main] INFO  [o.s.b.w.e.tomcat.TomcatWebServer] - Tomcat started on port 8081 (http) with context path ''
-2026-06-18 09:36:54.662 [main] INFO  [c.c.auth.AuthServiceApplication] - Started AuthServiceApplication in 11.058 seconds (process running for 11.839)
-2026-06-18 09:36:54.985 [main] INFO  [c.civicdesk.auth.config.DataSeeder] - Admin account 'admin@civicdesk.gov' already exists — skipping seed.
-2026-06-18 09:36:54.989 [main] INFO  [c.c.auth.AuthServiceApplication] - ===========================================
-2026-06-18 09:36:54.989 [main] INFO  [c.c.auth.AuthServiceApplication] -   CivicDesk Auth Service — STARTED
-2026-06-18 09:36:54.989 [main] INFO  [c.c.auth.AuthServiceApplication] -   Swagger UI: http://localhost:8081/swagger-ui.html
-2026-06-18 09:36:54.989 [main] INFO  [c.c.auth.AuthServiceApplication] - ===========================================
-2026-06-18 10:10:16.786 [SpringApplicationShutdownHook] INFO  [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Closing JPA EntityManagerFactory for persistence unit 'default'
-2026-06-18 10:10:16.862 [SpringApplicationShutdownHook] INFO  [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown initiated...
-2026-06-18 10:10:16.889 [SpringApplicationShutdownHook] INFO  [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown completed.
-2026-06-18 10:10:41.294 [background-preinit] INFO  [o.h.validator.internal.util.Version] - HV000001: Hibernate Validator 8.0.1.Final
-2026-06-18 10:10:41.412 [main] INFO  [c.c.auth.AuthServiceApplication] - Starting AuthServiceApplication using Java 21.0.2 with PID 25944 (C:\Users\2506602\Downloads\civicdesk (1)\auth-service\target\classes started by 2506602 in C:\Users\2506602\Downloads\civicdesk (1))
-2026-06-18 10:10:41.412 [main] DEBUG [c.c.auth.AuthServiceApplication] - Running with Spring Boot v3.2.5, Spring v6.1.6
-2026-06-18 10:10:41.412 [main] INFO  [c.c.auth.AuthServiceApplication] - No active profile set, falling back to 1 default profile: "default"
-2026-06-18 10:10:44.119 [main] INFO  [o.s.d.r.c.RepositoryConfigurationDelegate] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2026-06-18 10:10:44.341 [main] INFO  [o.s.d.r.c.RepositoryConfigurationDelegate] - Finished Spring Data repository scanning in 196 ms. Found 2 JPA repository interfaces.
-2026-06-18 10:10:46.303 [main] INFO  [o.s.b.w.e.tomcat.TomcatWebServer] - Tomcat initialized with port 8081 (http)
-2026-06-18 10:10:46.327 [main] INFO  [o.a.coyote.http11.Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8081"]
-2026-06-18 10:10:46.332 [main] INFO  [o.a.catalina.core.StandardService] - Starting service [Tomcat]
-2026-06-18 10:10:46.334 [main] INFO  [o.a.catalina.core.StandardEngine] - Starting Servlet engine: [Apache Tomcat/10.1.20]
-2026-06-18 10:10:46.516 [main] INFO  [o.a.c.c.C.[Tomcat].[localhost].[/]] - Initializing Spring embedded WebApplicationContext
-2026-06-18 10:10:46.521 [main] INFO  [o.s.b.w.s.c.ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 4965 ms
-2026-06-18 10:10:46.900 [main] INFO  [o.h.jpa.internal.util.LogHelper] - HHH000204: Processing PersistenceUnitInfo [name: default]
-2026-06-18 10:10:47.103 [main] INFO  [org.hibernate.Version] - HHH000412: Hibernate ORM core version 6.4.4.Final
-2026-06-18 10:10:47.212 [main] INFO  [o.h.c.i.RegionFactoryInitiator] - HHH000026: Second-level cache disabled
-2026-06-18 10:10:47.964 [main] INFO  [o.s.o.j.p.SpringPersistenceUnitInfo] - No LoadTimeWeaver setup: ignoring JPA class transformer
-2026-06-18 10:10:48.066 [main] INFO  [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Starting...
-2026-06-18 10:10:48.520 [main] INFO  [com.zaxxer.hikari.pool.HikariPool] - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@78bad03b
-2026-06-18 10:10:48.522 [main] INFO  [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Start completed.
-2026-06-18 10:10:48.637 [main] WARN  [org.hibernate.orm.deprecation] - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2026-06-18 10:10:50.869 [main] INFO  [o.h.e.t.j.p.i.JtaPlatformInitiator] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2026-06-18 10:10:51.074 [main] INFO  [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2026-06-18 10:10:52.219 [main] DEBUG [c.c.auth.security.JwtAuthFilter] - Filter 'jwtAuthFilter' configured for use
-2026-06-18 10:10:53.032 [main] WARN  [o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2026-06-18 10:10:54.122 [main] INFO  [o.s.s.web.DefaultSecurityFilterChain] - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@1acd2a14, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5432be12, org.springframework.security.web.context.SecurityContextHolderFilter@770c3ca2, org.springframework.security.web.header.HeaderWriterFilter@3b6c55b6, org.springframework.web.filter.CorsFilter@2ee5fe1e, org.springframework.security.web.authentication.logout.LogoutFilter@4c231f62, com.civicdesk.auth.security.JwtAuthFilter@2f3d5cd, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@711261c7, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@73eaae1e, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2b30b25f, org.springframework.security.web.session.SessionManagementFilter@1e6f7c25, org.springframework.security.web.access.ExceptionTranslationFilter@1de6f29d, org.springframework.security.web.access.intercept.AuthorizationFilter@7d466ef9]
-2026-06-18 10:10:54.950 [main] INFO  [o.a.coyote.http11.Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8081"]
-2026-06-18 10:10:55.009 [main] INFO  [o.s.b.w.e.tomcat.TomcatWebServer] - Tomcat started on port 8081 (http) with context path ''
-2026-06-18 10:10:55.039 [main] INFO  [c.c.auth.AuthServiceApplication] - Started AuthServiceApplication in 15.051 seconds (process running for 15.986)
-2026-06-18 10:10:55.487 [main] INFO  [c.civicdesk.auth.config.DataSeeder] - Admin account 'admin@civicdesk.gov' already exists — skipping seed.
-2026-06-18 10:10:55.489 [main] INFO  [c.c.auth.AuthServiceApplication] - ===========================================
-2026-06-18 10:10:55.489 [main] INFO  [c.c.auth.AuthServiceApplication] -   CivicDesk Auth Service — STARTED
-2026-06-18 10:10:55.489 [main] INFO  [c.c.auth.AuthServiceApplication] -   Swagger UI: http://localhost:8081/swagger-ui.html
-2026-06-18 10:10:55.490 [main] INFO  [c.c.auth.AuthServiceApplication] - ===========================================
-2026-06-18 10:29:12.373 [http-nio-8081-exec-4] INFO  [o.a.c.c.C.[Tomcat].[localhost].[/]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2026-06-18 10:29:12.392 [http-nio-8081-exec-4] INFO  [o.s.web.servlet.DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
-2026-06-18 10:29:12.559 [http-nio-8081-exec-4] INFO  [o.s.web.servlet.DispatcherServlet] - Completed initialization in 164 ms
-2026-06-18 10:29:15.428 [http-nio-8081-exec-4] INFO  [c.civicdesk.auth.service.AuthService] - User logged in: admin@civicdesk.gov | role: ROLE_ADMIN
-2026-06-18 10:29:15.768 [http-nio-8081-exec-4] INFO  [c.c.auth.service.AuditLogService] - AUDIT | userId=6 | action=LOGIN | module=AUTH | ip=0:0:0:0:0:0:0:1
-2026-06-18 10:34:22.399 [http-nio-8081-exec-1] DEBUG [c.c.auth.security.JwtAuthFilter] - Authenticated user: admin@civicdesk.gov
-2026-06-18 10:34:41.755 [http-nio-8081-exec-3] DEBUG [c.c.auth.security.JwtAuthFilter] - Authenticated user: admin@civicdesk.gov
-2026-06-18 10:47:16.990 [HikariPool-1 housekeeper] WARN  [com.zaxxer.hikari.pool.HikariPool] - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m22s499ms569µs200ns).
-2026-06-18 11:30:43.089 [SpringApplicationShutdownHook] INFO  [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Closing JPA EntityManagerFactory for persistence unit 'default'
-2026-06-18 11:30:43.478 [SpringApplicationShutdownHook] INFO  [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown initiated...
-2026-06-18 11:30:43.563 [SpringApplicationShutdownHook] INFO  [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown completed.
-2026-06-18 11:34:00.325 [background-preinit] INFO  [o.h.validator.internal.util.Version] - HV000001: Hibernate Validator 8.0.1.Final
-2026-06-18 11:34:00.434 [main] INFO  [c.c.auth.AuthServiceApplication] - Starting AuthServiceApplication using Java 21.0.2 with PID 5044 (C:\Users\2506602\Downloads\civicdesk (1)\auth-service\target\classes started by 2506602 in C:\Users\2506602\Downloads\civicdesk (1))
-2026-06-18 11:34:00.436 [main] DEBUG [c.c.auth.AuthServiceApplication] - Running with Spring Boot v3.2.5, Spring v6.1.6
-2026-06-18 11:34:00.437 [main] INFO  [c.c.auth.AuthServiceApplication] - No active profile set, falling back to 1 default profile: "default"
-2026-06-18 11:34:02.335 [main] INFO  [o.s.d.r.c.RepositoryConfigurationDelegate] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2026-06-18 11:34:02.541 [main] INFO  [o.s.d.r.c.RepositoryConfigurationDelegate] - Finished Spring Data repository scanning in 189 ms. Found 3 JPA repository interfaces.
-2026-06-18 11:34:03.784 [main] INFO  [o.s.b.w.e.tomcat.TomcatWebServer] - Tomcat initialized with port 8081 (http)
-2026-06-18 11:34:03.811 [main] INFO  [o.a.coyote.http11.Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8081"]
-2026-06-18 11:34:03.815 [main] INFO  [o.a.catalina.core.StandardService] - Starting service [Tomcat]
-2026-06-18 11:34:03.815 [main] INFO  [o.a.catalina.core.StandardEngine] - Starting Servlet engine: [Apache Tomcat/10.1.20]
-2026-06-18 11:34:04.052 [main] INFO  [o.a.c.c.C.[.[localhost].[/civicDesk]] - Initializing Spring embedded WebApplicationContext
-2026-06-18 11:34:04.056 [main] INFO  [o.s.b.w.s.c.ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 3483 ms
-2026-06-18 11:34:04.185 [main] DEBUG [c.c.auth.security.JwtAuthFilter] - Filter 'jwtAuthFilter' configured for use
-2026-06-18 11:34:04.374 [main] INFO  [o.h.jpa.internal.util.LogHelper] - HHH000204: Processing PersistenceUnitInfo [name: default]
-2026-06-18 11:34:04.497 [main] INFO  [org.hibernate.Version] - HHH000412: Hibernate ORM core version 6.4.4.Final
-2026-06-18 11:34:04.561 [main] INFO  [o.h.c.i.RegionFactoryInitiator] - HHH000026: Second-level cache disabled
-2026-06-18 11:34:05.161 [main] INFO  [o.s.o.j.p.SpringPersistenceUnitInfo] - No LoadTimeWeaver setup: ignoring JPA class transformer
-2026-06-18 11:34:05.233 [main] INFO  [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Starting...
-2026-06-18 11:34:05.584 [main] INFO  [com.zaxxer.hikari.pool.HikariPool] - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@63e70bf9
-2026-06-18 11:34:05.587 [main] INFO  [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Start completed.
-2026-06-18 11:34:05.688 [main] WARN  [org.hibernate.orm.deprecation] - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2026-06-18 11:34:07.623 [main] INFO  [o.h.e.t.j.p.i.JtaPlatformInitiator] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2026-06-18 11:34:09.657 [main] INFO  [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2026-06-18 11:34:10.780 [main] WARN  [o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2026-06-18 11:34:10.829 [main] WARN  [o.s.b.a.s.s.UserDetailsServiceAutoConfiguration] - 
+2026-07-07 11:08:23.980 [background-preinit] INFO  [o.h.validator.internal.util.Version] - HV000001: Hibernate Validator 8.0.1.Final
+2026-07-07 11:08:24.135 [main] INFO  [c.c.auth.AuthServiceApplication] - Starting AuthServiceApplication using Java 21.0.2 with PID 28740 (C:\Users\2506602\OneDrive - Cognizant\Desktop\civicDesk microservice\civicDesk\auth-service\target\classes started by 2506602 in C:\Users\2506602\OneDrive - Cognizant\Desktop\civicDesk microservice\civicDesk)
+2026-07-07 11:08:24.137 [main] DEBUG [c.c.auth.AuthServiceApplication] - Running with Spring Boot v3.2.5, Spring v6.1.6
+2026-07-07 11:08:24.140 [main] INFO  [c.c.auth.AuthServiceApplication] - No active profile set, falling back to 1 default profile: "default"
+2026-07-07 11:08:26.937 [main] INFO  [o.s.d.r.c.RepositoryConfigurationDelegate] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-07-07 11:08:27.114 [main] INFO  [o.s.d.r.c.RepositoryConfigurationDelegate] - Finished Spring Data repository scanning in 159 ms. Found 5 JPA repository interfaces.
+2026-07-07 11:08:29.200 [main] INFO  [o.s.b.w.e.tomcat.TomcatWebServer] - Tomcat initialized with port 8081 (http)
+2026-07-07 11:08:29.228 [main] INFO  [o.a.coyote.http11.Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8081"]
+2026-07-07 11:08:29.232 [main] INFO  [o.a.catalina.core.StandardService] - Starting service [Tomcat]
+2026-07-07 11:08:29.233 [main] INFO  [o.a.catalina.core.StandardEngine] - Starting Servlet engine: [Apache Tomcat/10.1.20]
+2026-07-07 11:08:29.403 [main] INFO  [o.a.c.c.C.[.[localhost].[/civicDesk]] - Initializing Spring embedded WebApplicationContext
+2026-07-07 11:08:29.407 [main] INFO  [o.s.b.w.s.c.ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 5101 ms
+2026-07-07 11:08:30.303 [main] INFO  [o.h.jpa.internal.util.LogHelper] - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-07-07 11:08:30.504 [main] INFO  [org.hibernate.Version] - HHH000412: Hibernate ORM core version 6.4.4.Final
+2026-07-07 11:08:30.594 [main] INFO  [o.h.c.i.RegionFactoryInitiator] - HHH000026: Second-level cache disabled
+2026-07-07 11:08:31.289 [main] INFO  [o.s.o.j.p.SpringPersistenceUnitInfo] - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-07-07 11:08:31.375 [main] INFO  [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Starting...
+2026-07-07 11:08:31.735 [main] INFO  [com.zaxxer.hikari.pool.HikariPool] - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5c0272e0
+2026-07-07 11:08:31.739 [main] INFO  [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Start completed.
+2026-07-07 11:08:31.917 [main] WARN  [org.hibernate.orm.deprecation] - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-07-07 11:08:34.681 [main] INFO  [o.h.e.t.j.p.i.JtaPlatformInitiator] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-07-07 11:08:34.832 [main] INFO  [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-07-07 11:08:35.746 [main] DEBUG [c.c.auth.security.JwtAuthFilter] - Filter 'jwtAuthFilter' configured for use
+2026-07-07 11:08:37.006 [main] WARN  [o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-07-07 11:08:37.216 [main] WARN  [o.s.b.a.s.s.UserDetailsServiceAutoConfiguration] - 
 
-Using generated security password: 4f3a563b-dabf-463a-9fbc-566895e3c9b4
+Using generated security password: 3db63a58-0a1b-48de-9a78-616f59a3569c
 
 This generated password is for development use only. Your security configuration must be updated before running your application in production.
 
-2026-06-18 11:34:11.355 [main] INFO  [o.s.s.web.DefaultSecurityFilterChain] - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@d082916, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@67201002, org.springframework.security.web.context.SecurityContextHolderFilter@7db63a01, org.springframework.security.web.header.HeaderWriterFilter@1b89debc, org.springframework.web.filter.CorsFilter@6ddc9001, org.springframework.security.web.authentication.logout.LogoutFilter@8aa3013, com.civicdesk.auth.security.JwtAuthFilter@63fd4dda, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3aac31b7, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@57def953, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1f39b3ba, org.springframework.security.web.session.SessionManagementFilter@7a90f33d, org.springframework.security.web.access.ExceptionTranslationFilter@342a5b57, org.springframework.security.web.access.intercept.AuthorizationFilter@4ed492df]
-2026-06-18 11:34:11.913 [main] INFO  [o.a.coyote.http11.Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8081"]
-2026-06-18 11:34:11.963 [main] INFO  [o.s.b.w.e.tomcat.TomcatWebServer] - Tomcat started on port 8081 (http) with context path '/civicDesk'
-2026-06-18 11:34:11.990 [main] INFO  [c.c.auth.AuthServiceApplication] - Started AuthServiceApplication in 12.677 seconds (process running for 13.477)
-2026-06-18 11:34:12.547 [main] INFO  [c.civicdesk.auth.config.DataSeeder] - Seeded department 'Infrastructure' as 'DPT01'.
-2026-06-18 11:34:12.576 [main] INFO  [c.civicdesk.auth.config.DataSeeder] - Seeded department 'Public Health' as 'DPT02'.
-2026-06-18 11:34:12.601 [main] INFO  [c.civicdesk.auth.config.DataSeeder] - Seeded department 'Licensing & Compliance' as 'DPT03'.
-2026-06-18 11:34:12.632 [main] INFO  [c.civicdesk.auth.config.DataSeeder] - Seeded department 'Citizen Services' as 'DPT04'.
-2026-06-18 11:34:12.690 [main] INFO  [c.civicdesk.auth.config.DataSeeder] - Seeded department 'Administration' as 'DPT05'.
-2026-06-18 11:34:12.721 [main] INFO  [c.civicdesk.auth.config.DataSeeder] - Seeded department 'Compliance & Audit' as 'DPT06'.
-2026-06-18 11:34:12.730 [main] INFO  [c.civicdesk.auth.config.DataSeeder] - Default ADM 'admin@civicdesk.gov' already present — skipping seed.
-2026-06-18 11:34:12.731 [main] INFO  [c.c.auth.AuthServiceApplication] - ===========================================
-2026-06-18 11:34:12.732 [main] INFO  [c.c.auth.AuthServiceApplication] -   CivicDesk Auth Service — STARTED
-2026-06-18 11:34:12.732 [main] INFO  [c.c.auth.AuthServiceApplication] -   Swagger UI: http://localhost:8081/swagger-ui.html
-2026-06-18 11:34:12.732 [main] INFO  [c.c.auth.AuthServiceApplication] - ===========================================
-2026-06-18 11:35:39.020 [http-nio-8081-exec-1] INFO  [o.a.c.c.C.[.[localhost].[/civicDesk]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2026-06-18 11:35:39.022 [http-nio-8081-exec-1] INFO  [o.s.web.servlet.DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
-2026-06-18 11:35:39.027 [http-nio-8081-exec-1] INFO  [o.s.web.servlet.DispatcherServlet] - Completed initialization in 4 ms
-2026-06-18 11:49:58.722 [SpringApplicationShutdownHook] INFO  [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Closing JPA EntityManagerFactory for persistence unit 'default'
-2026-06-18 11:49:58.728 [SpringApplicationShutdownHook] INFO  [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown initiated...
-2026-06-18 11:49:58.747 [SpringApplicationShutdownHook] INFO  [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown completed.
-2026-06-18 11:50:05.727 [background-preinit] INFO  [o.h.validator.internal.util.Version] - HV000001: Hibernate Validator 8.0.1.Final
-2026-06-18 11:50:05.865 [main] INFO  [c.c.auth.AuthServiceApplication] - Starting AuthServiceApplication using Java 21.0.2 with PID 29456 (C:\Users\2506602\Downloads\civicdesk (1)\auth-service\target\classes started by 2506602 in C:\Users\2506602\Downloads\civicdesk (1))
-2026-06-18 11:50:05.867 [main] DEBUG [c.c.auth.AuthServiceApplication] - Running with Spring Boot v3.2.5, Spring v6.1.6
-2026-06-18 11:50:05.868 [main] INFO  [c.c.auth.AuthServiceApplication] - No active profile set, falling back to 1 default profile: "default"
-2026-06-18 11:50:08.040 [main] INFO  [o.s.d.r.c.RepositoryConfigurationDelegate] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2026-06-18 11:50:08.224 [main] INFO  [o.s.d.r.c.RepositoryConfigurationDelegate] - Finished Spring Data repository scanning in 168 ms. Found 3 JPA repository interfaces.
-2026-06-18 11:50:09.716 [main] INFO  [o.s.b.w.e.tomcat.TomcatWebServer] - Tomcat initialized with port 8081 (http)
-2026-06-18 11:50:09.736 [main] INFO  [o.a.coyote.http11.Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8081"]
-2026-06-18 11:50:09.740 [main] INFO  [o.a.catalina.core.StandardService] - Starting service [Tomcat]
-2026-06-18 11:50:09.741 [main] INFO  [o.a.catalina.core.StandardEngine] - Starting Servlet engine: [Apache Tomcat/10.1.20]
-2026-06-18 11:50:09.910 [main] INFO  [o.a.c.c.C.[.[localhost].[/civicDesk]] - Initializing Spring embedded WebApplicationContext
-2026-06-18 11:50:09.912 [main] INFO  [o.s.b.w.s.c.ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 3895 ms
-2026-06-18 11:50:10.070 [main] DEBUG [c.c.auth.security.JwtAuthFilter] - Filter 'jwtAuthFilter' configured for use
-2026-06-18 11:50:10.373 [main] INFO  [o.h.jpa.internal.util.LogHelper] - HHH000204: Processing PersistenceUnitInfo [name: default]
-2026-06-18 11:50:10.601 [main] INFO  [org.hibernate.Version] - HHH000412: Hibernate ORM core version 6.4.4.Final
-2026-06-18 11:50:10.768 [main] INFO  [o.h.c.i.RegionFactoryInitiator] - HHH000026: Second-level cache disabled
-2026-06-18 11:50:11.347 [main] INFO  [o.s.o.j.p.SpringPersistenceUnitInfo] - No LoadTimeWeaver setup: ignoring JPA class transformer
-2026-06-18 11:50:11.418 [main] INFO  [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Starting...
-2026-06-18 11:50:11.815 [main] INFO  [com.zaxxer.hikari.pool.HikariPool] - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2d4e99de
-2026-06-18 11:50:11.818 [main] INFO  [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Start completed.
-2026-06-18 11:50:11.975 [main] WARN  [org.hibernate.orm.deprecation] - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2026-06-18 11:50:14.594 [main] INFO  [o.h.e.t.j.p.i.JtaPlatformInitiator] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2026-06-18 11:50:15.384 [main] INFO  [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2026-06-18 11:50:16.902 [main] WARN  [o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2026-06-18 11:50:16.968 [main] WARN  [o.s.b.a.s.s.UserDetailsServiceAutoConfiguration] - 
+2026-07-07 11:08:38.323 [main] INFO  [o.s.b.a.e.web.EndpointLinksResolver] - Exposing 4 endpoint(s) beneath base path '/actuator'
+2026-07-07 11:08:38.535 [main] INFO  [o.s.s.web.DefaultSecurityFilterChain] - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@616d9a6d, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@16263fb2, org.springframework.security.web.context.SecurityContextHolderFilter@51c660c8, org.springframework.security.web.header.HeaderWriterFilter@436867c3, org.springframework.web.filter.CorsFilter@52b4da7c, org.springframework.security.web.authentication.logout.LogoutFilter@5a75bad4, com.civicdesk.auth.security.JwtAuthFilter@757ad227, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7ba70b3b, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@106e816c, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4620e669, org.springframework.security.web.session.SessionManagementFilter@327af731, org.springframework.security.web.access.ExceptionTranslationFilter@628190ec, org.springframework.security.web.access.intercept.AuthorizationFilter@6a40e660]
+2026-07-07 11:08:39.802 [main] INFO  [o.a.coyote.http11.Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8081"]
+2026-07-07 11:08:39.893 [main] INFO  [o.s.b.w.e.tomcat.TomcatWebServer] - Tomcat started on port 8081 (http) with context path '/civicDesk'
+2026-07-07 11:08:39.930 [main] INFO  [c.c.auth.AuthServiceApplication] - Started AuthServiceApplication in 17.063 seconds (process running for 17.886)
+2026-07-07 11:08:40.634 [main] INFO  [c.civicdesk.auth.config.DataSeeder] - Default ADM 'admin@civicdesk.gov' already present — skipping seed.
+2026-07-07 11:08:40.635 [main] INFO  [c.c.auth.AuthServiceApplication] - ===========================================
+2026-07-07 11:08:40.636 [main] INFO  [c.c.auth.AuthServiceApplication] -   CivicDesk Auth Service — STARTED
+2026-07-07 11:08:40.636 [main] INFO  [c.c.auth.AuthServiceApplication] -   Swagger UI: http://localhost:8081/swagger-ui.html
+2026-07-07 11:08:40.636 [main] INFO  [c.c.auth.AuthServiceApplication] - ===========================================
+2026-07-07 11:09:55.442 [http-nio-8081-exec-1] INFO  [o.a.c.c.C.[.[localhost].[/civicDesk]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-07-07 11:09:55.442 [http-nio-8081-exec-1] INFO  [o.s.web.servlet.DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
+2026-07-07 11:09:55.456 [http-nio-8081-exec-1] INFO  [o.s.web.servlet.DispatcherServlet] - Completed initialization in 14 ms
+2026-07-07 11:18:27.091 [SpringApplicationShutdownHook] INFO  [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-07-07 11:18:27.098 [SpringApplicationShutdownHook] INFO  [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown initiated...
+2026-07-07 11:18:27.114 [SpringApplicationShutdownHook] INFO  [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown completed.
+2026-07-07 11:20:43.889 [background-preinit] INFO  [o.h.validator.internal.util.Version] - HV000001: Hibernate Validator 8.0.1.Final
+2026-07-07 11:20:44.036 [main] INFO  [c.c.auth.AuthServiceApplication] - Starting AuthServiceApplication using Java 21.0.2 with PID 28972 (C:\Users\2506602\OneDrive - Cognizant\Desktop\civicDesk microservice\civicDesk\auth-service\target\classes started by 2506602 in C:\Users\2506602\OneDrive - Cognizant\Desktop\civicDesk microservice\civicDesk)
+2026-07-07 11:20:44.037 [main] DEBUG [c.c.auth.AuthServiceApplication] - Running with Spring Boot v3.2.5, Spring v6.1.6
+2026-07-07 11:20:44.038 [main] INFO  [c.c.auth.AuthServiceApplication] - No active profile set, falling back to 1 default profile: "default"
+2026-07-07 11:20:47.223 [main] INFO  [o.s.d.r.c.RepositoryConfigurationDelegate] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-07-07 11:20:47.462 [main] INFO  [o.s.d.r.c.RepositoryConfigurationDelegate] - Finished Spring Data repository scanning in 224 ms. Found 5 JPA repository interfaces.
+2026-07-07 11:20:49.145 [main] INFO  [o.s.b.w.e.tomcat.TomcatWebServer] - Tomcat initialized with port 8081 (http)
+2026-07-07 11:20:49.168 [main] INFO  [o.a.coyote.http11.Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8081"]
+2026-07-07 11:20:49.173 [main] INFO  [o.a.catalina.core.StandardService] - Starting service [Tomcat]
+2026-07-07 11:20:49.174 [main] INFO  [o.a.catalina.core.StandardEngine] - Starting Servlet engine: [Apache Tomcat/10.1.20]
+2026-07-07 11:20:49.323 [main] INFO  [o.a.c.c.C.[.[localhost].[/civicDesk]] - Initializing Spring embedded WebApplicationContext
+2026-07-07 11:20:49.324 [main] INFO  [o.s.b.w.s.c.ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 5166 ms
+2026-07-07 11:20:50.067 [main] INFO  [o.h.jpa.internal.util.LogHelper] - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-07-07 11:20:50.243 [main] INFO  [org.hibernate.Version] - HHH000412: Hibernate ORM core version 6.4.4.Final
+2026-07-07 11:20:50.509 [main] INFO  [o.h.c.i.RegionFactoryInitiator] - HHH000026: Second-level cache disabled
+2026-07-07 11:20:51.428 [main] INFO  [o.s.o.j.p.SpringPersistenceUnitInfo] - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-07-07 11:20:51.545 [main] INFO  [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Starting...
+2026-07-07 11:20:51.960 [main] INFO  [com.zaxxer.hikari.pool.HikariPool] - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@120d13ae
+2026-07-07 11:20:51.966 [main] INFO  [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Start completed.
+2026-07-07 11:20:52.082 [main] WARN  [org.hibernate.orm.deprecation] - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-07-07 11:20:54.394 [main] INFO  [o.h.e.t.j.p.i.JtaPlatformInitiator] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-07-07 11:20:54.594 [main] INFO  [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-07-07 11:20:55.152 [main] DEBUG [c.c.auth.security.JwtAuthFilter] - Filter 'jwtAuthFilter' configured for use
+2026-07-07 11:20:56.170 [main] WARN  [o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-07-07 11:20:56.322 [main] WARN  [o.s.b.a.s.s.UserDetailsServiceAutoConfiguration] - 
 
-Using generated security password: 8a292585-ad6a-4645-84cb-f2fa5f2ba3f6
+Using generated security password: 33c368c8-b6f1-4c08-940b-0a99cb58c040
 
 This generated password is for development use only. Your security configuration must be updated before running your application in production.
 
-2026-06-18 11:50:17.724 [main] INFO  [o.s.s.web.DefaultSecurityFilterChain] - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@bafc754, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5e8684a3, org.springframework.security.web.context.SecurityContextHolderFilter@4f7da3a2, org.springframework.security.web.header.HeaderWriterFilter@24ccc91b, org.springframework.web.filter.CorsFilter@590ab84, org.springframework.security.web.authentication.logout.LogoutFilter@4a15d5f5, com.civicdesk.auth.security.JwtAuthFilter@ea00de, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@76055d02, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@31c800a5, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@8a8cab8, org.springframework.security.web.session.SessionManagementFilter@52a3eba3, org.springframework.security.web.access.ExceptionTranslationFilter@1da5635e, org.springframework.security.web.access.intercept.AuthorizationFilter@1b89debc]
-2026-06-18 11:50:18.573 [main] INFO  [o.a.coyote.http11.Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8081"]
-2026-06-18 11:50:18.623 [main] INFO  [o.s.b.w.e.tomcat.TomcatWebServer] - Tomcat started on port 8081 (http) with context path '/civicDesk'
-2026-06-18 11:50:18.638 [main] INFO  [c.c.auth.AuthServiceApplication] - Started AuthServiceApplication in 14.46 seconds (process running for 15.902)
-2026-06-18 11:50:19.442 [main] INFO  [c.civicdesk.auth.config.DataSeeder] - Seeded department 'Infrastructure' as 'DPT01'.
-2026-06-18 11:50:19.477 [main] INFO  [c.civicdesk.auth.config.DataSeeder] - Seeded department 'Public Health' as 'DPT02'.
-2026-06-18 11:50:19.501 [main] INFO  [c.civicdesk.auth.config.DataSeeder] - Seeded department 'Licensing & Compliance' as 'DPT03'.
-2026-06-18 11:50:19.525 [main] INFO  [c.civicdesk.auth.config.DataSeeder] - Seeded department 'Citizen Services' as 'DPT04'.
-2026-06-18 11:50:19.553 [main] INFO  [c.civicdesk.auth.config.DataSeeder] - Seeded department 'Administration' as 'DPT05'.
-2026-06-18 11:50:19.575 [main] INFO  [c.civicdesk.auth.config.DataSeeder] - Seeded department 'Compliance & Audit' as 'DPT06'.
-2026-06-18 11:50:19.863 [main] INFO  [c.civicdesk.auth.config.DataSeeder] - Seeded default ADM account 'admin@civicdesk.gov'.
-2026-06-18 11:50:19.864 [main] INFO  [c.c.auth.AuthServiceApplication] - ===========================================
-2026-06-18 11:50:19.864 [main] INFO  [c.c.auth.AuthServiceApplication] -   CivicDesk Auth Service — STARTED
-2026-06-18 11:50:19.864 [main] INFO  [c.c.auth.AuthServiceApplication] -   Swagger UI: http://localhost:8081/swagger-ui.html
-2026-06-18 11:50:19.865 [main] INFO  [c.c.auth.AuthServiceApplication] - ===========================================
-2026-06-18 11:52:47.205 [http-nio-8081-exec-1] INFO  [o.a.c.c.C.[.[localhost].[/civicDesk]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2026-06-18 11:52:47.206 [http-nio-8081-exec-1] INFO  [o.s.web.servlet.DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
-2026-06-18 11:52:47.211 [http-nio-8081-exec-1] INFO  [o.s.web.servlet.DispatcherServlet] - Completed initialization in 4 ms
-2026-06-18 12:12:18.356 [SpringApplicationShutdownHook] INFO  [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Closing JPA EntityManagerFactory for persistence unit 'default'
-2026-06-18 12:12:18.364 [SpringApplicationShutdownHook] INFO  [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown initiated...
-2026-06-18 12:12:18.387 [SpringApplicationShutdownHook] INFO  [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown completed.
-2026-06-18 12:12:24.371 [background-preinit] INFO  [o.h.validator.internal.util.Version] - HV000001: Hibernate Validator 8.0.1.Final
-2026-06-18 12:12:24.446 [main] INFO  [c.c.auth.AuthServiceApplication] - Starting AuthServiceApplication using Java 21.0.2 with PID 33400 (C:\Users\2506602\Downloads\civicdesk (1)\auth-service\target\classes started by 2506602 in C:\Users\2506602\Downloads\civicdesk (1))
-2026-06-18 12:12:24.447 [main] DEBUG [c.c.auth.AuthServiceApplication] - Running with Spring Boot v3.2.5, Spring v6.1.6
-2026-06-18 12:12:24.448 [main] INFO  [c.c.auth.AuthServiceApplication] - No active profile set, falling back to 1 default profile: "default"
-2026-06-18 12:12:26.932 [main] INFO  [o.s.d.r.c.RepositoryConfigurationDelegate] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2026-06-18 12:12:27.166 [main] INFO  [o.s.d.r.c.RepositoryConfigurationDelegate] - Finished Spring Data repository scanning in 210 ms. Found 3 JPA repository interfaces.
-2026-06-18 12:12:28.766 [main] INFO  [o.s.b.w.e.tomcat.TomcatWebServer] - Tomcat initialized with port 8081 (http)
-2026-06-18 12:12:28.794 [main] INFO  [o.a.coyote.http11.Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8081"]
-2026-06-18 12:12:28.802 [main] INFO  [o.a.catalina.core.StandardService] - Starting service [Tomcat]
-2026-06-18 12:12:28.802 [main] INFO  [o.a.catalina.core.StandardEngine] - Starting Servlet engine: [Apache Tomcat/10.1.20]
-2026-06-18 12:12:29.026 [main] INFO  [o.a.c.c.C.[.[localhost].[/civicDesk]] - Initializing Spring embedded WebApplicationContext
-2026-06-18 12:12:29.028 [main] INFO  [o.s.b.w.s.c.ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 4456 ms
-2026-06-18 12:12:29.181 [main] DEBUG [c.c.auth.security.JwtAuthFilter] - Filter 'jwtAuthFilter' configured for use
-2026-06-18 12:12:29.546 [main] INFO  [o.h.jpa.internal.util.LogHelper] - HHH000204: Processing PersistenceUnitInfo [name: default]
-2026-06-18 12:12:29.772 [main] INFO  [org.hibernate.Version] - HHH000412: Hibernate ORM core version 6.4.4.Final
-2026-06-18 12:12:29.888 [main] INFO  [o.h.c.i.RegionFactoryInitiator] - HHH000026: Second-level cache disabled
-2026-06-18 12:12:30.629 [main] INFO  [o.s.o.j.p.SpringPersistenceUnitInfo] - No LoadTimeWeaver setup: ignoring JPA class transformer
-2026-06-18 12:12:30.690 [main] INFO  [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Starting...
-2026-06-18 12:12:31.111 [main] INFO  [com.zaxxer.hikari.pool.HikariPool] - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@63e70bf9
-2026-06-18 12:12:31.117 [main] INFO  [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Start completed.
-2026-06-18 12:12:31.301 [main] WARN  [org.hibernate.orm.deprecation] - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2026-06-18 12:12:34.353 [main] INFO  [o.h.e.t.j.p.i.JtaPlatformInitiator] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2026-06-18 12:12:34.575 [main] INFO  [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2026-06-18 12:12:36.091 [main] WARN  [o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2026-06-18 12:12:36.187 [main] WARN  [o.s.b.a.s.s.UserDetailsServiceAutoConfiguration] - 
+2026-07-07 11:20:57.603 [main] INFO  [o.s.b.a.e.web.EndpointLinksResolver] - Exposing 4 endpoint(s) beneath base path '/actuator'
+2026-07-07 11:20:57.891 [main] INFO  [o.s.s.web.DefaultSecurityFilterChain] - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@21acc86a, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@443819d5, org.springframework.security.web.context.SecurityContextHolderFilter@2474331d, org.springframework.security.web.header.HeaderWriterFilter@2fb171f5, org.springframework.web.filter.CorsFilter@465a121d, org.springframework.security.web.authentication.logout.LogoutFilter@514f2b5c, com.civicdesk.auth.security.JwtAuthFilter@4a83d61c, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@17da6e45, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1d0fae45, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@23938caa, org.springframework.security.web.session.SessionManagementFilter@517f9ba3, org.springframework.security.web.access.ExceptionTranslationFilter@5acc6ca1, org.springframework.security.web.access.intercept.AuthorizationFilter@2d33aa31]
+2026-07-07 11:20:59.261 [main] INFO  [o.a.coyote.http11.Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8081"]
+2026-07-07 11:20:59.327 [main] INFO  [o.s.b.w.e.tomcat.TomcatWebServer] - Tomcat started on port 8081 (http) with context path '/civicDesk'
+2026-07-07 11:20:59.362 [main] INFO  [c.c.auth.AuthServiceApplication] - Started AuthServiceApplication in 16.876 seconds (process running for 17.924)
+2026-07-07 11:20:59.848 [main] INFO  [c.civicdesk.auth.config.DataSeeder] - Default ADM 'admin@civicdesk.gov' already present — skipping seed.
+2026-07-07 11:20:59.849 [main] INFO  [c.c.auth.AuthServiceApplication] - ===========================================
+2026-07-07 11:20:59.850 [main] INFO  [c.c.auth.AuthServiceApplication] -   CivicDesk Auth Service — STARTED
+2026-07-07 11:20:59.851 [main] INFO  [c.c.auth.AuthServiceApplication] -   Swagger UI: http://localhost:8081/swagger-ui.html
+2026-07-07 11:20:59.851 [main] INFO  [c.c.auth.AuthServiceApplication] - ===========================================
+2026-07-07 11:23:09.291 [http-nio-8081-exec-1] INFO  [o.a.c.c.C.[.[localhost].[/civicDesk]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-07-07 11:23:09.291 [http-nio-8081-exec-1] INFO  [o.s.web.servlet.DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
+2026-07-07 11:23:09.293 [http-nio-8081-exec-1] INFO  [o.s.web.servlet.DispatcherServlet] - Completed initialization in 2 ms
+2026-07-07 11:44:33.755 [SpringApplicationShutdownHook] INFO  [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-07-07 11:44:33.839 [SpringApplicationShutdownHook] INFO  [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown initiated...
+2026-07-07 11:44:33.920 [SpringApplicationShutdownHook] INFO  [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown completed.
+2026-07-07 11:48:35.706 [background-preinit] INFO  [o.h.validator.internal.util.Version] - HV000001: Hibernate Validator 8.0.1.Final
+2026-07-07 11:48:35.826 [main] INFO  [c.c.auth.AuthServiceApplication] - Starting AuthServiceApplication using Java 21.0.2 with PID 27852 (C:\Users\2506602\OneDrive - Cognizant\Desktop\civicDesk microservice\civicDesk\auth-service\target\classes started by 2506602 in C:\Users\2506602\OneDrive - Cognizant\Desktop\civicDesk microservice\civicDesk)
+2026-07-07 11:48:35.826 [main] DEBUG [c.c.auth.AuthServiceApplication] - Running with Spring Boot v3.2.5, Spring v6.1.6
+2026-07-07 11:48:35.827 [main] INFO  [c.c.auth.AuthServiceApplication] - No active profile set, falling back to 1 default profile: "default"
+2026-07-07 11:48:39.193 [main] INFO  [o.s.d.r.c.RepositoryConfigurationDelegate] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-07-07 11:48:39.481 [main] INFO  [o.s.d.r.c.RepositoryConfigurationDelegate] - Finished Spring Data repository scanning in 261 ms. Found 5 JPA repository interfaces.
+2026-07-07 11:48:41.720 [main] INFO  [o.s.b.w.e.tomcat.TomcatWebServer] - Tomcat initialized with port 8081 (http)
+2026-07-07 11:48:41.746 [main] INFO  [o.a.coyote.http11.Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8081"]
+2026-07-07 11:48:41.751 [main] INFO  [o.a.catalina.core.StandardService] - Starting service [Tomcat]
+2026-07-07 11:48:41.752 [main] INFO  [o.a.catalina.core.StandardEngine] - Starting Servlet engine: [Apache Tomcat/10.1.20]
+2026-07-07 11:48:42.067 [main] INFO  [o.a.c.c.C.[.[localhost].[/civicDesk]] - Initializing Spring embedded WebApplicationContext
+2026-07-07 11:48:42.070 [main] INFO  [o.s.b.w.s.c.ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 6105 ms
+2026-07-07 11:48:42.945 [main] INFO  [o.h.jpa.internal.util.LogHelper] - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-07-07 11:48:43.125 [main] INFO  [org.hibernate.Version] - HHH000412: Hibernate ORM core version 6.4.4.Final
+2026-07-07 11:48:43.232 [main] INFO  [o.h.c.i.RegionFactoryInitiator] - HHH000026: Second-level cache disabled
+2026-07-07 11:48:43.963 [main] INFO  [o.s.o.j.p.SpringPersistenceUnitInfo] - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-07-07 11:48:44.041 [main] INFO  [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Starting...
+2026-07-07 11:48:44.442 [main] INFO  [com.zaxxer.hikari.pool.HikariPool] - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@774304ca
+2026-07-07 11:48:44.447 [main] INFO  [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Start completed.
+2026-07-07 11:48:44.564 [main] WARN  [org.hibernate.orm.deprecation] - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-07-07 11:48:46.581 [main] INFO  [o.h.e.t.j.p.i.JtaPlatformInitiator] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-07-07 11:48:46.803 [main] INFO  [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-07-07 11:48:47.486 [main] DEBUG [c.c.auth.security.JwtAuthFilter] - Filter 'jwtAuthFilter' configured for use
+2026-07-07 11:48:48.658 [main] WARN  [o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-07-07 11:48:48.785 [main] WARN  [o.s.b.a.s.s.UserDetailsServiceAutoConfiguration] - 
 
-Using generated security password: 84f21a94-0d16-4228-b025-e5c9b05991d9
+Using generated security password: fe3dd7d9-46ea-4cc6-a2fd-0dadba9de26b
 
 This generated password is for development use only. Your security configuration must be updated before running your application in production.
 
-2026-06-18 12:12:37.057 [main] INFO  [o.s.s.web.DefaultSecurityFilterChain] - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@bafc754, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5e8684a3, org.springframework.security.web.context.SecurityContextHolderFilter@4f7da3a2, org.springframework.security.web.header.HeaderWriterFilter@24ccc91b, org.springframework.web.filter.CorsFilter@590ab84, org.springframework.security.web.authentication.logout.LogoutFilter@4a15d5f5, com.civicdesk.auth.security.JwtAuthFilter@63fd4dda, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@76055d02, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@31c800a5, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@8a8cab8, org.springframework.security.web.session.SessionManagementFilter@52a3eba3, org.springframework.security.web.access.ExceptionTranslationFilter@1da5635e, org.springframework.security.web.access.intercept.AuthorizationFilter@1b89debc]
-2026-06-18 12:12:37.872 [main] INFO  [o.a.coyote.http11.Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8081"]
-2026-06-18 12:12:37.933 [main] INFO  [o.s.b.w.e.tomcat.TomcatWebServer] - Tomcat started on port 8081 (http) with context path '/civicDesk'
-2026-06-18 12:12:37.963 [main] INFO  [c.c.auth.AuthServiceApplication] - Started AuthServiceApplication in 14.692 seconds (process running for 15.543)
-2026-06-18 12:12:38.431 [main] INFO  [c.civicdesk.auth.config.DataSeeder] - Default ADM 'admin@civicdesk.gov' already present — skipping seed.
-2026-06-18 12:12:38.433 [main] INFO  [c.c.auth.AuthServiceApplication] - ===========================================
-2026-06-18 12:12:38.433 [main] INFO  [c.c.auth.AuthServiceApplication] -   CivicDesk Auth Service — STARTED
-2026-06-18 12:12:38.433 [main] INFO  [c.c.auth.AuthServiceApplication] -   Swagger UI: http://localhost:8081/swagger-ui.html
-2026-06-18 12:12:38.433 [main] INFO  [c.c.auth.AuthServiceApplication] - ===========================================
-2026-06-18 12:24:49.716 [http-nio-8081-exec-2] INFO  [o.a.c.c.C.[.[localhost].[/civicDesk]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2026-06-18 12:24:49.718 [http-nio-8081-exec-2] INFO  [o.s.web.servlet.DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
-2026-06-18 12:24:49.723 [http-nio-8081-exec-2] INFO  [o.s.web.servlet.DispatcherServlet] - Completed initialization in 4 ms
-2026-06-18 14:06:30.329 [HikariPool-1 housekeeper] WARN  [com.zaxxer.hikari.pool.HikariPool] - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h1m55s545ms109µs).
-2026-06-18 14:32:58.688 [HikariPool-1 housekeeper] WARN  [com.zaxxer.hikari.pool.HikariPool] - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=55s653ms670µs100ns).
-2026-06-18 15:22:24.957 [HikariPool-1 housekeeper] WARN  [com.zaxxer.hikari.pool.HikariPool] - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2m25s405ms161µs).
-2026-06-18 15:37:58.430 [SpringApplicationShutdownHook] INFO  [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Closing JPA EntityManagerFactory for persistence unit 'default'
-2026-06-18 15:37:58.882 [SpringApplicationShutdownHook] INFO  [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown initiated...
-2026-06-18 15:37:59.067 [SpringApplicationShutdownHook] INFO  [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown completed.
-2026-07-04 21:57:51.609 [background-preinit] INFO  [o.h.validator.internal.util.Version] - HV000001: Hibernate Validator 8.0.1.Final
-2026-07-04 21:57:51.779 [main] INFO  [c.c.auth.AuthServiceApplication] - Starting AuthServiceApplication using Java 21.0.2 with PID 912 (C:\Users\2506484\Documents\civicDesk-1\auth-service\target\classes started by 2506484 in C:\Users\2506484\Documents\civicDesk-1)
-2026-07-04 21:57:51.781 [main] DEBUG [c.c.auth.AuthServiceApplication] - Running with Spring Boot v3.2.5, Spring v6.1.6
-2026-07-04 21:57:51.784 [main] INFO  [c.c.auth.AuthServiceApplication] - No active profile set, falling back to 1 default profile: "default"
-2026-07-04 21:57:55.736 [main] INFO  [o.s.d.r.c.RepositoryConfigurationDelegate] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2026-07-04 21:57:55.954 [main] INFO  [o.s.d.r.c.RepositoryConfigurationDelegate] - Finished Spring Data repository scanning in 182 ms. Found 5 JPA repository interfaces.
-2026-07-04 21:57:58.619 [main] INFO  [o.s.b.w.e.tomcat.TomcatWebServer] - Tomcat initialized with port 8081 (http)
-2026-07-04 21:57:58.680 [main] INFO  [o.a.coyote.http11.Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8081"]
-2026-07-04 21:57:58.688 [main] INFO  [o.a.catalina.core.StandardService] - Starting service [Tomcat]
-2026-07-04 21:57:58.690 [main] INFO  [o.a.catalina.core.StandardEngine] - Starting Servlet engine: [Apache Tomcat/10.1.20]
-2026-07-04 21:57:59.005 [main] INFO  [o.a.c.c.C.[.[localhost].[/civicDesk]] - Initializing Spring embedded WebApplicationContext
-2026-07-04 21:57:59.006 [main] INFO  [o.s.b.w.s.c.ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 7043 ms
-2026-07-04 21:57:59.946 [main] INFO  [o.h.jpa.internal.util.LogHelper] - HHH000204: Processing PersistenceUnitInfo [name: default]
-2026-07-04 21:58:00.257 [main] INFO  [org.hibernate.Version] - HHH000412: Hibernate ORM core version 6.4.4.Final
-2026-07-04 21:58:00.416 [main] INFO  [o.h.c.i.RegionFactoryInitiator] - HHH000026: Second-level cache disabled
-2026-07-04 21:58:00.849 [main] INFO  [o.s.o.j.p.SpringPersistenceUnitInfo] - No LoadTimeWeaver setup: ignoring JPA class transformer
-2026-07-04 21:58:00.898 [main] INFO  [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Starting...
-2026-07-04 21:58:01.267 [main] INFO  [com.zaxxer.hikari.pool.HikariPool] - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@342dc040
-2026-07-04 21:58:01.270 [main] INFO  [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Start completed.
-2026-07-04 21:58:01.371 [main] WARN  [org.hibernate.orm.deprecation] - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2026-07-04 21:58:03.159 [main] INFO  [o.h.e.t.j.p.i.JtaPlatformInitiator] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2026-07-04 21:58:04.138 [main] INFO  [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2026-07-04 21:58:04.971 [main] DEBUG [c.c.auth.security.JwtAuthFilter] - Filter 'jwtAuthFilter' configured for use
-2026-07-04 21:58:06.309 [main] WARN  [o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2026-07-04 21:58:06.462 [main] WARN  [o.s.b.a.s.s.UserDetailsServiceAutoConfiguration] - 
+2026-07-07 11:48:49.575 [main] INFO  [o.s.b.a.e.web.EndpointLinksResolver] - Exposing 4 endpoint(s) beneath base path '/actuator'
+2026-07-07 11:48:49.748 [main] INFO  [o.s.s.web.DefaultSecurityFilterChain] - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@6a40e660, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4a57ad67, org.springframework.security.web.context.SecurityContextHolderFilter@2fb171f5, org.springframework.security.web.header.HeaderWriterFilter@697797e4, org.springframework.web.filter.CorsFilter@1f1b69bb, org.springframework.security.web.authentication.logout.LogoutFilter@44992466, com.civicdesk.auth.security.JwtAuthFilter@4807b2b7, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@51c660c8, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1985f8e3, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@c730e65, org.springframework.security.web.session.SessionManagementFilter@100235c7, org.springframework.security.web.access.ExceptionTranslationFilter@5910c67e, org.springframework.security.web.access.intercept.AuthorizationFilter@f3cc2e0]
+2026-07-07 11:48:51.209 [main] INFO  [o.a.coyote.http11.Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8081"]
+2026-07-07 11:48:51.292 [main] INFO  [o.s.b.w.e.tomcat.TomcatWebServer] - Tomcat started on port 8081 (http) with context path '/civicDesk'
+2026-07-07 11:48:51.332 [main] INFO  [c.c.auth.AuthServiceApplication] - Started AuthServiceApplication in 16.809 seconds (process running for 17.877)
+2026-07-07 11:48:51.829 [main] INFO  [c.civicdesk.auth.config.DataSeeder] - Default ADM 'admin@civicdesk.gov' already present — skipping seed.
+2026-07-07 11:48:51.832 [main] INFO  [c.c.auth.AuthServiceApplication] - ===========================================
+2026-07-07 11:48:51.833 [main] INFO  [c.c.auth.AuthServiceApplication] -   CivicDesk Auth Service — STARTED
+2026-07-07 11:48:51.833 [main] INFO  [c.c.auth.AuthServiceApplication] -   Swagger UI: http://localhost:8081/swagger-ui.html
+2026-07-07 11:48:51.833 [main] INFO  [c.c.auth.AuthServiceApplication] - ===========================================
+2026-07-07 11:50:09.616 [http-nio-8081-exec-2] INFO  [o.a.c.c.C.[.[localhost].[/civicDesk]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-07-07 11:50:09.616 [http-nio-8081-exec-2] INFO  [o.s.web.servlet.DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
+2026-07-07 11:50:09.624 [http-nio-8081-exec-2] INFO  [o.s.web.servlet.DispatcherServlet] - Completed initialization in 0 ms
+2026-07-07 12:03:58.387 [SpringApplicationShutdownHook] INFO  [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-07-07 12:03:58.419 [SpringApplicationShutdownHook] INFO  [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown initiated...
+2026-07-07 12:03:58.462 [SpringApplicationShutdownHook] INFO  [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown completed.
+2026-07-07 12:04:10.261 [background-preinit] INFO  [o.h.validator.internal.util.Version] - HV000001: Hibernate Validator 8.0.1.Final
+2026-07-07 12:04:10.379 [main] INFO  [c.c.auth.AuthServiceApplication] - Starting AuthServiceApplication using Java 21.0.2 with PID 18152 (C:\Users\2506602\OneDrive - Cognizant\Desktop\civicDesk microservice\civicDesk\auth-service\target\classes started by 2506602 in C:\Users\2506602\OneDrive - Cognizant\Desktop\civicDesk microservice\civicDesk)
+2026-07-07 12:04:10.379 [main] DEBUG [c.c.auth.AuthServiceApplication] - Running with Spring Boot v3.2.5, Spring v6.1.6
+2026-07-07 12:04:10.381 [main] INFO  [c.c.auth.AuthServiceApplication] - No active profile set, falling back to 1 default profile: "default"
+2026-07-07 12:04:13.397 [main] INFO  [o.s.d.r.c.RepositoryConfigurationDelegate] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-07-07 12:04:13.634 [main] INFO  [o.s.d.r.c.RepositoryConfigurationDelegate] - Finished Spring Data repository scanning in 229 ms. Found 5 JPA repository interfaces.
+2026-07-07 12:04:15.721 [main] INFO  [o.s.b.w.e.tomcat.TomcatWebServer] - Tomcat initialized with port 8081 (http)
+2026-07-07 12:04:15.757 [main] INFO  [o.a.coyote.http11.Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8081"]
+2026-07-07 12:04:15.779 [main] INFO  [o.a.catalina.core.StandardService] - Starting service [Tomcat]
+2026-07-07 12:04:15.779 [main] INFO  [o.a.catalina.core.StandardEngine] - Starting Servlet engine: [Apache Tomcat/10.1.20]
+2026-07-07 12:04:16.018 [main] INFO  [o.a.c.c.C.[.[localhost].[/civicDesk]] - Initializing Spring embedded WebApplicationContext
+2026-07-07 12:04:16.018 [main] INFO  [o.s.b.w.s.c.ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 5527 ms
+2026-07-07 12:04:17.319 [main] INFO  [o.h.jpa.internal.util.LogHelper] - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-07-07 12:04:17.751 [main] INFO  [org.hibernate.Version] - HHH000412: Hibernate ORM core version 6.4.4.Final
+2026-07-07 12:04:17.950 [main] INFO  [o.h.c.i.RegionFactoryInitiator] - HHH000026: Second-level cache disabled
+2026-07-07 12:04:19.453 [main] INFO  [o.s.o.j.p.SpringPersistenceUnitInfo] - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-07-07 12:04:19.585 [main] INFO  [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Starting...
+2026-07-07 12:04:20.338 [main] INFO  [com.zaxxer.hikari.pool.HikariPool] - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@65a80fdb
+2026-07-07 12:04:20.350 [main] INFO  [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Start completed.
+2026-07-07 12:04:20.602 [main] WARN  [org.hibernate.orm.deprecation] - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-07-07 12:04:24.881 [main] INFO  [o.h.e.t.j.p.i.JtaPlatformInitiator] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-07-07 12:04:25.068 [main] INFO  [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-07-07 12:04:25.759 [main] DEBUG [c.c.auth.security.JwtAuthFilter] - Filter 'jwtAuthFilter' configured for use
+2026-07-07 12:04:27.062 [main] WARN  [o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-07-07 12:04:27.402 [main] WARN  [o.s.b.a.s.s.UserDetailsServiceAutoConfiguration] - 
 
-Using generated security password: fe4ccb4e-7a99-4283-84b9-c909e32b1343
+Using generated security password: 2ba9cba6-7d83-4dec-bb44-eca087886162
 
 This generated password is for development use only. Your security configuration must be updated before running your application in production.
 
-2026-07-04 21:58:07.781 [main] INFO  [o.s.b.a.e.web.EndpointLinksResolver] - Exposing 4 endpoint(s) beneath base path '/actuator'
-2026-07-04 21:58:07.942 [main] INFO  [o.s.s.web.DefaultSecurityFilterChain] - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@199549a5, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5edeb83e, org.springframework.security.web.context.SecurityContextHolderFilter@1a034bbc, org.springframework.security.web.header.HeaderWriterFilter@de06f28, org.springframework.web.filter.CorsFilter@4844cbe4, org.springframework.security.web.authentication.logout.LogoutFilter@727eae52, com.civicdesk.auth.security.JwtAuthFilter@73ab649f, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2c62f56f, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@da09b52, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4c752425, org.springframework.security.web.session.SessionManagementFilter@7db53694, org.springframework.security.web.access.ExceptionTranslationFilter@64df3f4b, org.springframework.security.web.access.intercept.AuthorizationFilter@3c3d2a80]
-2026-07-04 21:58:09.502 [RMI TCP Connection(2)-127.0.0.1] INFO  [o.a.c.c.C.[.[localhost].[/civicDesk]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2026-07-04 21:58:09.503 [RMI TCP Connection(2)-127.0.0.1] INFO  [o.s.web.servlet.DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
-2026-07-04 21:58:09.507 [RMI TCP Connection(2)-127.0.0.1] INFO  [o.s.web.servlet.DispatcherServlet] - Completed initialization in 3 ms
-2026-07-04 21:58:09.577 [main] INFO  [o.a.coyote.http11.Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8081"]
-2026-07-04 21:58:09.673 [main] INFO  [o.s.b.w.e.tomcat.TomcatWebServer] - Tomcat started on port 8081 (http) with context path '/civicDesk'
-2026-07-04 21:58:09.681 [main] INFO  [c.c.auth.AuthServiceApplication] - Started AuthServiceApplication in 18.936 seconds (process running for 20.399)
-2026-07-04 21:58:10.644 [main] INFO  [c.civicdesk.auth.config.DataSeeder] - Seeded department 'Infrastructure' as 'DPT01'.
-2026-07-04 21:58:10.670 [main] INFO  [c.civicdesk.auth.config.DataSeeder] - Seeded department 'Public Health' as 'DPT02'.
-2026-07-04 21:58:10.689 [main] INFO  [c.civicdesk.auth.config.DataSeeder] - Seeded department 'Licensing & Compliance' as 'DPT03'.
-2026-07-04 21:58:10.750 [main] INFO  [c.civicdesk.auth.config.DataSeeder] - Seeded department 'Citizen Services' as 'DPT04'.
-2026-07-04 21:58:10.799 [main] INFO  [c.civicdesk.auth.config.DataSeeder] - Seeded department 'Administration' as 'DPT05'.
-2026-07-04 21:58:10.841 [main] INFO  [c.civicdesk.auth.config.DataSeeder] - Seeded department 'Compliance & Audit' as 'DPT06'.
-2026-07-04 21:58:11.051 [main] INFO  [c.civicdesk.auth.config.DataSeeder] - Seeded default ADM account 'admin@civicdesk.gov'.
-2026-07-04 21:58:11.053 [main] INFO  [c.c.auth.AuthServiceApplication] - ===========================================
-2026-07-04 21:58:11.054 [main] INFO  [c.c.auth.AuthServiceApplication] -   CivicDesk Auth Service — STARTED
-2026-07-04 21:58:11.055 [main] INFO  [c.c.auth.AuthServiceApplication] -   Swagger UI: http://localhost:8081/swagger-ui.html
-2026-07-04 21:58:11.056 [main] INFO  [c.c.auth.AuthServiceApplication] - ===========================================
-2026-07-04 22:06:47.142 [http-nio-8081-exec-6] INFO  [o.s.api.AbstractOpenApiResource] - Init duration for springdoc-openapi is: 1704 ms
-2026-07-06 11:27:28.160 [background-preinit] INFO  [o.h.validator.internal.util.Version] - HV000001: Hibernate Validator 8.0.1.Final
-2026-07-06 11:27:28.231 [main] INFO  [c.c.auth.AuthServiceApplication] - Starting AuthServiceApplication using Java 21.0.2 with PID 26800 (C:\Users\2506602\OneDrive - Cognizant\Desktop\civicDesk microservice\civicDesk\auth-service\target\classes started by 2506602 in C:\Users\2506602\OneDrive - Cognizant\Desktop\civicDesk microservice\civicDesk)
-2026-07-06 11:27:28.232 [main] DEBUG [c.c.auth.AuthServiceApplication] - Running with Spring Boot v3.2.5, Spring v6.1.6
-2026-07-06 11:27:28.233 [main] INFO  [c.c.auth.AuthServiceApplication] - No active profile set, falling back to 1 default profile: "default"
-2026-07-06 11:27:30.132 [main] INFO  [o.s.d.r.c.RepositoryConfigurationDelegate] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2026-07-06 11:27:30.254 [main] INFO  [o.s.d.r.c.RepositoryConfigurationDelegate] - Finished Spring Data repository scanning in 113 ms. Found 5 JPA repository interfaces.
-2026-07-06 11:27:31.367 [main] INFO  [o.s.b.w.e.tomcat.TomcatWebServer] - Tomcat initialized with port 8081 (http)
-2026-07-06 11:27:31.390 [main] INFO  [o.a.coyote.http11.Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8081"]
-2026-07-06 11:27:31.394 [main] INFO  [o.a.catalina.core.StandardService] - Starting service [Tomcat]
-2026-07-06 11:27:31.395 [main] INFO  [o.a.catalina.core.StandardEngine] - Starting Servlet engine: [Apache Tomcat/10.1.20]
-2026-07-06 11:27:31.503 [main] INFO  [o.a.c.c.C.[.[localhost].[/civicDesk]] - Initializing Spring embedded WebApplicationContext
-2026-07-06 11:27:31.504 [main] INFO  [o.s.b.w.s.c.ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 3173 ms
-2026-07-06 11:27:32.014 [main] INFO  [o.h.jpa.internal.util.LogHelper] - HHH000204: Processing PersistenceUnitInfo [name: default]
-2026-07-06 11:27:32.197 [main] INFO  [org.hibernate.Version] - HHH000412: Hibernate ORM core version 6.4.4.Final
-2026-07-06 11:27:32.307 [main] INFO  [o.h.c.i.RegionFactoryInitiator] - HHH000026: Second-level cache disabled
-2026-07-06 11:27:32.769 [main] INFO  [o.s.o.j.p.SpringPersistenceUnitInfo] - No LoadTimeWeaver setup: ignoring JPA class transformer
-2026-07-06 11:27:32.804 [main] INFO  [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Starting...
-2026-07-06 11:27:33.121 [main] INFO  [com.zaxxer.hikari.pool.HikariPool] - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@120d13ae
-2026-07-06 11:27:33.124 [main] INFO  [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Start completed.
-2026-07-06 11:27:33.200 [main] WARN  [org.hibernate.orm.deprecation] - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2026-07-06 11:27:34.573 [main] INFO  [o.h.e.t.j.p.i.JtaPlatformInitiator] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2026-07-06 11:27:34.803 [main] INFO  [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2026-07-06 11:27:35.184 [main] DEBUG [c.c.auth.security.JwtAuthFilter] - Filter 'jwtAuthFilter' configured for use
-2026-07-06 11:27:35.701 [main] WARN  [o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2026-07-06 11:27:35.811 [main] WARN  [o.s.b.a.s.s.UserDetailsServiceAutoConfiguration] - 
-
-Using generated security password: 7fe9bf51-4bf8-4e26-80fd-4d29e5cd6065
-
-This generated password is for development use only. Your security configuration must be updated before running your application in production.
-
-2026-07-06 11:27:36.373 [main] INFO  [o.s.b.a.e.web.EndpointLinksResolver] - Exposing 4 endpoint(s) beneath base path '/actuator'
-2026-07-06 11:27:36.469 [main] INFO  [o.s.s.web.DefaultSecurityFilterChain] - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@a1143cc, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@62857555, org.springframework.security.web.context.SecurityContextHolderFilter@5a75bad4, org.springframework.security.web.header.HeaderWriterFilter@2474331d, org.springframework.web.filter.CorsFilter@48149568, org.springframework.security.web.authentication.logout.LogoutFilter@f7e004d, com.civicdesk.auth.security.JwtAuthFilter@19ce597a, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@43300e64, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5ea24702, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@674b2703, org.springframework.security.web.session.SessionManagementFilter@42cef0af, org.springframework.security.web.access.ExceptionTranslationFilter@18d76c14, org.springframework.security.web.access.intercept.AuthorizationFilter@1a6ab328]
-2026-07-06 11:27:37.155 [main] INFO  [o.a.coyote.http11.Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8081"]
-2026-07-06 11:27:37.179 [main] INFO  [o.s.b.w.e.tomcat.TomcatWebServer] - Tomcat started on port 8081 (http) with context path '/civicDesk'
-2026-07-06 11:27:37.190 [main] INFO  [c.c.auth.AuthServiceApplication] - Started AuthServiceApplication in 9.891 seconds (process running for 10.926)
-2026-07-06 11:27:37.530 [main] INFO  [c.civicdesk.auth.config.DataSeeder] - Default ADM 'admin@civicdesk.gov' already present — skipping seed.
-2026-07-06 11:27:37.532 [main] INFO  [c.c.auth.AuthServiceApplication] - ===========================================
-2026-07-06 11:27:37.532 [main] INFO  [c.c.auth.AuthServiceApplication] -   CivicDesk Auth Service — STARTED
-2026-07-06 11:27:37.532 [main] INFO  [c.c.auth.AuthServiceApplication] -   Swagger UI: http://localhost:8081/swagger-ui.html
-2026-07-06 11:27:37.532 [main] INFO  [c.c.auth.AuthServiceApplication] - ===========================================
-2026-07-06 11:38:38.673 [http-nio-8081-exec-1] INFO  [o.a.c.c.C.[.[localhost].[/civicDesk]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2026-07-06 11:38:38.674 [http-nio-8081-exec-1] INFO  [o.s.web.servlet.DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
-2026-07-06 11:38:38.677 [http-nio-8081-exec-1] INFO  [o.s.web.servlet.DispatcherServlet] - Completed initialization in 2 ms
-2026-07-06 12:21:10.844 [HikariPool-1 housekeeper] WARN  [com.zaxxer.hikari.pool.HikariPool] - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=5m6s771ms306µs700ns).
-2026-07-06 12:33:26.546 [HikariPool-1 housekeeper] WARN  [com.zaxxer.hikari.pool.HikariPool] - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=45s559ms47µs600ns).
-2026-07-06 13:48:35.457 [HikariPool-1 housekeeper] WARN  [com.zaxxer.hikari.pool.HikariPool] - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h15m8s912ms578µs700ns).
-2026-07-06 15:32:15.398 [HikariPool-1 housekeeper] WARN  [com.zaxxer.hikari.pool.HikariPool] - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2m8s136ms695µs800ns).
-2026-07-06 15:42:53.752 [SpringApplicationShutdownHook] INFO  [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Closing JPA EntityManagerFactory for persistence unit 'default'
-2026-07-06 15:42:53.790 [SpringApplicationShutdownHook] INFO  [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown initiated...
-2026-07-06 15:42:53.800 [SpringApplicationShutdownHook] INFO  [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown completed.
-2026-07-06 15:44:41.927 [background-preinit] INFO  [o.h.validator.internal.util.Version] - HV000001: Hibernate Validator 8.0.1.Final
-2026-07-06 15:44:42.004 [main] INFO  [c.c.auth.AuthServiceApplication] - Starting AuthServiceApplication using Java 21.0.2 with PID 23544 (C:\Users\2506602\OneDrive - Cognizant\Desktop\civicDesk microservice\civicDesk\auth-service\target\classes started by 2506602 in C:\Users\2506602\OneDrive - Cognizant\Desktop\civicDesk microservice\civicDesk)
-2026-07-06 15:44:42.006 [main] DEBUG [c.c.auth.AuthServiceApplication] - Running with Spring Boot v3.2.5, Spring v6.1.6
-2026-07-06 15:44:42.008 [main] INFO  [c.c.auth.AuthServiceApplication] - No active profile set, falling back to 1 default profile: "default"
-2026-07-06 15:44:45.604 [main] INFO  [o.s.d.r.c.RepositoryConfigurationDelegate] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2026-07-06 15:44:46.027 [main] INFO  [o.s.d.r.c.RepositoryConfigurationDelegate] - Finished Spring Data repository scanning in 358 ms. Found 5 JPA repository interfaces.
-2026-07-06 15:44:47.831 [main] INFO  [o.s.b.w.e.tomcat.TomcatWebServer] - Tomcat initialized with port 8081 (http)
-2026-07-06 15:44:47.854 [main] INFO  [o.a.coyote.http11.Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8081"]
-2026-07-06 15:44:47.857 [main] INFO  [o.a.catalina.core.StandardService] - Starting service [Tomcat]
-2026-07-06 15:44:47.858 [main] INFO  [o.a.catalina.core.StandardEngine] - Starting Servlet engine: [Apache Tomcat/10.1.20]
-2026-07-06 15:44:48.029 [main] INFO  [o.a.c.c.C.[.[localhost].[/civicDesk]] - Initializing Spring embedded WebApplicationContext
-2026-07-06 15:44:48.032 [main] INFO  [o.s.b.w.s.c.ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 5881 ms
-2026-07-06 15:44:48.680 [main] INFO  [o.h.jpa.internal.util.LogHelper] - HHH000204: Processing PersistenceUnitInfo [name: default]
-2026-07-06 15:44:48.837 [main] INFO  [org.hibernate.Version] - HHH000412: Hibernate ORM core version 6.4.4.Final
-2026-07-06 15:44:48.925 [main] INFO  [o.h.c.i.RegionFactoryInitiator] - HHH000026: Second-level cache disabled
-2026-07-06 15:44:49.648 [main] INFO  [o.s.o.j.p.SpringPersistenceUnitInfo] - No LoadTimeWeaver setup: ignoring JPA class transformer
-2026-07-06 15:44:49.716 [main] INFO  [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Starting...
-2026-07-06 15:44:50.181 [main] INFO  [com.zaxxer.hikari.pool.HikariPool] - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7d551ec6
-2026-07-06 15:44:50.188 [main] INFO  [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Start completed.
-2026-07-06 15:44:50.374 [main] WARN  [org.hibernate.orm.deprecation] - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2026-07-06 15:44:53.321 [main] INFO  [o.h.e.t.j.p.i.JtaPlatformInitiator] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2026-07-06 15:44:53.483 [main] INFO  [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2026-07-06 15:44:54.080 [main] DEBUG [c.c.auth.security.JwtAuthFilter] - Filter 'jwtAuthFilter' configured for use
-2026-07-06 15:44:55.396 [main] WARN  [o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2026-07-06 15:44:55.496 [main] WARN  [o.s.b.a.s.s.UserDetailsServiceAutoConfiguration] - 
-
-Using generated security password: 6c92f6e2-656c-4aee-b69e-b9000e3a80a2
-
-This generated password is for development use only. Your security configuration must be updated before running your application in production.
-
-2026-07-06 15:44:56.495 [main] INFO  [o.s.b.a.e.web.EndpointLinksResolver] - Exposing 4 endpoint(s) beneath base path '/actuator'
-2026-07-06 15:44:56.642 [main] INFO  [o.s.s.web.DefaultSecurityFilterChain] - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@6efd83ac, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@117e9a56, org.springframework.security.web.context.SecurityContextHolderFilter@76629f82, org.springframework.security.web.header.HeaderWriterFilter@2fb171f5, org.springframework.web.filter.CorsFilter@21acc86a, org.springframework.security.web.authentication.logout.LogoutFilter@76a13b12, com.civicdesk.auth.security.JwtAuthFilter@6b8683b8, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@24eb71f6, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@6af10aa7, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@443819d5, org.springframework.security.web.session.SessionManagementFilter@21a09c5a, org.springframework.security.web.access.ExceptionTranslationFilter@5acc6ca1, org.springframework.security.web.access.intercept.AuthorizationFilter@66b9f727]
-2026-07-06 15:44:57.613 [main] INFO  [o.a.coyote.http11.Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8081"]
-2026-07-06 15:44:57.645 [main] INFO  [o.s.b.w.e.tomcat.TomcatWebServer] - Tomcat started on port 8081 (http) with context path '/civicDesk'
-2026-07-06 15:44:57.665 [main] INFO  [c.c.auth.AuthServiceApplication] - Started AuthServiceApplication in 16.819 seconds (process running for 18.091)
-2026-07-06 15:44:58.181 [main] INFO  [c.civicdesk.auth.config.DataSeeder] - Default ADM 'admin@civicdesk.gov' already present — skipping seed.
-2026-07-06 15:44:58.184 [main] INFO  [c.c.auth.AuthServiceApplication] - ===========================================
-2026-07-06 15:44:58.185 [main] INFO  [c.c.auth.AuthServiceApplication] -   CivicDesk Auth Service — STARTED
-2026-07-06 15:44:58.185 [main] INFO  [c.c.auth.AuthServiceApplication] -   Swagger UI: http://localhost:8081/swagger-ui.html
-2026-07-06 15:44:58.185 [main] INFO  [c.c.auth.AuthServiceApplication] - ===========================================
-2026-07-06 16:25:34.631 [http-nio-8081-exec-2] INFO  [o.a.c.c.C.[.[localhost].[/civicDesk]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2026-07-06 16:25:34.646 [http-nio-8081-exec-2] INFO  [o.s.web.servlet.DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
-2026-07-06 16:25:34.751 [http-nio-8081-exec-2] INFO  [o.s.web.servlet.DispatcherServlet] - Completed initialization in 97 ms
-2026-07-06 17:10:00.656 [HikariPool-1 housekeeper] WARN  [com.zaxxer.hikari.pool.HikariPool] - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=17m39s122ms944µs400ns).
-2026-07-06 17:40:39.216 [HikariPool-1 housekeeper] WARN  [com.zaxxer.hikari.pool.HikariPool] - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=6m38s115ms875µs199ns).
-2026-07-06 18:18:02.976 [SpringApplicationShutdownHook] INFO  [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Closing JPA EntityManagerFactory for persistence unit 'default'
-2026-07-06 18:18:02.998 [SpringApplicationShutdownHook] INFO  [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown initiated...
-2026-07-06 18:18:03.004 [SpringApplicationShutdownHook] INFO  [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown completed.
-2026-07-06 18:25:17.429 [background-preinit] INFO  [o.h.validator.internal.util.Version] - HV000001: Hibernate Validator 8.0.1.Final
-2026-07-06 18:25:17.571 [main] INFO  [c.c.auth.AuthServiceApplication] - Starting AuthServiceApplication using Java 21.0.2 with PID 28780 (C:\Users\2506602\OneDrive - Cognizant\Desktop\civicDesk microservice\civicDesk\auth-service\target\classes started by 2506602 in C:\Users\2506602\OneDrive - Cognizant\Desktop\civicDesk microservice\civicDesk)
-2026-07-06 18:25:17.572 [main] DEBUG [c.c.auth.AuthServiceApplication] - Running with Spring Boot v3.2.5, Spring v6.1.6
-2026-07-06 18:25:17.574 [main] INFO  [c.c.auth.AuthServiceApplication] - No active profile set, falling back to 1 default profile: "default"
-2026-07-06 18:25:21.494 [main] INFO  [o.s.d.r.c.RepositoryConfigurationDelegate] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2026-07-06 18:25:21.741 [main] INFO  [o.s.d.r.c.RepositoryConfigurationDelegate] - Finished Spring Data repository scanning in 232 ms. Found 5 JPA repository interfaces.
-2026-07-06 18:25:24.079 [main] INFO  [o.s.b.w.e.tomcat.TomcatWebServer] - Tomcat initialized with port 8081 (http)
-2026-07-06 18:25:24.115 [main] INFO  [o.a.coyote.http11.Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8081"]
-2026-07-06 18:25:24.119 [main] INFO  [o.a.catalina.core.StandardService] - Starting service [Tomcat]
-2026-07-06 18:25:24.120 [main] INFO  [o.a.catalina.core.StandardEngine] - Starting Servlet engine: [Apache Tomcat/10.1.20]
-2026-07-06 18:25:24.286 [main] INFO  [o.a.c.c.C.[.[localhost].[/civicDesk]] - Initializing Spring embedded WebApplicationContext
-2026-07-06 18:25:24.289 [main] INFO  [o.s.b.w.s.c.ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 6554 ms
-2026-07-06 18:25:25.068 [main] INFO  [o.h.jpa.internal.util.LogHelper] - HHH000204: Processing PersistenceUnitInfo [name: default]
-2026-07-06 18:25:25.300 [main] INFO  [org.hibernate.Version] - HHH000412: Hibernate ORM core version 6.4.4.Final
-2026-07-06 18:25:25.385 [main] INFO  [o.h.c.i.RegionFactoryInitiator] - HHH000026: Second-level cache disabled
-2026-07-06 18:25:26.174 [main] INFO  [o.s.o.j.p.SpringPersistenceUnitInfo] - No LoadTimeWeaver setup: ignoring JPA class transformer
-2026-07-06 18:25:26.269 [main] INFO  [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Starting...
-2026-07-06 18:25:26.633 [main] INFO  [com.zaxxer.hikari.pool.HikariPool] - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@774304ca
-2026-07-06 18:25:26.638 [main] INFO  [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Start completed.
-2026-07-06 18:25:26.781 [main] WARN  [org.hibernate.orm.deprecation] - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2026-07-06 18:25:29.367 [main] INFO  [o.h.e.t.j.p.i.JtaPlatformInitiator] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2026-07-06 18:25:29.529 [main] INFO  [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2026-07-06 18:25:30.257 [main] DEBUG [c.c.auth.security.JwtAuthFilter] - Filter 'jwtAuthFilter' configured for use
-2026-07-06 18:25:31.597 [main] WARN  [o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2026-07-06 18:25:31.732 [main] WARN  [o.s.b.a.s.s.UserDetailsServiceAutoConfiguration] - 
-
-Using generated security password: 5f2d05ab-ae74-464a-aabb-227e409838db
-
-This generated password is for development use only. Your security configuration must be updated before running your application in production.
-
-2026-07-06 18:25:33.015 [main] INFO  [o.s.b.a.e.web.EndpointLinksResolver] - Exposing 4 endpoint(s) beneath base path '/actuator'
-2026-07-06 18:25:33.253 [main] INFO  [o.s.s.web.DefaultSecurityFilterChain] - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@592e315e, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@f7a8a7b, org.springframework.security.web.context.SecurityContextHolderFilter@106e816c, org.springframework.security.web.header.HeaderWriterFilter@77b7a4b2, org.springframework.web.filter.CorsFilter@1dfd39fe, org.springframework.security.web.authentication.logout.LogoutFilter@5ea24702, com.civicdesk.auth.security.JwtAuthFilter@4807b2b7, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6fc9c0cc, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@517f9ba3, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@610115e8, org.springframework.security.web.session.SessionManagementFilter@8829ecd, org.springframework.security.web.access.ExceptionTranslationFilter@262ea940, org.springframework.security.web.access.intercept.AuthorizationFilter@4620e669]
-2026-07-06 18:25:34.379 [main] INFO  [o.a.coyote.http11.Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8081"]
-2026-07-06 18:25:34.421 [main] INFO  [o.s.b.w.e.tomcat.TomcatWebServer] - Tomcat started on port 8081 (http) with context path '/civicDesk'
-2026-07-06 18:25:34.455 [main] INFO  [c.c.auth.AuthServiceApplication] - Started AuthServiceApplication in 18.216 seconds (process running for 19.4)
-2026-07-06 18:25:35.000 [main] INFO  [c.civicdesk.auth.config.DataSeeder] - Default ADM 'admin@civicdesk.gov' already present — skipping seed.
-2026-07-06 18:25:35.002 [main] INFO  [c.c.auth.AuthServiceApplication] - ===========================================
-2026-07-06 18:25:35.002 [main] INFO  [c.c.auth.AuthServiceApplication] -   CivicDesk Auth Service — STARTED
-2026-07-06 18:25:35.003 [main] INFO  [c.c.auth.AuthServiceApplication] -   Swagger UI: http://localhost:8081/swagger-ui.html
-2026-07-06 18:25:35.003 [main] INFO  [c.c.auth.AuthServiceApplication] - ===========================================
-2026-07-06 18:26:16.155 [http-nio-8081-exec-1] INFO  [o.a.c.c.C.[.[localhost].[/civicDesk]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2026-07-06 18:26:16.162 [http-nio-8081-exec-1] INFO  [o.s.web.servlet.DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
-2026-07-06 18:26:16.167 [http-nio-8081-exec-1] INFO  [o.s.web.servlet.DispatcherServlet] - Completed initialization in 5 ms
-2026-07-06 18:37:57.905 [SpringApplicationShutdownHook] INFO  [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Closing JPA EntityManagerFactory for persistence unit 'default'
-2026-07-06 18:37:57.911 [SpringApplicationShutdownHook] INFO  [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown initiated...
-2026-07-06 18:37:57.928 [SpringApplicationShutdownHook] INFO  [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown completed.
-2026-07-06 21:18:12.472 [background-preinit] INFO  [o.h.validator.internal.util.Version] - HV000001: Hibernate Validator 8.0.1.Final
-2026-07-06 21:18:12.579 [main] INFO  [c.c.auth.AuthServiceApplication] - Starting AuthServiceApplication using Java 21.0.2 with PID 24028 (C:\Users\2506602\OneDrive - Cognizant\Desktop\civicDesk microservice\civicDesk\auth-service\target\classes started by 2506602 in C:\Users\2506602\OneDrive - Cognizant\Desktop\civicDesk microservice\civicDesk)
-2026-07-06 21:18:12.580 [main] DEBUG [c.c.auth.AuthServiceApplication] - Running with Spring Boot v3.2.5, Spring v6.1.6
-2026-07-06 21:18:12.582 [main] INFO  [c.c.auth.AuthServiceApplication] - No active profile set, falling back to 1 default profile: "default"
-2026-07-06 21:18:15.936 [main] INFO  [o.s.d.r.c.RepositoryConfigurationDelegate] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2026-07-06 21:18:16.122 [main] INFO  [o.s.d.r.c.RepositoryConfigurationDelegate] - Finished Spring Data repository scanning in 171 ms. Found 5 JPA repository interfaces.
-2026-07-06 21:18:17.883 [main] INFO  [o.s.b.w.e.tomcat.TomcatWebServer] - Tomcat initialized with port 8081 (http)
-2026-07-06 21:18:17.934 [main] INFO  [o.a.coyote.http11.Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8081"]
-2026-07-06 21:18:17.938 [main] INFO  [o.a.catalina.core.StandardService] - Starting service [Tomcat]
-2026-07-06 21:18:17.939 [main] INFO  [o.a.catalina.core.StandardEngine] - Starting Servlet engine: [Apache Tomcat/10.1.20]
-2026-07-06 21:18:18.117 [main] INFO  [o.a.c.c.C.[.[localhost].[/civicDesk]] - Initializing Spring embedded WebApplicationContext
-2026-07-06 21:18:18.121 [main] INFO  [o.s.b.w.s.c.ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 5367 ms
-2026-07-06 21:18:18.749 [main] INFO  [o.h.jpa.internal.util.LogHelper] - HHH000204: Processing PersistenceUnitInfo [name: default]
-2026-07-06 21:18:18.949 [main] INFO  [org.hibernate.Version] - HHH000412: Hibernate ORM core version 6.4.4.Final
-2026-07-06 21:18:19.037 [main] INFO  [o.h.c.i.RegionFactoryInitiator] - HHH000026: Second-level cache disabled
-2026-07-06 21:18:19.742 [main] INFO  [o.s.o.j.p.SpringPersistenceUnitInfo] - No LoadTimeWeaver setup: ignoring JPA class transformer
-2026-07-06 21:18:19.856 [main] INFO  [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Starting...
-2026-07-06 21:18:20.447 [main] INFO  [com.zaxxer.hikari.pool.HikariPool] - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7d551ec6
-2026-07-06 21:18:20.454 [main] INFO  [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Start completed.
-2026-07-06 21:18:20.688 [main] WARN  [org.hibernate.orm.deprecation] - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2026-07-06 21:18:22.828 [main] INFO  [o.h.e.t.j.p.i.JtaPlatformInitiator] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2026-07-06 21:18:23.035 [main] INFO  [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2026-07-06 21:18:23.774 [main] DEBUG [c.c.auth.security.JwtAuthFilter] - Filter 'jwtAuthFilter' configured for use
-2026-07-06 21:18:24.895 [main] WARN  [o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2026-07-06 21:18:25.055 [main] WARN  [o.s.b.a.s.s.UserDetailsServiceAutoConfiguration] - 
-
-Using generated security password: 6180f54d-e476-4c43-a147-d588c60e284d
-
-This generated password is for development use only. Your security configuration must be updated before running your application in production.
-
-2026-07-06 21:18:26.324 [main] INFO  [o.s.b.a.e.web.EndpointLinksResolver] - Exposing 4 endpoint(s) beneath base path '/actuator'
-2026-07-06 21:18:26.539 [main] INFO  [o.s.s.web.DefaultSecurityFilterChain] - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@12ff0e4f, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@66b9f727, org.springframework.security.web.context.SecurityContextHolderFilter@21a09c5a, org.springframework.security.web.header.HeaderWriterFilter@100235c7, org.springframework.web.filter.CorsFilter@f7e004d, org.springframework.security.web.authentication.logout.LogoutFilter@33224703, com.civicdesk.auth.security.JwtAuthFilter@6b8683b8, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5576eef4, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2474331d, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2d33aa31, org.springframework.security.web.session.SessionManagementFilter@106e816c, org.springframework.security.web.access.ExceptionTranslationFilter@678db8be, org.springframework.security.web.access.intercept.AuthorizationFilter@f7a8a7b]
-2026-07-06 21:18:27.759 [main] INFO  [o.a.coyote.http11.Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8081"]
-2026-07-06 21:18:27.811 [main] INFO  [o.s.b.w.e.tomcat.TomcatWebServer] - Tomcat started on port 8081 (http) with context path '/civicDesk'
-2026-07-06 21:18:27.829 [main] INFO  [c.c.auth.AuthServiceApplication] - Started AuthServiceApplication in 16.512 seconds (process running for 17.85)
-2026-07-06 21:18:28.356 [main] INFO  [c.civicdesk.auth.config.DataSeeder] - Default ADM 'admin@civicdesk.gov' already present — skipping seed.
-2026-07-06 21:18:28.358 [main] INFO  [c.c.auth.AuthServiceApplication] - ===========================================
-2026-07-06 21:18:28.358 [main] INFO  [c.c.auth.AuthServiceApplication] -   CivicDesk Auth Service — STARTED
-2026-07-06 21:18:28.358 [main] INFO  [c.c.auth.AuthServiceApplication] -   Swagger UI: http://localhost:8081/swagger-ui.html
-2026-07-06 21:18:28.358 [main] INFO  [c.c.auth.AuthServiceApplication] - ===========================================
-2026-07-06 21:21:40.578 [http-nio-8081-exec-5] INFO  [o.a.c.c.C.[.[localhost].[/civicDesk]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2026-07-06 21:21:40.579 [http-nio-8081-exec-5] INFO  [o.s.web.servlet.DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
-2026-07-06 21:21:40.582 [http-nio-8081-exec-5] INFO  [o.s.web.servlet.DispatcherServlet] - Completed initialization in 3 ms
-2026-07-06 21:41:01.586 [SpringApplicationShutdownHook] INFO  [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Closing JPA EntityManagerFactory for persistence unit 'default'
-2026-07-06 21:41:01.600 [SpringApplicationShutdownHook] INFO  [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown initiated...
-2026-07-06 21:41:01.653 [SpringApplicationShutdownHook] INFO  [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown completed.
+2026-07-07 12:04:29.815 [main] INFO  [o.s.b.a.e.web.EndpointLinksResolver] - Exposing 4 endpoint(s) beneath base path '/actuator'
+2026-07-07 12:04:30.220 [main] INFO  [o.s.s.web.DefaultSecurityFilterChain] - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@1dfd39fe, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@610115e8, org.springframework.security.web.context.SecurityContextHolderFilter@7c98bac0, org.springframework.security.web.header.HeaderWriterFilter@77b7a4b2, org.springframework.web.filter.CorsFilter@498d7c57, org.springframework.security.web.authentication.logout.LogoutFilter@49a46f29, com.civicdesk.auth.security.JwtAuthFilter@63024843, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@18d76c14, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5576eef4, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@12ff0e4f, org.springframework.security.web.session.SessionManagementFilter@7ba70b3b, org.springframework.security.web.access.ExceptionTranslationFilter@262ea940, org.springframework.security.web.access.intercept.AuthorizationFilter@6c6fdf5d]
+2026-07-07 12:04:33.154 [main] INFO  [o.a.coyote.http11.Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8081"]
+2026-07-07 12:04:33.267 [main] INFO  [o.s.b.w.e.tomcat.TomcatWebServer] - Tomcat started on port 8081 (http) with context path '/civicDesk'
+2026-07-07 12:04:33.316 [main] INFO  [c.c.auth.AuthServiceApplication] - Started AuthServiceApplication in 24.231 seconds (process running for 25.076)
+2026-07-07 12:04:34.429 [main] INFO  [c.civicdesk.auth.config.DataSeeder] - Default ADM 'admin@civicdesk.gov' already present — skipping seed.
+2026-07-07 12:04:34.433 [main] INFO  [c.c.auth.AuthServiceApplication] - ===========================================
+2026-07-07 12:04:34.437 [main] INFO  [c.c.auth.AuthServiceApplication] -   CivicDesk Auth Service — STARTED
+2026-07-07 12:04:34.437 [main] INFO  [c.c.auth.AuthServiceApplication] -   Swagger UI: http://localhost:8081/swagger-ui.html
+2026-07-07 12:04:34.437 [main] INFO  [c.c.auth.AuthServiceApplication] - ===========================================
+2026-07-07 12:05:12.337 [http-nio-8081-exec-1] INFO  [o.a.c.c.C.[.[localhost].[/civicDesk]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-07-07 12:05:12.344 [http-nio-8081-exec-1] INFO  [o.s.web.servlet.DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
+2026-07-07 12:05:12.353 [http-nio-8081-exec-1] INFO  [o.s.web.servlet.DispatcherServlet] - Completed initialization in 9 ms
+2026-07-07 12:09:17.882 [SpringApplicationShutdownHook] INFO  [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-07-07 12:09:17.897 [SpringApplicationShutdownHook] INFO  [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown initiated...
+2026-07-07 12:09:17.917 [SpringApplicationShutdownHook] INFO  [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown completed.

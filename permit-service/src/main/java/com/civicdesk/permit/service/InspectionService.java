@@ -19,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import com.civicdesk.permit.client.NotificationClient;
 import com.civicdesk.permit.dto.NotificationRequest;
+import com.civicdesk.permit.client.AuditLogClient;
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -27,6 +28,7 @@ public class InspectionService {
     private final InspectionRepository inspectionRepository;
     private final PermitService permitService;
     private final NotificationClient notificationClient;
+    private final AuditLogClient auditLogClient;
 
     // ─── SUPERVISOR ──────────────────────────────────────────────────────────
 
@@ -76,6 +78,11 @@ public class InspectionService {
 
         log.info("Inspection scheduled: inspectionId={} permitId={} officerId={}",
                 saved.getInspectionId(), permitId, request.getOfficerId());
+
+        auditLogClient.log(
+        String.valueOf(request.getOfficerId()),
+        "SCHEDULE_INSPECTION",
+        "PERMIT");        
         return mapToResponse(saved);
     }
 
@@ -95,6 +102,11 @@ public class InspectionService {
                 PermitStatus.UNDER_REVIEW, "Inspection cancelled. Returned to review queue.");
 
         log.info("Inspection cancelled: inspectionId={}", inspectionId);
+        auditLogClient.log(
+        String.valueOf(
+                inspection.getAssignedOfficerId()),
+        "CANCEL_INSPECTION",
+        "PERMIT");
         return mapToResponse(saved);
     }
 
@@ -150,6 +162,10 @@ public class InspectionService {
         permitService.applyInspectionOutcome(inspection.getPermitApplication().getPermitId(), request.getOutcome());
 
         log.info("Inspection conducted: inspectionId={} outcome={}", inspectionId, request.getOutcome());
+        auditLogClient.log(
+        String.valueOf(officerId),
+        "SUBMIT_INSPECTION",
+        "PERMIT");
         return mapToResponse(saved);
     }
 

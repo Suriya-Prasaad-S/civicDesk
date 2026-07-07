@@ -29,13 +29,9 @@ import java.util.Arrays;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import com.civicdesk.permit.dto.AnalyticsLabelCountDto;
-import com.civicdesk.permit.dto.AnalyticsLabelCountResponse;
-import com.civicdesk.permit.dto.AnalyticsTrendResponse;
-import com.civicdesk.permit.dto.PermitAnalyticsResponse;
-
 import com.civicdesk.permit.enums.InspectionOutcome;
 import com.civicdesk.permit.enums.InspectionStatus;
+import com.civicdesk.permit.client.AuditLogClient;
 
 @Service
 @RequiredArgsConstructor
@@ -47,6 +43,8 @@ public class PermitService {
     private final FileStorageService fileStorageService;
     private final InspectionRepository inspectionRepository;
     private final NotificationClient notificationClient;
+    private final AuditLogClient auditLogClient;
+
     // ─── CITIZEN ─────────────────────────────────────────────────────────────
 
     @Transactional
@@ -87,6 +85,10 @@ public class PermitService {
                             .build();
 
             notificationClient.sendNotification(payload);
+            auditLogClient.log(
+        String.valueOf(userId),
+        "CREATE_PERMIT",
+        "PERMIT");
 
         } catch (Exception ex) {
 
@@ -148,6 +150,10 @@ public class PermitService {
                             .build();
 
             notificationClient.sendNotification(payload);
+            auditLogClient.log(
+        String.valueOf(userId),
+        "RENEW_PERMIT",
+        "PERMIT");
 
         } catch (Exception ex) {
 
@@ -299,6 +305,28 @@ public class PermitService {
                 permitId,
                 newStatus);
 
+                if (newStatus == PermitStatus.APPROVED) {
+
+    auditLogClient.log(
+            String.valueOf(saved.getUserId()),
+            "APPROVE_PERMIT",
+            "PERMIT");
+
+} else if (newStatus == PermitStatus.REJECTED) {
+
+    auditLogClient.log(
+            String.valueOf(saved.getUserId()),
+            "REJECT_PERMIT",
+            "PERMIT");
+
+} else if (newStatus == PermitStatus.PENDING_DOCUMENTS) {
+
+    auditLogClient.log(
+            String.valueOf(saved.getUserId()),
+            "REQUEST_DOCUMENTS",
+            "PERMIT");
+}
+
         return mapToResponse(saved);
     }
 
@@ -354,6 +382,10 @@ public class PermitService {
                     .isDeleted(false)
                     .build();
             documentRepository.save(doc);
+            auditLogClient.log(
+        String.valueOf(permit.getUserId()),
+        "UPLOAD_DOCUMENT",
+        "PERMIT");
             log.info("Document uploaded: permitId={} type={} file={}", permitId, docType, filePath);
         }
 
@@ -388,6 +420,10 @@ public class PermitService {
         doc.setVerificationStatus(req.getVerificationStatus());
         doc.setVerificationRemarks(req.getVerificationRemarks());
         documentRepository.save(doc);
+        auditLogClient.log(
+        String.valueOf(permitId),
+        "VERIFY_DOCUMENT",
+        "PERMIT");
         log.info("Document verified: documentId={} status={}", documentId, req.getVerificationStatus());
     }
 
@@ -414,7 +450,7 @@ public class PermitService {
 
     private void validateStatusTransition(PermitStatus current, PermitStatus next) {
         boolean valid = switch (current) {
-            case APPLIED             -> next == PermitStatus.UNDER_REVIEW || next == PermitStatus.REJECTED;
+            case APPLIED             -> next == PermitStatus.UNDER_REVIEW ||  next == PermitStatus.INSPECTION_SCHEDULED ||       next == PermitStatus.REJECTED;
             case UNDER_REVIEW        -> next == PermitStatus.INSPECTION_SCHEDULED
                                      || next == PermitStatus.PENDING_DOCUMENTS
                                      || next == PermitStatus.APPROVED
