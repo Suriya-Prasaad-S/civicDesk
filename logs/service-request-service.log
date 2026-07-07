@@ -1310,6 +1310,7 @@ org.springframework.web.client.HttpClientErrorException$NotFound: 404 : "<!docty
 	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
 	at java.base/java.lang.Thread.run(Unknown Source)
+<<<<<<< HEAD
 2026-07-07 11:05:36.588 [http-nio-8083-exec-5] INFO  [c.c.s.service.ServiceRequestService] - Service request submitted: requestId=5 citizenId=1 serviceId=3
 2026-07-07 11:05:36.590 [http-nio-8083-exec-5] INFO  [c.c.s.client.AuditLogClient] - Sending audit log: action=SUBMIT_REQUEST module=SERVICE_REQUEST to http://localhost:9090/civicDesk/audit/auditLogs
 2026-07-07 11:05:36.683 [http-nio-8083-exec-5] ERROR [c.c.s.client.AuditLogClient] - Error calling audit-service: 403 Forbidden: "{"message":"Access denied"}"
@@ -1352,3 +1353,117 @@ org.springframework.web.client.HttpClientErrorException$NotFound: 404 : "<!docty
 2026-07-07 12:31:27.273 [http-nio-8083-exec-9] INFO  [c.c.s.service.RequestDocumentService] - Document verified: docId=2 status=VERIFIED
 2026-07-07 12:31:27.276 [http-nio-8083-exec-9] INFO  [c.c.s.client.AuditLogClient] - Sending audit log: action=VERIFY_DOCUMENT module=CITIZEN to http://localhost:9090/civicDesk/audit/auditLogs
 2026-07-07 12:31:27.351 [http-nio-8083-exec-9] ERROR [c.c.s.client.AuditLogClient] - Error calling audit-service: 403 Forbidden: "{"message":"Access denied"}"
+=======
+2026-07-04 22:57:10.517 [http-nio-8083-exec-6] DEBUG [c.c.s.security.JwtAuthFilter] - JWT auth: userId=10000001 role=ADM
+2026-07-04 22:57:10.521 [http-nio-8083-exec-6] WARN  [c.c.s.e.GlobalExceptionHandler] - Message not readable: JSON parse error: Cannot deserialize value of type `java.lang.Long` from String "DPT02": not a valid `java.lang.Long` value
+2026-07-04 22:58:40.996 [http-nio-8083-exec-10] DEBUG [c.c.s.security.JwtAuthFilter] - JWT auth: userId=10000001 role=ADM
+2026-07-04 22:58:40.996 [http-nio-8083-exec-10] WARN  [c.c.s.e.GlobalExceptionHandler] - Message not readable: JSON parse error: Cannot deserialize value of type `java.lang.Long` from String "DPT02": not a valid `java.lang.Long` value
+2026-07-04 23:02:51.201 [http-nio-8083-exec-8] DEBUG [c.c.s.security.JwtAuthFilter] - JWT auth: userId=10000001 role=ADM
+2026-07-04 23:02:51.210 [http-nio-8083-exec-8] WARN  [c.c.s.e.GlobalExceptionHandler] - Message not readable: JSON parse error: Cannot deserialize value of type `java.lang.Long` from String "DPT02": not a valid `java.lang.Long` value
+2026-07-04 23:03:01.009 [http-nio-8083-exec-9] DEBUG [c.c.s.security.JwtAuthFilter] - JWT auth: userId=10000001 role=ADM
+2026-07-04 23:03:01.016 [http-nio-8083-exec-9] WARN  [c.c.s.e.GlobalExceptionHandler] - Message not readable: JSON parse error: Cannot deserialize value of type `java.lang.Long` from String "DPT02": not a valid `java.lang.Long` value
+2026-07-04 23:03:13.731 [http-nio-8083-exec-1] DEBUG [c.c.s.security.JwtAuthFilter] - JWT auth: userId=10000001 role=ADM
+2026-07-04 23:03:13.737 [http-nio-8083-exec-1] WARN  [c.c.s.e.GlobalExceptionHandler] - Message not readable: JSON parse error: Cannot deserialize value of type `java.lang.Long` from String "DPT02": not a valid `java.lang.Long` value
+2026-07-04 23:03:24.322 [http-nio-8083-exec-2] DEBUG [c.c.s.security.JwtAuthFilter] - JWT auth: userId=10000001 role=ADM
+2026-07-04 23:03:24.330 [http-nio-8083-exec-2] WARN  [c.c.s.e.GlobalExceptionHandler] - Message not readable: JSON parse error: Cannot deserialize value of type `java.lang.Long` from String "DPTO2": not a valid `java.lang.Long` value
+2026-07-04 23:03:53.567 [http-nio-8083-exec-3] DEBUG [c.c.s.security.JwtAuthFilter] - JWT auth: userId=10000001 role=ADM
+2026-07-04 23:03:53.572 [http-nio-8083-exec-3] WARN  [c.c.s.e.GlobalExceptionHandler] - Message not readable: JSON parse error: Cannot deserialize value of type `java.lang.Long` from String "DPT02": not a valid `java.lang.Long` value
+2026-07-04 23:08:06.215 [http-nio-8083-exec-5] DEBUG [c.c.s.security.JwtAuthFilter] - JWT auth: userId=10000001 role=ADM
+2026-07-04 23:08:06.239 [http-nio-8083-exec-5] WARN  [c.c.s.e.GlobalExceptionHandler] - Message not readable: JSON parse error: Cannot deserialize value of type `java.lang.String` from Array value (token `JsonToken.START_ARRAY`)
+2026-07-04 23:12:28.569 [http-nio-8083-exec-4] DEBUG [c.c.s.security.JwtAuthFilter] - JWT auth: userId=10000001 role=ADM
+2026-07-04 23:12:28.575 [http-nio-8083-exec-4] WARN  [c.c.s.e.GlobalExceptionHandler] - Message not readable: JSON parse error: Cannot deserialize value of type `java.lang.Long` from String "dept-0002": not a valid `java.lang.Long` value
+2026-07-04 23:13:54.865 [http-nio-8083-exec-7] DEBUG [c.c.s.security.JwtAuthFilter] - JWT auth: userId=10000001 role=ADM
+2026-07-04 23:13:54.870 [http-nio-8083-exec-7] WARN  [c.c.s.e.GlobalExceptionHandler] - Message not readable: JSON parse error: Cannot deserialize value of type `java.lang.String` from Array value (token `JsonToken.START_ARRAY`)
+2026-07-04 23:14:01.881 [http-nio-8083-exec-6] DEBUG [c.c.s.security.JwtAuthFilter] - JWT auth: userId=10000001 role=ADM
+2026-07-04 23:14:01.889 [http-nio-8083-exec-6] WARN  [c.c.s.e.GlobalExceptionHandler] - Message not readable: JSON parse error: Unexpected character ('L' (code 76)): was expecting comma to separate Object entries
+2026-07-04 23:18:55.458 [background-preinit] INFO  [o.h.validator.internal.util.Version] - HV000001: Hibernate Validator 8.0.1.Final
+2026-07-04 23:18:55.552 [main] INFO  [c.c.s.ServiceRequestApplication] - Starting ServiceRequestApplication using Java 21.0.11 with PID 11148 (C:\Users\2506484\Documents\civicDesk-1\service-request-service\target\classes started by 2506484 in C:\Users\2506484\Documents\civicDesk-1)
+2026-07-04 23:18:55.552 [main] DEBUG [c.c.s.ServiceRequestApplication] - Running with Spring Boot v3.2.5, Spring v6.1.6
+2026-07-04 23:18:55.552 [main] INFO  [c.c.s.ServiceRequestApplication] - No active profile set, falling back to 1 default profile: "default"
+2026-07-04 23:18:58.139 [main] INFO  [o.s.d.r.c.RepositoryConfigurationDelegate] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-07-04 23:18:58.479 [main] INFO  [o.s.d.r.c.RepositoryConfigurationDelegate] - Finished Spring Data repository scanning in 278 ms. Found 3 JPA repository interfaces.
+2026-07-04 23:19:01.062 [main] INFO  [o.s.b.w.e.tomcat.TomcatWebServer] - Tomcat initialized with port 8083 (http)
+2026-07-04 23:19:01.115 [main] INFO  [o.a.coyote.http11.Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8083"]
+2026-07-04 23:19:01.125 [main] INFO  [o.a.catalina.core.StandardService] - Starting service [Tomcat]
+2026-07-04 23:19:01.128 [main] INFO  [o.a.catalina.core.StandardEngine] - Starting Servlet engine: [Apache Tomcat/10.1.20]
+2026-07-04 23:19:01.481 [main] INFO  [o.a.c.c.C.[Tomcat].[localhost].[/]] - Initializing Spring embedded WebApplicationContext
+2026-07-04 23:19:01.483 [main] INFO  [o.s.b.w.s.c.ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 5855 ms
+2026-07-04 23:19:01.686 [main] DEBUG [c.c.s.security.JwtAuthFilter] - Filter 'jwtAuthFilter' configured for use
+2026-07-04 23:19:02.281 [main] INFO  [o.h.jpa.internal.util.LogHelper] - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-07-04 23:19:02.610 [main] INFO  [org.hibernate.Version] - HHH000412: Hibernate ORM core version 6.4.4.Final
+2026-07-04 23:19:02.872 [main] INFO  [o.h.c.i.RegionFactoryInitiator] - HHH000026: Second-level cache disabled
+2026-07-04 23:19:04.106 [main] INFO  [o.s.o.j.p.SpringPersistenceUnitInfo] - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-07-04 23:19:04.202 [main] INFO  [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Starting...
+2026-07-04 23:19:04.786 [main] INFO  [com.zaxxer.hikari.pool.HikariPool] - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@120411ec
+2026-07-04 23:19:04.794 [main] INFO  [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Start completed.
+2026-07-04 23:19:04.971 [main] WARN  [org.hibernate.orm.deprecation] - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-07-04 23:19:07.967 [main] INFO  [o.h.e.t.j.p.i.JtaPlatformInitiator] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-07-04 23:19:08.259 [main] INFO  [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-07-04 23:19:09.013 [main] INFO  [o.s.d.j.r.query.QueryEnhancerFactory] - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-07-04 23:19:10.628 [main] WARN  [o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-07-04 23:19:10.694 [main] WARN  [o.s.b.a.s.s.UserDetailsServiceAutoConfiguration] - 
+
+Using generated security password: 4ba3bfac-0c35-4162-9349-cb02e3fed77e
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-07-04 23:19:11.398 [main] INFO  [o.s.s.web.DefaultSecurityFilterChain] - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@322b500a, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@52ac4878, org.springframework.security.web.context.SecurityContextHolderFilter@2fdbd353, org.springframework.security.web.header.HeaderWriterFilter@44473749, org.springframework.web.filter.CorsFilter@4a28852d, org.springframework.security.web.authentication.logout.LogoutFilter@1c63aa5d, com.civicdesk.servicerequest.security.JwtAuthFilter@172f4514, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@20ff27a4, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3d7fc4b3, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@478b5a43, org.springframework.security.web.session.SessionManagementFilter@77422a9f, org.springframework.security.web.access.ExceptionTranslationFilter@5278bc6d, org.springframework.security.web.access.intercept.AuthorizationFilter@282919de]
+2026-07-04 23:19:12.165 [main] INFO  [o.a.coyote.http11.Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8083"]
+2026-07-04 23:19:12.297 [main] INFO  [o.s.b.w.e.tomcat.TomcatWebServer] - Tomcat started on port 8083 (http) with context path ''
+2026-07-04 23:19:12.325 [main] INFO  [c.c.s.ServiceRequestApplication] - Started ServiceRequestApplication in 17.869 seconds (process running for 18.914)
+2026-07-04 23:19:12.335 [main] INFO  [c.c.s.ServiceRequestApplication] - ===========================================
+2026-07-04 23:19:12.336 [main] INFO  [c.c.s.ServiceRequestApplication] -   CivicDesk Service Request Service — STARTED
+2026-07-04 23:19:12.338 [main] INFO  [c.c.s.ServiceRequestApplication] -   Swagger UI: http://localhost:8083/swagger-ui.html
+2026-07-04 23:19:12.339 [main] INFO  [c.c.s.ServiceRequestApplication] - ===========================================
+2026-07-04 23:19:21.001 [http-nio-8083-exec-1] INFO  [o.a.c.c.C.[Tomcat].[localhost].[/]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-07-04 23:19:21.002 [http-nio-8083-exec-1] INFO  [o.s.web.servlet.DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
+2026-07-04 23:19:21.006 [http-nio-8083-exec-1] INFO  [o.s.web.servlet.DispatcherServlet] - Completed initialization in 2 ms
+2026-07-04 23:19:21.437 [http-nio-8083-exec-1] DEBUG [c.c.s.security.JwtAuthFilter] - JWT auth: userId=10000001 role=ADM
+2026-07-04 23:19:21.685 [http-nio-8083-exec-1] WARN  [c.c.s.e.GlobalExceptionHandler] - Message not readable: JSON parse error: Cannot deserialize value of type `java.lang.String` from Array value (token `JsonToken.START_ARRAY`)
+2026-07-04 23:19:40.089 [http-nio-8083-exec-2] DEBUG [c.c.s.security.JwtAuthFilter] - JWT auth: userId=10000001 role=ADM
+2026-07-04 23:19:40.092 [http-nio-8083-exec-2] WARN  [c.c.s.e.GlobalExceptionHandler] - Message not readable: JSON parse error: Cannot deserialize value of type `java.lang.String` from Array value (token `JsonToken.START_ARRAY`)
+2026-07-04 23:24:21.255 [background-preinit] INFO  [o.h.validator.internal.util.Version] - HV000001: Hibernate Validator 8.0.1.Final
+2026-07-04 23:24:21.365 [main] INFO  [c.c.s.ServiceRequestApplication] - Starting ServiceRequestApplication using Java 21.0.11 with PID 27388 (C:\Users\2506484\Documents\civicDesk-1\service-request-service\target\classes started by 2506484 in C:\Users\2506484\Documents\civicDesk-1)
+2026-07-04 23:24:21.367 [main] DEBUG [c.c.s.ServiceRequestApplication] - Running with Spring Boot v3.2.5, Spring v6.1.6
+2026-07-04 23:24:21.369 [main] INFO  [c.c.s.ServiceRequestApplication] - No active profile set, falling back to 1 default profile: "default"
+2026-07-04 23:24:24.648 [main] INFO  [o.s.d.r.c.RepositoryConfigurationDelegate] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-07-04 23:24:24.951 [main] INFO  [o.s.d.r.c.RepositoryConfigurationDelegate] - Finished Spring Data repository scanning in 270 ms. Found 3 JPA repository interfaces.
+2026-07-04 23:24:29.570 [main] INFO  [o.s.b.w.e.tomcat.TomcatWebServer] - Tomcat initialized with port 8083 (http)
+2026-07-04 23:24:29.627 [main] INFO  [o.a.coyote.http11.Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8083"]
+2026-07-04 23:24:29.638 [main] INFO  [o.a.catalina.core.StandardService] - Starting service [Tomcat]
+2026-07-04 23:24:29.640 [main] INFO  [o.a.catalina.core.StandardEngine] - Starting Servlet engine: [Apache Tomcat/10.1.20]
+2026-07-04 23:24:29.986 [main] INFO  [o.a.c.c.C.[Tomcat].[localhost].[/]] - Initializing Spring embedded WebApplicationContext
+2026-07-04 23:24:29.991 [main] INFO  [o.s.b.w.s.c.ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 8524 ms
+2026-07-04 23:24:30.225 [main] DEBUG [c.c.s.security.JwtAuthFilter] - Filter 'jwtAuthFilter' configured for use
+2026-07-04 23:24:30.824 [main] INFO  [o.h.jpa.internal.util.LogHelper] - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-07-04 23:24:31.202 [main] INFO  [org.hibernate.Version] - HHH000412: Hibernate ORM core version 6.4.4.Final
+2026-07-04 23:24:31.386 [main] INFO  [o.h.c.i.RegionFactoryInitiator] - HHH000026: Second-level cache disabled
+2026-07-04 23:24:32.755 [main] INFO  [o.s.o.j.p.SpringPersistenceUnitInfo] - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-07-04 23:24:32.886 [main] INFO  [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Starting...
+2026-07-04 23:24:33.481 [main] INFO  [com.zaxxer.hikari.pool.HikariPool] - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6efd0a6e
+2026-07-04 23:24:33.484 [main] INFO  [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Start completed.
+2026-07-04 23:24:33.625 [main] WARN  [org.hibernate.orm.deprecation] - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-07-04 23:24:35.684 [main] INFO  [o.h.e.t.j.p.i.JtaPlatformInitiator] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-07-04 23:24:35.847 [main] INFO  [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-07-04 23:24:36.387 [main] INFO  [o.s.d.j.r.query.QueryEnhancerFactory] - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-07-04 23:24:37.814 [main] WARN  [o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-07-04 23:24:37.884 [main] WARN  [o.s.b.a.s.s.UserDetailsServiceAutoConfiguration] - 
+
+Using generated security password: c7b4f769-8de0-4e7f-a027-4e08f86813e3
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-07-04 23:24:38.601 [main] INFO  [o.s.s.web.DefaultSecurityFilterChain] - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@17c533f3, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@30386e95, org.springframework.security.web.context.SecurityContextHolderFilter@6066cf5, org.springframework.security.web.header.HeaderWriterFilter@787239f5, org.springframework.web.filter.CorsFilter@ab118b8, org.springframework.security.web.authentication.logout.LogoutFilter@c8293cb, com.civicdesk.servicerequest.security.JwtAuthFilter@415a3f6a, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5248688c, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@37736bf1, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2fe26f79, org.springframework.security.web.session.SessionManagementFilter@72b92ce6, org.springframework.security.web.access.ExceptionTranslationFilter@40503088, org.springframework.security.web.access.intercept.AuthorizationFilter@15364d8b]
+2026-07-04 23:24:39.323 [main] INFO  [o.a.coyote.http11.Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8083"]
+2026-07-04 23:24:39.388 [main] INFO  [o.s.b.w.e.tomcat.TomcatWebServer] - Tomcat started on port 8083 (http) with context path ''
+2026-07-04 23:24:39.410 [main] INFO  [c.c.s.ServiceRequestApplication] - Started ServiceRequestApplication in 19.146 seconds (process running for 19.901)
+2026-07-04 23:24:39.417 [main] INFO  [c.c.s.ServiceRequestApplication] - ===========================================
+2026-07-04 23:24:39.418 [main] INFO  [c.c.s.ServiceRequestApplication] -   CivicDesk Service Request Service — STARTED
+2026-07-04 23:24:39.420 [main] INFO  [c.c.s.ServiceRequestApplication] -   Swagger UI: http://localhost:8083/swagger-ui.html
+2026-07-04 23:24:39.422 [main] INFO  [c.c.s.ServiceRequestApplication] - ===========================================
+2026-07-04 23:24:45.126 [http-nio-8083-exec-1] INFO  [o.a.c.c.C.[Tomcat].[localhost].[/]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-07-04 23:24:45.126 [http-nio-8083-exec-1] INFO  [o.s.web.servlet.DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
+2026-07-04 23:24:45.132 [http-nio-8083-exec-1] INFO  [o.s.web.servlet.DispatcherServlet] - Completed initialization in 2 ms
+2026-07-04 23:24:45.549 [http-nio-8083-exec-1] DEBUG [c.c.s.security.JwtAuthFilter] - JWT auth: userId=10000001 role=ADM
+2026-07-04 23:24:46.164 [http-nio-8083-exec-1] INFO  [c.c.s.service.ServiceCatalogService] - Service created: serviceId=1 name=Drainage Connection
+>>>>>>> upstream/main

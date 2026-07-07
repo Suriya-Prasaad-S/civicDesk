@@ -7,6 +7,10 @@ com\civicdesk\auth\dto\request\UpdateDepartmentRequest.class
 com\civicdesk\auth\entity\PasswordResetToken.class
 com\civicdesk\auth\entity\Department.class
 com\civicdesk\auth\exception\DuplicateEmailException.class
+<<<<<<< HEAD
+=======
+com\civicdesk\auth\dto\ApiResponse$ApiResponseBuilder.class
+>>>>>>> upstream/main
 com\civicdesk\auth\exception\BadCredentialsException.class
 com\civicdesk\auth\service\DepartmentService.class
 com\civicdesk\auth\repository\spec\AuditLogSpecifications.class
@@ -53,6 +57,10 @@ com\civicdesk\auth\repository\RevokedTokenRepository.class
 com\civicdesk\auth\response\ErrorResponse$Builder.class
 com\civicdesk\auth\repository\PasswordResetTokenRepository.class
 com\civicdesk\auth\response\ApiResponse.class
+<<<<<<< HEAD
+=======
+com\civicdesk\auth\dto\UserResponse$UserResponseBuilder.class
+>>>>>>> upstream/main
 com\civicdesk\auth\enums\AuditModule.class
 com\civicdesk\auth\enums\Role.class
 com\civicdesk\auth\util\ClientIpUtil.class
@@ -71,6 +79,10 @@ com\civicdesk\auth\entity\RevokedToken.class
 com\civicdesk\auth\exception\GlobalExceptionHandler.class
 com\civicdesk\auth\exception\ForbiddenException.class
 com\civicdesk\auth\config\SwaggerConfig.class
+<<<<<<< HEAD
+=======
+com\civicdesk\auth\dto\LoginResponse$LoginResponseBuilder.class
+>>>>>>> upstream/main
 com\civicdesk\auth\dto\UserResponse.class
 com\civicdesk\auth\dto\request\StaffLoginRequest.class
 com\civicdesk\auth\util\SecurityContextUtil.class

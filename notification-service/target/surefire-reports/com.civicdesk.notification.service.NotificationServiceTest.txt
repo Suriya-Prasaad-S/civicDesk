@@ -1,6 +1,7 @@
 -------------------------------------------------------------------------------
 Test set: com.civicdesk.notification.service.NotificationServiceTest
 -------------------------------------------------------------------------------
+<<<<<<< HEAD
 Tests run: 9, Failures: 0, Errors: 9, Skipped: 0, Time elapsed: 1.337 s <<< FAILURE! -- in com.civicdesk.notification.service.NotificationServiceTest
 com.civicdesk.notification.service.NotificationServiceTest.markRead_Success -- Time elapsed: 1.074 s <<< ERROR!
 org.mockito.exceptions.base.MockitoException: 
@@ -731,3 +732,6 @@ Caused by: java.lang.IllegalArgumentException: Java 23 (67) is not supported by 
 	at org.mockito.internal.creation.bytebuddy.InlineBytecodeGenerator.triggerRetransformation(InlineBytecodeGenerator.java:281)
 	... 27 more
 
+=======
+Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.108 s -- in com.civicdesk.notification.service.NotificationServiceTest
+>>>>>>> upstream/main

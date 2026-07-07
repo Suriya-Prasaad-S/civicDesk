@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 C:\Users\2506484\Documents\civicDesk-1\api-gateway\src\main\java\com\civicdesk\gateway\config\OpenApiConfig.java
 C:\Users\2506484\Documents\civicDesk-1\api-gateway\src\main\java\com\civicdesk\gateway\config\GatewayConfig.java
 C:\Users\2506484\Documents\civicDesk-1\api-gateway\src\main\java\com\civicdesk\gateway\filter\LoggingFilter.java
@@ -13,3 +14,11 @@ C:\Users\Harishraj\Downloads\civicDesk\api-gateway\src\main\java\com\civicdesk\g
 C:\Users\Harishraj\Downloads\civicDesk\api-gateway\src\main\java\com\civicdesk\gateway\filter\LoggingFilter.java
 C:\Users\Harishraj\Downloads\civicDesk\api-gateway\src\main\java\com\civicdesk\gateway\security\JwtTokenProvider.java
 >>>>>>> 6c9c74a07bd415fc39cf695a14011c5c2f85d447
+=======
+C:\Project\civicdesk (1)\api-gateway\src\main\java\com\civicdesk\gateway\filter\LoggingFilter.java
+C:\Project\civicdesk (1)\api-gateway\src\main\java\com\civicdesk\gateway\config\GatewayConfig.java
+C:\Project\civicdesk (1)\api-gateway\src\main\java\com\civicdesk\gateway\config\OpenApiConfig.java
+C:\Project\civicdesk (1)\api-gateway\src\main\java\com\civicdesk\gateway\ApiGatewayApplication.java
+C:\Project\civicdesk (1)\api-gateway\src\main\java\com\civicdesk\gateway\security\JwtTokenProvider.java
+C:\Project\civicdesk (1)\api-gateway\src\main\java\com\civicdesk\gateway\filter\JwtAuthenticationFilter.java
+>>>>>>> upstream/main
