@@ -1,7 +1,7 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="ServiceRequestService" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
     <module name="service-request-service" />
-    <option name="SPRING_BOOT_MAIN_CLASS" value="com.civicdesk.servicerequest.ServiceRequestServiceApplication" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="com.civicdesk.servicerequest.ServiceRequestApplication" />
     <method v="2">
       <option name="Make" enabled="true" />
     </method>

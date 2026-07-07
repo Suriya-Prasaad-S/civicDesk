@@ -49,6 +49,10 @@ public class ServiceRequest {
     @Column(name = "expected_completion_date")
     private LocalDate expectedCompletionDate;
 
+    @Column(name = "sla_breach")
+    @Builder.Default
+    private Boolean slaBreach = false;
+
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     @Builder.Default

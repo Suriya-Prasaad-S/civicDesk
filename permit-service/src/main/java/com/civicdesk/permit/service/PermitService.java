@@ -1,10 +1,7 @@
 package com.civicdesk.permit.service;
 
-import com.civicdesk.permit.dto.DocumentResponse;
-import com.civicdesk.permit.dto.PermitApplicationRequest;
-import com.civicdesk.permit.dto.PermitApplicationResponse;
-import com.civicdesk.permit.dto.RenewPermitRequest;
-import com.civicdesk.permit.dto.VerifyDocumentRequest;
+import com.civicdesk.permit.client.NotificationClient;
+import com.civicdesk.permit.dto.*;
 import com.civicdesk.permit.entity.PermitApplication;
 import com.civicdesk.permit.entity.PermitDocument;
 import com.civicdesk.permit.enums.DocumentType;
@@ -13,6 +10,7 @@ import com.civicdesk.permit.enums.PermitType;
 import com.civicdesk.permit.exception.BadRequestException;
 import com.civicdesk.permit.exception.ForbiddenException;
 import com.civicdesk.permit.exception.ResourceNotFoundException;
+import com.civicdesk.permit.repository.InspectionRepository;
 import com.civicdesk.permit.repository.PermitApplicationRepository;
 import com.civicdesk.permit.repository.PermitDocumentRepository;
 import lombok.RequiredArgsConstructor;
@@ -27,6 +25,13 @@ import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
+import java.util.Arrays;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+import com.civicdesk.permit.enums.InspectionOutcome;
+import com.civicdesk.permit.enums.InspectionStatus;
+import com.civicdesk.permit.client.AuditLogClient;
 
 @Service
 @RequiredArgsConstructor
@@ -36,6 +41,9 @@ public class PermitService {
     private final PermitApplicationRepository permitRepository;
     private final PermitDocumentRepository documentRepository;
     private final FileStorageService fileStorageService;
+    private final InspectionRepository inspectionRepository;
+    private final NotificationClient notificationClient;
+    private final AuditLogClient auditLogClient;
 
     // ─── CITIZEN ─────────────────────────────────────────────────────────────
 
@@ -54,8 +62,47 @@ public class PermitService {
                 .status(PermitStatus.APPLIED)
                 .build();
 
-        PermitApplication saved = permitRepository.save(permit);
+        /*PermitApplication saved = permitRepository.save(permit);
         log.info("Permit applied: permitId={} type={} userId={}", saved.getPermitId(), saved.getPermitType(), userId);
+        return mapToResponse(saved);
+         */
+
+        PermitApplication saved = permitRepository.save(permit);
+
+        try {
+
+            NotificationRequest payload =
+                    NotificationRequest.builder()
+                            .userId(saved.getUserId())
+                            .title("Permit Submitted")
+                            .message(
+                                    "Your permit application for "
+                                            + saved.getPermitType()
+                                            + " has been submitted successfully.")
+                            .notificationType("PERMIT_UPDATE")
+                            .referenceId(saved.getPermitId())
+                            .referenceType("PERMIT")
+                            .build();
+
+            notificationClient.sendNotification(payload);
+            auditLogClient.log(
+        String.valueOf(userId),
+        "CREATE_PERMIT",
+        "PERMIT");
+
+        } catch (Exception ex) {
+
+            log.error(
+                    "Notification dispatch failed: {}",
+                    ex.getMessage());
+        }
+
+        log.info(
+                "Permit applied: permitId={} type={} userId={}",
+                saved.getPermitId(),
+                saved.getPermitType(),
+                userId);
+
         return mapToResponse(saved);
     }
 
@@ -81,8 +128,44 @@ public class PermitService {
         permit.setExpiryDate(null);
         permit.setRemarks("Renewal application submitted.");
 
-        PermitApplication saved = permitRepository.save(permit);
+        /*PermitApplication saved = permitRepository.save(permit);
         log.info("Permit renewal submitted: permitId={}", permitId);
+        return mapToResponse(saved);
+
+         */
+
+        PermitApplication saved = permitRepository.save(permit);
+
+        try {
+
+            NotificationRequest payload =
+                    NotificationRequest.builder()
+                            .userId(saved.getUserId())
+                            .title("Permit Renewal Submitted")
+                            .message(
+                                    "Your permit renewal request has been submitted successfully.")
+                            .notificationType("PERMIT_UPDATE")
+                            .referenceId(saved.getPermitId())
+                            .referenceType("PERMIT")
+                            .build();
+
+            notificationClient.sendNotification(payload);
+            auditLogClient.log(
+        String.valueOf(userId),
+        "RENEW_PERMIT",
+        "PERMIT");
+
+        } catch (Exception ex) {
+
+            log.error(
+                    "Notification dispatch failed: {}",
+                    ex.getMessage());
+        }
+
+        log.info(
+                "Permit renewal submitted: permitId={}",
+                permitId);
+
         return mapToResponse(saved);
     }
 
@@ -134,12 +217,116 @@ public class PermitService {
         }
 
         // Set expiry date when approved
-        if (newStatus == PermitStatus.APPROVED) {
+        /*if (newStatus == PermitStatus.APPROVED) {
             permit.setExpiryDate(LocalDate.now().plusMonths(permit.getValidityPeriod()));
         }
+         */
+
+        if (newStatus == PermitStatus.APPROVED
+                || newStatus == PermitStatus.REJECTED) {
+            permit.setDecisionDate(LocalDate.now());
+        }
+
+        if (newStatus == PermitStatus.APPROVED) {
+            permit.setExpiryDate(
+                    LocalDate.now()
+                            .plusMonths(permit.getValidityPeriod()));
+        }
+
+
+        /*PermitApplication saved = permitRepository.save(permit);
+        log.info("Permit status updated: permitId={} status={}", permitId, newStatus);
+        return mapToResponse(saved);
+
+         */
 
         PermitApplication saved = permitRepository.save(permit);
-        log.info("Permit status updated: permitId={} status={}", permitId, newStatus);
+
+        try {
+
+            String title = null;
+            String message = null;
+            String type = "PERMIT_UPDATE";
+
+            if (newStatus == PermitStatus.APPROVED) {
+
+                title = "Permit Approved";
+
+                message =
+                        "Your permit application for "
+                                + saved.getPermitType()
+                                + " has been approved.";
+
+            } else if (newStatus == PermitStatus.REJECTED) {
+
+                title = "Permit Rejected";
+
+                message =
+                        "Your permit application for "
+                                + saved.getPermitType()
+                                + " has been rejected.";
+
+
+
+            } else if (newStatus == PermitStatus.PENDING_DOCUMENTS) {
+
+                title = "Additional Documents Required";
+
+                message =
+                        "Additional documents are required for your permit application.";
+
+
+            }
+
+            if (title != null) {
+
+                NotificationRequest payload =
+                        NotificationRequest.builder()
+                                .userId(saved.getUserId())
+                                .title(title)
+                                .message(message)
+                                .notificationType(type)
+                                .referenceId(saved.getPermitId())
+                                .referenceType("PERMIT")
+                                .build();
+
+                notificationClient.sendNotification(payload);
+            }
+
+        } catch (Exception ex) {
+
+            log.error(
+                    "Notification dispatch failed: {}",
+                    ex.getMessage());
+        }
+
+        log.info(
+                "Permit status updated: permitId={} status={}",
+                permitId,
+                newStatus);
+
+                if (newStatus == PermitStatus.APPROVED) {
+
+    auditLogClient.log(
+            String.valueOf(saved.getUserId()),
+            "APPROVE_PERMIT",
+            "PERMIT");
+
+} else if (newStatus == PermitStatus.REJECTED) {
+
+    auditLogClient.log(
+            String.valueOf(saved.getUserId()),
+            "REJECT_PERMIT",
+            "PERMIT");
+
+} else if (newStatus == PermitStatus.PENDING_DOCUMENTS) {
+
+    auditLogClient.log(
+            String.valueOf(saved.getUserId()),
+            "REQUEST_DOCUMENTS",
+            "PERMIT");
+}
+
         return mapToResponse(saved);
     }
 
@@ -195,6 +382,10 @@ public class PermitService {
                     .isDeleted(false)
                     .build();
             documentRepository.save(doc);
+            auditLogClient.log(
+        String.valueOf(permit.getUserId()),
+        "UPLOAD_DOCUMENT",
+        "PERMIT");
             log.info("Document uploaded: permitId={} type={} file={}", permitId, docType, filePath);
         }
 
@@ -229,6 +420,10 @@ public class PermitService {
         doc.setVerificationStatus(req.getVerificationStatus());
         doc.setVerificationRemarks(req.getVerificationRemarks());
         documentRepository.save(doc);
+        auditLogClient.log(
+        String.valueOf(permitId),
+        "VERIFY_DOCUMENT",
+        "PERMIT");
         log.info("Document verified: documentId={} status={}", documentId, req.getVerificationStatus());
     }
 
@@ -255,7 +450,7 @@ public class PermitService {
 
     private void validateStatusTransition(PermitStatus current, PermitStatus next) {
         boolean valid = switch (current) {
-            case APPLIED             -> next == PermitStatus.UNDER_REVIEW || next == PermitStatus.REJECTED;
+            case APPLIED             -> next == PermitStatus.UNDER_REVIEW ||  next == PermitStatus.INSPECTION_SCHEDULED ||       next == PermitStatus.REJECTED;
             case UNDER_REVIEW        -> next == PermitStatus.INSPECTION_SCHEDULED
                                      || next == PermitStatus.PENDING_DOCUMENTS
                                      || next == PermitStatus.APPROVED
@@ -296,4 +491,168 @@ public class PermitService {
                 .createdAt(p.getCreatedAt())
                 .build();
     }
+
+    public PermitAnalyticsResponse getPermitAnalytics(
+            LocalDate fromDate,
+            LocalDate toDate) {
+
+        PermitAnalyticsResponse response =
+                new PermitAnalyticsResponse();
+
+        response.setTotalPermits(
+                permitRepository.countPermits(
+                        fromDate,
+                        toDate));
+
+        response.setStatusBreakdown(
+                buildPermitStatusBreakdown(
+                        fromDate,
+                        toDate));
+
+        response.setPermitTypeBreakdown(
+                buildPermitTypeBreakdown(
+                        fromDate,
+                        toDate));
+
+        response.setApplicationTrend(
+                permitRepository.getApplicationTrend(
+                        fromDate,
+                        toDate,
+                        AnalyticsTrendResponse.class));
+
+        response.setDecisionTrend(
+                permitRepository.getDecisionTrend(
+                        AnalyticsTrendResponse.class));
+
+        response.setAverageDecisionDays(
+                calculateAverageDecisionDays());
+
+        PermitAnalyticsResponse.InspectionAnalytics inspection =
+                new PermitAnalyticsResponse.InspectionAnalytics();
+
+        inspection.setStatusBreakdown(
+                buildInspectionStatusBreakdown());
+
+        inspection.setOutcomeBreakdown(
+                buildInspectionOutcomeBreakdown());
+
+        response.setInspection(inspection);
+
+        return response;
+    }
+
+    private List<AnalyticsLabelCountDto> buildPermitStatusBreakdown(
+            LocalDate fromDate,
+            LocalDate toDate) {
+
+        List<AnalyticsLabelCountResponse> dbValues =
+                permitRepository.getStatusBreakdown(
+                        fromDate,
+                        toDate,
+                        AnalyticsLabelCountResponse.class);
+
+        Map<String, Long> countMap =
+                dbValues.stream()
+                        .collect(Collectors.toMap(
+                                AnalyticsLabelCountResponse::getLabel,
+                                AnalyticsLabelCountResponse::getCount));
+
+        return Arrays.stream(PermitStatus.values())
+                .map(status ->
+                        new AnalyticsLabelCountDto(
+                                status.name(),
+                                countMap.getOrDefault(
+                                        status.name(),
+                                        0L)))
+                .toList();
+    }
+
+    private List<AnalyticsLabelCountDto> buildPermitTypeBreakdown(
+            LocalDate fromDate,
+            LocalDate toDate) {
+
+        List<AnalyticsLabelCountResponse> dbValues =
+                permitRepository.getPermitTypeBreakdown(
+                        fromDate,
+                        toDate,
+                        AnalyticsLabelCountResponse.class);
+
+        Map<String, Long> countMap =
+                dbValues.stream()
+                        .collect(Collectors.toMap(
+                                AnalyticsLabelCountResponse::getLabel,
+                                AnalyticsLabelCountResponse::getCount));
+
+        return Arrays.stream(PermitType.values())
+                .map(type ->
+                        new AnalyticsLabelCountDto(
+                                type.name(),
+                                countMap.getOrDefault(
+                                        type.name(),
+                                        0L)))
+                .toList();
+    }
+
+    private List<AnalyticsLabelCountDto> buildInspectionStatusBreakdown() {
+
+        List<AnalyticsLabelCountResponse> dbValues =
+                inspectionRepository.getStatusBreakdown(
+                        AnalyticsLabelCountResponse.class);
+
+        Map<String, Long> countMap =
+                dbValues.stream()
+                        .collect(Collectors.toMap(
+                                AnalyticsLabelCountResponse::getLabel,
+                                AnalyticsLabelCountResponse::getCount));
+
+        return Arrays.stream(InspectionStatus.values())
+                .map(status ->
+                        new AnalyticsLabelCountDto(
+                                status.name(),
+                                countMap.getOrDefault(
+                                        status.name(),
+                                        0L)))
+                .toList();
+    }
+
+    private List<AnalyticsLabelCountDto> buildInspectionOutcomeBreakdown() {
+
+        List<AnalyticsLabelCountResponse> dbValues =
+                inspectionRepository.getOutcomeBreakdown(
+                        AnalyticsLabelCountResponse.class);
+
+        Map<String, Long> countMap =
+                dbValues.stream()
+                        .collect(Collectors.toMap(
+                                AnalyticsLabelCountResponse::getLabel,
+                                AnalyticsLabelCountResponse::getCount));
+
+        return Arrays.stream(InspectionOutcome.values())
+                .map(outcome ->
+                        new AnalyticsLabelCountDto(
+                                outcome.name(),
+                                countMap.getOrDefault(
+                                        outcome.name(),
+                                        0L)))
+                .toList();
+    }
+
+    private Double calculateAverageDecisionDays() {
+
+        List<PermitApplication> permits =
+                permitRepository.getDecidedPermits();
+
+        if (permits.isEmpty()) {
+            return 0.0;
+        }
+
+        return permits.stream()
+                .mapToLong(p ->
+                        java.time.temporal.ChronoUnit.DAYS.between(
+                                p.getApplicationDate(),
+                                p.getDecisionDate()))
+                .average()
+                .orElse(0.0);
+    }
+
 }

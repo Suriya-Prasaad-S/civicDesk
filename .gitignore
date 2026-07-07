@@ -1,3 +1,4 @@
+ HEAD
 # IntelliJ
 .idea/
 *.iml
@@ -25,3 +26,17 @@ surefire-reports/
 # OS files
 .DS_Store
 Thumbs.db
+
+# Maven
+target/
+
+# Logs
+logs/
+*.log
+
+# IntelliJ
+.idea/
+
+# Uploads (if not needed)
+uploads/
+origin/main
