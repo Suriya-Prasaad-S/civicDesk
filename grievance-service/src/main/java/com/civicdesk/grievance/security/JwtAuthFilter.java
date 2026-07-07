@@ -32,7 +32,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
             if (token != null && jwtTokenProvider.validateToken(token)) {
                 String userIdStr = jwtTokenProvider.getEmailFromToken(token);
                 String role   = jwtTokenProvider.getRoleFromToken(token);
-                Long   userId = jwtTokenProvider.getUserIdFromToken(token);
+                String   userId = jwtTokenProvider.getUserIdFromToken(token);
 
                 JwtUserContext.set(userId, userIdStr, role);
 
