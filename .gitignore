@@ -1,0 +1,12 @@
+# Maven
+target/
+
+# Logs
+logs/
+*.log
+
+# IntelliJ
+.idea/
+
+# Uploads (if not needed)
+uploads/
