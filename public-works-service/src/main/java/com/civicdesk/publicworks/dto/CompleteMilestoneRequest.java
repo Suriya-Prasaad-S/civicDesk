@@ -8,21 +8,11 @@ import java.time.LocalDate;
 
 @Getter
 @Setter
-public class MilestoneResponse {
-
-    private String milestoneId;
-
-    private String workOrderId;
-
-    private String description;
-
-    private LocalDate plannedDate;
+public class CompleteMilestoneRequest {
 
     private LocalDate completedDate;
 
     private BigDecimal budgetConsumed;
-
-    private String status;
 
     private String remarks;
 }

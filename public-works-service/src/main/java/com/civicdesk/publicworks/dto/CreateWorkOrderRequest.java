@@ -8,24 +8,21 @@ import java.time.LocalDate;
 
 @Getter
 @Setter
-public class WorkOrderResponse {
+public class CreateWorkOrderRequest {
 
-    private Long workOrderId;
     private String projectName;
+
     private String category;
+
     private String ward;
+
     private String zone;
 
     private BigDecimal budgetAllocated;
-    private BigDecimal budgetConsumedTotal;
 
     private LocalDate startDate;
+
     private LocalDate expectedEndDate;
-    private LocalDate actualEndDate;
 
-    private Long assignedContractorId;
-    private Long assignedEngineerId;
-
-    private String status;
     private String remarks;
 }
