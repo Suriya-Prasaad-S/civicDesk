@@ -1,0 +1,182 @@
+version: '3.8'
+
+services:
+
+  # ─── MySQL ──────────────────────────────────────────────────────────────────
+  mysql:
+    image: mysql:8.0
+    container_name: civicdesk-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - civicdesk-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ─── API Gateway (8080) ─────────────────────────────────────────────────────
+  api-gateway:
+    build: ./api-gateway
+    container_name: civicdesk-gateway
+    ports:
+      - "8080:8080"
+    depends_on:
+      auth-service:
+        condition: service_started
+      citizen-service:
+        condition: service_started
+      service-request-service:
+        condition: service_started
+      permit-service:
+        condition: service_started
+      grievance-service:
+        condition: service_started
+      public-works-service:
+        condition: service_started
+      notification-service:
+        condition: service_started
+      analytics-service:
+        condition: service_started
+    networks:
+      - civicdesk-network
+
+  # ─── Auth Service (8081) ────────────────────────────────────────────────────
+  auth-service:
+    build: ./auth-service
+    container_name: civicdesk-auth
+    ports:
+      - "8081:8081"
+    environment:
+      spring.datasource.url: jdbc:mysql://mysql:3306/civicdesk_auth?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+      spring.datasource.username: root
+      spring.datasource.password: root
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - civicdesk-network
+
+  # ─── Citizen Service (8082) ─────────────────────────────────────────────────
+  citizen-service:
+    build: ./citizen-service
+    container_name: civicdesk-citizen
+    ports:
+      - "8082:8082"
+    environment:
+      spring.datasource.url: jdbc:mysql://mysql:3306/civicdesk_citizen?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+      spring.datasource.username: root
+      spring.datasource.password: root
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - civicdesk-network
+
+  # ─── Service Request Service (8083) ─────────────────────────────────────────
+  service-request-service:
+    build: ./service-request-service
+    container_name: civicdesk-service-request
+    ports:
+      - "8083:8083"
+    environment:
+      spring.datasource.url: jdbc:mysql://mysql:3306/civicdesk_service_request?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+      spring.datasource.username: root
+      spring.datasource.password: root
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - civicdesk-network
+
+  # ─── Permit Service (8084) ──────────────────────────────────────────────────
+  permit-service:
+    build: ./permit-service
+    container_name: civicdesk-permit
+    ports:
+      - "8084:8084"
+    environment:
+      spring.datasource.url: jdbc:mysql://mysql:3306/civicdesk_permit?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+      spring.datasource.username: root
+      spring.datasource.password: root
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - civicdesk-network
+
+  # ─── Grievance Service (8085) ────────────────────────────────────────────────
+  grievance-service:
+    build: ./grievance-service
+    container_name: civicdesk-grievance
+    ports:
+      - "8085:8085"
+    environment:
+      spring.datasource.url: jdbc:mysql://mysql:3306/civicdesk_grievance?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+      spring.datasource.username: root
+      spring.datasource.password: root
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - civicdesk-network
+
+  # ─── Public Works Service (8086) ─────────────────────────────────────────────
+  public-works-service:
+    build: ./public-works-service
+    container_name: civicdesk-public-works
+    ports:
+      - "8086:8086"
+    environment:
+      spring.datasource.url: jdbc:mysql://mysql:3306/civicdesk_public_works?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+      spring.datasource.username: root
+      spring.datasource.password: root
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - civicdesk-network
+
+  # ─── Notification Service (8087) ─────────────────────────────────────────────
+  notification-service:
+    build: ./notification-service
+    container_name: civicdesk-notification
+    ports:
+      - "8087:8087"
+    environment:
+      spring.datasource.url: jdbc:mysql://mysql:3306/civicdesk_notification?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+      spring.datasource.username: root
+      spring.datasource.password: root
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - civicdesk-network
+
+  # ─── Analytics Service (8088) ────────────────────────────────────────────────
+  analytics-service:
+    build: ./analytics-service
+    container_name: civicdesk-analytics
+    ports:
+      - "8088:8088"
+    environment:
+      spring.datasource.url: jdbc:mysql://mysql:3306/civicdesk_analytics?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+      spring.datasource.username: root
+      spring.datasource.password: root
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - civicdesk-network
+
+volumes:
+  mysql_data:
+
+networks:
+  civicdesk-network:
+    driver: bridge

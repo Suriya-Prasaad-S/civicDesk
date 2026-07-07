@@ -1,0 +1,144 @@
+2026-06-17 12:26:06.446 [background-preinit] INFO  [o.h.validator.internal.util.Version] - HV000001: Hibernate Validator 8.0.1.Final
+2026-06-17 12:26:06.531 [main] INFO  [c.c.permit.PermitServiceApplication] - Starting PermitServiceApplication using Java 21.0.2 with PID 14436 (C:\Users\2506602\Downloads\civicdesk (1)\permit-service\target\classes started by 2506602 in C:\Users\2506602\Downloads\civicdesk (1))
+2026-06-17 12:26:06.532 [main] DEBUG [c.c.permit.PermitServiceApplication] - Running with Spring Boot v3.2.5, Spring v6.1.6
+2026-06-17 12:26:06.533 [main] INFO  [c.c.permit.PermitServiceApplication] - No active profile set, falling back to 1 default profile: "default"
+2026-06-17 12:26:08.437 [main] INFO  [o.s.d.r.c.RepositoryConfigurationDelegate] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-06-17 12:26:08.564 [main] INFO  [o.s.d.r.c.RepositoryConfigurationDelegate] - Finished Spring Data repository scanning in 115 ms. Found 2 JPA repository interfaces.
+2026-06-17 12:26:09.490 [main] INFO  [o.s.b.w.e.tomcat.TomcatWebServer] - Tomcat initialized with port 8084 (http)
+2026-06-17 12:26:09.504 [main] INFO  [o.a.coyote.http11.Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8084"]
+2026-06-17 12:26:09.508 [main] INFO  [o.a.catalina.core.StandardService] - Starting service [Tomcat]
+2026-06-17 12:26:09.508 [main] INFO  [o.a.catalina.core.StandardEngine] - Starting Servlet engine: [Apache Tomcat/10.1.20]
+2026-06-17 12:26:09.607 [main] INFO  [o.a.c.c.C.[Tomcat].[localhost].[/]] - Initializing Spring embedded WebApplicationContext
+2026-06-17 12:26:09.608 [main] INFO  [o.s.b.w.s.c.ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 2921 ms
+2026-06-17 12:26:09.713 [main] DEBUG [c.c.permit.security.JwtAuthFilter] - Filter 'jwtAuthFilter' configured for use
+2026-06-17 12:26:09.856 [main] INFO  [o.h.jpa.internal.util.LogHelper] - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-06-17 12:26:09.934 [main] INFO  [org.hibernate.Version] - HHH000412: Hibernate ORM core version 6.4.4.Final
+2026-06-17 12:26:09.978 [main] INFO  [o.h.c.i.RegionFactoryInitiator] - HHH000026: Second-level cache disabled
+2026-06-17 12:26:10.300 [main] INFO  [o.s.o.j.p.SpringPersistenceUnitInfo] - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-06-17 12:26:10.334 [main] INFO  [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Starting...
+2026-06-17 12:26:10.607 [main] INFO  [com.zaxxer.hikari.pool.HikariPool] - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7da77305
+2026-06-17 12:26:10.610 [main] INFO  [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Start completed.
+2026-06-17 12:26:10.689 [main] WARN  [org.hibernate.orm.deprecation] - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-06-17 12:26:12.398 [main] INFO  [o.h.e.t.j.p.i.JtaPlatformInitiator] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-06-17 12:26:12.705 [main] INFO  [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-06-17 12:26:13.547 [main] WARN  [o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-06-17 12:26:13.582 [main] WARN  [o.s.b.a.s.s.UserDetailsServiceAutoConfiguration] - 
+
+Using generated security password: 897706a9-544e-4a18-bb70-63f8e04b0ee4
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-06-17 12:26:14.113 [main] INFO  [o.s.s.web.DefaultSecurityFilterChain] - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@56728f48, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@281d3ce7, org.springframework.security.web.context.SecurityContextHolderFilter@16eca98a, org.springframework.security.web.header.HeaderWriterFilter@18b88f7, org.springframework.web.filter.CorsFilter@fdfd984, org.springframework.security.web.authentication.logout.LogoutFilter@3ed3e66d, com.civicdesk.permit.security.JwtAuthFilter@19b07407, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@480f1311, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@60c68c7b, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@45e49d3d, org.springframework.security.web.session.SessionManagementFilter@14927cd4, org.springframework.security.web.access.ExceptionTranslationFilter@13e6ab86, org.springframework.security.web.access.intercept.AuthorizationFilter@4117e0c9]
+2026-06-17 12:26:14.727 [main] INFO  [o.a.coyote.http11.Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8084"]
+2026-06-17 12:26:14.838 [main] INFO  [o.s.b.w.e.tomcat.TomcatWebServer] - Tomcat started on port 8084 (http) with context path ''
+2026-06-17 12:26:14.861 [main] INFO  [c.c.permit.PermitServiceApplication] - Started PermitServiceApplication in 9.277 seconds (process running for 10.117)
+2026-06-17 12:53:35.332 [background-preinit] INFO  [o.h.validator.internal.util.Version] - HV000001: Hibernate Validator 8.0.1.Final
+2026-06-17 12:53:35.466 [main] INFO  [c.c.permit.PermitServiceApplication] - Starting PermitServiceApplication using Java 21.0.2 with PID 1576 (C:\Users\2506602\Downloads\civicdesk (1)\permit-service\target\classes started by 2506602 in C:\Users\2506602\Downloads\civicdesk (1))
+2026-06-17 12:53:35.468 [main] DEBUG [c.c.permit.PermitServiceApplication] - Running with Spring Boot v3.2.5, Spring v6.1.6
+2026-06-17 12:53:35.469 [main] INFO  [c.c.permit.PermitServiceApplication] - No active profile set, falling back to 1 default profile: "default"
+2026-06-17 12:53:37.406 [main] INFO  [o.s.d.r.c.RepositoryConfigurationDelegate] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-06-17 12:53:37.527 [main] INFO  [o.s.d.r.c.RepositoryConfigurationDelegate] - Finished Spring Data repository scanning in 104 ms. Found 2 JPA repository interfaces.
+2026-06-17 12:53:38.629 [main] INFO  [o.s.b.w.e.tomcat.TomcatWebServer] - Tomcat initialized with port 8084 (http)
+2026-06-17 12:53:38.650 [main] INFO  [o.a.coyote.http11.Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8084"]
+2026-06-17 12:53:38.656 [main] INFO  [o.a.catalina.core.StandardService] - Starting service [Tomcat]
+2026-06-17 12:53:38.657 [main] INFO  [o.a.catalina.core.StandardEngine] - Starting Servlet engine: [Apache Tomcat/10.1.20]
+2026-06-17 12:53:38.839 [main] INFO  [o.a.c.c.C.[Tomcat].[localhost].[/]] - Initializing Spring embedded WebApplicationContext
+2026-06-17 12:53:38.843 [main] INFO  [o.s.b.w.s.c.ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 3216 ms
+2026-06-17 12:53:39.001 [main] DEBUG [c.c.permit.security.JwtAuthFilter] - Filter 'jwtAuthFilter' configured for use
+2026-06-17 12:53:39.237 [main] INFO  [o.h.jpa.internal.util.LogHelper] - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-06-17 12:53:39.336 [main] INFO  [org.hibernate.Version] - HHH000412: Hibernate ORM core version 6.4.4.Final
+2026-06-17 12:53:39.415 [main] INFO  [o.h.c.i.RegionFactoryInitiator] - HHH000026: Second-level cache disabled
+2026-06-17 12:53:40.305 [main] INFO  [o.s.o.j.p.SpringPersistenceUnitInfo] - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-06-17 12:53:40.403 [main] INFO  [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Starting...
+2026-06-17 12:53:40.842 [main] INFO  [com.zaxxer.hikari.pool.HikariPool] - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@460f1cdb
+2026-06-17 12:53:40.845 [main] INFO  [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Start completed.
+2026-06-17 12:53:41.021 [main] WARN  [org.hibernate.orm.deprecation] - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-06-17 12:53:43.412 [main] INFO  [o.h.e.t.j.p.i.JtaPlatformInitiator] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-06-17 12:53:43.571 [main] INFO  [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-06-17 12:53:44.451 [main] WARN  [o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-06-17 12:53:44.477 [main] WARN  [o.s.b.a.s.s.UserDetailsServiceAutoConfiguration] - 
+
+Using generated security password: 0f7e5188-28b6-42e4-8acd-60178121f7eb
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-06-17 12:53:44.865 [main] INFO  [o.s.s.web.DefaultSecurityFilterChain] - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@40dd2cfe, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@21cb5648, org.springframework.security.web.context.SecurityContextHolderFilter@7fda84cf, org.springframework.security.web.header.HeaderWriterFilter@56728f48, org.springframework.web.filter.CorsFilter@69fa5536, org.springframework.security.web.authentication.logout.LogoutFilter@3a641f6, com.civicdesk.permit.security.JwtAuthFilter@1cb9ef52, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@19240b9, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5471342, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1ee5792a, org.springframework.security.web.session.SessionManagementFilter@6e140753, org.springframework.security.web.access.ExceptionTranslationFilter@568e2d65, org.springframework.security.web.access.intercept.AuthorizationFilter@335a45a8]
+2026-06-17 12:53:45.260 [main] INFO  [o.a.coyote.http11.Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8084"]
+2026-06-17 12:53:45.268 [main] WARN  [o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext] - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2026-06-17 12:53:45.271 [main] INFO  [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-06-17 12:53:45.273 [main] INFO  [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown initiated...
+2026-06-17 12:53:45.282 [main] INFO  [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown completed.
+2026-06-17 12:53:45.297 [main] INFO  [o.s.b.a.l.ConditionEvaluationReportLogger] - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2026-06-17 12:53:45.323 [main] ERROR [o.s.b.d.LoggingFailureAnalysisReporter] - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8084 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8084 or configure this application to listen on another port.
+
+2026-06-17 13:21:58.530 [HikariPool-1 housekeeper] WARN  [com.zaxxer.hikari.pool.HikariPool] - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=18m16s189ms67µs300ns).
+2026-06-17 15:39:21.446 [SpringApplicationShutdownHook] INFO  [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-06-17 15:39:21.568 [SpringApplicationShutdownHook] INFO  [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown initiated...
+2026-06-17 15:39:21.611 [SpringApplicationShutdownHook] INFO  [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown completed.
+2026-06-17 23:40:06.448 [background-preinit] INFO  [o.h.validator.internal.util.Version] - HV000001: Hibernate Validator 8.0.1.Final
+2026-06-17 23:40:06.563 [main] INFO  [c.c.permit.PermitServiceApplication] - Starting PermitServiceApplication using Java 21.0.2 with PID 27452 (C:\Users\2506602\Downloads\civicdesk (1)\permit-service\target\classes started by 2506602 in C:\Users\2506602\Downloads\civicdesk (1))
+2026-06-17 23:40:06.563 [main] DEBUG [c.c.permit.PermitServiceApplication] - Running with Spring Boot v3.2.5, Spring v6.1.6
+2026-06-17 23:40:06.566 [main] INFO  [c.c.permit.PermitServiceApplication] - No active profile set, falling back to 1 default profile: "default"
+2026-06-17 23:40:08.388 [main] INFO  [o.s.d.r.c.RepositoryConfigurationDelegate] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-06-17 23:40:08.484 [main] INFO  [o.s.d.r.c.RepositoryConfigurationDelegate] - Finished Spring Data repository scanning in 74 ms. Found 2 JPA repository interfaces.
+2026-06-17 23:40:09.260 [main] INFO  [o.s.b.w.e.tomcat.TomcatWebServer] - Tomcat initialized with port 8084 (http)
+2026-06-17 23:40:09.280 [main] INFO  [o.a.coyote.http11.Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8084"]
+2026-06-17 23:40:09.280 [main] INFO  [o.a.catalina.core.StandardService] - Starting service [Tomcat]
+2026-06-17 23:40:09.280 [main] INFO  [o.a.catalina.core.StandardEngine] - Starting Servlet engine: [Apache Tomcat/10.1.20]
+2026-06-17 23:40:09.371 [main] INFO  [o.a.c.c.C.[Tomcat].[localhost].[/]] - Initializing Spring embedded WebApplicationContext
+2026-06-17 23:40:09.371 [main] INFO  [o.s.b.w.s.c.ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 2693 ms
+2026-06-17 23:40:09.450 [main] DEBUG [c.c.permit.security.JwtAuthFilter] - Filter 'jwtAuthFilter' configured for use
+2026-06-17 23:40:09.593 [main] INFO  [o.h.jpa.internal.util.LogHelper] - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-06-17 23:40:09.672 [main] INFO  [org.hibernate.Version] - HHH000412: Hibernate ORM core version 6.4.4.Final
+2026-06-17 23:40:09.738 [main] INFO  [o.h.c.i.RegionFactoryInitiator] - HHH000026: Second-level cache disabled
+2026-06-17 23:40:10.063 [main] INFO  [o.s.o.j.p.SpringPersistenceUnitInfo] - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-06-17 23:40:10.097 [main] INFO  [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Starting...
+2026-06-17 23:40:10.336 [main] INFO  [com.zaxxer.hikari.pool.HikariPool] - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2c0dca15
+2026-06-17 23:40:10.341 [main] INFO  [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Start completed.
+2026-06-17 23:40:10.418 [main] WARN  [org.hibernate.orm.deprecation] - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-06-17 23:40:11.858 [main] INFO  [o.h.e.t.j.p.i.JtaPlatformInitiator] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-06-17 23:40:12.048 [main] INFO  [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-06-17 23:40:12.754 [main] WARN  [o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-06-17 23:40:12.787 [main] WARN  [o.s.b.a.s.s.UserDetailsServiceAutoConfiguration] - 
+
+Using generated security password: 134522f2-b8e4-4906-931c-4ebc4f0e30ba
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-06-17 23:40:13.241 [main] INFO  [o.s.s.web.DefaultSecurityFilterChain] - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@2e1003d9, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4e9d1119, org.springframework.security.web.context.SecurityContextHolderFilter@713c8cbb, org.springframework.security.web.header.HeaderWriterFilter@1315d910, org.springframework.web.filter.CorsFilter@5d1907fb, org.springframework.security.web.authentication.logout.LogoutFilter@72e5206, com.civicdesk.permit.security.JwtAuthFilter@7eeb38b2, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7053a864, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@282079b9, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6079d219, org.springframework.security.web.session.SessionManagementFilter@16422f27, org.springframework.security.web.access.ExceptionTranslationFilter@480f1311, org.springframework.security.web.access.intercept.AuthorizationFilter@313a3af8]
+2026-06-17 23:40:13.687 [main] INFO  [o.a.coyote.http11.Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8084"]
+2026-06-17 23:40:13.709 [main] INFO  [o.s.b.w.e.tomcat.TomcatWebServer] - Tomcat started on port 8084 (http) with context path ''
+2026-06-17 23:40:13.724 [main] INFO  [c.c.permit.PermitServiceApplication] - Started PermitServiceApplication in 8.087 seconds (process running for 8.757)
+2026-06-17 23:44:59.433 [http-nio-8084-exec-1] INFO  [o.a.c.c.C.[Tomcat].[localhost].[/]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-06-17 23:44:59.433 [http-nio-8084-exec-1] INFO  [o.s.web.servlet.DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
+2026-06-17 23:44:59.441 [http-nio-8084-exec-1] INFO  [o.s.web.servlet.DispatcherServlet] - Completed initialization in 8 ms
+2026-06-17 23:45:00.197 [http-nio-8084-exec-1] DEBUG [c.c.permit.security.JwtAuthFilter] - JWT auth: email=admin@civicdesk.gov role=ROLE_ADMIN userId=6
+2026-06-17 23:45:46.735 [http-nio-8084-exec-2] DEBUG [c.c.permit.security.JwtAuthFilter] - JWT auth: email=john.doe@example.com role=ROLE_CITIZEN userId=5
+2026-06-17 23:45:47.000 [http-nio-8084-exec-2] INFO  [c.c.permit.service.PermitService] - Permit applied: permitId=1 type=BUILDING_PERMIT userId=5
+2026-06-17 23:46:11.603 [http-nio-8084-exec-4] DEBUG [c.c.permit.security.JwtAuthFilter] - JWT auth: email=admin@civicdesk.gov role=ROLE_ADMIN userId=6
+2026-06-17 23:46:35.984 [http-nio-8084-exec-6] DEBUG [c.c.permit.security.JwtAuthFilter] - JWT auth: email=admin@civicdesk.gov role=ROLE_ADMIN userId=6
+2026-06-17 23:47:09.032 [http-nio-8084-exec-5] DEBUG [c.c.permit.security.JwtAuthFilter] - JWT auth: email=admin@civicdesk.gov role=ROLE_ADMIN userId=6
+2026-06-17 23:47:48.146 [http-nio-8084-exec-3] DEBUG [c.c.permit.security.JwtAuthFilter] - JWT auth: email=john.doe@example.com role=ROLE_CITIZEN userId=5
+2026-06-17 23:47:48.155 [http-nio-8084-exec-3] WARN  [c.c.p.e.GlobalExceptionHandler] - Message not readable: Required request body is missing: public org.springframework.http.ResponseEntity<com.civicdesk.permit.dto.ApiResponse<java.lang.Void>> com.civicdesk.permit.controller.PermitController.uploadDocument(java.lang.Long,java.util.Map<java.lang.String, java.lang.String>)
+2026-06-17 23:47:59.463 [http-nio-8084-exec-7] DEBUG [c.c.permit.security.JwtAuthFilter] - JWT auth: email=john.doe@example.com role=ROLE_CITIZEN userId=5
+2026-06-17 23:48:22.857 [http-nio-8084-exec-10] DEBUG [c.c.permit.security.JwtAuthFilter] - JWT auth: email=admin@civicdesk.gov role=ROLE_ADMIN userId=6
+2026-06-17 23:48:43.926 [http-nio-8084-exec-9] DEBUG [c.c.permit.security.JwtAuthFilter] - JWT auth: email=admin@civicdesk.gov role=ROLE_ADMIN userId=6
+2026-06-17 23:49:01.344 [http-nio-8084-exec-8] DEBUG [c.c.permit.security.JwtAuthFilter] - JWT auth: email=john.doe@example.com role=ROLE_CITIZEN userId=5
+2026-06-17 23:49:01.413 [http-nio-8084-exec-8] ERROR [c.c.p.e.GlobalExceptionHandler] - Bad request: Only APPROVED permits can be renewed. Current status: APPLIED
+2026-06-17 23:49:44.368 [SpringApplicationShutdownHook] INFO  [o.s.o.j.LocalContainerEntityManagerFactoryBean] - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-06-17 23:49:44.373 [SpringApplicationShutdownHook] INFO  [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown initiated...
+2026-06-17 23:49:44.393 [SpringApplicationShutdownHook] INFO  [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown completed.
