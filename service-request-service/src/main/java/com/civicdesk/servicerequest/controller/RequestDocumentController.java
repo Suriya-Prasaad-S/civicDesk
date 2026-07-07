@@ -3,6 +3,7 @@ package com.civicdesk.servicerequest.controller;
 import com.civicdesk.servicerequest.dto.ApiResponse;
 import com.civicdesk.servicerequest.dto.RequestDocumentResponse;
 import com.civicdesk.servicerequest.dto.VerifyDocumentRequest;
+import com.civicdesk.servicerequest.exception.BadRequestException;
 import com.civicdesk.servicerequest.security.JwtUserContext;
 import com.civicdesk.servicerequest.service.RequestDocumentService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/civicDesk/serviceRequest")
@@ -30,37 +32,38 @@ public class RequestDocumentController {
     @PostMapping("/uploadDocument/{requestId}")
     @PreAuthorize("hasAuthority('ROLE_CIT')")
     @Operation(summary = "Upload document for a service request — multipart/form-data")
-    public ResponseEntity<ApiResponse<RequestDocumentResponse>> uploadDocument(
+    public ResponseEntity<Map<String, String>> uploadDocument(
             @PathVariable Long requestId,
             @RequestParam("documentType") String documentType,
             @RequestParam("file") MultipartFile file) {
-        RequestDocumentResponse doc = documentService.uploadDocument(
+        RequestDocumentResponse res = documentService.uploadDocument(
                 requestId, documentType, file, JwtUserContext.getCurrentUserId());
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(ApiResponse.<RequestDocumentResponse>builder()
-                        .success(true).message("Document uploaded successfully. Document is pending officer verification.").data(doc).build());
+                .body(Map.of("message", res.getMessage()));
     }
 
     @GetMapping("/getDocuments/{requestId}")
     @PreAuthorize("isAuthenticated()")
     @Operation(summary = "Get all documents for a request")
-    public ResponseEntity<ApiResponse<List<RequestDocumentResponse>>> getDocuments(
+    public ResponseEntity<List<RequestDocumentResponse>> getDocuments(
             @PathVariable Long requestId) {
         List<RequestDocumentResponse> docs = documentService.getByRequestId(
                 requestId, JwtUserContext.getCurrentUserId(), JwtUserContext.getCurrentRole());
-        return ResponseEntity.ok(ApiResponse.<List<RequestDocumentResponse>>builder()
-                .success(true).message("Documents fetched").data(docs).build());
+        return ResponseEntity.ok(docs);
     }
 
     @PutMapping("/verifyDocument/{docId}")
     @PreAuthorize("hasAnyAuthority('ROLE_ADM','ROLE_DS','ROLE_FO')")
     @Operation(summary = "Verify a request document (Staff)")
-    public ResponseEntity<ApiResponse<RequestDocumentResponse>> verifyDocument(
+    public ResponseEntity<Map<String, String>> verifyDocument(
             @PathVariable Long docId,
             @Valid @RequestBody VerifyDocumentRequest request) {
-        RequestDocumentResponse updated = documentService.verifyDocument(docId, request.getVerificationStatus());
-        return ResponseEntity.ok(ApiResponse.<RequestDocumentResponse>builder()
-                .success(true).message("Document verified successfully. Document status has been updated to " + request.getVerificationStatus())
-                .data(updated).build());
+        if (request.getVerificationStatus() == null || 
+            request.getVerificationStatus() == com.civicdesk.servicerequest.enums.VerificationStatus.PENDING) {
+            throw new BadRequestException("Validation failed. verificationStatus must be Verified or Rejected.");
+        }
+        
+        RequestDocumentResponse res = documentService.verifyDocument(docId, request.getVerificationStatus());
+        return ResponseEntity.ok(Map.of("message", res.getMessage()));
     }
 }

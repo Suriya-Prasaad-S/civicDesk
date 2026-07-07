@@ -15,6 +15,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/civicDesk/serviceRequest")
@@ -28,65 +29,58 @@ public class ServiceRequestController {
     @PostMapping("/submitRequest")
     @PreAuthorize("hasAuthority('ROLE_CIT')")
     @Operation(summary = "Submit a new service request")
-    public ResponseEntity<ApiResponse<ServiceRequestResponse>> submitRequest(
+    public ResponseEntity<Map<String, String>> submitRequest(
             @Valid @RequestBody ServiceRequestCreateRequest request) {
-        ServiceRequestResponse response = requestService.submitRequest(request, JwtUserContext.getCurrentUserId());
+        ServiceRequestResponse res = requestService.submitRequest(request, JwtUserContext.getCurrentUserId());
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(ApiResponse.<ServiceRequestResponse>builder()
-                        .success(true).message("Service request submitted successfully").data(response).build());
+                .body(Map.of("message", res.getMessage()));
     }
 
     @GetMapping("/getAllRequests")
     @PreAuthorize("hasAnyAuthority('ROLE_ADM','ROLE_DS','ROLE_CO','ROLE_FO')")
     @Operation(summary = "Get all service requests (Staff)")
-    public ResponseEntity<ApiResponse<List<ServiceRequestResponse>>> getAll(
+    public ResponseEntity<List<ServiceRequestResponse>> getAll(
             @RequestParam(required = false) RequestStatus status) {
         List<ServiceRequestResponse> data = (status != null)
                 ? requestService.getByStatus(status)
                 : requestService.getAll();
-        return ResponseEntity.ok(ApiResponse.<List<ServiceRequestResponse>>builder()
-                .success(true).message("Requests fetched").data(data).build());
+        return ResponseEntity.ok(data);
     }
 
     @GetMapping("/getRequest/{requestId}")
     @PreAuthorize("isAuthenticated()")
     @Operation(summary = "Get service request by ID")
-    public ResponseEntity<ApiResponse<ServiceRequestResponse>> getById(@PathVariable Long requestId) {
+    public ResponseEntity<ServiceRequestResponse> getById(@PathVariable Long requestId) {
         ServiceRequestResponse response = requestService.getById(
                 requestId, JwtUserContext.getCurrentUserId(), JwtUserContext.getCurrentRole());
-        return ResponseEntity.ok(ApiResponse.<ServiceRequestResponse>builder()
-                .success(true).message("Request fetched").data(response).build());
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping("/getRequestsByCitizen/{citizenId}")
     @PreAuthorize("hasAnyAuthority('ROLE_CIT','ROLE_ADM','ROLE_DS')")
     @Operation(summary = "Get service requests by citizen ID")
-    public ResponseEntity<ApiResponse<List<ServiceRequestResponse>>> getByCitizen(
+    public ResponseEntity<List<ServiceRequestResponse>> getByCitizen(
             @PathVariable Long citizenId) {
-        return ResponseEntity.ok(ApiResponse.<List<ServiceRequestResponse>>builder()
-                .success(true).data(requestService.getMyRequests(citizenId)).build());
+        return ResponseEntity.ok(requestService.getMyRequests(citizenId));
     }
 
     @PutMapping("/updateRequestStatus/{requestId}")
     @PreAuthorize("hasAnyAuthority('ROLE_ADM','ROLE_DS','ROLE_FO')")
     @Operation(summary = "Update request status")
-    public ResponseEntity<ApiResponse<ServiceRequestResponse>> updateStatus(
+    public ResponseEntity<Map<String, String>> updateStatus(
             @PathVariable Long requestId,
             @Valid @RequestBody UpdateRequestStatusRequest request) {
-        ServiceRequestResponse updated = requestService.updateStatus(
+        ServiceRequestResponse res = requestService.updateStatus(
                 requestId, request.getStatus(), request.getRemarks(),
                 JwtUserContext.getCurrentUserId(), JwtUserContext.getCurrentRole());
-        return ResponseEntity.ok(ApiResponse.<ServiceRequestResponse>builder()
-                .success(true).message("Request status updated to " + request.getStatus()).data(updated).build());
+        return ResponseEntity.ok(Map.of("message", res.getMessage()));
     }
-
+ 
     @PostMapping("/getServiceRequestAnalytics")
     @PreAuthorize("hasAnyAuthority('ROLE_ADM','ROLE_DS','ROLE_CO','ROLE_FO')")
     @Operation(summary = "Get service request analytics for dashboards")
-    public ResponseEntity<ApiResponse<ServiceRequestAnalyticsResponse>> getServiceRequestAnalytics(
+    public ResponseEntity<ServiceRequestAnalyticsResponse> getServiceRequestAnalytics(
             @Valid @RequestBody ServiceRequestAnalyticsRequest request) {
-        return ResponseEntity.ok(ApiResponse.<ServiceRequestAnalyticsResponse>builder()
-                .success(true).message("Service request analytics fetched")
-                .data(requestService.getServiceRequestAnalytics(request)).build());
+        return ResponseEntity.ok(requestService.getServiceRequestAnalytics(request));
     }
 }

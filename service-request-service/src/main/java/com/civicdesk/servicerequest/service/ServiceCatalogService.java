@@ -37,7 +37,9 @@ public class ServiceCatalogService {
                 .build();
         ServiceCatalog saved = catalogRepository.save(catalog);
         log.info("Service created: serviceId={} name={}", saved.getServiceId(), saved.getServiceName());
-        return mapToResponse(saved);
+        ServiceCatalogResponse response = mapToResponse(saved);
+        response.setMessage("Service created successfully. New service has been added to the catalog.");
+        return response;
     }
 
     @Transactional
@@ -50,7 +52,9 @@ public class ServiceCatalogService {
         catalog.setRequiredDocuments(request.getRequiredDocuments() == null ? null : String.join(",", request.getRequiredDocuments()));
         catalog.setFee(request.getFee());
         log.info("Service updated: serviceId={}", serviceId);
-        return mapToResponse(catalogRepository.save(catalog));
+        ServiceCatalogResponse response = mapToResponse(catalogRepository.save(catalog));
+        response.setMessage("Service updated successfully.");
+        return response;
     }
 
     @Transactional
@@ -92,7 +96,7 @@ public class ServiceCatalogService {
 
     public ServiceCatalog getEntityById(Long serviceId) {
         return catalogRepository.findById(serviceId)
-                .orElseThrow(() -> new ResourceNotFoundException("Service not found with id: " + serviceId));
+                .orElseThrow(() -> new ResourceNotFoundException("Service not found. No service exists with the given serviceId."));
     }
 
     private ServiceCatalogResponse mapToResponse(ServiceCatalog s) {
