@@ -19,6 +19,8 @@ import com.civicdesk.citizen.util.NationalIdUtil;
 import com.civicdesk.citizen.util.SecurityContextUtil;
 import com.civicdesk.citizen.exception.BusinessRuleException;
 import com.civicdesk.citizen.exception.ForbiddenActionException;
+import com.civicdesk.citizen.client.AuthFeignClient;
+import com.civicdesk.citizen.dto.response.UserDto;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
@@ -41,15 +43,12 @@ import java.util.stream.Collectors;
 public class CitizenService {
 
     private final CitizenProfileRepository citizenRepository;
-    private final UserRepository userRepository;
-    private final AuthService authService;
+    private final AuthFeignClient authFeignClient;
 
     public CitizenService(CitizenProfileRepository citizenRepository,
-                          UserRepository userRepository,
-                          AuthService authService) {
+                          AuthFeignClient authFeignClient) {
         this.citizenRepository = citizenRepository;
-        this.userRepository = userRepository;
-        this.authService = authService;
+        this.authFeignClient = authFeignClient;
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -77,10 +76,12 @@ public class CitizenService {
         userReq.setEmail(req.getEmail());
         userReq.setPassword(req.getPassword());
         userReq.setPhone(req.getPhone());
-        authService.register(userReq, ip); // hashes password, role=CIT, status=A, dup-email check, audit
+        authFeignClient.register(userReq, ip); // delegates user creation to Auth Service
 
-        User user = userRepository.findByEmail(req.getEmail())
-                .orElseThrow(() -> new BusinessRuleException("User creation failed during registration"));
+        UserDto user = authFeignClient.getUserByEmail(req.getEmail());
+        if (user == null || user.getUserId() == null) {
+            throw new BusinessRuleException("User creation failed during registration");
+        }
 
         CitizenProfile profile = new CitizenProfile();
         profile.setUserId(user.getUserId());
@@ -105,7 +106,8 @@ public class CitizenService {
         String userId = currentUserId();
         CitizenProfile profile = citizenRepository.findById(userId)
                 .orElseThrow(() -> new ResourceNotFoundException("Citizen profile not found"));
-        return toProfileResponse(profile, userRepository.findById(userId).orElse(null));
+        UserDto user = authFeignClient.getUserById(userId);
+        return toProfileResponse(profile, user);
     }
 
     /** Updates the current citizen's mutable fields (address/ward/zone). */
@@ -225,8 +227,9 @@ public class CitizenService {
     /** Builds summaries, sourcing each citizen's name from {@code User} in a single batch query. */
     private List<CitizenSummaryResponse> toSummaries(List<CitizenProfile> profiles) {
         List<String> ids = profiles.stream().map(CitizenProfile::getUserId).toList();
-        Map<String, User> users = userRepository.findAllById(ids).stream()
-                .collect(Collectors.toMap(User::getUserId, Function.identity()));
+        List<UserDto> usersList = authFeignClient.getUsersByIds(ids);
+        Map<String, UserDto> users = (usersList == null ? List.<UserDto>of() : usersList).stream()
+            .collect(Collectors.toMap(UserDto::getUserId, Function.identity()));
         return profiles.stream()
                 .map(p -> new CitizenSummaryResponse(
                         p.getUserId(),
@@ -236,27 +239,27 @@ public class CitizenService {
                 .toList();
     }
 
-    private CitizenProfileResponse toProfileResponse(CitizenProfile p, User user) {
+        private CitizenProfileResponse toProfileResponse(CitizenProfile p, UserDto user) {
         return new CitizenProfileResponse(
-                p.getUserId(),
-                nameOf(user),
-                user == null ? null : user.getEmail(),
-                user == null ? null : user.getPhone(),
-                p.getDateOfBirth(),
-                p.getGender() == null ? null : p.getGender().name(),
-                maskNationalId(p.getNationalIdLast4()),
-                p.getAddress(),
-                p.getWard(),
-                p.getZone(),
-                p.getStatus().getCode(),
-                p.getVerifiedBy(),
-                p.getVerifiedAt(),
-                p.getCreatedAt());
-    }
+            p.getUserId(),
+            nameOf(user),
+            user == null ? null : user.getEmail(),
+            user == null ? null : user.getPhone(),
+            p.getDateOfBirth(),
+            p.getGender() == null ? null : p.getGender().name(),
+            maskNationalId(p.getNationalIdLast4()),
+            p.getAddress(),
+            p.getWard(),
+            p.getZone(),
+            p.getStatus().getCode(),
+            p.getVerifiedBy(),
+            p.getVerifiedAt(),
+            p.getCreatedAt());
+        }
 
-    private static String nameOf(User user) {
+        private static String nameOf(UserDto user) {
         return user == null ? null : user.getName();
-    }
+        }
 
     /** The last 4 characters of the national id (or the whole value if shorter). */
     private static String last4(String raw) {
