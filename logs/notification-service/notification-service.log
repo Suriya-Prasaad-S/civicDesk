@@ -182,3 +182,126 @@ This generated password is for development use only. Your security configuration
 2026-06-18 15:38:06 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
 2026-06-18 15:38:07 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
 2026-06-18 15:38:07 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-07-06 16:30:06 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+2026-07-06 16:30:06 [main] INFO  c.c.n.NotificationServiceApplication - Starting NotificationServiceApplication using Java 21.0.2 with PID 3056 (C:\Users\2506602\OneDrive - Cognizant\Desktop\civicDesk microservice\civicDesk\notification-service\target\classes started by 2506602 in C:\Users\2506602\OneDrive - Cognizant\Desktop\civicDesk microservice\civicDesk)
+2026-07-06 16:30:06 [main] INFO  c.c.n.NotificationServiceApplication - No active profile set, falling back to 1 default profile: "default"
+2026-07-06 16:30:08 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-07-06 16:30:08 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 90 ms. Found 1 JPA repository interface.
+2026-07-06 16:30:09 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8087 (http)
+2026-07-06 16:30:09 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8087"]
+2026-07-06 16:30:09 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-07-06 16:30:09 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.20]
+2026-07-06 16:30:09 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-07-06 16:30:09 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 3409 ms
+2026-07-06 16:30:10 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-07-06 16:30:10 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.4.Final
+2026-07-06 16:30:10 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-07-06 16:30:11 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-07-06 16:30:11 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-07-06 16:30:11 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@371cd2fc
+2026-07-06 16:30:11 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-07-06 16:30:12 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-07-06 16:30:13 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-07-06 16:30:13 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-07-06 16:30:14 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-07-06 16:30:15 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-07-06 16:30:15 [main] WARN  o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: 2327dd08-7af4-404e-9ebe-21fc394265c7
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-07-06 16:30:16 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@3612a60d, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6347ebbc, org.springframework.security.web.context.SecurityContextHolderFilter@267a0b6a, org.springframework.security.web.header.HeaderWriterFilter@672e4658, org.springframework.web.filter.CorsFilter@b61aa50, org.springframework.security.web.authentication.logout.LogoutFilter@65bc50c9, com.civicdesk.notification.security.JwtAuthFilter@1c30cb85, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@51039ec9, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@16575bfe, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@77c4aeb6, org.springframework.security.web.session.SessionManagementFilter@158e3a79, org.springframework.security.web.access.ExceptionTranslationFilter@6e212f38, org.springframework.security.web.access.intercept.AuthorizationFilter@19598b38]
+2026-07-06 16:30:16 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8087"]
+2026-07-06 16:30:17 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8087 (http) with context path ''
+2026-07-06 16:30:17 [main] INFO  c.c.n.NotificationServiceApplication - Started NotificationServiceApplication in 11.888 seconds (process running for 12.827)
+2026-07-06 16:30:23 [http-nio-8087-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-07-06 16:30:23 [http-nio-8087-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-07-06 16:30:23 [http-nio-8087-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2026-07-06 16:30:40 [http-nio-8087-exec-2] WARN  c.c.n.e.GlobalExceptionHandler - Message not readable: JSON parse error: Cannot deserialize value of type `com.civicdesk.notification.enums.NotificationType` from String "INFO": not one of the values accepted for Enum class: [SERVICE_REQUEST_UPDATE, SLA_BREACH_ALERT, WORK_ORDER_UPDATE, GRIEVANCE_UPDATE, SYSTEM_ALERT, PERMIT_UPDATE, GENERAL]
+2026-07-06 17:09:51 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=17m39s173ms30µs400ns).
+2026-07-06 17:23:35 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-07-06 17:23:35 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-07-06 17:23:35 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-07-06 17:24:38 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+2026-07-06 17:24:38 [main] INFO  c.c.n.NotificationServiceApplication - Starting NotificationServiceApplication using Java 21.0.2 with PID 4504 (C:\Users\2506602\OneDrive - Cognizant\Desktop\civicDesk microservice\civicDesk\notification-service\target\classes started by 2506602 in C:\Users\2506602\OneDrive - Cognizant\Desktop\civicDesk microservice\civicDesk)
+2026-07-06 17:24:38 [main] INFO  c.c.n.NotificationServiceApplication - No active profile set, falling back to 1 default profile: "default"
+2026-07-06 17:24:40 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-07-06 17:24:40 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 136 ms. Found 1 JPA repository interface.
+2026-07-06 17:24:41 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8087 (http)
+2026-07-06 17:24:41 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8087"]
+2026-07-06 17:24:41 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-07-06 17:24:41 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.20]
+2026-07-06 17:24:42 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-07-06 17:24:42 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 3451 ms
+2026-07-06 17:24:42 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-07-06 17:24:42 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.4.Final
+2026-07-06 17:24:42 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-07-06 17:24:42 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-07-06 17:24:42 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-07-06 17:24:43 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2ec5cc14
+2026-07-06 17:24:43 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-07-06 17:24:43 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-07-06 17:24:44 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-07-06 17:24:45 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-07-06 17:24:45 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-07-06 17:24:46 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-07-06 17:24:46 [main] WARN  o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: 8ba960cd-38c2-4c46-a043-ecf411586dfa
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-07-06 17:24:47 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@c52c362, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7f794b0f, org.springframework.security.web.context.SecurityContextHolderFilter@336b7da4, org.springframework.security.web.header.HeaderWriterFilter@31048b3d, org.springframework.web.filter.CorsFilter@efe75a2, org.springframework.security.web.authentication.logout.LogoutFilter@3d287f7c, com.civicdesk.notification.security.JwtAuthFilter@7634f2b, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1e79b0fc, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@36e8fefe, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@a49cdd6, org.springframework.security.web.session.SessionManagementFilter@5e81b406, org.springframework.security.web.access.ExceptionTranslationFilter@f3ae18f, org.springframework.security.web.access.intercept.AuthorizationFilter@5cd5e1b6]
+2026-07-06 17:24:47 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8087"]
+2026-07-06 17:24:47 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8087 (http) with context path ''
+2026-07-06 17:24:47 [main] INFO  c.c.n.NotificationServiceApplication - Started NotificationServiceApplication in 10.425 seconds (process running for 11.272)
+2026-07-06 17:26:21 [http-nio-8087-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-07-06 17:26:21 [http-nio-8087-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-07-06 17:26:21 [http-nio-8087-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 3 ms
+2026-07-06 17:40:51 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=6m38s97ms868µs600ns).
+2026-07-06 18:02:59 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-07-06 18:02:59 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-07-06 18:02:59 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-07-06 18:03:12 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+2026-07-06 18:03:13 [main] INFO  c.c.n.NotificationServiceApplication - Starting NotificationServiceApplication using Java 21.0.2 with PID 31532 (C:\Users\2506602\OneDrive - Cognizant\Desktop\civicDesk microservice\civicDesk\notification-service\target\classes started by 2506602 in C:\Users\2506602\OneDrive - Cognizant\Desktop\civicDesk microservice\civicDesk)
+2026-07-06 18:03:13 [main] INFO  c.c.n.NotificationServiceApplication - No active profile set, falling back to 1 default profile: "default"
+2026-07-06 18:03:14 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-07-06 18:03:15 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 162 ms. Found 1 JPA repository interface.
+2026-07-06 18:03:16 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8087 (http)
+2026-07-06 18:03:16 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8087"]
+2026-07-06 18:03:16 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-07-06 18:03:16 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.20]
+2026-07-06 18:03:16 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-07-06 18:03:16 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 3783 ms
+2026-07-06 18:03:17 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-07-06 18:03:17 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.4.Final
+2026-07-06 18:03:17 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-07-06 18:03:18 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-07-06 18:03:18 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-07-06 18:03:19 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@69d667a5
+2026-07-06 18:03:19 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-07-06 18:03:19 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-07-06 18:03:21 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-07-06 18:03:21 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-07-06 18:03:22 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-07-06 18:03:24 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-07-06 18:03:24 [main] WARN  o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: cc582cd0-4664-4220-83c2-86dff1acaa8d
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-07-06 18:03:25 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@2a3251ad, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@457547a1, org.springframework.security.web.context.SecurityContextHolderFilter@2f4c83f1, org.springframework.security.web.header.HeaderWriterFilter@1b914e36, org.springframework.web.filter.CorsFilter@795ce9b5, org.springframework.security.web.authentication.logout.LogoutFilter@6dd8ac29, com.civicdesk.notification.security.JwtAuthFilter@6010d0d1, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@537e52de, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@59eff566, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@280cb0b4, org.springframework.security.web.session.SessionManagementFilter@5f455d91, org.springframework.security.web.access.ExceptionTranslationFilter@5f6dd89c, org.springframework.security.web.access.intercept.AuthorizationFilter@52b7a3e1]
+2026-07-06 18:03:25 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8087"]
+2026-07-06 18:03:26 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8087 (http) with context path ''
+2026-07-06 18:03:26 [main] INFO  c.c.n.NotificationServiceApplication - Started NotificationServiceApplication in 14.063 seconds (process running for 14.94)
+2026-07-06 18:06:33 [http-nio-8087-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-07-06 18:06:33 [http-nio-8087-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-07-06 18:06:33 [http-nio-8087-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 0 ms
+2026-07-06 18:06:35 [http-nio-8087-exec-1] INFO  c.c.n.service.NotificationService - Notification sent: id=1 userId=10000005 type=PERMIT_UPDATE
+2026-07-06 18:14:59 [http-nio-8087-exec-3] INFO  c.c.n.service.NotificationService - Notification sent: id=2 userId=10000005 type=PERMIT_UPDATE
+2026-07-06 18:15:21 [http-nio-8087-exec-4] INFO  c.c.n.service.NotificationService - Notification sent: id=3 userId=10000005 type=PERMIT_UPDATE
+2026-07-06 18:18:02 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-07-06 18:18:02 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-07-06 18:18:02 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
