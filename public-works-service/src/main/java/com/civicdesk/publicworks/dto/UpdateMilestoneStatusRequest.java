@@ -5,7 +5,9 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class AssignContractorRequest {
+public class UpdateMilestoneStatusRequest {
 
-    private String assignedContractorId;
+    private String status;
+
+    private String remarks;
 }

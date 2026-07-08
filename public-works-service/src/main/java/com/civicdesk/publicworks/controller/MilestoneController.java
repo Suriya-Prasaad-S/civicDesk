@@ -1,9 +1,6 @@
 package com.civicdesk.publicworks.controller;
-
-import com.civicdesk.publicworks.dto.ApiResponse;
-import com.civicdesk.publicworks.dto.MilestoneRequest;
-import com.civicdesk.publicworks.dto.MilestoneResponse;
-import com.civicdesk.publicworks.dto.MilestoneUpdateRequest;
+import com.civicdesk.publicworks.dto.DelayedMilestoneResponse;
+import com.civicdesk.publicworks.dto.*;
 import com.civicdesk.publicworks.security.JwtUserContext;
 import com.civicdesk.publicworks.service.WorkOrderService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -26,12 +23,12 @@ public class MilestoneController {
 
     private final WorkOrderService workOrderService;
 
-    @PostMapping("/{workOrderId}/milestones/create")
+    @PostMapping("/{workOrderId}/milestones/createMilestone")
     @PreAuthorize("hasAnyRole('ENG','DS','ADM')")
     @Operation(summary = "Create milestone for a work order")
     public ResponseEntity<ApiResponse<MilestoneResponse>> add(
             @PathVariable Long workOrderId,
-            @Valid @RequestBody MilestoneRequest request) {
+            @Valid @RequestBody CreateMilestoneRequest request) {
         MilestoneResponse response = workOrderService.addMilestone(workOrderId, request);
         return ResponseEntity.status(org.springframework.http.HttpStatus.CREATED)
                 .body(ApiResponse.<MilestoneResponse>builder()
@@ -62,10 +59,12 @@ public class MilestoneController {
     public ResponseEntity<ApiResponse<MilestoneResponse>> update(
             @PathVariable Long workOrderId,
             @PathVariable Long milestoneId,
-            @Valid @RequestBody MilestoneUpdateRequest request) {
+            @Valid @RequestBody UpdateMilestoneRequest request) {
         Long userId = JwtUserContext.getCurrentUserId();
         String role = JwtUserContext.getCurrentRole();
-        MilestoneResponse response = workOrderService.updateMilestone(milestoneId, request, userId, role);
+        MilestoneResponse response = workOrderService.updateMilestone(
+                milestoneId,
+                request);
         return ResponseEntity.ok(ApiResponse.<MilestoneResponse>builder()
                 .success(true).message("Milestone updated.").data(response).build());
     }
@@ -76,29 +75,33 @@ public class MilestoneController {
     public ResponseEntity<ApiResponse<MilestoneResponse>> complete(
             @PathVariable Long workOrderId,
             @PathVariable Long milestoneId,
-            @Valid @RequestBody MilestoneUpdateRequest request) {
+            @Valid @RequestBody CompleteMilestoneRequest request) {
         Long userId = JwtUserContext.getCurrentUserId();
         String role = JwtUserContext.getCurrentRole();
-        MilestoneResponse response = workOrderService.updateMilestone(milestoneId, request, userId, role);
+        MilestoneResponse response = workOrderService.completeMilestone(
+                milestoneId,
+                request);
         return ResponseEntity.ok(ApiResponse.<MilestoneResponse>builder()
                 .success(true).message("Milestone completed.").data(response).build());
     }
 
-    @PutMapping("/{workOrderId}/milestones/{milestoneId}/status")
+    @PutMapping("/{workOrderId}/milestones/{milestoneId}/updateStatus")
     @PreAuthorize("hasAnyRole('FO','ENG','DS','ADM')")
     @Operation(summary = "Update milestone status")
     public ResponseEntity<ApiResponse<MilestoneResponse>> updateStatus(
             @PathVariable Long workOrderId,
             @PathVariable Long milestoneId,
-            @Valid @RequestBody MilestoneUpdateRequest request) {
+            @Valid @RequestBody UpdateMilestoneStatusRequest request) {
         Long userId = JwtUserContext.getCurrentUserId();
         String role = JwtUserContext.getCurrentRole();
-        MilestoneResponse response = workOrderService.updateMilestone(milestoneId, request, userId, role);
+        MilestoneResponse response = workOrderService.updateMilestoneStatus(
+                milestoneId,
+                request);
         return ResponseEntity.ok(ApiResponse.<MilestoneResponse>builder()
                 .success(true).message("Milestone status updated.").data(response).build());
     }
 
-    @DeleteMapping("/{workOrderId}/milestones/{milestoneId}/delete")
+    @PutMapping("/{workOrderId}/milestones/{milestoneId}/delete")
     @PreAuthorize("hasAnyRole('ENG','DS','ADM')")
     @Operation(summary = "Soft-delete a milestone")
     public ResponseEntity<ApiResponse<Void>> deleteMilestone(
@@ -109,11 +112,16 @@ public class MilestoneController {
                 .success(true).message("Milestone deleted successfully").build());
     }
 
-    @GetMapping("/delayed-milestones")
+    @GetMapping("/delayedMilestones")
     @PreAuthorize("hasAnyRole('DS','CO','ADM')")
     @Operation(summary = "Get delayed milestones")
-    public ResponseEntity<ApiResponse<List<MilestoneResponse>>> getDelayed() {
-        return ResponseEntity.ok(ApiResponse.<List<MilestoneResponse>>builder()
-                .success(true).data(workOrderService.getDelayedMilestones()).build());
+    public ResponseEntity<ApiResponse<List<DelayedMilestoneResponse>>> getDelayed() {
+
+        return ResponseEntity.ok(
+                ApiResponse.<List<DelayedMilestoneResponse>>builder()
+                        .success(true)
+                        .message("Delayed milestones fetched successfully")
+                        .data(workOrderService.getDelayedMilestones())
+                        .build());
     }
 }
