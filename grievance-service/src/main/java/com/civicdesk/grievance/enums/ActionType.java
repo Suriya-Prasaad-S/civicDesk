@@ -1,12 +1,21 @@
 package com.civicdesk.grievance.enums;
 
+/**
+ * Kind of timeline entry in {@code grievance_actions}, stored and exposed as short codes:
+ * <pre>
+ *   WK = WORK        — manual work entry (officer / supervisor); editable while not Completed
+ *   AS = ASSIGNMENT  — supervisor assigned / reassigned a field officer
+ *   RV = REVIEW      — field officer sent work for supervisor review
+ *   RS = RESOLVE     — supervisor marked resolved
+ *   CL = CLOSE       — citizen closed
+ *   RP = REOPEN      — citizen reopened
+ * </pre>
+ */
 public enum ActionType {
-    SUBMITTED,
-    ASSIGNED,
-    STATUS_UPDATED,
-    ESCALATED,
-    RESOLVED,
-    CLOSED,
-    REJECTED,
-    COMMENT
+    WK,
+    AS,
+    RV,
+    RS,
+    CL,
+    RP
 }
