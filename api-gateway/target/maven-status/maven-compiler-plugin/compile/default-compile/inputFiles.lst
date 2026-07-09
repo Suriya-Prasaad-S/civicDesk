@@ -1,6 +1,0 @@
-C:\Project\civicdesk (1)\api-gateway\src\main\java\com\civicdesk\gateway\filter\LoggingFilter.java
-C:\Project\civicdesk (1)\api-gateway\src\main\java\com\civicdesk\gateway\config\GatewayConfig.java
-C:\Project\civicdesk (1)\api-gateway\src\main\java\com\civicdesk\gateway\config\OpenApiConfig.java
-C:\Project\civicdesk (1)\api-gateway\src\main\java\com\civicdesk\gateway\ApiGatewayApplication.java
-C:\Project\civicdesk (1)\api-gateway\src\main\java\com\civicdesk\gateway\security\JwtTokenProvider.java
-C:\Project\civicdesk (1)\api-gateway\src\main\java\com\civicdesk\gateway\filter\JwtAuthenticationFilter.java
