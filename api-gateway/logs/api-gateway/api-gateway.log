@@ -1,0 +1,1040 @@
+2026-07-03 09:48:12 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+2026-07-03 09:48:12 [main] INFO  c.c.gateway.ApiGatewayApplication - Starting ApiGatewayApplication using Java 21.0.2 with PID 26720 (C:\Project\civicdesk (1)\api-gateway\target\classes started by 2506608 in C:\Project\civicdesk (1)\api-gateway)
+2026-07-03 09:48:12 [main] INFO  c.c.gateway.ApiGatewayApplication - No active profile set, falling back to 1 default profile: "default"
+2026-07-03 09:48:14 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=ecba11d8-380f-358e-85e4-0c6ec30a760e
+2026-07-03 09:48:16 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [After]
+2026-07-03 09:48:16 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Before]
+2026-07-03 09:48:16 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Between]
+2026-07-03 09:48:16 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Cookie]
+2026-07-03 09:48:16 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Header]
+2026-07-03 09:48:16 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Host]
+2026-07-03 09:48:16 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Method]
+2026-07-03 09:48:16 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Path]
+2026-07-03 09:48:16 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Query]
+2026-07-03 09:48:16 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [ReadBody]
+2026-07-03 09:48:16 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [RemoteAddr]
+2026-07-03 09:48:16 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [XForwardedRemoteAddr]
+2026-07-03 09:48:16 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Weight]
+2026-07-03 09:48:16 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [CloudFoundryRouteService]
+2026-07-03 09:48:17 [main] INFO  o.s.b.w.e.netty.NettyWebServer - Netty started on port 9090
+2026-07-03 09:48:17 [main] INFO  c.c.gateway.ApiGatewayApplication - Started ApiGatewayApplication in 5.862 seconds (process running for 6.65)
+2026-07-03 09:49:38 [reactor-http-nio-5] INFO  c.c.gateway.filter.LoggingFilter - Gateway → POST /civicDesk/iam/auth/register [from /0:0:0:0:0:0:0:1]
+2026-07-03 09:49:40 [reactor-http-nio-5] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 201 CREATED /civicDesk/iam/auth/register 2189ms
+2026-07-03 09:57:36 [reactor-http-nio-7] INFO  c.c.gateway.filter.LoggingFilter - Gateway → POST /civicDesk/iam/auth/staff/login [from /0:0:0:0:0:0:0:1]
+2026-07-03 09:57:36 [reactor-http-nio-7] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 200 OK /civicDesk/iam/auth/staff/login 773ms
+2026-07-03 10:01:06 [reactor-http-nio-11] INFO  c.c.gateway.filter.LoggingFilter - Gateway → POST /civicDesk/iam/users [from /0:0:0:0:0:0:0:1]
+2026-07-03 10:01:07 [reactor-http-nio-11] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 409 CONFLICT /civicDesk/iam/users 504ms
+2026-07-03 10:01:19 [reactor-http-nio-11] INFO  c.c.gateway.filter.LoggingFilter - Gateway → POST /civicDesk/iam/users [from /0:0:0:0:0:0:0:1]
+2026-07-03 10:01:19 [reactor-http-nio-11] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 201 CREATED /civicDesk/iam/users 149ms
+2026-07-03 10:03:06 [reactor-http-nio-1] INFO  c.c.gateway.filter.LoggingFilter - Gateway → POST /civicDesk/iam/users [from /0:0:0:0:0:0:0:1]
+2026-07-03 10:03:06 [reactor-http-nio-1] ERROR o.s.b.a.w.r.e.AbstractErrorWebExceptionHandler - [0a671f07-6]  500 Server Error for HTTP POST "/civicDesk/iam/users"
+io.netty.channel.AbstractChannel$AnnotatedConnectException: Connection refused: getsockopt: localhost/127.0.0.1:8081
+	Suppressed: reactor.core.publisher.FluxOnAssembly$OnAssemblyException: 
+Error has been observed at the following site(s):
+	*__checkpoint ⇢ org.springframework.cloud.gateway.filter.WeightCalculatorWebFilter [DefaultWebFilterChain]
+	*__checkpoint ⇢ HTTP POST "/civicDesk/iam/users" [ExceptionHandlingWebHandler]
+Original Stack Trace:
+Caused by: java.net.ConnectException: Connection refused: getsockopt
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:682)
+	at java.base/sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:973)
+	at io.netty.channel.socket.nio.NioSocketChannel.doFinishConnect(NioSocketChannel.java:337)
+	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.finishConnect(AbstractNioChannel.java:339)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:776)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:724)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:650)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2026-07-03 10:03:06 [reactor-http-nio-1] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 500 INTERNAL_SERVER_ERROR /civicDesk/iam/users 41ms
+2026-07-03 10:03:32 [reactor-http-nio-1] INFO  c.c.gateway.filter.LoggingFilter - Gateway → GET /civicDesk/iam/users [from /0:0:0:0:0:0:0:1]
+2026-07-03 10:03:32 [reactor-http-nio-1] ERROR o.s.b.a.w.r.e.AbstractErrorWebExceptionHandler - [0a671f07-7]  500 Server Error for HTTP GET "/civicDesk/iam/users"
+io.netty.channel.AbstractChannel$AnnotatedConnectException: Connection refused: getsockopt: localhost/127.0.0.1:8081
+	Suppressed: reactor.core.publisher.FluxOnAssembly$OnAssemblyException: 
+Error has been observed at the following site(s):
+	*__checkpoint ⇢ org.springframework.cloud.gateway.filter.WeightCalculatorWebFilter [DefaultWebFilterChain]
+	*__checkpoint ⇢ HTTP GET "/civicDesk/iam/users" [ExceptionHandlingWebHandler]
+Original Stack Trace:
+Caused by: java.net.ConnectException: Connection refused: getsockopt
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:682)
+	at java.base/sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:973)
+	at io.netty.channel.socket.nio.NioSocketChannel.doFinishConnect(NioSocketChannel.java:337)
+	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.finishConnect(AbstractNioChannel.java:339)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:776)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:724)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:650)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2026-07-03 10:03:32 [reactor-http-nio-1] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 500 INTERNAL_SERVER_ERROR /civicDesk/iam/users 18ms
+2026-07-03 10:16:01 [reactor-http-nio-2] INFO  c.c.gateway.filter.LoggingFilter - Gateway → POST /civicDesk/iam/auth/staff/login [from /0:0:0:0:0:0:0:1]
+2026-07-03 10:16:02 [reactor-http-nio-2] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 200 OK /civicDesk/iam/auth/staff/login 645ms
+2026-07-03 10:16:12 [reactor-http-nio-2] INFO  c.c.gateway.filter.LoggingFilter - Gateway → POST /civicDesk/iam/auth/staff/login [from /0:0:0:0:0:0:0:1]
+2026-07-03 10:16:12 [reactor-http-nio-2] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 200 OK /civicDesk/iam/auth/staff/login 160ms
+2026-07-03 10:16:12 [reactor-http-nio-2] INFO  c.c.gateway.filter.LoggingFilter - Gateway → POST /civicDesk/iam/auditLogs [from /0:0:0:0:0:0:0:1]
+2026-07-03 10:16:12 [reactor-http-nio-2] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 200 OK /civicDesk/iam/auditLogs 90ms
+2026-07-03 10:16:29 [reactor-http-nio-2] INFO  c.c.gateway.filter.LoggingFilter - Gateway → POST /civicDesk/iam/auth/staff/login [from /0:0:0:0:0:0:0:1]
+2026-07-03 10:16:29 [reactor-http-nio-2] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 200 OK /civicDesk/iam/auth/staff/login 107ms
+2026-07-03 10:16:29 [reactor-http-nio-2] INFO  c.c.gateway.filter.LoggingFilter - Gateway → GET /civicDesk/iam/auditLogs [from /0:0:0:0:0:0:0:1]
+2026-07-03 10:16:29 [reactor-http-nio-2] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 200 OK /civicDesk/iam/auditLogs 46ms
+2026-07-03 10:17:38 [reactor-http-nio-4] INFO  c.c.gateway.filter.LoggingFilter - Gateway → GET /civicDesk/iam/users [from /0:0:0:0:0:0:0:1]
+2026-07-03 10:17:38 [reactor-http-nio-4] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 200 OK /civicDesk/iam/users 96ms
+2026-07-03 10:22:02 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+2026-07-03 10:22:02 [main] INFO  c.c.gateway.ApiGatewayApplication - Starting ApiGatewayApplication using Java 21.0.2 with PID 28140 (C:\Project\civicdesk (1)\api-gateway\target\classes started by 2506608 in C:\Project\civicdesk (1)\api-gateway)
+2026-07-03 10:22:02 [main] INFO  c.c.gateway.ApiGatewayApplication - No active profile set, falling back to 1 default profile: "default"
+2026-07-03 10:22:03 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=ecba11d8-380f-358e-85e4-0c6ec30a760e
+2026-07-03 10:22:05 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [After]
+2026-07-03 10:22:05 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Before]
+2026-07-03 10:22:05 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Between]
+2026-07-03 10:22:05 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Cookie]
+2026-07-03 10:22:05 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Header]
+2026-07-03 10:22:05 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Host]
+2026-07-03 10:22:05 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Method]
+2026-07-03 10:22:05 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Path]
+2026-07-03 10:22:05 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Query]
+2026-07-03 10:22:05 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [ReadBody]
+2026-07-03 10:22:05 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [RemoteAddr]
+2026-07-03 10:22:05 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [XForwardedRemoteAddr]
+2026-07-03 10:22:05 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Weight]
+2026-07-03 10:22:05 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [CloudFoundryRouteService]
+2026-07-03 10:22:05 [main] INFO  o.s.b.w.e.netty.NettyWebServer - Netty started on port 9090
+2026-07-03 10:22:06 [main] INFO  c.c.gateway.ApiGatewayApplication - Started ApiGatewayApplication in 3.726 seconds (process running for 4.19)
+2026-07-03 10:34:46 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+2026-07-03 10:34:46 [main] INFO  c.c.gateway.ApiGatewayApplication - Starting ApiGatewayApplication using Java 21.0.2 with PID 21076 (C:\Project\civicdesk (1)\api-gateway\target\classes started by 2506608 in C:\Project\civicdesk (1)\api-gateway)
+2026-07-03 10:34:46 [main] INFO  c.c.gateway.ApiGatewayApplication - No active profile set, falling back to 1 default profile: "default"
+2026-07-03 10:34:47 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=ecba11d8-380f-358e-85e4-0c6ec30a760e
+2026-07-03 10:34:48 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [After]
+2026-07-03 10:34:48 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Before]
+2026-07-03 10:34:48 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Between]
+2026-07-03 10:34:48 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Cookie]
+2026-07-03 10:34:48 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Header]
+2026-07-03 10:34:48 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Host]
+2026-07-03 10:34:48 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Method]
+2026-07-03 10:34:48 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Path]
+2026-07-03 10:34:48 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Query]
+2026-07-03 10:34:48 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [ReadBody]
+2026-07-03 10:34:48 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [RemoteAddr]
+2026-07-03 10:34:48 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [XForwardedRemoteAddr]
+2026-07-03 10:34:48 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Weight]
+2026-07-03 10:34:48 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [CloudFoundryRouteService]
+2026-07-03 10:34:49 [main] INFO  o.s.b.w.e.netty.NettyWebServer - Netty started on port 9090
+2026-07-03 10:34:49 [main] INFO  c.c.gateway.ApiGatewayApplication - Started ApiGatewayApplication in 3.491 seconds (process running for 3.861)
+2026-07-03 10:35:33 [reactor-http-nio-2] INFO  c.c.gateway.filter.LoggingFilter - Gateway → POST /civicDesk/iam/auth/staff/login [from /0:0:0:0:0:0:0:1]
+2026-07-03 10:35:33 [reactor-http-nio-2] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 200 OK /civicDesk/iam/auth/staff/login 306ms
+2026-07-03 10:35:33 [reactor-http-nio-2] INFO  c.c.gateway.filter.LoggingFilter - Gateway → POST /civicDesk/audit/auditLogs [from /0:0:0:0:0:0:0:1]
+2026-07-03 10:35:34 [reactor-http-nio-2] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 200 OK /civicDesk/audit/auditLogs 135ms
+2026-07-03 10:35:51 [reactor-http-nio-4] INFO  c.c.gateway.filter.LoggingFilter - Gateway → POST /civicDesk/iam/auth/staff/login [from /0:0:0:0:0:0:0:1]
+2026-07-03 10:35:52 [reactor-http-nio-4] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 200 OK /civicDesk/iam/auth/staff/login 272ms
+2026-07-03 10:36:10 [reactor-http-nio-4] INFO  c.c.gateway.filter.LoggingFilter - Gateway → GET /civicDesk/audit/auditLogs [from /0:0:0:0:0:0:0:1]
+2026-07-03 10:36:10 [reactor-http-nio-4] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 200 OK /civicDesk/audit/auditLogs 131ms
+2026-07-03 10:36:45 [reactor-http-nio-4] INFO  c.c.gateway.filter.LoggingFilter - Gateway → GET /civicDesk/audit/auditLogs/10000021 [from /0:0:0:0:0:0:0:1]
+2026-07-03 10:36:45 [reactor-http-nio-4] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 500 INTERNAL_SERVER_ERROR /civicDesk/audit/auditLogs/10000021 34ms
+2026-07-03 10:36:52 [reactor-http-nio-4] INFO  c.c.gateway.filter.LoggingFilter - Gateway → GET /civicDesk/audit/auditLogs/10000021 [from /0:0:0:0:0:0:0:1]
+2026-07-03 10:36:52 [reactor-http-nio-4] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 500 INTERNAL_SERVER_ERROR /civicDesk/audit/auditLogs/10000021 25ms
+2026-07-03 10:37:05 [reactor-http-nio-4] INFO  c.c.gateway.filter.LoggingFilter - Gateway → GET /civicDesk/audit/auditLogs/10000021 [from /0:0:0:0:0:0:0:1]
+2026-07-03 10:37:05 [reactor-http-nio-4] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 500 INTERNAL_SERVER_ERROR /civicDesk/audit/auditLogs/10000021 25ms
+2026-07-03 10:38:11 [reactor-http-nio-5] INFO  c.c.gateway.filter.LoggingFilter - Gateway → POST /civicDesk/iam/auth/staff/login [from /0:0:0:0:0:0:0:1]
+2026-07-03 10:38:11 [reactor-http-nio-5] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 200 OK /civicDesk/iam/auth/staff/login 110ms
+2026-07-03 10:38:11 [reactor-http-nio-5] INFO  c.c.gateway.filter.LoggingFilter - Gateway → GET /civicDesk/audit/auditLogs/10000021 [from /0:0:0:0:0:0:0:1]
+2026-07-03 10:38:11 [reactor-http-nio-5] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 500 INTERNAL_SERVER_ERROR /civicDesk/audit/auditLogs/10000021 11ms
+2026-07-03 10:38:23 [reactor-http-nio-8] INFO  c.c.gateway.filter.LoggingFilter - Gateway → GET /analytics-service/api-docs [from /0:0:0:0:0:0:0:1]
+2026-07-03 10:38:23 [reactor-http-nio-8] ERROR o.s.b.a.w.r.e.AbstractErrorWebExceptionHandler - [d8d15e5d-19]  500 Server Error for HTTP GET "/analytics-service/api-docs"
+io.netty.channel.AbstractChannel$AnnotatedConnectException: Connection refused: getsockopt: localhost/127.0.0.1:8088
+	Suppressed: reactor.core.publisher.FluxOnAssembly$OnAssemblyException: 
+Error has been observed at the following site(s):
+	*__checkpoint ⇢ org.springframework.cloud.gateway.filter.WeightCalculatorWebFilter [DefaultWebFilterChain]
+	*__checkpoint ⇢ HTTP GET "/analytics-service/api-docs" [ExceptionHandlingWebHandler]
+Original Stack Trace:
+Caused by: java.net.ConnectException: Connection refused: getsockopt
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:682)
+	at java.base/sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:973)
+	at io.netty.channel.socket.nio.NioSocketChannel.doFinishConnect(NioSocketChannel.java:337)
+	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.finishConnect(AbstractNioChannel.java:339)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:776)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:724)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:650)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2026-07-03 10:38:23 [reactor-http-nio-8] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 500 INTERNAL_SERVER_ERROR /analytics-service/api-docs 131ms
+2026-07-03 10:39:27 [reactor-http-nio-8] INFO  c.c.gateway.filter.LoggingFilter - Gateway → GET /auth-service/api-docs [from /0:0:0:0:0:0:0:1]
+2026-07-03 10:39:27 [reactor-http-nio-8] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 404 NOT_FOUND /auth-service/api-docs 9ms
+2026-07-03 10:39:39 [reactor-http-nio-8] INFO  c.c.gateway.filter.LoggingFilter - Gateway → GET /citizen-service/api-docs [from /0:0:0:0:0:0:0:1]
+2026-07-03 10:39:39 [reactor-http-nio-8] ERROR o.s.b.a.w.r.e.AbstractErrorWebExceptionHandler - [d8d15e5d-21]  500 Server Error for HTTP GET "/citizen-service/api-docs"
+io.netty.channel.AbstractChannel$AnnotatedConnectException: Connection refused: getsockopt: localhost/127.0.0.1:8082
+	Suppressed: reactor.core.publisher.FluxOnAssembly$OnAssemblyException: 
+Error has been observed at the following site(s):
+	*__checkpoint ⇢ org.springframework.cloud.gateway.filter.WeightCalculatorWebFilter [DefaultWebFilterChain]
+	*__checkpoint ⇢ HTTP GET "/citizen-service/api-docs" [ExceptionHandlingWebHandler]
+Original Stack Trace:
+Caused by: java.net.ConnectException: Connection refused: getsockopt
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:682)
+	at java.base/sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:973)
+	at io.netty.channel.socket.nio.NioSocketChannel.doFinishConnect(NioSocketChannel.java:337)
+	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.finishConnect(AbstractNioChannel.java:339)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:776)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:724)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:650)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2026-07-03 10:39:39 [reactor-http-nio-8] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 500 INTERNAL_SERVER_ERROR /citizen-service/api-docs 7ms
+2026-07-03 10:39:41 [reactor-http-nio-8] INFO  c.c.gateway.filter.LoggingFilter - Gateway → GET /analytics-service/api-docs [from /0:0:0:0:0:0:0:1]
+2026-07-03 10:39:41 [reactor-http-nio-8] ERROR o.s.b.a.w.r.e.AbstractErrorWebExceptionHandler - [d8d15e5d-22]  500 Server Error for HTTP GET "/analytics-service/api-docs"
+io.netty.channel.AbstractChannel$AnnotatedConnectException: Connection refused: getsockopt: localhost/127.0.0.1:8088
+	Suppressed: reactor.core.publisher.FluxOnAssembly$OnAssemblyException: 
+Error has been observed at the following site(s):
+	*__checkpoint ⇢ org.springframework.cloud.gateway.filter.WeightCalculatorWebFilter [DefaultWebFilterChain]
+	*__checkpoint ⇢ HTTP GET "/analytics-service/api-docs" [ExceptionHandlingWebHandler]
+Original Stack Trace:
+Caused by: java.net.ConnectException: Connection refused: getsockopt
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:682)
+	at java.base/sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:973)
+	at io.netty.channel.socket.nio.NioSocketChannel.doFinishConnect(NioSocketChannel.java:337)
+	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.finishConnect(AbstractNioChannel.java:339)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:776)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:724)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:650)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2026-07-03 10:39:41 [reactor-http-nio-8] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 500 INTERNAL_SERVER_ERROR /analytics-service/api-docs 4ms
+2026-07-03 10:40:29 [reactor-http-nio-12] INFO  c.c.gateway.filter.LoggingFilter - Gateway → POST /civicDesk/iam/auth/setPassword [from /0:0:0:0:0:0:0:1]
+2026-07-03 10:40:29 [reactor-http-nio-12] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 200 OK /civicDesk/iam/auth/setPassword 205ms
+2026-07-03 10:42:04 [reactor-http-nio-1] INFO  c.c.gateway.filter.LoggingFilter - Gateway → POST /civicDesk/iam/auth/staff/login [from /0:0:0:0:0:0:0:1]
+2026-07-03 10:42:04 [reactor-http-nio-1] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 200 OK /civicDesk/iam/auth/staff/login 577ms
+2026-07-03 10:42:04 [reactor-http-nio-1] INFO  c.c.gateway.filter.LoggingFilter - Gateway → GET /civicDesk/audit/auditLogs/10000021 [from /0:0:0:0:0:0:0:1]
+2026-07-03 10:42:04 [reactor-http-nio-1] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 200 OK /civicDesk/audit/auditLogs/10000021 72ms
+2026-07-03 10:43:31 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway → GET /civicDesk/audit/auditLogs/10000021 [from /0:0:0:0:0:0:0:1]
+2026-07-03 10:43:31 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 200 OK /civicDesk/audit/auditLogs/10000021 45ms
+2026-07-03 10:43:59 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway → GET /civicDesk/audit/auditLogs [from /0:0:0:0:0:0:0:1]
+2026-07-03 10:43:59 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 200 OK /civicDesk/audit/auditLogs 63ms
+2026-07-03 10:44:08 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway → GET /civicDesk/audit/auditLogs [from /0:0:0:0:0:0:0:1]
+2026-07-03 10:44:08 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 200 OK /civicDesk/audit/auditLogs 28ms
+2026-07-03 10:47:39 [reactor-http-nio-4] INFO  c.c.gateway.filter.LoggingFilter - Gateway → POST /civicDesk/iam/auth/staff/login [from /0:0:0:0:0:0:0:1]
+2026-07-03 10:47:39 [reactor-http-nio-4] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 200 OK /civicDesk/iam/auth/staff/login 122ms
+2026-07-03 10:47:39 [reactor-http-nio-4] INFO  c.c.gateway.filter.LoggingFilter - Gateway → GET /civicDesk/audit/auditLogs [from /0:0:0:0:0:0:0:1]
+2026-07-03 10:47:39 [reactor-http-nio-4] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 200 OK /civicDesk/audit/auditLogs 21ms
+2026-07-03 10:47:58 [reactor-http-nio-6] INFO  c.c.gateway.filter.LoggingFilter - Gateway → GET /civicDesk/audit/auditLogs [from /0:0:0:0:0:0:0:1]
+2026-07-03 10:47:58 [reactor-http-nio-6] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 200 OK /civicDesk/audit/auditLogs 19ms
+2026-07-03 10:48:09 [reactor-http-nio-6] INFO  c.c.gateway.filter.LoggingFilter - Gateway → GET /civicDesk/audit/auditLogs [from /0:0:0:0:0:0:0:1]
+2026-07-03 10:48:09 [reactor-http-nio-6] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 200 OK /civicDesk/audit/auditLogs 51ms
+2026-07-03 10:48:18 [reactor-http-nio-6] INFO  c.c.gateway.filter.LoggingFilter - Gateway → GET /civicDesk/audit/auditLogs [from /0:0:0:0:0:0:0:1]
+2026-07-03 10:48:18 [reactor-http-nio-6] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 200 OK /civicDesk/audit/auditLogs 24ms
+2026-07-03 10:59:10 [reactor-http-nio-7] INFO  c.c.gateway.filter.LoggingFilter - Gateway → GET /auth-service/api-docs [from /0:0:0:0:0:0:0:1]
+2026-07-03 10:59:10 [reactor-http-nio-7] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 404 NOT_FOUND /auth-service/api-docs 34ms
+2026-07-03 11:53:19 [reactor-http-nio-9] INFO  c.c.gateway.filter.LoggingFilter - Gateway → GET /civicDesk/iam/users [from /0:0:0:0:0:0:0:1]
+2026-07-03 11:53:19 [reactor-http-nio-9] WARN  c.c.g.security.JwtTokenProvider - JWT validation failed at gateway: JWT expired 2847362 milliseconds ago at 2026-07-03T05:35:52.000Z. Current time: 2026-07-03T06:23:19.362Z. Allowed clock skew: 0 milliseconds.
+2026-07-03 11:53:19 [reactor-http-nio-9] WARN  c.c.g.filter.JwtAuthenticationFilter - Invalid JWT token for path: /civicDesk/iam/users
+2026-07-03 11:53:19 [reactor-http-nio-9] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 401 UNAUTHORIZED /civicDesk/iam/users 66ms
+2026-07-03 11:54:12 [reactor-http-nio-9] INFO  c.c.gateway.filter.LoggingFilter - Gateway → POST /civicDesk/iam/auth/staff/login [from /0:0:0:0:0:0:0:1]
+2026-07-03 11:54:12 [reactor-http-nio-9] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 200 OK /civicDesk/iam/auth/staff/login 478ms
+2026-07-03 11:54:36 [reactor-http-nio-9] INFO  c.c.gateway.filter.LoggingFilter - Gateway → GET /civicDesk/iam/users [from /0:0:0:0:0:0:0:1]
+2026-07-03 11:54:36 [reactor-http-nio-9] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 200 OK /civicDesk/iam/users 199ms
+2026-07-03 11:56:19 [reactor-http-nio-11] INFO  c.c.gateway.filter.LoggingFilter - Gateway → POST /civicDesk/iam/auth/citizen/login [from /0:0:0:0:0:0:0:1]
+2026-07-03 11:56:19 [reactor-http-nio-11] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 401 UNAUTHORIZED /civicDesk/iam/auth/citizen/login 60ms
+2026-07-03 11:56:35 [reactor-http-nio-11] INFO  c.c.gateway.filter.LoggingFilter - Gateway → POST /civicDesk/iam/auth/citizen/login [from /0:0:0:0:0:0:0:1]
+2026-07-03 11:56:35 [reactor-http-nio-11] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 403 FORBIDDEN /civicDesk/iam/auth/citizen/login 25ms
+2026-07-03 11:56:59 [reactor-http-nio-11] INFO  c.c.gateway.filter.LoggingFilter - Gateway → POST /civicDesk/iam/auth/setPassword [from /0:0:0:0:0:0:0:1]
+2026-07-03 11:56:59 [reactor-http-nio-11] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 200 OK /civicDesk/iam/auth/setPassword 390ms
+2026-07-03 11:57:35 [reactor-http-nio-11] INFO  c.c.gateway.filter.LoggingFilter - Gateway → POST /civicDesk/iam/auth/register [from /0:0:0:0:0:0:0:1]
+2026-07-03 11:57:35 [reactor-http-nio-11] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 409 CONFLICT /civicDesk/iam/auth/register 75ms
+2026-07-03 11:57:42 [reactor-http-nio-11] INFO  c.c.gateway.filter.LoggingFilter - Gateway → POST /civicDesk/iam/auth/citizen/login [from /0:0:0:0:0:0:0:1]
+2026-07-03 11:57:42 [reactor-http-nio-11] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 403 FORBIDDEN /civicDesk/iam/auth/citizen/login 348ms
+2026-07-03 11:58:00 [reactor-http-nio-11] INFO  c.c.gateway.filter.LoggingFilter - Gateway → POST /civicDesk/iam/auth/staff/login [from /0:0:0:0:0:0:0:1]
+2026-07-03 11:58:00 [reactor-http-nio-11] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 200 OK /civicDesk/iam/auth/staff/login 328ms
+2026-07-03 11:58:17 [reactor-http-nio-11] INFO  c.c.gateway.filter.LoggingFilter - Gateway → PUT /civicDesk/iam/users/10000025/status [from /0:0:0:0:0:0:0:1]
+2026-07-03 11:58:17 [reactor-http-nio-11] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 404 NOT_FOUND /civicDesk/iam/users/10000025/status 42ms
+2026-07-03 11:58:35 [reactor-http-nio-11] INFO  c.c.gateway.filter.LoggingFilter - Gateway → GET /civicDesk/iam/users [from /0:0:0:0:0:0:0:1]
+2026-07-03 11:58:35 [reactor-http-nio-11] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 200 OK /civicDesk/iam/users 77ms
+2026-07-03 11:58:49 [reactor-http-nio-11] INFO  c.c.gateway.filter.LoggingFilter - Gateway → PUT /civicDesk/iam/users/10000006/status [from /0:0:0:0:0:0:0:1]
+2026-07-03 11:58:49 [reactor-http-nio-11] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 200 OK /civicDesk/iam/users/10000006/status 108ms
+2026-07-03 11:59:01 [reactor-http-nio-11] INFO  c.c.gateway.filter.LoggingFilter - Gateway → GET /civicDesk/audit/auditLogs [from /0:0:0:0:0:0:0:1]
+2026-07-03 11:59:01 [reactor-http-nio-11] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 200 OK /civicDesk/audit/auditLogs 83ms
+2026-07-03 11:59:27 [reactor-http-nio-11] INFO  c.c.gateway.filter.LoggingFilter - Gateway → GET /civicDesk/audit/auditLogs [from /0:0:0:0:0:0:0:1]
+2026-07-03 11:59:27 [reactor-http-nio-11] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 200 OK /civicDesk/audit/auditLogs 53ms
+2026-07-03 12:01:09 [reactor-http-nio-1] INFO  c.c.gateway.filter.LoggingFilter - Gateway → GET /civicDesk/iam/users [from /0:0:0:0:0:0:0:1]
+2026-07-03 12:01:09 [reactor-http-nio-1] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 200 OK /civicDesk/iam/users 63ms
+2026-07-03 12:01:31 [reactor-http-nio-1] INFO  c.c.gateway.filter.LoggingFilter - Gateway → GET /civicDesk/iam/users/me [from /0:0:0:0:0:0:0:1]
+2026-07-03 12:01:31 [reactor-http-nio-1] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 200 OK /civicDesk/iam/users/me 76ms
+2026-07-03 12:01:41 [reactor-http-nio-1] INFO  c.c.gateway.filter.LoggingFilter - Gateway → GET /civicDesk/iam/departments [from /0:0:0:0:0:0:0:1]
+2026-07-03 12:01:41 [reactor-http-nio-1] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 200 OK /civicDesk/iam/departments 52ms
+2026-07-03 12:01:48 [reactor-http-nio-1] INFO  c.c.gateway.filter.LoggingFilter - Gateway → POST /civicDesk/iam/users [from /0:0:0:0:0:0:0:1]
+2026-07-03 12:01:48 [reactor-http-nio-1] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 409 CONFLICT /civicDesk/iam/users 51ms
+2026-07-03 12:02:09 [reactor-http-nio-1] INFO  c.c.gateway.filter.LoggingFilter - Gateway → POST /civicDesk/iam/auth/register [from /0:0:0:0:0:0:0:1]
+2026-07-03 12:02:09 [reactor-http-nio-1] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 409 CONFLICT /civicDesk/iam/auth/register 31ms
+2026-07-03 12:02:21 [reactor-http-nio-1] INFO  c.c.gateway.filter.LoggingFilter - Gateway → POST /civicDesk/iam/auth/staff/login [from /0:0:0:0:0:0:0:1]
+2026-07-03 12:02:22 [reactor-http-nio-1] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 200 OK /civicDesk/iam/auth/staff/login 380ms
+2026-07-03 12:02:30 [reactor-http-nio-1] INFO  c.c.gateway.filter.LoggingFilter - Gateway → POST /civicDesk/iam/auth/staff/login [from /0:0:0:0:0:0:0:1]
+2026-07-03 12:02:30 [reactor-http-nio-1] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 200 OK /civicDesk/iam/auth/staff/login 385ms
+2026-07-03 12:02:38 [reactor-http-nio-1] INFO  c.c.gateway.filter.LoggingFilter - Gateway → POST /civicDesk/iam/auth/setPassword [from /0:0:0:0:0:0:0:1]
+2026-07-03 12:02:38 [reactor-http-nio-1] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 403 FORBIDDEN /civicDesk/iam/auth/setPassword 49ms
+2026-07-03 12:02:45 [reactor-http-nio-1] INFO  c.c.gateway.filter.LoggingFilter - Gateway → POST /civicDesk/iam/auth/logout [from /0:0:0:0:0:0:0:1]
+2026-07-03 12:02:45 [reactor-http-nio-1] WARN  c.c.g.security.JwtTokenProvider - JWT validation failed at gateway: JWT expired 2151619716 milliseconds ago at 2026-06-08T08:52:26.000Z. Current time: 2026-07-03T06:32:45.716Z. Allowed clock skew: 0 milliseconds.
+2026-07-03 12:02:45 [reactor-http-nio-1] WARN  c.c.g.filter.JwtAuthenticationFilter - Invalid JWT token for path: /civicDesk/iam/auth/logout
+2026-07-03 12:02:45 [reactor-http-nio-1] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 401 UNAUTHORIZED /civicDesk/iam/auth/logout 32ms
+2026-07-03 12:04:31 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway → POST /civicDesk/audit/auditLogs [from /0:0:0:0:0:0:0:1]
+2026-07-03 12:04:31 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 200 OK /civicDesk/audit/auditLogs 96ms
+2026-07-03 12:04:36 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway → GET /civicDesk/audit/auditLogs/10000021 [from /0:0:0:0:0:0:0:1]
+2026-07-03 12:04:36 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 200 OK /civicDesk/audit/auditLogs/10000021 85ms
+2026-07-03 12:27:03 [reactor-http-nio-7] INFO  c.c.gateway.filter.LoggingFilter - Gateway → GET /civicDesk/iam/users/10000006 [from /0:0:0:0:0:0:0:1]
+2026-07-03 12:27:03 [reactor-http-nio-7] WARN  c.c.g.security.JwtTokenProvider - JWT validation failed at gateway: JWT expired 2343229535 milliseconds ago at 2026-06-06T04:03:14.000Z. Current time: 2026-07-03T06:57:03.535Z. Allowed clock skew: 0 milliseconds.
+2026-07-03 12:27:03 [reactor-http-nio-7] WARN  c.c.g.filter.JwtAuthenticationFilter - Invalid JWT token for path: /civicDesk/iam/users/10000006
+2026-07-03 12:27:03 [reactor-http-nio-7] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 401 UNAUTHORIZED /civicDesk/iam/users/10000006 27ms
+2026-07-03 12:27:24 [reactor-http-nio-7] INFO  c.c.gateway.filter.LoggingFilter - Gateway → POST /civicDesk/iam/auth/staff/login [from /0:0:0:0:0:0:0:1]
+2026-07-03 12:27:24 [reactor-http-nio-7] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 200 OK /civicDesk/iam/auth/staff/login 683ms
+2026-07-03 12:27:45 [reactor-http-nio-7] INFO  c.c.gateway.filter.LoggingFilter - Gateway → GET /civicDesk/iam/users/10000006 [from /0:0:0:0:0:0:0:1]
+2026-07-03 12:27:45 [reactor-http-nio-7] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 500 INTERNAL_SERVER_ERROR /civicDesk/iam/users/10000006 304ms
+2026-07-03 12:27:56 [reactor-http-nio-7] INFO  c.c.gateway.filter.LoggingFilter - Gateway → GET /civicDesk/iam/users/10000006 [from /0:0:0:0:0:0:0:1]
+2026-07-03 12:27:57 [reactor-http-nio-7] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 500 INTERNAL_SERVER_ERROR /civicDesk/iam/users/10000006 108ms
+2026-07-03 12:28:24 [reactor-http-nio-7] INFO  c.c.gateway.filter.LoggingFilter - Gateway → GET /civicDesk/iam/users/10000006 [from /0:0:0:0:0:0:0:1]
+2026-07-03 12:28:24 [reactor-http-nio-7] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 500 INTERNAL_SERVER_ERROR /civicDesk/iam/users/10000006 39ms
+2026-07-03 12:28:38 [reactor-http-nio-7] INFO  c.c.gateway.filter.LoggingFilter - Gateway → GET /civicDesk/iam/users/10000001 [from /0:0:0:0:0:0:0:1]
+2026-07-03 12:28:38 [reactor-http-nio-7] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 500 INTERNAL_SERVER_ERROR /civicDesk/iam/users/10000001 50ms
+2026-07-03 12:29:58 [reactor-http-nio-9] INFO  c.c.gateway.filter.LoggingFilter - Gateway → GET /civicDesk/iam/users [from /0:0:0:0:0:0:0:1]
+2026-07-03 12:29:58 [reactor-http-nio-9] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 200 OK /civicDesk/iam/users 138ms
+2026-07-03 12:33:52 [reactor-http-nio-10] INFO  c.c.gateway.filter.LoggingFilter - Gateway → GET /civicDesk/iam/users/10000006 [from /0:0:0:0:0:0:0:1]
+2026-07-03 12:33:52 [reactor-http-nio-10] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 200 OK /civicDesk/iam/users/10000006 57ms
+2026-07-03 12:38:01 [reactor-http-nio-12] INFO  c.c.gateway.filter.LoggingFilter - Gateway → GET /civicDesk/iam/users [from /0:0:0:0:0:0:0:1]
+2026-07-03 12:38:01 [reactor-http-nio-12] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 200 OK /civicDesk/iam/users 186ms
+2026-07-03 12:38:09 [reactor-http-nio-12] INFO  c.c.gateway.filter.LoggingFilter - Gateway → GET /civicDesk/iam/users/10000001 [from /0:0:0:0:0:0:0:1]
+2026-07-03 12:38:09 [reactor-http-nio-12] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 200 OK /civicDesk/iam/users/10000001 50ms
+2026-07-03 12:40:17 [reactor-http-nio-2] INFO  c.c.gateway.filter.LoggingFilter - Gateway → GET /auth-service/api-docs [from /0:0:0:0:0:0:0:1]
+2026-07-03 12:40:17 [reactor-http-nio-2] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 404 NOT_FOUND /auth-service/api-docs 25ms
+2026-07-03 12:44:17 [reactor-http-nio-5] INFO  c.c.gateway.filter.LoggingFilter - Gateway → GET /civicDesk/iam/users [from /0:0:0:0:0:0:0:1]
+2026-07-03 12:44:17 [reactor-http-nio-5] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 401 UNAUTHORIZED /civicDesk/iam/users 35ms
+2026-07-03 12:46:41 [reactor-http-nio-7] INFO  c.c.gateway.filter.LoggingFilter - Gateway → POST /civicDesk/iam/auth/staff/login [from /0:0:0:0:0:0:0:1]
+2026-07-03 12:46:41 [reactor-http-nio-7] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 200 OK /civicDesk/iam/auth/staff/login 404ms
+2026-07-03 12:47:19 [reactor-http-nio-7] INFO  c.c.gateway.filter.LoggingFilter - Gateway → GET /civicDesk/iam/users [from /0:0:0:0:0:0:0:1]
+2026-07-03 12:47:19 [reactor-http-nio-7] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 200 OK /civicDesk/iam/users 72ms
+2026-07-03 12:53:09 [reactor-http-nio-8] INFO  c.c.gateway.filter.LoggingFilter - Gateway → GET /auth-service/api-docs [from /0:0:0:0:0:0:0:1]
+2026-07-03 12:53:09 [reactor-http-nio-8] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 404 NOT_FOUND /auth-service/api-docs 18ms
+2026-07-03 12:53:14 [reactor-http-nio-8] INFO  c.c.gateway.filter.LoggingFilter - Gateway → GET /permit-service/api-docs [from /0:0:0:0:0:0:0:1]
+2026-07-03 12:53:14 [reactor-http-nio-8] ERROR o.s.b.a.w.r.e.AbstractErrorWebExceptionHandler - [bb50cbc9-84]  500 Server Error for HTTP GET "/permit-service/api-docs"
+io.netty.channel.AbstractChannel$AnnotatedConnectException: Connection refused: getsockopt: localhost/127.0.0.1:8084
+	Suppressed: reactor.core.publisher.FluxOnAssembly$OnAssemblyException: 
+Error has been observed at the following site(s):
+	*__checkpoint ⇢ org.springframework.cloud.gateway.filter.WeightCalculatorWebFilter [DefaultWebFilterChain]
+	*__checkpoint ⇢ HTTP GET "/permit-service/api-docs" [ExceptionHandlingWebHandler]
+Original Stack Trace:
+Caused by: java.net.ConnectException: Connection refused: getsockopt
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:682)
+	at java.base/sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:973)
+	at io.netty.channel.socket.nio.NioSocketChannel.doFinishConnect(NioSocketChannel.java:337)
+	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.finishConnect(AbstractNioChannel.java:339)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:776)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:724)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:650)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2026-07-03 12:53:14 [reactor-http-nio-8] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 500 INTERNAL_SERVER_ERROR /permit-service/api-docs 61ms
+2026-07-03 12:53:17 [reactor-http-nio-8] INFO  c.c.gateway.filter.LoggingFilter - Gateway → GET /notification-service/api-docs [from /0:0:0:0:0:0:0:1]
+2026-07-03 12:53:17 [reactor-http-nio-8] ERROR o.s.b.a.w.r.e.AbstractErrorWebExceptionHandler - [bb50cbc9-85]  500 Server Error for HTTP GET "/notification-service/api-docs"
+io.netty.channel.AbstractChannel$AnnotatedConnectException: Connection refused: getsockopt: localhost/127.0.0.1:8087
+	Suppressed: reactor.core.publisher.FluxOnAssembly$OnAssemblyException: 
+Error has been observed at the following site(s):
+	*__checkpoint ⇢ org.springframework.cloud.gateway.filter.WeightCalculatorWebFilter [DefaultWebFilterChain]
+	*__checkpoint ⇢ HTTP GET "/notification-service/api-docs" [ExceptionHandlingWebHandler]
+Original Stack Trace:
+Caused by: java.net.ConnectException: Connection refused: getsockopt
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:682)
+	at java.base/sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:973)
+	at io.netty.channel.socket.nio.NioSocketChannel.doFinishConnect(NioSocketChannel.java:337)
+	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.finishConnect(AbstractNioChannel.java:339)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:776)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:724)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:650)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2026-07-03 12:53:17 [reactor-http-nio-8] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 500 INTERNAL_SERVER_ERROR /notification-service/api-docs 11ms
+2026-07-03 12:53:19 [reactor-http-nio-8] INFO  c.c.gateway.filter.LoggingFilter - Gateway → GET /auth-service/api-docs [from /0:0:0:0:0:0:0:1]
+2026-07-03 12:53:19 [reactor-http-nio-8] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 404 NOT_FOUND /auth-service/api-docs 26ms
+2026-07-03 12:54:22 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+2026-07-03 12:54:22 [main] INFO  c.c.gateway.ApiGatewayApplication - Starting ApiGatewayApplication using Java 21.0.2 with PID 12060 (C:\Project\civicdesk (1)\api-gateway\target\classes started by 2506608 in C:\Project\civicdesk (1)\api-gateway)
+2026-07-03 12:54:22 [main] INFO  c.c.gateway.ApiGatewayApplication - No active profile set, falling back to 1 default profile: "default"
+2026-07-03 12:54:24 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=ecba11d8-380f-358e-85e4-0c6ec30a760e
+2026-07-03 12:54:25 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [After]
+2026-07-03 12:54:25 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Before]
+2026-07-03 12:54:25 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Between]
+2026-07-03 12:54:25 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Cookie]
+2026-07-03 12:54:25 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Header]
+2026-07-03 12:54:25 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Host]
+2026-07-03 12:54:25 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Method]
+2026-07-03 12:54:25 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Path]
+2026-07-03 12:54:25 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Query]
+2026-07-03 12:54:25 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [ReadBody]
+2026-07-03 12:54:25 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [RemoteAddr]
+2026-07-03 12:54:25 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [XForwardedRemoteAddr]
+2026-07-03 12:54:25 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Weight]
+2026-07-03 12:54:25 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [CloudFoundryRouteService]
+2026-07-03 12:54:27 [main] INFO  o.s.b.w.e.netty.NettyWebServer - Netty started on port 9090
+2026-07-03 12:54:27 [main] INFO  c.c.gateway.ApiGatewayApplication - Started ApiGatewayApplication in 6.5 seconds (process running for 7.114)
+2026-07-03 12:55:34 [reactor-http-nio-2] INFO  c.c.gateway.filter.LoggingFilter - Gateway → GET /analytics-service/api-docs [from /0:0:0:0:0:0:0:1]
+2026-07-03 12:55:35 [reactor-http-nio-2] ERROR o.s.b.a.w.r.e.AbstractErrorWebExceptionHandler - [d47443d5-5]  500 Server Error for HTTP GET "/analytics-service/api-docs"
+io.netty.channel.AbstractChannel$AnnotatedConnectException: Connection refused: getsockopt: localhost/127.0.0.1:8088
+	Suppressed: reactor.core.publisher.FluxOnAssembly$OnAssemblyException: 
+Error has been observed at the following site(s):
+	*__checkpoint ⇢ org.springframework.cloud.gateway.filter.WeightCalculatorWebFilter [DefaultWebFilterChain]
+	*__checkpoint ⇢ HTTP GET "/analytics-service/api-docs" [ExceptionHandlingWebHandler]
+Original Stack Trace:
+Caused by: java.net.ConnectException: Connection refused: getsockopt
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:682)
+	at java.base/sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:973)
+	at io.netty.channel.socket.nio.NioSocketChannel.doFinishConnect(NioSocketChannel.java:337)
+	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.finishConnect(AbstractNioChannel.java:339)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:776)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:724)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:650)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2026-07-03 12:55:35 [reactor-http-nio-2] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 500 INTERNAL_SERVER_ERROR /analytics-service/api-docs 823ms
+2026-07-03 12:55:49 [reactor-http-nio-2] INFO  c.c.gateway.filter.LoggingFilter - Gateway → GET /analytics-service/api-docs [from /0:0:0:0:0:0:0:1]
+2026-07-03 12:55:49 [reactor-http-nio-2] ERROR o.s.b.a.w.r.e.AbstractErrorWebExceptionHandler - [d47443d5-6]  500 Server Error for HTTP GET "/analytics-service/api-docs"
+io.netty.channel.AbstractChannel$AnnotatedConnectException: Connection refused: getsockopt: localhost/127.0.0.1:8088
+	Suppressed: reactor.core.publisher.FluxOnAssembly$OnAssemblyException: 
+Error has been observed at the following site(s):
+	*__checkpoint ⇢ org.springframework.cloud.gateway.filter.WeightCalculatorWebFilter [DefaultWebFilterChain]
+	*__checkpoint ⇢ HTTP GET "/analytics-service/api-docs" [ExceptionHandlingWebHandler]
+Original Stack Trace:
+Caused by: java.net.ConnectException: Connection refused: getsockopt
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:682)
+	at java.base/sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:973)
+	at io.netty.channel.socket.nio.NioSocketChannel.doFinishConnect(NioSocketChannel.java:337)
+	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.finishConnect(AbstractNioChannel.java:339)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:776)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:724)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:650)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2026-07-03 12:55:49 [reactor-http-nio-2] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 500 INTERNAL_SERVER_ERROR /analytics-service/api-docs 67ms
+2026-07-03 12:56:58 [reactor-http-nio-2] INFO  c.c.gateway.filter.LoggingFilter - Gateway → GET /auth-service/api-docs [from /0:0:0:0:0:0:0:1]
+2026-07-03 12:56:58 [reactor-http-nio-2] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 401 UNAUTHORIZED /auth-service/api-docs 62ms
+2026-07-03 12:58:20 [reactor-http-nio-5] INFO  c.c.gateway.filter.LoggingFilter - Gateway → GET /analytics-service/api-docs [from /0:0:0:0:0:0:0:1]
+2026-07-03 12:58:20 [reactor-http-nio-5] ERROR o.s.b.a.w.r.e.AbstractErrorWebExceptionHandler - [6567acfd-14]  500 Server Error for HTTP GET "/analytics-service/api-docs"
+io.netty.channel.AbstractChannel$AnnotatedConnectException: Connection refused: getsockopt: localhost/127.0.0.1:8088
+	Suppressed: reactor.core.publisher.FluxOnAssembly$OnAssemblyException: 
+Error has been observed at the following site(s):
+	*__checkpoint ⇢ org.springframework.cloud.gateway.filter.WeightCalculatorWebFilter [DefaultWebFilterChain]
+	*__checkpoint ⇢ HTTP GET "/analytics-service/api-docs" [ExceptionHandlingWebHandler]
+Original Stack Trace:
+Caused by: java.net.ConnectException: Connection refused: getsockopt
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:682)
+	at java.base/sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:973)
+	at io.netty.channel.socket.nio.NioSocketChannel.doFinishConnect(NioSocketChannel.java:337)
+	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.finishConnect(AbstractNioChannel.java:339)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:776)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:724)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:650)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2026-07-03 12:58:20 [reactor-http-nio-5] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 500 INTERNAL_SERVER_ERROR /analytics-service/api-docs 21ms
+2026-07-03 12:58:23 [reactor-http-nio-5] INFO  c.c.gateway.filter.LoggingFilter - Gateway → GET /auth-service/api-docs [from /0:0:0:0:0:0:0:1]
+2026-07-03 12:58:24 [reactor-http-nio-5] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 401 UNAUTHORIZED /auth-service/api-docs 23ms
+2026-07-03 13:57:13 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+2026-07-03 13:57:13 [main] INFO  c.c.gateway.ApiGatewayApplication - Starting ApiGatewayApplication using Java 21.0.2 with PID 29612 (C:\Project\civicdesk (1)\api-gateway\target\classes started by 2506608 in C:\Project\civicdesk (1)\api-gateway)
+2026-07-03 13:57:13 [main] INFO  c.c.gateway.ApiGatewayApplication - No active profile set, falling back to 1 default profile: "default"
+2026-07-03 13:57:15 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=ecba11d8-380f-358e-85e4-0c6ec30a760e
+2026-07-03 13:57:17 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [After]
+2026-07-03 13:57:17 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Before]
+2026-07-03 13:57:17 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Between]
+2026-07-03 13:57:17 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Cookie]
+2026-07-03 13:57:17 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Header]
+2026-07-03 13:57:17 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Host]
+2026-07-03 13:57:17 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Method]
+2026-07-03 13:57:17 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Path]
+2026-07-03 13:57:17 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Query]
+2026-07-03 13:57:17 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [ReadBody]
+2026-07-03 13:57:17 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [RemoteAddr]
+2026-07-03 13:57:17 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [XForwardedRemoteAddr]
+2026-07-03 13:57:17 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Weight]
+2026-07-03 13:57:17 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [CloudFoundryRouteService]
+2026-07-03 13:57:19 [main] INFO  o.s.b.w.e.netty.NettyWebServer - Netty started on port 9090
+2026-07-03 13:57:19 [main] INFO  c.c.gateway.ApiGatewayApplication - Started ApiGatewayApplication in 7.523 seconds (process running for 8.459)
+2026-07-03 13:58:10 [reactor-http-nio-4] INFO  c.c.gateway.filter.LoggingFilter - Gateway → GET /analytics-service/api-docs [from /0:0:0:0:0:0:0:1]
+2026-07-03 13:58:11 [reactor-http-nio-4] ERROR o.s.b.a.w.r.e.AbstractErrorWebExceptionHandler - [587daa68-9]  500 Server Error for HTTP GET "/analytics-service/api-docs"
+io.netty.channel.AbstractChannel$AnnotatedConnectException: Connection refused: getsockopt: localhost/127.0.0.1:8088
+	Suppressed: reactor.core.publisher.FluxOnAssembly$OnAssemblyException: 
+Error has been observed at the following site(s):
+	*__checkpoint ⇢ org.springframework.cloud.gateway.filter.WeightCalculatorWebFilter [DefaultWebFilterChain]
+	*__checkpoint ⇢ HTTP GET "/analytics-service/api-docs" [ExceptionHandlingWebHandler]
+Original Stack Trace:
+Caused by: java.net.ConnectException: Connection refused: getsockopt
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:682)
+	at java.base/sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:973)
+	at io.netty.channel.socket.nio.NioSocketChannel.doFinishConnect(NioSocketChannel.java:337)
+	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.finishConnect(AbstractNioChannel.java:339)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:776)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:724)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:650)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2026-07-03 13:58:11 [reactor-http-nio-4] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 500 INTERNAL_SERVER_ERROR /analytics-service/api-docs 729ms
+2026-07-03 14:20:09 [reactor-http-nio-7] INFO  c.c.gateway.filter.LoggingFilter - Gateway → GET /auth-service/api-docs [from /0:0:0:0:0:0:0:1]
+2026-07-03 14:20:09 [reactor-http-nio-7] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 401 UNAUTHORIZED /auth-service/api-docs 100ms
+2026-07-03 14:21:52 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+2026-07-03 14:21:53 [main] INFO  c.c.gateway.ApiGatewayApplication - Starting ApiGatewayApplication using Java 21.0.2 with PID 29352 (C:\Project\civicdesk (1)\api-gateway\target\classes started by 2506608 in C:\Project\civicdesk (1)\api-gateway)
+2026-07-03 14:21:53 [main] INFO  c.c.gateway.ApiGatewayApplication - No active profile set, falling back to 1 default profile: "default"
+2026-07-03 14:21:55 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=ecba11d8-380f-358e-85e4-0c6ec30a760e
+2026-07-03 14:21:57 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [After]
+2026-07-03 14:21:57 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Before]
+2026-07-03 14:21:57 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Between]
+2026-07-03 14:21:57 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Cookie]
+2026-07-03 14:21:57 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Header]
+2026-07-03 14:21:57 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Host]
+2026-07-03 14:21:57 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Method]
+2026-07-03 14:21:57 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Path]
+2026-07-03 14:21:57 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Query]
+2026-07-03 14:21:57 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [ReadBody]
+2026-07-03 14:21:57 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [RemoteAddr]
+2026-07-03 14:21:57 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [XForwardedRemoteAddr]
+2026-07-03 14:21:57 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Weight]
+2026-07-03 14:21:57 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [CloudFoundryRouteService]
+2026-07-03 14:21:58 [main] INFO  o.s.b.w.e.netty.NettyWebServer - Netty started on port 9090
+2026-07-03 14:21:58 [main] INFO  c.c.gateway.ApiGatewayApplication - Started ApiGatewayApplication in 6.748 seconds (process running for 7.947)
+2026-07-03 14:23:10 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway → GET /analytics-service/api-docs [from /0:0:0:0:0:0:0:1]
+2026-07-03 14:23:11 [reactor-http-nio-3] ERROR o.s.b.a.w.r.e.AbstractErrorWebExceptionHandler - [f7273e3f-6]  500 Server Error for HTTP GET "/analytics-service/api-docs"
+io.netty.channel.AbstractChannel$AnnotatedConnectException: Connection refused: getsockopt: localhost/127.0.0.1:8088
+	Suppressed: reactor.core.publisher.FluxOnAssembly$OnAssemblyException: 
+Error has been observed at the following site(s):
+	*__checkpoint ⇢ org.springframework.cloud.gateway.filter.WeightCalculatorWebFilter [DefaultWebFilterChain]
+	*__checkpoint ⇢ HTTP GET "/analytics-service/api-docs" [ExceptionHandlingWebHandler]
+Original Stack Trace:
+Caused by: java.net.ConnectException: Connection refused: getsockopt
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:682)
+	at java.base/sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:973)
+	at io.netty.channel.socket.nio.NioSocketChannel.doFinishConnect(NioSocketChannel.java:337)
+	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.finishConnect(AbstractNioChannel.java:339)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:776)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:724)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:650)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2026-07-03 14:23:11 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 500 INTERNAL_SERVER_ERROR /analytics-service/api-docs 733ms
+2026-07-03 14:23:13 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway → GET /auth-service/api-docs [from /0:0:0:0:0:0:0:1]
+2026-07-03 14:23:14 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 401 UNAUTHORIZED /auth-service/api-docs 66ms
+2026-07-03 14:24:30 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+2026-07-03 14:24:30 [main] INFO  c.c.gateway.ApiGatewayApplication - Starting ApiGatewayApplication using Java 21.0.2 with PID 26928 (C:\Project\civicdesk (1)\api-gateway\target\classes started by 2506608 in C:\Project\civicdesk (1)\api-gateway)
+2026-07-03 14:24:30 [main] INFO  c.c.gateway.ApiGatewayApplication - No active profile set, falling back to 1 default profile: "default"
+2026-07-03 14:24:31 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=ecba11d8-380f-358e-85e4-0c6ec30a760e
+2026-07-03 14:24:32 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [After]
+2026-07-03 14:24:32 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Before]
+2026-07-03 14:24:32 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Between]
+2026-07-03 14:24:32 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Cookie]
+2026-07-03 14:24:32 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Header]
+2026-07-03 14:24:32 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Host]
+2026-07-03 14:24:32 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Method]
+2026-07-03 14:24:32 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Path]
+2026-07-03 14:24:32 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Query]
+2026-07-03 14:24:32 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [ReadBody]
+2026-07-03 14:24:32 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [RemoteAddr]
+2026-07-03 14:24:32 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [XForwardedRemoteAddr]
+2026-07-03 14:24:32 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Weight]
+2026-07-03 14:24:32 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [CloudFoundryRouteService]
+2026-07-03 14:24:32 [main] INFO  o.s.b.w.e.netty.NettyWebServer - Netty started on port 9090
+2026-07-03 14:24:32 [main] INFO  c.c.gateway.ApiGatewayApplication - Started ApiGatewayApplication in 2.8 seconds (process running for 3.289)
+2026-07-03 14:25:45 [reactor-http-nio-2] INFO  c.c.gateway.filter.LoggingFilter - Gateway → GET /auth-service/api-docs [from /0:0:0:0:0:0:0:1]
+2026-07-03 14:25:46 [reactor-http-nio-2] ERROR o.s.b.a.w.r.e.AbstractErrorWebExceptionHandler - [7c773163-5]  500 Server Error for HTTP GET "/auth-service/api-docs"
+io.netty.channel.AbstractChannel$AnnotatedConnectException: Connection refused: getsockopt: localhost/127.0.0.1:8081
+	Suppressed: reactor.core.publisher.FluxOnAssembly$OnAssemblyException: 
+Error has been observed at the following site(s):
+	*__checkpoint ⇢ org.springframework.cloud.gateway.filter.WeightCalculatorWebFilter [DefaultWebFilterChain]
+	*__checkpoint ⇢ HTTP GET "/auth-service/api-docs" [ExceptionHandlingWebHandler]
+Original Stack Trace:
+Caused by: java.net.ConnectException: Connection refused: getsockopt
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:682)
+	at java.base/sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:973)
+	at io.netty.channel.socket.nio.NioSocketChannel.doFinishConnect(NioSocketChannel.java:337)
+	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.finishConnect(AbstractNioChannel.java:339)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:776)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:724)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:650)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2026-07-03 14:25:46 [reactor-http-nio-2] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 500 INTERNAL_SERVER_ERROR /auth-service/api-docs 412ms
+2026-07-03 14:26:05 [reactor-http-nio-7] INFO  c.c.gateway.filter.LoggingFilter - Gateway → GET /analytics-service/api-docs [from /0:0:0:0:0:0:0:1]
+2026-07-03 14:26:05 [reactor-http-nio-7] ERROR o.s.b.a.w.r.e.AbstractErrorWebExceptionHandler - [8466a297-15]  500 Server Error for HTTP GET "/analytics-service/api-docs"
+io.netty.channel.AbstractChannel$AnnotatedConnectException: Connection refused: getsockopt: localhost/127.0.0.1:8088
+	Suppressed: reactor.core.publisher.FluxOnAssembly$OnAssemblyException: 
+Error has been observed at the following site(s):
+	*__checkpoint ⇢ org.springframework.cloud.gateway.filter.WeightCalculatorWebFilter [DefaultWebFilterChain]
+	*__checkpoint ⇢ HTTP GET "/analytics-service/api-docs" [ExceptionHandlingWebHandler]
+Original Stack Trace:
+Caused by: java.net.ConnectException: Connection refused: getsockopt
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:682)
+	at java.base/sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:973)
+	at io.netty.channel.socket.nio.NioSocketChannel.doFinishConnect(NioSocketChannel.java:337)
+	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.finishConnect(AbstractNioChannel.java:339)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:776)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:724)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:650)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2026-07-03 14:26:05 [reactor-http-nio-7] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 500 INTERNAL_SERVER_ERROR /analytics-service/api-docs 12ms
+2026-07-03 14:26:49 [reactor-http-nio-9] INFO  c.c.gateway.filter.LoggingFilter - Gateway → GET /auth-service/api-docs [from /0:0:0:0:0:0:0:1]
+2026-07-03 14:26:49 [reactor-http-nio-9] ERROR o.s.b.a.w.r.e.AbstractErrorWebExceptionHandler - [732ee7ba-16]  500 Server Error for HTTP GET "/auth-service/api-docs"
+io.netty.channel.AbstractChannel$AnnotatedConnectException: Connection refused: getsockopt: localhost/127.0.0.1:8081
+	Suppressed: reactor.core.publisher.FluxOnAssembly$OnAssemblyException: 
+Error has been observed at the following site(s):
+	*__checkpoint ⇢ org.springframework.cloud.gateway.filter.WeightCalculatorWebFilter [DefaultWebFilterChain]
+	*__checkpoint ⇢ HTTP GET "/auth-service/api-docs" [ExceptionHandlingWebHandler]
+Original Stack Trace:
+Caused by: java.net.ConnectException: Connection refused: getsockopt
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:682)
+	at java.base/sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:973)
+	at io.netty.channel.socket.nio.NioSocketChannel.doFinishConnect(NioSocketChannel.java:337)
+	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.finishConnect(AbstractNioChannel.java:339)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:776)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:724)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:650)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2026-07-03 14:26:49 [reactor-http-nio-9] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 500 INTERNAL_SERVER_ERROR /auth-service/api-docs 4ms
+2026-07-03 14:27:12 [reactor-http-nio-9] INFO  c.c.gateway.filter.LoggingFilter - Gateway → GET /auth-service/api-docs [from /0:0:0:0:0:0:0:1]
+2026-07-03 14:27:12 [reactor-http-nio-9] ERROR o.s.b.a.w.r.e.AbstractErrorWebExceptionHandler - [732ee7ba-19]  500 Server Error for HTTP GET "/auth-service/api-docs"
+io.netty.channel.AbstractChannel$AnnotatedConnectException: Connection refused: getsockopt: localhost/127.0.0.1:8081
+	Suppressed: reactor.core.publisher.FluxOnAssembly$OnAssemblyException: 
+Error has been observed at the following site(s):
+	*__checkpoint ⇢ org.springframework.cloud.gateway.filter.WeightCalculatorWebFilter [DefaultWebFilterChain]
+	*__checkpoint ⇢ HTTP GET "/auth-service/api-docs" [ExceptionHandlingWebHandler]
+Original Stack Trace:
+Caused by: java.net.ConnectException: Connection refused: getsockopt
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:682)
+	at java.base/sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:973)
+	at io.netty.channel.socket.nio.NioSocketChannel.doFinishConnect(NioSocketChannel.java:337)
+	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.finishConnect(AbstractNioChannel.java:339)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:776)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:724)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:650)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2026-07-03 14:27:12 [reactor-http-nio-9] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 500 INTERNAL_SERVER_ERROR /auth-service/api-docs 11ms
+2026-07-03 14:27:12 [reactor-http-nio-11] INFO  c.c.gateway.filter.LoggingFilter - Gateway → GET /civicDesk/audit/auditLogs [from /0:0:0:0:0:0:0:1]
+2026-07-03 14:27:13 [reactor-http-nio-11] WARN  c.c.g.security.JwtTokenProvider - JWT validation failed at gateway: JWT expired 4232345 milliseconds ago at 2026-07-03T07:46:41.000Z. Current time: 2026-07-03T08:57:13.345Z. Allowed clock skew: 0 milliseconds.
+2026-07-03 14:27:13 [reactor-http-nio-11] WARN  c.c.g.filter.JwtAuthenticationFilter - Invalid JWT token for path: /civicDesk/audit/auditLogs
+2026-07-03 14:27:13 [reactor-http-nio-11] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 401 UNAUTHORIZED /civicDesk/audit/auditLogs 386ms
+2026-07-03 14:28:04 [reactor-http-nio-12] INFO  c.c.gateway.filter.LoggingFilter - Gateway → GET /analytics-service/api-docs [from /0:0:0:0:0:0:0:1]
+2026-07-03 14:28:04 [reactor-http-nio-12] ERROR o.s.b.a.w.r.e.AbstractErrorWebExceptionHandler - [e2cad0e8-23]  500 Server Error for HTTP GET "/analytics-service/api-docs"
+io.netty.channel.AbstractChannel$AnnotatedConnectException: Connection refused: getsockopt: localhost/127.0.0.1:8088
+	Suppressed: reactor.core.publisher.FluxOnAssembly$OnAssemblyException: 
+Error has been observed at the following site(s):
+	*__checkpoint ⇢ org.springframework.cloud.gateway.filter.WeightCalculatorWebFilter [DefaultWebFilterChain]
+	*__checkpoint ⇢ HTTP GET "/analytics-service/api-docs" [ExceptionHandlingWebHandler]
+Original Stack Trace:
+Caused by: java.net.ConnectException: Connection refused: getsockopt
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:682)
+	at java.base/sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:973)
+	at io.netty.channel.socket.nio.NioSocketChannel.doFinishConnect(NioSocketChannel.java:337)
+	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.finishConnect(AbstractNioChannel.java:339)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:776)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:724)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:650)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2026-07-03 14:28:04 [reactor-http-nio-12] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 500 INTERNAL_SERVER_ERROR /analytics-service/api-docs 9ms
+2026-07-03 14:28:07 [reactor-http-nio-12] INFO  c.c.gateway.filter.LoggingFilter - Gateway → GET /auth-service/api-docs [from /0:0:0:0:0:0:0:1]
+2026-07-03 14:28:07 [reactor-http-nio-12] ERROR o.s.b.a.w.r.e.AbstractErrorWebExceptionHandler - [e2cad0e8-24]  500 Server Error for HTTP GET "/auth-service/api-docs"
+io.netty.channel.AbstractChannel$AnnotatedConnectException: Connection refused: getsockopt: localhost/127.0.0.1:8081
+	Suppressed: reactor.core.publisher.FluxOnAssembly$OnAssemblyException: 
+Error has been observed at the following site(s):
+	*__checkpoint ⇢ org.springframework.cloud.gateway.filter.WeightCalculatorWebFilter [DefaultWebFilterChain]
+	*__checkpoint ⇢ HTTP GET "/auth-service/api-docs" [ExceptionHandlingWebHandler]
+Original Stack Trace:
+Caused by: java.net.ConnectException: Connection refused: getsockopt
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:682)
+	at java.base/sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:973)
+	at io.netty.channel.socket.nio.NioSocketChannel.doFinishConnect(NioSocketChannel.java:337)
+	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.finishConnect(AbstractNioChannel.java:339)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:776)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:724)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:650)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2026-07-03 14:28:07 [reactor-http-nio-12] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 500 INTERNAL_SERVER_ERROR /auth-service/api-docs 14ms
+2026-07-03 14:31:19 [reactor-http-nio-12] INFO  c.c.gateway.filter.LoggingFilter - Gateway → GET /analytics-service/api-docs [from /0:0:0:0:0:0:0:1]
+2026-07-03 14:31:19 [reactor-http-nio-12] ERROR o.s.b.a.w.r.e.AbstractErrorWebExceptionHandler - [e2cad0e8-27]  500 Server Error for HTTP GET "/analytics-service/api-docs"
+io.netty.channel.AbstractChannel$AnnotatedConnectException: Connection refused: getsockopt: localhost/127.0.0.1:8088
+	Suppressed: reactor.core.publisher.FluxOnAssembly$OnAssemblyException: 
+Error has been observed at the following site(s):
+	*__checkpoint ⇢ org.springframework.cloud.gateway.filter.WeightCalculatorWebFilter [DefaultWebFilterChain]
+	*__checkpoint ⇢ HTTP GET "/analytics-service/api-docs" [ExceptionHandlingWebHandler]
+Original Stack Trace:
+Caused by: java.net.ConnectException: Connection refused: getsockopt
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:682)
+	at java.base/sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:973)
+	at io.netty.channel.socket.nio.NioSocketChannel.doFinishConnect(NioSocketChannel.java:337)
+	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.finishConnect(AbstractNioChannel.java:339)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:776)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:724)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:650)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2026-07-03 14:31:19 [reactor-http-nio-12] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 500 INTERNAL_SERVER_ERROR /analytics-service/api-docs 9ms
+2026-07-03 14:31:23 [reactor-http-nio-12] INFO  c.c.gateway.filter.LoggingFilter - Gateway → GET /auth-service/api-docs [from /0:0:0:0:0:0:0:1]
+2026-07-03 14:31:23 [reactor-http-nio-12] ERROR o.s.b.a.w.r.e.AbstractErrorWebExceptionHandler - [e2cad0e8-28]  500 Server Error for HTTP GET "/auth-service/api-docs"
+io.netty.channel.AbstractChannel$AnnotatedConnectException: Connection refused: getsockopt: localhost/127.0.0.1:8081
+	Suppressed: reactor.core.publisher.FluxOnAssembly$OnAssemblyException: 
+Error has been observed at the following site(s):
+	*__checkpoint ⇢ org.springframework.cloud.gateway.filter.WeightCalculatorWebFilter [DefaultWebFilterChain]
+	*__checkpoint ⇢ HTTP GET "/auth-service/api-docs" [ExceptionHandlingWebHandler]
+Original Stack Trace:
+Caused by: java.net.ConnectException: Connection refused: getsockopt
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:682)
+	at java.base/sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:973)
+	at io.netty.channel.socket.nio.NioSocketChannel.doFinishConnect(NioSocketChannel.java:337)
+	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.finishConnect(AbstractNioChannel.java:339)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:776)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:724)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:650)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2026-07-03 14:31:23 [reactor-http-nio-12] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 500 INTERNAL_SERVER_ERROR /auth-service/api-docs 6ms
+2026-07-03 14:31:30 [reactor-http-nio-12] INFO  c.c.gateway.filter.LoggingFilter - Gateway → GET /analytics-service/api-docs [from /0:0:0:0:0:0:0:1]
+2026-07-03 14:31:30 [reactor-http-nio-12] ERROR o.s.b.a.w.r.e.AbstractErrorWebExceptionHandler - [e2cad0e8-31]  500 Server Error for HTTP GET "/analytics-service/api-docs"
+io.netty.channel.AbstractChannel$AnnotatedConnectException: Connection refused: getsockopt: localhost/127.0.0.1:8088
+	Suppressed: reactor.core.publisher.FluxOnAssembly$OnAssemblyException: 
+Error has been observed at the following site(s):
+	*__checkpoint ⇢ org.springframework.cloud.gateway.filter.WeightCalculatorWebFilter [DefaultWebFilterChain]
+	*__checkpoint ⇢ HTTP GET "/analytics-service/api-docs" [ExceptionHandlingWebHandler]
+Original Stack Trace:
+Caused by: java.net.ConnectException: Connection refused: getsockopt
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:682)
+	at java.base/sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:973)
+	at io.netty.channel.socket.nio.NioSocketChannel.doFinishConnect(NioSocketChannel.java:337)
+	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.finishConnect(AbstractNioChannel.java:339)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:776)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:724)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:650)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2026-07-03 14:31:30 [reactor-http-nio-12] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 500 INTERNAL_SERVER_ERROR /analytics-service/api-docs 9ms
+2026-07-03 14:32:45 [reactor-http-nio-2] INFO  c.c.gateway.filter.LoggingFilter - Gateway → POST /civicDesk/iam/auth/staff/login [from /0:0:0:0:0:0:0:1]
+2026-07-03 14:32:45 [reactor-http-nio-2] ERROR o.s.b.a.w.r.e.AbstractErrorWebExceptionHandler - [72e4e5a1-32]  500 Server Error for HTTP POST "/civicDesk/iam/auth/staff/login"
+io.netty.channel.AbstractChannel$AnnotatedConnectException: Connection refused: getsockopt: localhost/127.0.0.1:8081
+	Suppressed: reactor.core.publisher.FluxOnAssembly$OnAssemblyException: 
+Error has been observed at the following site(s):
+	*__checkpoint ⇢ org.springframework.cloud.gateway.filter.WeightCalculatorWebFilter [DefaultWebFilterChain]
+	*__checkpoint ⇢ HTTP POST "/civicDesk/iam/auth/staff/login" [ExceptionHandlingWebHandler]
+Original Stack Trace:
+Caused by: java.net.ConnectException: Connection refused: getsockopt
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:682)
+	at java.base/sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:973)
+	at io.netty.channel.socket.nio.NioSocketChannel.doFinishConnect(NioSocketChannel.java:337)
+	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.finishConnect(AbstractNioChannel.java:339)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:776)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:724)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:650)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2026-07-03 14:32:45 [reactor-http-nio-2] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 500 INTERNAL_SERVER_ERROR /civicDesk/iam/auth/staff/login 15ms
+2026-07-03 14:34:15 [reactor-http-nio-12] INFO  c.c.gateway.filter.LoggingFilter - Gateway → GET /analytics-service/api-docs [from /0:0:0:0:0:0:0:1]
+2026-07-03 14:34:15 [reactor-http-nio-12] ERROR o.s.b.a.w.r.e.AbstractErrorWebExceptionHandler - [e2cad0e8-35]  500 Server Error for HTTP GET "/analytics-service/api-docs"
+io.netty.channel.AbstractChannel$AnnotatedConnectException: Connection refused: getsockopt: localhost/127.0.0.1:8088
+	Suppressed: reactor.core.publisher.FluxOnAssembly$OnAssemblyException: 
+Error has been observed at the following site(s):
+	*__checkpoint ⇢ org.springframework.cloud.gateway.filter.WeightCalculatorWebFilter [DefaultWebFilterChain]
+	*__checkpoint ⇢ HTTP GET "/analytics-service/api-docs" [ExceptionHandlingWebHandler]
+Original Stack Trace:
+Caused by: java.net.ConnectException: Connection refused: getsockopt
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:682)
+	at java.base/sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:973)
+	at io.netty.channel.socket.nio.NioSocketChannel.doFinishConnect(NioSocketChannel.java:337)
+	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.finishConnect(AbstractNioChannel.java:339)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:776)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:724)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:650)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2026-07-03 14:34:15 [reactor-http-nio-12] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 500 INTERNAL_SERVER_ERROR /analytics-service/api-docs 7ms
+2026-07-03 14:35:11 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+2026-07-03 14:35:11 [main] INFO  c.c.gateway.ApiGatewayApplication - Starting ApiGatewayApplication using Java 21.0.2 with PID 31656 (C:\Project\civicdesk (1)\api-gateway\target\classes started by 2506608 in C:\Project\civicdesk (1)\api-gateway)
+2026-07-03 14:35:11 [main] INFO  c.c.gateway.ApiGatewayApplication - No active profile set, falling back to 1 default profile: "default"
+2026-07-03 14:35:12 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=e5eb0134-8f0d-3750-b411-d859af6998f0
+2026-07-03 14:35:13 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [After]
+2026-07-03 14:35:13 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Before]
+2026-07-03 14:35:13 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Between]
+2026-07-03 14:35:13 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Cookie]
+2026-07-03 14:35:13 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Header]
+2026-07-03 14:35:13 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Host]
+2026-07-03 14:35:13 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Method]
+2026-07-03 14:35:13 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Path]
+2026-07-03 14:35:13 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Query]
+2026-07-03 14:35:13 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [ReadBody]
+2026-07-03 14:35:13 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [RemoteAddr]
+2026-07-03 14:35:13 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [XForwardedRemoteAddr]
+2026-07-03 14:35:13 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Weight]
+2026-07-03 14:35:13 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [CloudFoundryRouteService]
+2026-07-03 14:35:16 [main] WARN  o.s.b.w.r.c.AnnotationConfigReactiveWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2026-07-03 14:35:16 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2026-07-03 14:35:16 [main] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 9090 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 9090 or configure this application to listen on another port.
+
+2026-07-03 14:35:28 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway → GET /auth-service/api-docs [from /0:0:0:0:0:0:0:1]
+2026-07-03 14:35:28 [reactor-http-nio-3] ERROR o.s.b.a.w.r.e.AbstractErrorWebExceptionHandler - [57f31697-38]  500 Server Error for HTTP GET "/auth-service/api-docs"
+io.netty.channel.AbstractChannel$AnnotatedConnectException: Connection refused: getsockopt: localhost/127.0.0.1:8081
+	Suppressed: reactor.core.publisher.FluxOnAssembly$OnAssemblyException: 
+Error has been observed at the following site(s):
+	*__checkpoint ⇢ org.springframework.cloud.gateway.filter.WeightCalculatorWebFilter [DefaultWebFilterChain]
+	*__checkpoint ⇢ HTTP GET "/auth-service/api-docs" [ExceptionHandlingWebHandler]
+Original Stack Trace:
+Caused by: java.net.ConnectException: Connection refused: getsockopt
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:682)
+	at java.base/sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:973)
+	at io.netty.channel.socket.nio.NioSocketChannel.doFinishConnect(NioSocketChannel.java:337)
+	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.finishConnect(AbstractNioChannel.java:339)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:776)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:724)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:650)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2026-07-03 14:35:28 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 500 INTERNAL_SERVER_ERROR /auth-service/api-docs 13ms
+2026-07-03 14:36:47 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway → GET /auth-service/api-docs [from /0:0:0:0:0:0:0:1]
+2026-07-03 14:36:47 [reactor-http-nio-3] ERROR o.s.b.a.w.r.e.AbstractErrorWebExceptionHandler - [57f31697-41]  500 Server Error for HTTP GET "/auth-service/api-docs"
+io.netty.channel.AbstractChannel$AnnotatedConnectException: Connection refused: getsockopt: localhost/127.0.0.1:8081
+	Suppressed: reactor.core.publisher.FluxOnAssembly$OnAssemblyException: 
+Error has been observed at the following site(s):
+	*__checkpoint ⇢ org.springframework.cloud.gateway.filter.WeightCalculatorWebFilter [DefaultWebFilterChain]
+	*__checkpoint ⇢ HTTP GET "/auth-service/api-docs" [ExceptionHandlingWebHandler]
+Original Stack Trace:
+Caused by: java.net.ConnectException: Connection refused: getsockopt
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:682)
+	at java.base/sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:973)
+	at io.netty.channel.socket.nio.NioSocketChannel.doFinishConnect(NioSocketChannel.java:337)
+	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.finishConnect(AbstractNioChannel.java:339)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:776)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:724)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:650)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2026-07-03 14:36:47 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 500 INTERNAL_SERVER_ERROR /auth-service/api-docs 8ms
+2026-07-03 14:49:04 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+2026-07-03 14:49:04 [main] INFO  c.c.gateway.ApiGatewayApplication - Starting ApiGatewayApplication using Java 21.0.2 with PID 31052 (C:\Project\civicdesk (1)\api-gateway\target\classes started by 2506608 in C:\Project\civicdesk (1)\api-gateway)
+2026-07-03 14:49:04 [main] INFO  c.c.gateway.ApiGatewayApplication - No active profile set, falling back to 1 default profile: "default"
+2026-07-03 14:49:06 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=e5eb0134-8f0d-3750-b411-d859af6998f0
+2026-07-03 14:49:08 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [After]
+2026-07-03 14:49:08 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Before]
+2026-07-03 14:49:08 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Between]
+2026-07-03 14:49:08 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Cookie]
+2026-07-03 14:49:08 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Header]
+2026-07-03 14:49:08 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Host]
+2026-07-03 14:49:08 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Method]
+2026-07-03 14:49:08 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Path]
+2026-07-03 14:49:08 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Query]
+2026-07-03 14:49:08 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [ReadBody]
+2026-07-03 14:49:08 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [RemoteAddr]
+2026-07-03 14:49:08 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [XForwardedRemoteAddr]
+2026-07-03 14:49:08 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Weight]
+2026-07-03 14:49:08 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [CloudFoundryRouteService]
+2026-07-03 14:49:10 [main] INFO  o.s.b.w.e.netty.NettyWebServer - Netty started on port 9090
+2026-07-03 14:49:10 [main] INFO  c.c.gateway.ApiGatewayApplication - Started ApiGatewayApplication in 7.393 seconds (process running for 8.28)
+2026-07-03 14:49:44 [reactor-http-nio-2] INFO  c.c.gateway.filter.LoggingFilter - Gateway → GET /auth-service/api-docs [from /0:0:0:0:0:0:0:1]
+2026-07-03 14:49:45 [reactor-http-nio-2] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 200 OK /auth-service/api-docs 518ms
+2026-07-03 14:51:01 [reactor-http-nio-4] INFO  c.c.gateway.filter.LoggingFilter - Gateway → POST /civicDesk/iam/auth/staff/login [from /0:0:0:0:0:0:0:1]
+2026-07-03 14:51:01 [reactor-http-nio-4] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 200 OK /civicDesk/iam/auth/staff/login 163ms
+2026-07-03 14:54:37 [reactor-http-nio-7] INFO  c.c.gateway.filter.LoggingFilter - Gateway → GET /analytics-service/api-docs [from /0:0:0:0:0:0:0:1]
+2026-07-03 14:54:37 [reactor-http-nio-7] ERROR o.s.b.a.w.r.e.AbstractErrorWebExceptionHandler - [a760bbec-13]  500 Server Error for HTTP GET "/analytics-service/api-docs"
+io.netty.channel.AbstractChannel$AnnotatedConnectException: Connection refused: getsockopt: localhost/127.0.0.1:8088
+	Suppressed: reactor.core.publisher.FluxOnAssembly$OnAssemblyException: 
+Error has been observed at the following site(s):
+	*__checkpoint ⇢ org.springframework.cloud.gateway.filter.WeightCalculatorWebFilter [DefaultWebFilterChain]
+	*__checkpoint ⇢ HTTP GET "/analytics-service/api-docs" [ExceptionHandlingWebHandler]
+Original Stack Trace:
+Caused by: java.net.ConnectException: Connection refused: getsockopt
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:682)
+	at java.base/sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:973)
+	at io.netty.channel.socket.nio.NioSocketChannel.doFinishConnect(NioSocketChannel.java:337)
+	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.finishConnect(AbstractNioChannel.java:339)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:776)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:724)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:650)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2026-07-03 14:54:37 [reactor-http-nio-7] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 500 INTERNAL_SERVER_ERROR /analytics-service/api-docs 19ms
+2026-07-03 14:54:41 [reactor-http-nio-7] INFO  c.c.gateway.filter.LoggingFilter - Gateway → GET /auth-service/api-docs [from /0:0:0:0:0:0:0:1]
+2026-07-03 14:54:41 [reactor-http-nio-7] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 200 OK /auth-service/api-docs 31ms
+2026-07-03 14:56:13 [reactor-http-nio-7] INFO  c.c.gateway.filter.LoggingFilter - Gateway → GET /auth-service/api-docs [from /0:0:0:0:0:0:0:1]
+2026-07-03 14:56:13 [reactor-http-nio-7] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 200 OK /auth-service/api-docs 87ms
+2026-07-03 15:11:40 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+2026-07-03 15:11:40 [main] INFO  c.c.gateway.ApiGatewayApplication - Starting ApiGatewayApplication using Java 21.0.2 with PID 27120 (C:\Project\civicdesk (1)\api-gateway\target\classes started by 2506608 in C:\Project\civicdesk (1)\api-gateway)
+2026-07-03 15:11:40 [main] INFO  c.c.gateway.ApiGatewayApplication - No active profile set, falling back to 1 default profile: "default"
+2026-07-03 15:11:41 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=e5eb0134-8f0d-3750-b411-d859af6998f0
+2026-07-03 15:11:42 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [After]
+2026-07-03 15:11:42 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Before]
+2026-07-03 15:11:42 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Between]
+2026-07-03 15:11:42 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Cookie]
+2026-07-03 15:11:42 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Header]
+2026-07-03 15:11:42 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Host]
+2026-07-03 15:11:42 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Method]
+2026-07-03 15:11:42 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Path]
+2026-07-03 15:11:42 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Query]
+2026-07-03 15:11:42 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [ReadBody]
+2026-07-03 15:11:42 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [RemoteAddr]
+2026-07-03 15:11:42 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [XForwardedRemoteAddr]
+2026-07-03 15:11:42 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Weight]
+2026-07-03 15:11:42 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [CloudFoundryRouteService]
+2026-07-03 15:11:42 [main] INFO  o.s.b.w.e.netty.NettyWebServer - Netty started on port 9090
+2026-07-03 15:11:42 [main] INFO  c.c.gateway.ApiGatewayApplication - Started ApiGatewayApplication in 2.366 seconds (process running for 2.697)
+2026-07-03 15:19:41 [reactor-http-nio-7] INFO  c.c.gateway.filter.LoggingFilter - Gateway → GET /civicDesk/audit/auditLogs [from /0:0:0:0:0:0:0:1]
+2026-07-03 15:19:42 [reactor-http-nio-7] WARN  c.c.g.security.JwtTokenProvider - JWT validation failed at gateway: JWT expired 7381154 milliseconds ago at 2026-07-03T07:46:41.000Z. Current time: 2026-07-03T09:49:42.154Z. Allowed clock skew: 0 milliseconds.
+2026-07-03 15:19:42 [reactor-http-nio-7] WARN  c.c.g.filter.JwtAuthenticationFilter - Invalid JWT token for path: /civicDesk/audit/auditLogs
+2026-07-03 15:19:42 [reactor-http-nio-7] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 401 UNAUTHORIZED /civicDesk/audit/auditLogs 315ms
+2026-07-03 15:24:20 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+2026-07-03 15:24:20 [main] INFO  c.c.gateway.ApiGatewayApplication - Starting ApiGatewayApplication using Java 21.0.2 with PID 22044 (C:\Project\civicdesk (1)\api-gateway\target\classes started by 2506608 in C:\Project\civicdesk (1)\api-gateway)
+2026-07-03 15:24:20 [main] INFO  c.c.gateway.ApiGatewayApplication - No active profile set, falling back to 1 default profile: "default"
+2026-07-03 15:24:21 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=e5eb0134-8f0d-3750-b411-d859af6998f0
+2026-07-03 15:24:22 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [After]
+2026-07-03 15:24:22 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Before]
+2026-07-03 15:24:22 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Between]
+2026-07-03 15:24:22 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Cookie]
+2026-07-03 15:24:22 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Header]
+2026-07-03 15:24:22 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Host]
+2026-07-03 15:24:22 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Method]
+2026-07-03 15:24:22 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Path]
+2026-07-03 15:24:22 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Query]
+2026-07-03 15:24:22 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [ReadBody]
+2026-07-03 15:24:22 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [RemoteAddr]
+2026-07-03 15:24:22 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [XForwardedRemoteAddr]
+2026-07-03 15:24:22 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Weight]
+2026-07-03 15:24:22 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [CloudFoundryRouteService]
+2026-07-03 15:24:22 [main] INFO  o.s.b.w.e.netty.NettyWebServer - Netty started on port 9090
+2026-07-03 15:24:22 [main] INFO  c.c.gateway.ApiGatewayApplication - Started ApiGatewayApplication in 2.527 seconds (process running for 2.896)
+2026-07-03 15:24:35 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway → GET /civicDesk/audit/auditLogs [from /0:0:0:0:0:0:0:1]
+2026-07-03 15:24:35 [reactor-http-nio-3] WARN  c.c.g.security.JwtTokenProvider - JWT validation failed at gateway: JWT expired 7674492 milliseconds ago at 2026-07-03T07:46:41.000Z. Current time: 2026-07-03T09:54:35.492Z. Allowed clock skew: 0 milliseconds.
+2026-07-03 15:24:35 [reactor-http-nio-3] WARN  c.c.g.filter.JwtAuthenticationFilter - Invalid JWT token for path: /civicDesk/audit/auditLogs
+2026-07-03 15:24:35 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 401 UNAUTHORIZED /civicDesk/audit/auditLogs 499ms
+2026-07-03 15:26:14 [reactor-http-nio-5] INFO  c.c.gateway.filter.LoggingFilter - Gateway → POST /civicDesk/iam/auth/staff/login [from /0:0:0:0:0:0:0:1]
+2026-07-03 15:26:15 [reactor-http-nio-5] INFO  c.c.gateway.filter.LoggingFilter - Gateway ← 200 OK /civicDesk/iam/auth/staff/login 1004ms
+2026-07-03 15:28:05 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+2026-07-03 15:28:05 [main] INFO  c.c.gateway.ApiGatewayApplication - Starting ApiGatewayApplication using Java 21.0.2 with PID 1892 (C:\Project\civicdesk (1)\api-gateway\target\classes started by 2506608 in C:\Project\civicdesk (1)\api-gateway)
+2026-07-03 15:28:05 [main] INFO  c.c.gateway.ApiGatewayApplication - No active profile set, falling back to 1 default profile: "default"
+2026-07-03 15:28:05 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=e5eb0134-8f0d-3750-b411-d859af6998f0
+2026-07-03 15:28:06 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [After]
+2026-07-03 15:28:06 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Before]
+2026-07-03 15:28:06 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Between]
+2026-07-03 15:28:06 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Cookie]
+2026-07-03 15:28:06 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Header]
+2026-07-03 15:28:06 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Host]
+2026-07-03 15:28:06 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Method]
+2026-07-03 15:28:06 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Path]
+2026-07-03 15:28:06 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Query]
+2026-07-03 15:28:06 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [ReadBody]
+2026-07-03 15:28:06 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [RemoteAddr]
+2026-07-03 15:28:06 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [XForwardedRemoteAddr]
+2026-07-03 15:28:06 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Weight]
+2026-07-03 15:28:06 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [CloudFoundryRouteService]
+2026-07-03 15:28:07 [main] INFO  o.s.b.w.e.netty.NettyWebServer - Netty started on port 9090
+2026-07-03 15:28:07 [main] INFO  c.c.gateway.ApiGatewayApplication - Started ApiGatewayApplication in 2.43 seconds (process running for 2.828)
+2026-07-03 15:28:56 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway -> POST /civicDesk/iam/auth/staff/login [from /0:0:0:0:0:0:0:1]
+2026-07-03 15:28:57 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway <- 200 OK /civicDesk/iam/auth/staff/login 1130ms
+2026-07-03 15:29:03 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway -> POST /civicDesk/iam/auth/staff/login [from /0:0:0:0:0:0:0:1]
+2026-07-03 15:29:03 [reactor-http-nio-3] INFO  c.c.gateway.filter.LoggingFilter - Gateway <- 200 OK /civicDesk/iam/auth/staff/login 183ms
