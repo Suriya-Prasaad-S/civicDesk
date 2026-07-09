@@ -1,6 +1,6 @@
 package com.civicdesk.servicerequest.client;
 
-import com.civicdesk.servicerequest.dto.NotificationRequest;
+import com.civicdesk.servicerequest.dto.request.NotificationRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,6 +20,9 @@ public class NotificationClient {
     @Value("${app.notification-service.url}")
     private String notificationServiceUrl;
 
+    @Value("${app.service.token:}")
+    private String serviceToken;
+
     public void sendNotification(NotificationRequest payload) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -27,6 +30,9 @@ public class NotificationClient {
         String jwtToken = getCurrentJwtToken();
         if (jwtToken != null) {
             headers.set("Authorization", jwtToken);
+        }
+        if (serviceToken != null && !serviceToken.isBlank()) {
+            headers.set("X-Service-Token", serviceToken);
         }
 
         HttpEntity<NotificationRequest> requestEntity = new HttpEntity<>(payload, headers);

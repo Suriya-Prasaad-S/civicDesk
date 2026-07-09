@@ -6,6 +6,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -23,6 +24,9 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
     private final JwtTokenProvider jwtTokenProvider;
 
+    @Value("${app.service.token:}")
+    private String serviceToken;
+
     @Override
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response,
@@ -37,6 +41,14 @@ public class JwtAuthFilter extends OncePerRequestFilter {
                 SecurityContextHolder.getContext().setAuthentication(
                         new UsernamePasswordAuthenticationToken(userIdStr, null,
                                 List.of(new SimpleGrantedAuthority("ROLE_" + role))));
+            } else if (serviceToken != null && !serviceToken.isBlank()) {
+                String serviceHeader = request.getHeader("X-Service-Token");
+                if (serviceToken.equals(serviceHeader)) {
+                    JwtUserContext.set(0L, "service", "ADM");
+                    SecurityContextHolder.getContext().setAuthentication(
+                            new UsernamePasswordAuthenticationToken("service", null,
+                                    List.of(new SimpleGrantedAuthority("ROLE_ADM"))));
+                }
             }
         } catch (Exception e) {
             log.error("JWT filter error: {}", e.getMessage());

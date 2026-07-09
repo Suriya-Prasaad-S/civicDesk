@@ -1,12 +1,13 @@
 package com.civicdesk.servicerequest.service;
 
-import com.civicdesk.servicerequest.dto.ServiceCatalogRequest;
-import com.civicdesk.servicerequest.dto.ServiceCatalogResponse;
+import com.civicdesk.servicerequest.dto.request.ServiceCatalogRequest;
+import com.civicdesk.servicerequest.dto.response.ServiceCatalogResponse;
 import com.civicdesk.servicerequest.entity.ServiceCatalog;
 import com.civicdesk.servicerequest.enums.ServiceCategory;
 import com.civicdesk.servicerequest.enums.ServiceStatus;
 import com.civicdesk.servicerequest.exception.ResourceNotFoundException;
 import com.civicdesk.servicerequest.repository.ServiceCatalogRepository;
+import com.civicdesk.servicerequest.client.AuditLogClient;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -28,6 +29,9 @@ public class ServiceCatalogServiceTest {
 
     @Mock
     private ServiceCatalogRepository catalogRepository;
+
+    @Mock
+    private AuditLogClient auditLogClient;
 
     @InjectMocks
     private ServiceCatalogService serviceCatalogService;
