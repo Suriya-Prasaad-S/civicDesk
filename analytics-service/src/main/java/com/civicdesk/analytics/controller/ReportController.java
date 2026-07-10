@@ -1,8 +1,8 @@
 package com.civicdesk.analytics.controller;
 
-import com.civicdesk.analytics.response.ApiResponse;
+
 import com.civicdesk.analytics.dto.request.GenerateReportRequest;
-import com.civicdesk.analytics.dto.response.ReportResponse;
+import com.civicdesk.analytics.dto.response.ApiResponse;
 import com.civicdesk.analytics.dto.response.ReportSummaryResponse;
 import com.civicdesk.analytics.service.IReportService;
 import com.civicdesk.analytics.enums.AuditAction;
@@ -18,6 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -27,6 +28,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @Validated
 @Slf4j
+@PreAuthorize("hasAnyRole('DS','ADM')")
 public class ReportController {
 
     private final IReportService reportService;

@@ -1,6 +1,6 @@
 package com.civicdesk.analytics.exception;
 
-import com.civicdesk.analytics.response.ApiResponse;
+
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,6 +9,9 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+import com.civicdesk.analytics.dto.response.ApiResponse;
+
 import org.springframework.http.converter.HttpMessageNotReadableException;
 
 import java.util.HashMap;

@@ -71,14 +71,6 @@ public class CitizenGrievanceController {
                 "Grievance reopened successfully", citizenGrievanceService.reopenGrievance(grievanceId, req)));
     }
 
-    @PostMapping("/getGrievanceAnalytics")
-    public ResponseEntity<ApiResponse> getGrievanceAnalytics(
-            @Valid @RequestBody GrievanceAnalyticsRequest grievanceAnalyticsRequest) {
-        log.info("This is the responses {}", grievanceAnalyticsRequest);
-        return ResponseEntity.ok(ApiResponse.of(
-                "Grievance analytics retrieved successfully",
-                citizenGrievanceService.getGrievanceAnalytics(grievanceAnalyticsRequest)
-        ));
-    }
+
 
 }

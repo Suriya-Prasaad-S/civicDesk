@@ -1,7 +1,8 @@
 package com.civicdesk.analytics.client;
 
 import com.civicdesk.analytics.dto.request.CreateAuditLogRequest;
-import com.civicdesk.analytics.response.ApiResponse;
+import com.civicdesk.analytics.dto.response.ApiResponse;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;

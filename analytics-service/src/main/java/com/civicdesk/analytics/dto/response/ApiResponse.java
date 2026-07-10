@@ -1,4 +1,4 @@
-package com.civicdesk.analytics.response;
+package com.civicdesk.analytics.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
