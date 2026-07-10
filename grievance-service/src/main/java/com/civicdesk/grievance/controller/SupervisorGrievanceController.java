@@ -1,5 +1,6 @@
 package com.civicdesk.grievance.controller;
 
+import com.civicdesk.grievance.service.CitizenGrievanceService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,22 +11,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.civicdesk.grievance.dto.request.AssignFieldOfficerReq;
+import com.civicdesk.grievance.dto.request.GrievanceAnalyticsRequest;
 import com.civicdesk.grievance.dto.request.ResolveReq;
 import com.civicdesk.grievance.dto.response.ApiResponse;
 import com.civicdesk.grievance.service.SupervisorGrievanceService;
 
 import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
 
 /** Department-supervisor grievance endpoints. All require the {@code DS} role. */
 @RestController
 @RequestMapping("/grievance")
 @PreAuthorize("hasRole('DS')")
+@Slf4j
 public class SupervisorGrievanceController {
 
+    private final CitizenGrievanceService citizenGrievanceService;
     private final SupervisorGrievanceService supervisorGrievanceService;
 
-    public SupervisorGrievanceController(SupervisorGrievanceService supervisorGrievanceService) {
+    public SupervisorGrievanceController(SupervisorGrievanceService supervisorGrievanceService, CitizenGrievanceService citizenGrievanceService) {
         this.supervisorGrievanceService = supervisorGrievanceService;
+        this.citizenGrievanceService = citizenGrievanceService;
     }
 
     @GetMapping("getDepartmentGrievances")
@@ -54,4 +60,14 @@ public class SupervisorGrievanceController {
         return ResponseEntity.ok(ApiResponse.data(
                 supervisorGrievanceService.viewDepartmentGrievance(grievanceId)));
     }
+    @PostMapping("/getGrievanceAnalytics")
+    @PreAuthorize("hasAnyRole('DS','ADM')")
+    public ResponseEntity<ApiResponse> getGrievanceAnalytics(
+            @Valid @RequestBody GrievanceAnalyticsRequest grievanceAnalyticsRequest) {
+        log.info("This is the responses {}", grievanceAnalyticsRequest);
+        return ResponseEntity.ok(ApiResponse.of(
+                "Grievance analytics retrieved successfully",
+                citizenGrievanceService.getGrievanceAnalytics(grievanceAnalyticsRequest)
+        ));
+    }    
 }
