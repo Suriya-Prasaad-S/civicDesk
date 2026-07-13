@@ -165,6 +165,8 @@ springdoc:
     path: /v3/api-docs
   show-actuator: false
 
+logging:
+  config: classpath:logback-spring.xml
 # ─── Rate Limiting Configuration ──────────────────────────────────────────────
 gateway:
   public-paths:
