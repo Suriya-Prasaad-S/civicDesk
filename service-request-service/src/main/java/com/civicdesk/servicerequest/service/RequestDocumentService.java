@@ -60,7 +60,7 @@ public class RequestDocumentService {
                 Path uploadDir = Paths.get("uploads/service-request-docs");
                 Files.createDirectories(uploadDir);
                 String uuid8 = UUID.randomUUID().toString().substring(0, 8);
-                String filename = serviceRequest.getCitizenId() + "_" + uuid8 + "_" + file.getOriginalFilename();
+                String filename = serviceRequest.getUserId() + "_" + uuid8 + "_" + file.getOriginalFilename();
                 Files.copy(file.getInputStream(), uploadDir.resolve(filename));
                 filePath = filename;
             } catch (IOException e) {

@@ -83,7 +83,6 @@ public class ServiceRequestServiceTest {
         
         ServiceRequest savedRequest = ServiceRequest.builder()
                 .requestId(100L)
-                .citizenId(10L)
                 .userId(1L)
                 .service(activeService)
                 .submissionDate(LocalDate.now())
@@ -96,7 +95,6 @@ public class ServiceRequestServiceTest {
 
         ServiceRequestCreateRequest createRequest = new ServiceRequestCreateRequest();
         createRequest.setServiceId(1L);
-        createRequest.setCitizenId(10L);
 
         ServiceRequestResponse response = serviceRequestService.submitRequest(createRequest, 1L);
 
@@ -112,7 +110,6 @@ public class ServiceRequestServiceTest {
 
         ServiceRequestCreateRequest createRequest = new ServiceRequestCreateRequest();
         createRequest.setServiceId(2L);
-        createRequest.setCitizenId(10L);
 
         assertThrows(InactiveServiceException.class, () -> 
             serviceRequestService.submitRequest(createRequest, 1L)
@@ -126,7 +123,6 @@ public class ServiceRequestServiceTest {
     void updateStatus_Success() {
         ServiceRequest existingRequest = ServiceRequest.builder()
                 .requestId(100L)
-                .citizenId(10L)
                 .userId(1L)
                 .service(activeService)
                 .status(RequestStatus.SUBMITTED)
@@ -149,7 +145,6 @@ public class ServiceRequestServiceTest {
     void updateStatus_InvalidTransition_ThrowsBadRequestException() {
         ServiceRequest existingRequest = ServiceRequest.builder()
                 .requestId(100L)
-                .citizenId(10L)
                 .userId(1L)
                 .service(activeService)
                 .status(RequestStatus.SUBMITTED)
@@ -169,7 +164,6 @@ public class ServiceRequestServiceTest {
     void assignOfficer_Success() {
         ServiceRequest existingRequest = ServiceRequest.builder()
                 .requestId(100L)
-                .citizenId(10L)
                 .userId(1L)
                 .service(activeService)
                 .status(RequestStatus.SUBMITTED)
@@ -190,7 +184,6 @@ public class ServiceRequestServiceTest {
     void assignOfficer_ClosedRequest_ThrowsBadRequestException() {
         ServiceRequest existingRequest = ServiceRequest.builder()
                 .requestId(100L)
-                .citizenId(10L)
                 .userId(1L)
                 .service(activeService)
                 .status(RequestStatus.COMPLETED)

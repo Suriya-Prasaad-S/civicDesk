@@ -69,7 +69,6 @@ public class ServiceRequestService {
         }
 
         ServiceRequest serviceRequest = ServiceRequest.builder()
-                .citizenId(request.getCitizenId())
                 .userId(userId)
                 .service(service)
                 .submissionDate(submissionDate)
@@ -81,7 +80,7 @@ public class ServiceRequestService {
 
         ServiceRequest saved = requestRepository.save(serviceRequest);
         log.info("Service request submitted: requestId={} citizenId={} serviceId={}",
-                saved.getRequestId(), request.getCitizenId(), request.getServiceId());
+                saved.getRequestId(), userId, request.getServiceId());
         auditLogClient.log(String.valueOf(userId), "SUBMIT_REQUEST", "SERVICE_REQUEST");
         
         try {
@@ -155,8 +154,8 @@ public class ServiceRequestService {
         return requestRepository.findByStatus(status).stream().map(this::mapToListItemResponse).toList();
     }
 
-    public List<CitizenRequestItemResponse> getByCitizenIdAsCitizenItems(Long citizenId) {
-        return requestRepository.findByCitizenId(citizenId).stream().map(this::mapToCitizenItemResponse).toList();
+    public List<CitizenRequestItemResponse> getByUserIdAsCitizenItems(Long userId) {
+        return requestRepository.findByUserId(userId).stream().map(this::mapToCitizenItemResponse).toList();
     }
 
     @Transactional(readOnly = true)
@@ -299,7 +298,6 @@ public class ServiceRequestService {
     private ServiceRequestResponse mapToResponse(ServiceRequest sr) {
         return ServiceRequestResponse.builder()
                 .requestId(sr.getRequestId())
-                .citizenId(sr.getCitizenId())
                 .userId(sr.getUserId())
                 .serviceId(sr.getService().getServiceId())
                 .serviceName(sr.getService().getServiceName())
@@ -318,7 +316,6 @@ public class ServiceRequestService {
     private RequestListItemResponse mapToListItemResponse(ServiceRequest sr) {
         return RequestListItemResponse.builder()
                 .requestId(sr.getRequestId())
-                .citizenId(sr.getCitizenId())
                 .serviceId(sr.getService().getServiceId())
                 .serviceName(sr.getService().getServiceName())
                 .submissionDate(sr.getSubmissionDate())
@@ -341,7 +338,6 @@ public class ServiceRequestService {
         private RequestDetailResponse mapToDetailResponse(ServiceRequest sr) {
             return RequestDetailResponse.builder()
                     .requestId(sr.getRequestId())
-                    .citizenId(sr.getCitizenId())
                     .userId(sr.getUserId())
                     .serviceId(sr.getService().getServiceId())
                     .serviceName(sr.getService().getServiceName())

@@ -70,7 +70,7 @@ public class ServiceRequestController {
     @Operation(summary = "Get service requests by citizen ID")
     public ResponseEntity<List<CitizenRequestItemResponse>> getByCitizen(
             @PathVariable Long citizenId) {
-        return ResponseEntity.ok(requestService.getByCitizenIdAsCitizenItems(citizenId));
+        return ResponseEntity.ok(requestService.getByUserIdAsCitizenItems(citizenId));
     }
 
     @PutMapping("/updateRequestStatus/{requestId}")
