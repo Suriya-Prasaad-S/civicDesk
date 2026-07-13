@@ -31,7 +31,7 @@ public class AuthServiceClient {
         }
 
         HttpEntity<Void> requestEntity = new HttpEntity<>(headers);
-        String endpoint = authServiceUrl + "/iam/departments/" + departmentId;
+        String endpoint = authServiceUrl + "/civicDesk/iam/departments/" + departmentId;
 
         try {
             log.info("Fetching supervisor for departmentId={} from {}", departmentId, endpoint);

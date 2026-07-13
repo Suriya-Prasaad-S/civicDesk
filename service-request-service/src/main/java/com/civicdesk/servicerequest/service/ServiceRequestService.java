@@ -154,8 +154,8 @@ public class ServiceRequestService {
         return requestRepository.findByStatus(status).stream().map(this::mapToListItemResponse).toList();
     }
 
-    public List<CitizenRequestItemResponse> getByCitizenIdAsCitizenItems(Long citizenId) {
-        return requestRepository.findByCitizenId(citizenId).stream().map(this::mapToCitizenItemResponse).toList();
+    public List<CitizenRequestItemResponse> getByUserIdAsCitizenItems(Long userId) {
+        return requestRepository.findByUserId(userId).stream().map(this::mapToCitizenItemResponse).toList();
     }
 
     @Transactional(readOnly = true)
