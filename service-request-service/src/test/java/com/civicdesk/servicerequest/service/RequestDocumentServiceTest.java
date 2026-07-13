@@ -54,7 +54,6 @@ public class RequestDocumentServiceTest {
     void setUp() {
         userRequest = ServiceRequest.builder()
                 .requestId(100L)
-                .citizenId(10L)
                 .userId(1L)
                 .status(RequestStatus.SUBMITTED)
                 .build();
