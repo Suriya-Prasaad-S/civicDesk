@@ -36,6 +36,10 @@ public class SwaggerConfig {
                                 .type(SecurityScheme.Type.HTTP)
                                 .scheme("bearer")
                                 .bearerFormat("JWT")
-                                .description("Paste your JWT token here")));
+                                .description("Paste your JWT token here")))
+
+
+                .addSecurityItem(new io.swagger.v3.oas.models.security.SecurityRequirement()
+                        .addList("BearerAuth"));
     }
 }

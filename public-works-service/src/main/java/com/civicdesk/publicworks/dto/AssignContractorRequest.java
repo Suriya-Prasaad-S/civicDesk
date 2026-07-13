@@ -1,11 +1,11 @@
 package com.civicdesk.publicworks.dto;
 
-import jakarta.validation.constraints.NotNull;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 public class AssignContractorRequest {
-    @NotNull(message = "contractorId is required")
-    private Long contractorId;
-    private String remarks;
+
+    private String assignedContractorId;
 }

@@ -1,77 +1,106 @@
 package com.civicdesk.grievance.entity;
 
-import com.civicdesk.grievance.enums.*;
-import jakarta.persistence.*;
-import lombok.*;
+
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import java.time.LocalDate;
+import com.civicdesk.grievance.enums.Category;
+import com.civicdesk.grievance.enums.EscalationLevel;
+import com.civicdesk.grievance.enums.GrievanceStatus;
+import com.civicdesk.grievance.util.NumericStringSequenceGenerator;
+
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
 @Table(name = "grievances")
-@Getter @Setter @NoArgsConstructor @AllArgsConstructor @Builder
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Grievance {
 
+    // Sequential numeric id rendered as a String (e.g. 30000001), matching IAM's id strategy.
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long grievanceId;
+    @GeneratedValue(generator = "grievanceIdSeq")
+    @GenericGenerator(
+            name = "grievanceIdSeq",
+            type = NumericStringSequenceGenerator.class,
+            parameters = {
+                @Parameter(name = "sequence_name", value = "grievance_id_seq"),
+                @Parameter(name = "initial_value", value = "30000001"),
+                @Parameter(name = "increment_size", value = "1"),
+                @Parameter(name = "optimizer", value = "none")
+            })
+    @Column(length = 36, nullable = false, updatable = false)
+    private String grievanceId;
 
-    @Column(nullable = false)
-    private Long citizenId;
+    /** Owner — resolved from the authenticated caller, never the request body. */
+    @Column(length = 50, nullable = false, updatable = false)
+    private String citizenId;
 
-    @Column(nullable = false)
-    private Long userId;
+    /** Owning department — resolved from {@link #category} at creation. */
+    @Column(length = 50)
+    private String departmentId;
 
+    /** Current holder (supervisor at intake, field officer once assigned). */
+    @Column(length = 50)
+    private String assignedToId;
+
+    /** Assigned field officer; null until assigned, retained through review. */
+    @Column(length = 50)
+    private String fieldOfficerId;
+
+    @Column(nullable = false, length = 150)
+    private String grievanceTitle;
+
+    /** Fixed list; locked after submission. Stored as a short code (enum name). */
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private GrievanceCategory category;
-
-    @Column(nullable = false)
-    private String subject;
+    @Column(length = 5, nullable = false, updatable = false)
+    private Category category;
 
     @Column(columnDefinition = "TEXT", nullable = false)
     private String description;
 
-    private String location;
+    @Column(length = 50)
+    private String ward;
 
-    private Long departmentId;
+    @Column(nullable = false, updatable = false)
+    private LocalDateTime submissionDate;
+
+    /** Current handling tier; defaults to L1. */
+    @Enumerated(EnumType.STRING)
+    @Column(length = 5, nullable = false)
+    private EscalationLevel escalationLevel = EscalationLevel.L2;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    @Builder.Default
-    private GrievancePriority priority = GrievancePriority.MEDIUM;
-
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    @Builder.Default
-    private GrievanceStatus status = GrievanceStatus.SUBMITTED;
-
-    private Long assignedTo;
-
-    @Column(nullable = false)
-    private LocalDate submittedDate;
-
-    private LocalDate resolvedDate;
-
-    @Column(nullable = false)
-    private LocalDate slaDeadline;
-
-    private Boolean slaBreach;
-
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    @Builder.Default
-    private EscalationLevel escalationLevel = EscalationLevel.L1;
-
-    @OneToMany(mappedBy = "grievance", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<GrievanceAction> actions;
+    @Column(length = 5, nullable = false)
+    private GrievanceStatus status = GrievanceStatus.O;
 
     @CreationTimestamp
+    @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
     @UpdateTimestamp
+    @Column(nullable = false)
     private LocalDateTime updatedAt;
+
+    @PrePersist
+    protected void onCreate() {
+        if (submissionDate == null) {
+            submissionDate = LocalDateTime.now();
+        }
+    }
 }

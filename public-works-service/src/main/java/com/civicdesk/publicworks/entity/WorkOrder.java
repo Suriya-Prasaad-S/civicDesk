@@ -12,10 +12,11 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
-
+import org.hibernate.annotations.SQLRestriction;
 @Entity
 @Table(name = "work_orders")
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor @Builder
+@SQLRestriction("is_deleted = false")
 public class WorkOrder {
 
     @Id
