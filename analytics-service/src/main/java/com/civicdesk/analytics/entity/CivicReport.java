@@ -10,6 +10,10 @@ import java.time.LocalDateTime;
 import java.util.Map;
 import java.util.UUID;
 
+import org.hibernate.annotations.GenericGenerator;
+
+import com.civicdesk.analytics.util.NumericStringSequenceGenerator;
+
 @Entity
 @Table(name = "civic_reports")
 @Data
@@ -19,7 +23,29 @@ import java.util.UUID;
 public class CivicReport {
 
     @Id
-    @Column(name = "report_id", length = 36)
+    @GeneratedValue(generator = "reportIdSeq")
+    @GenericGenerator(
+            name = "reportIdSeq",
+            type = NumericStringSequenceGenerator.class,
+            parameters = {
+                    @org.hibernate.annotations.Parameter(
+                            name = "sequence_name",
+                            value = "report_id_seq"
+                    ),
+                    @org.hibernate.annotations.Parameter(
+                            name = "initial_value",
+                            value = "90000001"
+                    ),
+                    @org.hibernate.annotations.Parameter(
+                            name = "increment_size",
+                            value = "1"
+                    ),
+                    @org.hibernate.annotations.Parameter(
+                            name = "optimizer",
+                            value = "none"
+                    )
+            })
+    @Column(name = "report_id", length = 36, updatable = false, nullable = false)
     private String reportId;
 
     @Column(name = "report_type", nullable = false, length = 50)

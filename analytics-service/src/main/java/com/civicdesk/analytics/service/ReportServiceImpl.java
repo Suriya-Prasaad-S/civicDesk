@@ -23,6 +23,8 @@ import com.civicdesk.analytics.repository.CivicReportRepository;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -35,6 +37,7 @@ import java.time.LocalDateTime;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class ReportServiceImpl implements IReportService {
 
     private final CivicReportRepository repository;
@@ -63,6 +66,15 @@ public class ReportServiceImpl implements IReportService {
                 default -> throw new InvalidReportTypeException(
                         "Unsupported report type: " + reportType);
                 };
+
+                // log.info("Metrics for report type {}: {}", reportType, metrics);
+
+                // return ReportResponse.builder()
+                //         .reportId("123")
+                //         .reportType("Sample")
+                //         .generatedDate(LocalDateTime.now())
+                //         .status("GENERATED")
+                //         .build();                
 
                 CivicReport report = new CivicReport();
                 report.setReportType(reportType);

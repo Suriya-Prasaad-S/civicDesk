@@ -88,7 +88,7 @@ spring:
         - id: analytics-service
           uri: http://localhost:8088
           predicates:
-            - Path=/civicDesk/analytics/**
+            - Path=/civicDesk/reports/**
 
         # ── Swagger aggregation: per-service /api-docs ──────────────────────
         - id: auth-service-docs

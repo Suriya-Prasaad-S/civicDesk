@@ -28,6 +28,7 @@ import com.civicdesk.grievance.mapper.GrievanceMapper;
 import com.civicdesk.grievance.repository.GrievanceActionRepo;
 import com.civicdesk.grievance.repository.GrievanceRepo;
 import com.civicdesk.grievance.security.JwtUserContext;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.civicdesk.grievance.client.UserClient;
 // import com.civicdesk.grievance.util.SecurityContextUtil;
 
@@ -42,15 +43,18 @@ public class FieldOfficerGrievanceService {
     private final GrievanceActionRepo grievanceActionRepo;
     private final UserClient userClient;
     private final GrievanceMapper mapper;
+    private final ObjectMapper objectMapper;
 
     public FieldOfficerGrievanceService(GrievanceRepo grievanceRepo,
                                         GrievanceActionRepo grievanceActionRepo,
                                         UserClient userClient,
-                                        GrievanceMapper mapper) {
+                                        GrievanceMapper mapper,
+                                        ObjectMapper objectMapper) {
         this.grievanceRepo = grievanceRepo;
         this.grievanceActionRepo = grievanceActionRepo;
         this.userClient = userClient;
         this.mapper = mapper;
+        this.objectMapper = objectMapper;
     }
 
     /** Grievances currently assigned to the caller. */
@@ -175,6 +179,14 @@ public class FieldOfficerGrievanceService {
         grievanceActionRepo.save(review);
     }
 
+    private <T> T mapResponse(ApiResponse response, Class<T> clazz) {
+        if (response == null || response.getData() == null) {
+            return null;
+        }
+
+        return objectMapper.convertValue(response.getData(), clazz);
+    }    
+
     private String resolveSupervisor(String departmentId) {
         if (departmentId == null) {
             return null;
@@ -183,7 +195,8 @@ public class FieldOfficerGrievanceService {
         ApiResponse response =
                 userClient.getDepartmentById(departmentId);
 
-        DepartmentResponse department = (DepartmentResponse)response.getData();
+        DepartmentResponse department =
+        mapResponse(response, DepartmentResponse.class);
 
         return department != null
                 ? department.getDepartmentSupervisorId()

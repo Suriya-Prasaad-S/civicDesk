@@ -22,6 +22,7 @@ import com.civicdesk.grievance.mapper.GrievanceMapper;
 import com.civicdesk.grievance.repository.GrievanceActionRepo;
 import com.civicdesk.grievance.repository.GrievanceRepo;
 import com.civicdesk.grievance.security.JwtUserContext;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.civicdesk.grievance.client.UserClient;
 import com.civicdesk.grievance.dto.response.ApiResponse;
 import com.civicdesk.grievance.dto.response.UserResponse;
@@ -46,15 +47,30 @@ public class SupervisorGrievanceService {
     private final GrievanceActionRepo grievanceActionRepo;
     private final GrievanceMapper mapper;
     private final UserClient userClient;
+    private ObjectMapper objectMapper;
 
     public SupervisorGrievanceService(GrievanceRepo grievanceRepo,
                                       GrievanceActionRepo grievanceActionRepo,
                                       GrievanceMapper mapper,
-                                      UserClient userClient) {
+                                      UserClient userClient,
+                                      ObjectMapper objectMapper) {
         this.grievanceRepo = grievanceRepo;
         this.grievanceActionRepo = grievanceActionRepo;
         this.mapper = mapper;
         this.userClient = userClient;
+        this.objectMapper = objectMapper;
+    }
+    
+
+    private UserResponse getUserResponse(ApiResponse resp) {
+        if (resp == null || resp.getData() == null) {
+            return null;
+        }
+
+        return objectMapper.convertValue(
+                resp.getData(),
+                UserResponse.class
+        );
     }
 
     /** Grievances in the supervisor's department. */
@@ -114,7 +130,8 @@ public class SupervisorGrievanceService {
     private String supervisorDepartmentId() {
         String userId = JwtUserContext.getCurrentUserId();
         ApiResponse resp = userClient.getUserById(userId);
-        UserResponse supervisor = resp == null ? null : (UserResponse) resp.getData();
+
+        UserResponse supervisor = getUserResponse(resp);
         if (supervisor == null) {
             throw new UnauthorizedGrievanceAccessException("Your account could not be found");
         }
@@ -153,7 +170,8 @@ public class SupervisorGrievanceService {
     /** The chosen field officer must be an active FO in the supervisor's department. */
     private void validateFieldOfficer(String fieldOfficerId, String deptId) {
         ApiResponse officerResp = userClient.getUserById(fieldOfficerId);
-        UserResponse officer = officerResp == null ? null : (UserResponse) officerResp.getData();
+        UserResponse officer = getUserResponse(officerResp);
+
         if (officer == null) {
             throw new InvalidGrievanceDataException("No user found with id: " + fieldOfficerId);
         }
