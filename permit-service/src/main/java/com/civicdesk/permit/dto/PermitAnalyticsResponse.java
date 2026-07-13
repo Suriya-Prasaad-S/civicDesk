@@ -13,9 +13,9 @@ public class PermitAnalyticsResponse {
 
     private List<AnalyticsLabelCountDto> permitTypeBreakdown;
 
-    private List<AnalyticsTrendResponse> applicationTrend;
+    private List<AnalyticsTrendDto> applicationTrend;
 
-    private List<AnalyticsTrendResponse> decisionTrend;
+    private List<AnalyticsTrendDto> decisionTrend;
 
     private Double averageDecisionDays;
 
