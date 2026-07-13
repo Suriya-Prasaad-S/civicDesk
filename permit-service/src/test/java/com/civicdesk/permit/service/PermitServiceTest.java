@@ -27,7 +27,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
-
+import com.civicdesk.permit.client.AuditLogClient;
 @ExtendWith(MockitoExtension.class)
 class PermitServiceTest {
 
@@ -45,6 +45,9 @@ class PermitServiceTest {
 
     @Mock
     private NotificationClient notificationClient;
+
+    @Mock
+    private AuditLogClient auditLogClient;
 
     @InjectMocks
     private PermitService permitService;

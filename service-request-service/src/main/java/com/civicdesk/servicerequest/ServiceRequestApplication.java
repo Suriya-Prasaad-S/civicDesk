@@ -15,6 +15,6 @@ public class ServiceRequestApplication {
         log.info("===========================================");
         log.info("  CivicDesk Service Request Service — STARTED");
         log.info("  Swagger UI: http://localhost:8083/swagger-ui.html");
-        log.info("===========================================");
+        log.info("============================================");
     }
 }

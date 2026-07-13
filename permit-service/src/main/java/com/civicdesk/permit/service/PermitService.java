@@ -32,7 +32,8 @@ import java.util.stream.Collectors;
 import com.civicdesk.permit.enums.InspectionOutcome;
 import com.civicdesk.permit.enums.InspectionStatus;
 import com.civicdesk.permit.client.AuditLogClient;
-
+import java.util.HashMap;
+import java.util.ArrayList;
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -515,14 +516,14 @@ public class PermitService {
                         toDate));
 
         response.setApplicationTrend(
-                permitRepository.getApplicationTrend(
+                buildApplicationTrend(
                         fromDate,
-                        toDate,
-                        AnalyticsTrendResponse.class));
+                        toDate));
 
         response.setDecisionTrend(
-                permitRepository.getDecisionTrend(
-                        AnalyticsTrendResponse.class));
+                buildDecisionTrend(
+                        fromDate,
+                        toDate));
 
         response.setAverageDecisionDays(
                 calculateAverageDecisionDays());
@@ -655,4 +656,77 @@ public class PermitService {
                 .orElse(0.0);
     }
 
+    private List<AnalyticsTrendDto> buildApplicationTrend(
+            LocalDate fromDate,
+            LocalDate toDate) {
+
+        List<AnalyticsTrendResponse> dbTrend =
+                permitRepository.getApplicationTrend(
+                        fromDate,
+                        toDate,
+                        AnalyticsTrendResponse.class);
+
+        Map<LocalDate, Long> countMap =
+                dbTrend.stream()
+                        .collect(Collectors.toMap(
+                                AnalyticsTrendResponse::getDate,
+                                AnalyticsTrendResponse::getCount));
+
+        List<AnalyticsTrendDto> result =
+                new ArrayList<>();
+
+        LocalDate current = fromDate;
+
+        while (!current.isAfter(toDate)) {
+
+            result.add(
+                    new AnalyticsTrendDto(
+                            current.toString(),
+                            countMap.getOrDefault(
+                                    current,
+                                    0L)));
+
+            current = current.plusDays(1);
+        }
+
+        return result;
+    }
+
+    private List<AnalyticsTrendDto> buildDecisionTrend(
+            LocalDate fromDate,
+            LocalDate toDate) {
+
+        List<AnalyticsTrendResponse> dbTrend =
+                permitRepository.getDecisionTrend(
+                        AnalyticsTrendResponse.class);
+
+        Map<LocalDate, Long> countMap =
+                dbTrend.stream()
+                        .filter(x ->
+                                x.getDate() != null
+                                        && !x.getDate().isBefore(fromDate)
+                                        && !x.getDate().isAfter(toDate))
+                        .collect(Collectors.toMap(
+                                AnalyticsTrendResponse::getDate,
+                                AnalyticsTrendResponse::getCount));
+
+        List<AnalyticsTrendDto> result =
+                new ArrayList<>();
+
+        LocalDate current = fromDate;
+
+        while (!current.isAfter(toDate)) {
+
+            result.add(
+                    new AnalyticsTrendDto(
+                            current.toString(),
+                            countMap.getOrDefault(
+                                    current,
+                                    0L)));
+
+            current = current.plusDays(1);
+        }
+
+        return result;
+    }
 }

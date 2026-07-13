@@ -25,9 +25,9 @@ public class ServiceRequest {
     @Column(name = "request_id")
     private Long requestId;
 
-    // Cross-service reference — citizen_id from citizen-service
-    @Column(name = "citizen_id", nullable = false)
-    private Long citizenId;
+    // // Cross-service reference — citizen_id from citizen-service
+    // @Column(name = "citizen_id", nullable = false)
+    // private Long citizenId;
 
     // userId from JWT — owner of this request
     @Column(name = "user_id", nullable = false)

@@ -9,6 +9,6 @@ public class ServiceRequestCreateRequest {
     @NotNull(message = "Service ID is required")
     private Long serviceId;
 
-    @NotNull(message = "Citizen ID is required")
-    private Long citizenId;
+    // @NotNull(message = "Citizen ID is required")
+    // private Long citizenId;
 }
