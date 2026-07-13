@@ -9,6 +9,7 @@ import org.springframework.web.client.RestTemplate;
 public class BeansConfig {
 
     @Bean
+    @org.springframework.cloud.client.loadbalancer.LoadBalanced
     public RestTemplate restTemplate(RestTemplateBuilder builder) {
         return builder.build();
     }

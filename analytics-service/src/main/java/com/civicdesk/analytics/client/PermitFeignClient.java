@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 @FeignClient(
-        name = "permit-client",
-        url = "${app.permit-service.url}",
+        name = "permit-service",
+        path = "/civicDesk",
         configuration = FeignClientConfig.class
 )
 public interface PermitFeignClient {

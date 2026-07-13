@@ -1,9 +1,18 @@
 server:
   port: 9090
 
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_SERVER_URL:http://localhost:8761/eureka/}
+    register-with-eureka: true
+    fetch-registry: true
+  instance:
+    prefer-ip-address: true
+
 app:
   jwt:
-    secret: civicdesk_hs256_secret_key_minimum_32_characters_required
+    secret: 4a6250655368566d5970337336763979244226452948404d6351665468819ad2
 
 spring:
   application:
@@ -28,109 +37,109 @@ spring:
 
         # ── auth-service (8081) ─────────────────────────────────────────────
         - id: auth-service
-          uri: http://localhost:8081
+          uri: lb://auth-service
           predicates:
             - Path=/civicDesk/iam/**
 
         - id: auth-service-audit
-          uri: http://localhost:8081
+          uri: lb://auth-service
           predicates:
             - Path=/civicDesk/audit/**
 
         # ── citizen-service (8082) ──────────────────────────────────────────
         - id: citizen-service
-          uri: http://localhost:8082
+          uri: lb://citizen-service
           predicates:
             - Path=/civicDesk/citizens/**
 
         # ── service-request-service (8083) ──────────────────────────────────
         - id: service-request-service
-          uri: http://localhost:8083
+          uri: lb://service-request-service
           predicates:
             - Path=/civicDesk/serviceRequest/**
 
         # ── permit-service (8084) ───────────────────────────────────────────
         - id: permit-service
-          uri: http://localhost:8084
+          uri: lb://permit-service
           predicates:
             - Path=/civicDesk/permits/**
 
         # ── grievance-service (8085) ────────────────────────────────────────
         - id: grievance-service
-          uri: http://localhost:8085
+          uri: lb://grievance-service
           predicates:
             - Path=/civicDesk/grievance/**
 
         # ── public-works-service (8086) ─────────────────────────────────────
         - id: public-works-service
-          uri: http://localhost:8086
+          uri: lb://public-works-service
           predicates:
             - Path=/civicDesk/workorders/**
 
         # ── notification-service (8087) ─────────────────────────────────────
         - id: notification-service
-          uri: http://localhost:8087
+          uri: lb://notification-service
           predicates:
             - Path=/civicDesk/notification/**
 
         # ── analytics-service (8088) ────────────────────────────────────────
         - id: analytics-service
-          uri: http://localhost:8088
+          uri: lb://analytics-service
           predicates:
             - Path=/civicDesk/analytics/**
 
         # ── Swagger aggregation: per-service /api-docs ──────────────────────
         - id: auth-service-docs
-          uri: http://localhost:8081
+          uri: lb://auth-service
           predicates:
             - Path=/auth-service/api-docs
           filters:
             - RewritePath=/auth-service/api-docs, /civicDesk/api-docs
 
         - id: citizen-service-docs
-          uri: http://localhost:8082
+          uri: lb://citizen-service
           predicates:
             - Path=/citizen-service/api-docs
           filters:
             - RewritePath=/citizen-service/api-docs, /civicDesk/api-docs
 
         - id: service-request-docs
-          uri: http://localhost:8083
+          uri: lb://service-request-service
           predicates:
             - Path=/service-request-service/api-docs
           filters:
             - RewritePath=/service-request-service/api-docs, /civicDesk/api-docs
 
         - id: permit-service-docs
-          uri: http://localhost:8084
+          uri: lb://permit-service
           predicates:
             - Path=/permit-service/api-docs
           filters:
             - RewritePath=/permit-service/api-docs, /civicDesk/api-docs
 
         - id: grievance-service-docs
-          uri: http://localhost:8085
+          uri: lb://grievance-service
           predicates:
             - Path=/grievance-service/api-docs
           filters:
             - RewritePath=/grievance-service/api-docs, /civicDesk/api-docs
 
         - id: public-works-docs
-          uri: http://localhost:8086
+          uri: lb://public-works-service
           predicates:
             - Path=/public-works-service/api-docs
           filters:
             - RewritePath=/public-works-service/api-docs, /civicDesk/api-docs
 
         - id: notification-service-docs
-          uri: http://localhost:8087
+          uri: lb://notification-service
           predicates:
             - Path=/notification-service/api-docs
           filters:
             - RewritePath=/notification-service/api-docs, /civicDesk/api-docs
 
         - id: analytics-service-docs
-          uri: http://localhost:8088
+          uri: lb://analytics-service
           predicates:
             - Path=/analytics-service/api-docs
           filters:

@@ -20,13 +20,26 @@ services:
       timeout: 5s
       retries: 5
 
-  # ─── API Gateway (8080) ─────────────────────────────────────────────────────
+  # ─── Eureka Server (8761) ───────────────────────────────────────────────────
+  eureka-server:
+    build: ./eureka-server
+    container_name: civicdesk-eureka
+    ports:
+      - "8761:8761"
+    networks:
+      - civicdesk-network
+
+  # ─── API Gateway (9090) ─────────────────────────────────────────────────────
   api-gateway:
     build: ./api-gateway
     container_name: civicdesk-gateway
     ports:
-      - "8080:8080"
+      - "9090:9090"
+    environment:
+      EUREKA_SERVER_URL: http://eureka-server:8761/eureka/
     depends_on:
+      eureka-server:
+        condition: service_started
       auth-service:
         condition: service_started
       citizen-service:
@@ -56,9 +69,12 @@ services:
       spring.datasource.url: jdbc:mysql://mysql:3306/civicdesk_auth?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
       spring.datasource.username: root
       spring.datasource.password: root
+      EUREKA_SERVER_URL: http://eureka-server:8761/eureka/
     depends_on:
       mysql:
         condition: service_healthy
+      eureka-server:
+        condition: service_started
     networks:
       - civicdesk-network
 
@@ -72,9 +88,12 @@ services:
       spring.datasource.url: jdbc:mysql://mysql:3306/civicdesk_citizen?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
       spring.datasource.username: root
       spring.datasource.password: root
+      EUREKA_SERVER_URL: http://eureka-server:8761/eureka/
     depends_on:
       mysql:
         condition: service_healthy
+      eureka-server:
+        condition: service_started
     networks:
       - civicdesk-network
 
@@ -88,9 +107,12 @@ services:
       spring.datasource.url: jdbc:mysql://mysql:3306/civicdesk_service_request?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
       spring.datasource.username: root
       spring.datasource.password: root
+      EUREKA_SERVER_URL: http://eureka-server:8761/eureka/
     depends_on:
       mysql:
         condition: service_healthy
+      eureka-server:
+        condition: service_started
     networks:
       - civicdesk-network
 
@@ -104,9 +126,12 @@ services:
       spring.datasource.url: jdbc:mysql://mysql:3306/civicdesk_permit?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
       spring.datasource.username: root
       spring.datasource.password: root
+      EUREKA_SERVER_URL: http://eureka-server:8761/eureka/
     depends_on:
       mysql:
         condition: service_healthy
+      eureka-server:
+        condition: service_started
     networks:
       - civicdesk-network
 
@@ -120,9 +145,12 @@ services:
       spring.datasource.url: jdbc:mysql://mysql:3306/civicdesk_grievance?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
       spring.datasource.username: root
       spring.datasource.password: root
+      EUREKA_SERVER_URL: http://eureka-server:8761/eureka/
     depends_on:
       mysql:
         condition: service_healthy
+      eureka-server:
+        condition: service_started
     networks:
       - civicdesk-network
 
@@ -136,9 +164,12 @@ services:
       spring.datasource.url: jdbc:mysql://mysql:3306/civicdesk_public_works?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
       spring.datasource.username: root
       spring.datasource.password: root
+      EUREKA_SERVER_URL: http://eureka-server:8761/eureka/
     depends_on:
       mysql:
         condition: service_healthy
+      eureka-server:
+        condition: service_started
     networks:
       - civicdesk-network
 
@@ -152,9 +183,12 @@ services:
       spring.datasource.url: jdbc:mysql://mysql:3306/civicdesk_notification?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
       spring.datasource.username: root
       spring.datasource.password: root
+      EUREKA_SERVER_URL: http://eureka-server:8761/eureka/
     depends_on:
       mysql:
         condition: service_healthy
+      eureka-server:
+        condition: service_started
     networks:
       - civicdesk-network
 
@@ -168,9 +202,12 @@ services:
       spring.datasource.url: jdbc:mysql://mysql:3306/civicdesk_analytics?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
       spring.datasource.username: root
       spring.datasource.password: root
+      EUREKA_SERVER_URL: http://eureka-server:8761/eureka/
     depends_on:
       mysql:
         condition: service_healthy
+      eureka-server:
+        condition: service_started
     networks:
       - civicdesk-network
 
