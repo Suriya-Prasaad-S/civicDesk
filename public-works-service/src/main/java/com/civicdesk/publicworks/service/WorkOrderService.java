@@ -37,6 +37,7 @@ public class WorkOrderService {
     private final MilestoneRepository milestoneRepository;
     private final NotificationClient notificationClient;
     private final AuditLogClient auditLogClient;
+    private List<AnalyticsTrendDto> trend;
 
     // ─── WORK ORDER CRUD ─────────────────────────────────────────────────────
 
@@ -806,14 +807,41 @@ public class WorkOrderService {
             LocalDate fromDate,
             LocalDate toDate) {
 
+        List<WorkOrder> workOrders =
+                workOrderRepository.findAll();
+
         List<AnalyticsLabelCountDto> result =
                 new ArrayList<>();
 
         for (WorkOrderStatus status : WorkOrderStatus.values()) {
 
             long count =
-                    workOrderRepository.findByStatus(status)
-                            .size();
+                    workOrders.stream()
+                            .filter(workOrder ->
+                                    workOrder.getStatus() == status)
+                            .filter(workOrder -> {
+
+                                if (workOrder.getCreatedAt() == null) {
+                                    return false;
+                                }
+
+                                LocalDate createdDate =
+                                        workOrder.getCreatedAt()
+                                                .toLocalDate();
+
+                                if (fromDate != null
+                                        && createdDate.isBefore(fromDate)) {
+                                    return false;
+                                }
+
+                                if (toDate != null
+                                        && createdDate.isAfter(toDate)) {
+                                    return false;
+                                }
+
+                                return true;
+                            })
+                            .count();
 
             result.add(
                     new AnalyticsLabelCountDto(
@@ -980,10 +1008,12 @@ public class WorkOrderService {
                         toDate));
 
         response.setCategoryBreakdown(
-                buildCategoryBreakdown());
+                buildCategoryBreakdown(
+                        fromDate,
+                        toDate));
 
-        response.setWardBreakdown(
-                buildWardBreakdown());
+        response.setTrend(
+                buildTrend(fromDate, toDate));
 
     return response;
 }
@@ -1041,16 +1071,53 @@ public class WorkOrderService {
     }
 
     private List<AnalyticsLabelCountDto>
-    buildCategoryBreakdown(){
+    buildCategoryBreakdown(
+            LocalDate fromDate,
+            LocalDate toDate) {
 
-        return workOrderRepository
-                .categoryBreakdown()
-                .stream()
-                .map(x->
-                        new AnalyticsLabelCountDto(
-                                x[0].toString(),
-                                ((Number)x[1]).longValue()))
-                .toList();
+        List<AnalyticsLabelCountDto> result =
+                new ArrayList<>();
+
+        List<WorkOrder> workOrders =
+                workOrderRepository.findAll();
+
+        for (WorkCategory category : WorkCategory.values()) {
+
+            long count =
+                    workOrders.stream()
+                            .filter(workOrder ->
+                                    workOrder.getCategory() == category)
+                            .filter(workOrder -> {
+
+                                if (workOrder.getCreatedAt() == null) {
+                                    return false;
+                                }
+
+                                LocalDate createdDate =
+                                        workOrder.getCreatedAt()
+                                                .toLocalDate();
+
+                                if (fromDate != null
+                                        && createdDate.isBefore(fromDate)) {
+                                    return false;
+                                }
+
+                                if (toDate != null
+                                        && createdDate.isAfter(toDate)) {
+                                    return false;
+                                }
+
+                                return true;
+                            })
+                            .count();
+
+            result.add(
+                    new AnalyticsLabelCountDto(
+                            category.name(),
+                            count));
+        }
+
+        return result;
     }
 
     private List<AnalyticsLabelCountDto>
@@ -1252,5 +1319,41 @@ public class WorkOrderService {
                     return true;
                 })
                 .count();
+    }
+
+    private List<AnalyticsTrendDto> buildTrend(
+            LocalDate fromDate,
+            LocalDate toDate) {
+
+        List<AnalyticsTrendDto> trend = new ArrayList<>();
+
+        if (fromDate == null || toDate == null) {
+            return trend;
+        }
+
+        List<WorkOrder> workOrders = workOrderRepository.findAll();
+
+        LocalDate current = fromDate;
+
+        while (!current.isAfter(toDate)) {
+
+            final LocalDate trendDate = current;
+
+            long count = workOrders.stream()
+                    .filter(workOrder ->
+                            workOrder.getCreatedAt() != null
+                                    && workOrder.getCreatedAt()
+                                    .toLocalDate()
+                                    .equals(trendDate))
+                    .count();
+
+            trend.add(new AnalyticsTrendDto(
+                    trendDate.toString(),
+                    count));
+
+            current = current.plusDays(1);
+        }
+
+        return trend;
     }
 }
