@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 @FeignClient(
-        name = "work-order-client",
-        url = "${app.work-order-service.url}",
+        name = "public-works-service",
+        path = "/civicDesk",
         configuration = FeignClientConfig.class
 )
 public interface WorkOrderFeignClient {
