@@ -21,7 +21,7 @@ import java.util.List;
 import com.civicdesk.servicerequest.dto.response.MessageResponse;
 
 @RestController
-@RequestMapping("/civicDesk/serviceRequest")
+@RequestMapping("/serviceRequest")
 @RequiredArgsConstructor
 @Tag(name = "Service Catalog", description = "Government service catalog — public browse, admin management")
 public class ServiceCatalogController {

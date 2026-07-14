@@ -8,6 +8,7 @@ import com.civicdesk.servicerequest.entity.ServiceCatalog;
 import com.civicdesk.servicerequest.enums.ServiceCategory;
 import com.civicdesk.servicerequest.enums.ServiceStatus;
 import com.civicdesk.servicerequest.exception.ResourceNotFoundException;
+import com.civicdesk.servicerequest.exception.BadRequestException;
 import com.civicdesk.servicerequest.repository.ServiceCatalogRepository;
 import com.civicdesk.servicerequest.client.AuditLogClient;
 import com.civicdesk.servicerequest.security.JwtUserContext;
@@ -31,8 +32,17 @@ public class ServiceCatalogService {
 
     @Transactional
     public ServiceCatalogResponse create(ServiceCatalogRequest request) {
+        String name = request.getServiceName() == null ? null : request.getServiceName().trim();
+        if (name == null || name.isBlank()) {
+            throw new BadRequestException("serviceName is required");
+        }
+
+        if (catalogRepository.existsByServiceNameIgnoreCase(name)) {
+            throw new BadRequestException("Service with the same name already exists.");
+        }
+
         ServiceCatalog catalog = ServiceCatalog.builder()
-                .serviceName(request.getServiceName())
+                .serviceName(name)
                 .departmentId(request.getDepartmentId())
                 .category(request.getCategory())
                 .processingDays(request.getProcessingDays())
@@ -55,7 +65,14 @@ public class ServiceCatalogService {
     @Transactional
     public ServiceCatalogResponse update(Long serviceId, ServiceCatalogRequest request) {
         ServiceCatalog catalog = getEntityById(serviceId);
-        catalog.setServiceName(request.getServiceName());
+        String newName = request.getServiceName() == null ? null : request.getServiceName().trim();
+        if (newName == null || newName.isBlank()) {
+            throw new BadRequestException("serviceName is required");
+        }
+        if (!catalog.getServiceName().equalsIgnoreCase(newName) && catalogRepository.existsByServiceNameIgnoreCase(newName)) {
+            throw new BadRequestException("Service with the same name already exists.");
+        }
+        catalog.setServiceName(newName);
         catalog.setDepartmentId(request.getDepartmentId());
         catalog.setCategory(request.getCategory());
         catalog.setProcessingDays(request.getProcessingDays());
