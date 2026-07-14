@@ -1,4 +1,4 @@
-package com.civicdesk.notification.enums;
+package com.civicdesk.auth.enums;
 
 public enum NotificationType {
     ACCOUNT_CREATED,
@@ -8,11 +8,6 @@ public enum NotificationType {
     LOGIN_ALERT,
     ROLE_CHANGED,
     SECURITY_ALERT,
-    GRIEVANCE_UPDATE,
-    PERMIT_UPDATE,
-    SERVICE_REQUEST_UPDATE,
-    WORK_ORDER_UPDATE,
-    SLA_BREACH_ALERT,
     SYSTEM_ALERT,
     GENERAL
 }

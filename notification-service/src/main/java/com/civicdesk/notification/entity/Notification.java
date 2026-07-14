@@ -27,12 +27,13 @@ public class Notification {
     private String message;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "VARCHAR(50)")
     private NotificationType notificationType;
 
     private Long referenceId;
 
     @Enumerated(EnumType.STRING)
+    @Column(columnDefinition = "VARCHAR(50)")
     @Builder.Default
     private ReferenceType referenceType = ReferenceType.NONE;
 
