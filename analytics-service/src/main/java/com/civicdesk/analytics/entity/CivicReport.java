@@ -1,45 +1,69 @@
 package com.civicdesk.analytics.entity;
 
-import com.civicdesk.analytics.enums.ReportStatus;
-import com.civicdesk.analytics.enums.ReportType;
 import jakarta.persistence.*;
-import lombok.*;
-import org.hibernate.annotations.CreationTimestamp;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.Map;
+import java.util.UUID;
 
 @Entity
 @Table(name = "civic_reports")
-@Getter @Setter @NoArgsConstructor @AllArgsConstructor @Builder
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class CivicReport {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long reportId;
+    @Column(name = "report_id", length = 36)
+    private String reportId;
 
-    @Column(nullable = false)
-    private String reportName;
+    @Column(name = "report_type", nullable = false, length = 50)
+    private String reportType;
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private ReportType reportType;
+    @Column(name = "department_id", length = 36)
+    private String departmentId;
 
-    @Column(nullable = false)
-    private Long generatedBy;
+    @Column(name = "from_date")
+    private LocalDateTime fromDate;
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    @Builder.Default
-    private ReportStatus status = ReportStatus.GENERATED;
+    @Column(name = "to_date")
+    private LocalDateTime toDate;
 
-    // JSON string of the query parameters used
-    @Column(columnDefinition = "TEXT")
-    private String parameters;
+    @Column(name = "metrics", columnDefinition = "LONGTEXT")
+    @Convert(converter = MetricsConverter.class)
+    private Map<String, Object> metrics;
 
-    // JSON string of the report result snapshot
-    @Column(columnDefinition = "LONGTEXT")
-    private String reportData;
+    @Column(name = "generated_date")
+    private LocalDateTime generatedDate;
 
-    @CreationTimestamp
-    private LocalDateTime generatedAt;
+    @Column(name = "created_by", length = 36)
+    private String createdBy;
+
+    @Column(name = "status", length = 50)
+    private String status;
+
+    @Column(name = "created_at")
+    private LocalDateTime createdAt;
+
+    @Column(name = "updated_at")
+    private LocalDateTime updatedAt;
+
+    @PrePersist
+    protected void onCreate() {
+        if (reportId == null) {
+            reportId = UUID.randomUUID().toString();
+        }
+        createdAt = LocalDateTime.now();
+        updatedAt = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        updatedAt = LocalDateTime.now();
+    }
 }

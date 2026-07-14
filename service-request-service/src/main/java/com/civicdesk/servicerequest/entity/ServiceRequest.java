@@ -25,9 +25,9 @@ public class ServiceRequest {
     @Column(name = "request_id")
     private Long requestId;
 
-    // Cross-service reference — citizen_id from citizen-service
-    @Column(name = "citizen_id", nullable = false)
-    private Long citizenId;
+    // // Cross-service reference — citizen_id from citizen-service
+    // @Column(name = "citizen_id", nullable = false)
+    // private Long citizenId;
 
     // userId from JWT — owner of this request
     @Column(name = "user_id", nullable = false)
@@ -48,6 +48,10 @@ public class ServiceRequest {
 
     @Column(name = "expected_completion_date")
     private LocalDate expectedCompletionDate;
+
+    @Column(name = "sla_breach")
+    @Builder.Default
+    private Boolean slaBreach = false;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)

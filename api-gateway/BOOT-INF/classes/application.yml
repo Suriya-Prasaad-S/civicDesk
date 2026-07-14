@@ -1,0 +1,294 @@
+server:
+  port: 9090
+
+app:
+  jwt:
+    secret: civicdesk_hs256_secret_key_minimum_32_characters_required
+
+spring:
+  application:
+    name: api-gateway
+
+  # ─── Redis Configuration for Distributed Rate Limiting ──────────────────────
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      timeout: 2000ms
+      jedis:
+        pool:
+          max-active: 20
+          max-idle: 10
+          min-idle: 5
+
+  # ─── Cloud Configuration ──────────────────────────────────────────────────────
+  cloud:
+    gateway:
+      routes:
+
+        # ── auth-service (8081) ─────────────────────────────────────────────
+        - id: auth-service
+          uri: http://localhost:8081
+          predicates:
+            - Path=/civicDesk/iam/**
+
+        - id: auth-service-audit
+          uri: http://localhost:8081
+          predicates:
+            - Path=/civicDesk/audit/**
+
+        # ── citizen-service (8082) ──────────────────────────────────────────
+        - id: citizen-service
+          uri: http://localhost:8082
+          predicates:
+            - Path=/civicDesk/citizens/**
+
+        # ── service-request-service (8083) ──────────────────────────────────
+        - id: service-request-service
+          uri: http://localhost:8083
+          predicates:
+            - Path=/civicDesk/serviceRequest/**
+
+        # ── permit-service (8084) ───────────────────────────────────────────
+        - id: permit-service
+          uri: http://localhost:8084
+          predicates:
+            - Path=/civicDesk/permits/**
+
+        # ── grievance-service (8085) ────────────────────────────────────────
+        - id: grievance-service
+          uri: http://localhost:8085
+          predicates:
+            - Path=/civicDesk/grievance/**
+
+        # ── public-works-service (8086) ─────────────────────────────────────
+        - id: public-works-service
+          uri: http://localhost:8086
+          predicates:
+            - Path=/civicDesk/workorders/**
+
+        # ── notification-service (8087) ─────────────────────────────────────
+        - id: notification-service
+          uri: http://localhost:8087
+          predicates:
+            - Path=/civicDesk/notification/**
+
+        # ── analytics-service (8088) ────────────────────────────────────────
+        - id: analytics-service
+          uri: http://localhost:8088
+          predicates:
+            - Path=/civicDesk/analytics/**
+
+        # ── Swagger aggregation: per-service /api-docs ──────────────────────
+        - id: auth-service-docs
+          uri: http://localhost:8081
+          predicates:
+            - Path=/auth-service/api-docs
+          filters:
+            - RewritePath=/auth-service/api-docs, /civicDesk/api-docs
+
+        - id: citizen-service-docs
+          uri: http://localhost:8082
+          predicates:
+            - Path=/citizen-service/api-docs
+          filters:
+            - RewritePath=/citizen-service/api-docs, /civicDesk/api-docs
+
+        - id: service-request-docs
+          uri: http://localhost:8083
+          predicates:
+            - Path=/service-request-service/api-docs
+          filters:
+            - RewritePath=/service-request-service/api-docs, /civicDesk/api-docs
+
+        - id: permit-service-docs
+          uri: http://localhost:8084
+          predicates:
+            - Path=/permit-service/api-docs
+          filters:
+            - RewritePath=/permit-service/api-docs, /civicDesk/api-docs
+
+        - id: grievance-service-docs
+          uri: http://localhost:8085
+          predicates:
+            - Path=/grievance-service/api-docs
+          filters:
+            - RewritePath=/grievance-service/api-docs, /civicDesk/api-docs
+
+        - id: public-works-docs
+          uri: http://localhost:8086
+          predicates:
+            - Path=/public-works-service/api-docs
+          filters:
+            - RewritePath=/public-works-service/api-docs, /civicDesk/api-docs
+
+        - id: notification-service-docs
+          uri: http://localhost:8087
+          predicates:
+            - Path=/notification-service/api-docs
+          filters:
+            - RewritePath=/notification-service/api-docs, /civicDesk/api-docs
+
+        - id: analytics-service-docs
+          uri: http://localhost:8088
+          predicates:
+            - Path=/analytics-service/api-docs
+          filters:
+            - RewritePath=/analytics-service/api-docs, /civicDesk/api-docs
+
+# ─── Swagger UI aggregation config ───────────────────────────────────────────
+springdoc:
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui.html
+    config-url: /v3/api-docs/swagger-config
+    use-root-path: false
+    urls:
+      - name: Auth Service
+        url: /auth-service/api-docs
+      - name: Citizen Service
+        url: /citizen-service/api-docs
+      - name: Service Request Service
+        url: /service-request-service/api-docs
+      - name: Permit Service
+        url: /permit-service/api-docs
+      - name: Grievance Service
+        url: /grievance-service/api-docs
+      - name: Public Works Service
+        url: /public-works-service/api-docs
+      - name: Notification Service
+        url: /notification-service/api-docs
+      - name: Analytics Service
+        url: /analytics-service/api-docs
+  api-docs:
+    enabled: true
+    path: /v3/api-docs
+  show-actuator: false
+
+logging:
+  config: classpath:logback-spring.xml
+# ─── Rate Limiting Configuration ──────────────────────────────────────────────
+gateway:
+  public-paths:
+    - /civicDesk/iam/auth/register
+    - /civicDesk/iam/auth/citizen/login
+    - /civicDesk/iam/auth/staff/login
+    - /civicDesk/iam/auth/setPassword
+    - /civicDesk/workorders/public/**
+    - /civicDesk/serviceRequest/getAllServices
+    - /civicDesk/serviceRequest/getService/**
+    - /swagger-ui.html
+    - /swagger-ui/**
+    - /api-docs/**
+    - /webjars/**
+    - /v3/api-docs/**
+    - /auth-service/api-docs
+    - /citizen-service/api-docs
+    - /service-request-service/api-docs
+    - /permit-service/api-docs
+    - /grievance-service/api-docs
+    - /public-works-service/api-docs
+    - /notification-service/api-docs
+    - /analytics-service/api-docs
+    - /actuator/**
+    - /health/**
+
+  rate-limit:
+    requests-per-minute: 600
+    requests-per-second: 10
+
+  # Circuit Breaker Configuration
+  circuit-breaker:
+    failure-rate-threshold: 50
+    slow-call-rate-threshold: 100
+    slow-call-duration: 2000
+    min-calls: 10
+    wait-duration: 30000
+    permitted-calls: 3
+
+# ─── Resilience4j Configuration ───────────────────────────────────────────────
+resilience4j:
+  circuitbreaker:
+    configs:
+      default:
+        registerHealthIndicator: true
+        slidingWindowSize: 100
+        failureRateThreshold: 50
+        slowCallRateThreshold: 100
+        slowCallDurationThreshold: 2000
+        permittedNumberOfCallsInHalfOpenState: 3
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        waitDurationInOpenState: 30000
+        eventConsumerBufferSize: 10
+        recordExceptions:
+          - java.util.concurrent.TimeoutException
+          - java.io.IOException
+          - org.springframework.web.client.HttpServerErrorException
+
+    instances:
+      auth-service:
+        baseConfig: default
+      citizen-service:
+        baseConfig: default
+      service-request-service:
+        baseConfig: default
+      permit-service:
+        baseConfig: default
+      grievance-service:
+        baseConfig: default
+      public-works-service:
+        baseConfig: default
+      notification-service:
+        baseConfig: default
+      analytics-service:
+        baseConfig: default
+
+  ratelimiter:
+    configs:
+      default:
+        registerHealthIndicator: true
+        limitForPeriod: 100
+        limitRefreshPeriod: 1m
+        timeoutDuration: 5s
+
+# ─── Micrometer Tracing & Observability Configuration ────────────────────────
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus,metrics,circuitbreakers,circuitbreaker-events,retry-events,bulkhead-events
+      base-path: /actuator
+  
+  endpoint:
+    health:
+      show-details: always
+      show-components: always
+
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+    distribution:
+      percentiles-histogram:
+        http.server.requests: true
+      slo:
+        http.server.requests: 50ms,100ms,200ms,500ms,1s,2s,5s
+
+  # Tracing Configuration (OpenTelemetry)
+  tracing:
+    sampling:
+      probability: 1.0  # Sample 100% of requests in development; reduce in production
+    propagation:
+      type: jaeger  # Use Jaeger propagation format
+
+  # Enable observation for metrics
+  observations:
+    enable:
+      http.server.requests: true
+
+logging:
+  config: classpath:logback-spring.xml
+  level:
+    com.civicdesk.gateway: DEBUG
+    org.springframework.cloud.gateway: INFO
+    org.springframework.security: DEBUG

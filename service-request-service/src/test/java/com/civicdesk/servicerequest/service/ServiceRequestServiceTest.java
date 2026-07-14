@@ -1,8 +1,8 @@
 package com.civicdesk.servicerequest.service;
 
 import com.civicdesk.servicerequest.client.NotificationClient;
-import com.civicdesk.servicerequest.dto.ServiceRequestCreateRequest;
-import com.civicdesk.servicerequest.dto.ServiceRequestResponse;
+import com.civicdesk.servicerequest.dto.request.ServiceRequestCreateRequest;
+import com.civicdesk.servicerequest.dto.response.ServiceRequestResponse;
 import com.civicdesk.servicerequest.entity.ServiceCatalog;
 import com.civicdesk.servicerequest.entity.ServiceRequest;
 import com.civicdesk.servicerequest.enums.RequestStatus;
@@ -11,6 +11,8 @@ import com.civicdesk.servicerequest.exception.BadRequestException;
 import com.civicdesk.servicerequest.exception.InactiveServiceException;
 import com.civicdesk.servicerequest.repository.ServiceCatalogRepository;
 import com.civicdesk.servicerequest.repository.ServiceRequestRepository;
+import com.civicdesk.servicerequest.client.AuthServiceClient;
+import com.civicdesk.servicerequest.client.AuditLogClient;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -41,6 +43,12 @@ public class ServiceRequestServiceTest {
 
     @Mock
     private NotificationClient notificationClient;
+
+    @Mock
+    private AuthServiceClient authServiceClient;
+
+    @Mock
+    private AuditLogClient auditLogClient;
 
     @InjectMocks
     private ServiceRequestService serviceRequestService;
@@ -75,7 +83,6 @@ public class ServiceRequestServiceTest {
         
         ServiceRequest savedRequest = ServiceRequest.builder()
                 .requestId(100L)
-                .citizenId(10L)
                 .userId(1L)
                 .service(activeService)
                 .submissionDate(LocalDate.now())
@@ -88,7 +95,6 @@ public class ServiceRequestServiceTest {
 
         ServiceRequestCreateRequest createRequest = new ServiceRequestCreateRequest();
         createRequest.setServiceId(1L);
-        createRequest.setCitizenId(10L);
 
         ServiceRequestResponse response = serviceRequestService.submitRequest(createRequest, 1L);
 
@@ -104,7 +110,6 @@ public class ServiceRequestServiceTest {
 
         ServiceRequestCreateRequest createRequest = new ServiceRequestCreateRequest();
         createRequest.setServiceId(2L);
-        createRequest.setCitizenId(10L);
 
         assertThrows(InactiveServiceException.class, () -> 
             serviceRequestService.submitRequest(createRequest, 1L)
@@ -118,7 +123,6 @@ public class ServiceRequestServiceTest {
     void updateStatus_Success() {
         ServiceRequest existingRequest = ServiceRequest.builder()
                 .requestId(100L)
-                .citizenId(10L)
                 .userId(1L)
                 .service(activeService)
                 .status(RequestStatus.SUBMITTED)
@@ -141,7 +145,6 @@ public class ServiceRequestServiceTest {
     void updateStatus_InvalidTransition_ThrowsBadRequestException() {
         ServiceRequest existingRequest = ServiceRequest.builder()
                 .requestId(100L)
-                .citizenId(10L)
                 .userId(1L)
                 .service(activeService)
                 .status(RequestStatus.SUBMITTED)
@@ -161,7 +164,6 @@ public class ServiceRequestServiceTest {
     void assignOfficer_Success() {
         ServiceRequest existingRequest = ServiceRequest.builder()
                 .requestId(100L)
-                .citizenId(10L)
                 .userId(1L)
                 .service(activeService)
                 .status(RequestStatus.SUBMITTED)
@@ -182,7 +184,6 @@ public class ServiceRequestServiceTest {
     void assignOfficer_ClosedRequest_ThrowsBadRequestException() {
         ServiceRequest existingRequest = ServiceRequest.builder()
                 .requestId(100L)
-                .citizenId(10L)
                 .userId(1L)
                 .service(activeService)
                 .status(RequestStatus.COMPLETED)

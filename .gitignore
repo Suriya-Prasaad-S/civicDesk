@@ -1,0 +1,42 @@
+ HEAD
+# IntelliJ
+.idea/
+*.iml
+
+# VS Code
+.vscode/
+
+# Maven
+target/
+
+# Java
+*.class
+
+# Logs
+logs/
+log/
+*.log
+
+# Spring Boot
+*.pid
+
+# Test Reports
+surefire-reports/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Maven
+target/
+
+# Logs
+logs/
+*.log
+
+# IntelliJ
+.idea/
+
+# Uploads (if not needed)
+uploads/
+origin/main

@@ -1,9 +1,13 @@
 package com.civicdesk.servicerequest.service;
 
-import com.civicdesk.servicerequest.dto.ServiceRequestAnalyticsRequest;
-import com.civicdesk.servicerequest.dto.ServiceRequestAnalyticsResponse;
-import com.civicdesk.servicerequest.dto.ServiceRequestCreateRequest;
-import com.civicdesk.servicerequest.dto.ServiceRequestResponse;
+import com.civicdesk.servicerequest.dto.request.ServiceRequestAnalyticsRequest;
+import com.civicdesk.servicerequest.dto.response.ServiceRequestAnalyticsResponse;
+import com.civicdesk.servicerequest.dto.request.ServiceRequestCreateRequest;
+import com.civicdesk.servicerequest.dto.response.ServiceRequestResponse;
+import com.civicdesk.servicerequest.dto.response.RequestListItemResponse;
+import com.civicdesk.servicerequest.dto.response.CitizenRequestItemResponse;
+import com.civicdesk.servicerequest.dto.response.RequestDetailResponse;
+import com.civicdesk.servicerequest.dto.response.DocumentItemResponse;
 import com.civicdesk.servicerequest.entity.ServiceCatalog;
 import com.civicdesk.servicerequest.entity.ServiceRequest;
 import com.civicdesk.servicerequest.enums.RequestStatus;
@@ -12,10 +16,13 @@ import com.civicdesk.servicerequest.exception.BadRequestException;
 import com.civicdesk.servicerequest.exception.ForbiddenException;
 import com.civicdesk.servicerequest.exception.InactiveServiceException;
 import com.civicdesk.servicerequest.exception.ResourceNotFoundException;
+import com.civicdesk.servicerequest.client.AuthServiceClient;
+import com.civicdesk.servicerequest.client.AuditLogClient;
 import com.civicdesk.servicerequest.client.NotificationClient;
-import com.civicdesk.servicerequest.dto.NotificationRequest;
+import com.civicdesk.servicerequest.dto.request.NotificationRequest;
 import com.civicdesk.servicerequest.repository.ServiceCatalogRepository;
 import com.civicdesk.servicerequest.repository.ServiceRequestRepository;
+import com.civicdesk.servicerequest.security.JwtUserContext;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -38,6 +45,8 @@ public class ServiceRequestService {
     private final ServiceCatalogService catalogService;
     private final ServiceCatalogRepository catalogRepository;
     private final NotificationClient notificationClient;
+    private final AuthServiceClient authServiceClient;
+    private final AuditLogClient auditLogClient;
 
     // ─── CITIZEN ─────────────────────────────────────────────────────────────
 
@@ -52,19 +61,27 @@ public class ServiceRequestService {
         LocalDate submissionDate = LocalDate.now();
         LocalDate expectedCompletion = submissionDate.plusDays(service.getProcessingDays());
 
+        Long supervisorId = null;
+        try {
+            supervisorId = authServiceClient.getDepartmentSupervisorId(service.getDepartmentId());
+        } catch (Exception e) {
+            log.error("Failed to fetch department supervisor for departmentId={}: {}", service.getDepartmentId(), e.getMessage());
+        }
+
         ServiceRequest serviceRequest = ServiceRequest.builder()
-                .citizenId(request.getCitizenId())
                 .userId(userId)
                 .service(service)
                 .submissionDate(submissionDate)
                 .fee(service.getFee())
                 .expectedCompletionDate(expectedCompletion)
                 .status(RequestStatus.SUBMITTED)
+                .assignedOfficerId(supervisorId)
                 .build();
 
         ServiceRequest saved = requestRepository.save(serviceRequest);
         log.info("Service request submitted: requestId={} citizenId={} serviceId={}",
-                saved.getRequestId(), request.getCitizenId(), request.getServiceId());
+                saved.getRequestId(), userId, request.getServiceId());
+        auditLogClient.log(String.valueOf(userId), "SUBMIT_REQUEST", "SERVICE_REQUEST");
         
         try {
             NotificationRequest notificationPayload = NotificationRequest.builder()
@@ -97,6 +114,13 @@ public class ServiceRequestService {
         return mapToResponse(sr);
     }
 
+        public RequestDetailResponse getByIdAsDetail(Long requestId, Long userId, String role) {
+            ServiceRequest sr = getEntityById(requestId);
+            if ("CIT".equals(role) && !sr.getUserId().equals(userId)) {
+                throw new ForbiddenException("Access denied. You can only view your own requests.");
+            }
+            return mapToDetailResponse(sr);
+        }
     // ─── STAFF ───────────────────────────────────────────────────────────────
 
     public List<ServiceRequestResponse> getAll() {
@@ -118,6 +142,20 @@ public class ServiceRequestService {
 
     public List<ServiceRequestResponse> getByStatus(RequestStatus status) {
         return requestRepository.findByStatus(status).stream().map(this::mapToResponse).toList();
+    }
+
+    // ─── LIST ITEM RESPONSES ──────────────────────────────────────────────────
+
+    public List<RequestListItemResponse> getAllAsListItems() {
+        return requestRepository.findAll().stream().map(this::mapToListItemResponse).toList();
+    }
+
+    public List<RequestListItemResponse> getByStatusAsListItems(RequestStatus status) {
+        return requestRepository.findByStatus(status).stream().map(this::mapToListItemResponse).toList();
+    }
+
+    public List<CitizenRequestItemResponse> getByUserIdAsCitizenItems(Long userId) {
+        return requestRepository.findByUserId(userId).stream().map(this::mapToCitizenItemResponse).toList();
     }
 
     @Transactional(readOnly = true)
@@ -178,6 +216,9 @@ public class ServiceRequestService {
         }
         ServiceRequest updated = requestRepository.save(sr);
         log.info("Officer assigned: requestId={} officerId={}", requestId, officerId);
+        Long currentUserId = JwtUserContext.getCurrentUserId();
+        String actorUserIdStr = currentUserId != null ? String.valueOf(currentUserId) : "SYSTEM";
+        auditLogClient.log(actorUserIdStr, "UPDATE_REQUEST_STATUS", "SERVICE_REQUEST");
         return mapToResponse(updated);
     }
 
@@ -200,6 +241,7 @@ public class ServiceRequestService {
 
         ServiceRequest updated = requestRepository.save(sr);
         log.info("Request status updated: requestId={} status={} by userId={}", requestId, newStatus, actorUserId);
+        auditLogClient.log(String.valueOf(actorUserId), "UPDATE_REQUEST_STATUS", "SERVICE_REQUEST");
         
         try {
             NotificationRequest notificationPayload = NotificationRequest.builder()
@@ -256,7 +298,6 @@ public class ServiceRequestService {
     private ServiceRequestResponse mapToResponse(ServiceRequest sr) {
         return ServiceRequestResponse.builder()
                 .requestId(sr.getRequestId())
-                .citizenId(sr.getCitizenId())
                 .userId(sr.getUserId())
                 .serviceId(sr.getService().getServiceId())
                 .serviceName(sr.getService().getServiceName())
@@ -271,4 +312,44 @@ public class ServiceRequestService {
                 .createdAt(sr.getCreatedAt())
                 .build();
     }
+
+    private RequestListItemResponse mapToListItemResponse(ServiceRequest sr) {
+        return RequestListItemResponse.builder()
+                .requestId(sr.getRequestId())
+                .serviceId(sr.getService().getServiceId())
+                .serviceName(sr.getService().getServiceName())
+                .submissionDate(sr.getSubmissionDate())
+                .status(sr.getStatus())
+                .assignedOfficerId(sr.getAssignedOfficerId())
+                .build();
+    }
+
+    private CitizenRequestItemResponse mapToCitizenItemResponse(ServiceRequest sr) {
+        return CitizenRequestItemResponse.builder()
+                .requestId(sr.getRequestId())
+                .serviceId(sr.getService().getServiceId())
+                .serviceName(sr.getService().getServiceName())
+                .submissionDate(sr.getSubmissionDate())
+                .status(sr.getStatus())
+                .assignedOfficerId(sr.getAssignedOfficerId())
+                .build();
+    }
+    
+        private RequestDetailResponse mapToDetailResponse(ServiceRequest sr) {
+            return RequestDetailResponse.builder()
+                    .requestId(sr.getRequestId())
+                    .userId(sr.getUserId())
+                    .serviceId(sr.getService().getServiceId())
+                    .serviceName(sr.getService().getServiceName())
+                    .serviceCategory(sr.getService().getCategory().name())
+                    .departmentId(sr.getService().getDepartmentId())
+                    .submissionDate(sr.getSubmissionDate())
+                    .assignedOfficerId(sr.getAssignedOfficerId())
+                    .fee(sr.getFee())
+                    .expectedCompletionDate(sr.getExpectedCompletionDate())
+                    .status(sr.getStatus())
+                    .remarks(sr.getRemarks())
+                    .createdAt(sr.getCreatedAt())
+                    .build();
+        }
 }

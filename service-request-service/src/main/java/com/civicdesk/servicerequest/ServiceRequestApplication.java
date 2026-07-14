@@ -3,8 +3,13 @@ package com.civicdesk.servicerequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableScheduling;
+
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 @SpringBootApplication
+@EnableScheduling
+@EnableDiscoveryClient
 @Slf4j
 public class ServiceRequestApplication {
 
@@ -13,6 +18,6 @@ public class ServiceRequestApplication {
         log.info("===========================================");
         log.info("  CivicDesk Service Request Service — STARTED");
         log.info("  Swagger UI: http://localhost:8083/swagger-ui.html");
-        log.info("===========================================");
+        log.info("============================================");
     }
 }

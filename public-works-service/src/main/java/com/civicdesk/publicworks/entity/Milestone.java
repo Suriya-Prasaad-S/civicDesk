@@ -9,10 +9,11 @@ import org.hibernate.annotations.UpdateTimestamp;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-
+import org.hibernate.annotations.SQLRestriction;
 @Entity
 @Table(name = "milestones")
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor @Builder
+@SQLRestriction("is_deleted = false")
 public class Milestone {
 
     @Id
