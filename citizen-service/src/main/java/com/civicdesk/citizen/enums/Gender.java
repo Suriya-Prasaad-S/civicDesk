@@ -1,7 +1,11 @@
 package com.civicdesk.citizen.enums;
 
+/**
+ * Allowed citizen gender values. Enforced at the API layer and at the DB layer
+ * via a CHECK constraint.
+ */
 public enum Gender {
-    MALE,
-    FEMALE,
-    OTHER
+    Male,
+    Female,
+    Other
 }

@@ -1,0 +1,146 @@
+{
+  "info": {
+    "name": "CivicDesk Test Collection",
+    "_postman_id": "civicdesk-tests-001",
+    "description": "Basic integration tests for Auth and Citizen services (Feign flow). Set environment variables before running: auth_base, citizen_base, created_email (optional).",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth - Register (IAM)",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Test Citizen\",\n  \"email\": \"{{created_email}}\",\n  \"password\": \"Password@123\",\n  \"phone\": \"9876543210\"\n}"
+        },
+        "url": {
+          "raw": "{{auth_base}}/iam/auth/register"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status is 2xx', function(){pm.expect(pm.response.code).to.be.within(200,299);});",
+              "// keep created_email if body returned it, else ensure env var set",
+              "try{var b=pm.response.json(); if(b && b.email) pm.environment.set('created_email', b.email);}catch(e){}"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Auth - Citizen Login (get JWT)",
+      "request": {
+        "method": "POST",
+        "header": [ { "key": "Content-Type", "value": "application/json" } ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"{{created_email}}\",\n  \"password\": \"Password@123\"\n}"
+        },
+        "url": { "raw": "{{auth_base}}/iam/auth/citizen/login" }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Login successful (2xx)', function(){pm.expect(pm.response.code).to.be.within(200,299);});",
+              "try{var json=pm.response.json(); if(json && json.token) pm.environment.set('jwt_citizen', json.token);}catch(e){}"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Auth - Get user by email",
+      "request": {
+        "method": "GET",
+        "url": { "raw": "{{auth_base}}/iam/users/by-email?email={{created_email}}" }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": { "exec": [
+            "pm.test('Status 2xx', function(){pm.expect(pm.response.code).to.be.within(200,299);});",
+            "try{var u=pm.response.json(); if(u && u.userId) pm.environment.set('created_userId', u.userId);}catch(e){}"
+          ] }
+        }
+      ]
+    },
+    {
+      "name": "Citizen - Register (multipart form-data)",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            { "key": "name", "value": "Test Citizen", "type": "text" },
+            { "key": "email", "value": "{{created_email}}", "type": "text" },
+            { "key": "password", "value": "Password@123", "type": "text" },
+            { "key": "phone", "value": "9876543210", "type": "text" },
+            { "key": "dateOfBirth", "value": "2000-01-01", "type": "text" },
+            { "key": "gender", "value": "Male", "type": "text" },
+            { "key": "nationalIdNumber", "value": "ABC1234567", "type": "text" },
+            { "key": "address", "value": "Chennai", "type": "text" },
+            { "key": "ward", "value": "Ward-1", "type": "text" },
+            { "key": "zone", "value": "South", "type": "text" },
+            { "key": "proof", "type": "file", "src": "" }
+          ]
+        },
+        "url": { "raw": "{{citizen_base}}/citizenProfile/register" }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": { "exec": [
+            "pm.test('Citizen register responded 2xx', function(){pm.expect(pm.response.code).to.be.within(200,299);});",
+            "// After register, fetch user by email to get userId",
+            "pm.sendRequest({url: pm.environment.get('auth_base') + '/iam/users/by-email?email=' + pm.environment.get('created_email'), method: 'GET'}, function(err, res){if(!err && res && res.code>=200 && res.code<300){ try{ var u = res.json(); if(u && u.userId) pm.environment.set('created_userId', u.userId);}catch(e){} } });"
+          ] }
+        }
+      ]
+    },
+    {
+      "name": "Citizen - Get my profile",
+      "request": {
+        "method": "GET",
+        "header": [ { "key": "Authorization", "value": "Bearer {{jwt_citizen}}" } ],
+        "url": { "raw": "{{citizen_base}}/citizenProfile/me" }
+      },
+      "event": [ { "listen": "test", "script": { "exec": [
+        "pm.test('Get profile 2xx', function(){pm.expect(pm.response.code).to.be.within(200,299);});",
+        "try{var p=pm.response.json(); pm.test('profile has userId', function(){pm.expect(p.userId).to.eql(pm.environment.get('created_userId'));});}catch(e){}"
+      ] } } ]
+    },
+    {
+      "name": "Officer - Get pending verifications",
+      "request": {
+        "method": "GET",
+        "header": [ { "key": "Authorization", "value": "Bearer {{jwt_officer}}" } ],
+        "url": { "raw": "{{citizen_base}}/citizenProfile/pending" }
+      },
+      "event": [ { "listen": "test", "script": { "exec": [
+        "pm.test('Pending responded 2xx', function(){pm.expect(pm.response.code).to.be.within(200,299);});"
+      ] } } ]
+    },
+    {
+      "name": "Officer - Verify citizen",
+      "request": {
+        "method": "POST",
+        "header": [ { "key": "Content-Type", "value": "application/json" }, { "key": "Authorization", "value": "Bearer {{jwt_officer}}" } ],
+        "body": { "mode": "raw", "raw": "{ \"status\": \"V\" }" },
+        "url": { "raw": "{{citizen_base}}/citizenProfile/{{created_userId}}/verify" }
+      },
+      "event": [ { "listen": "test", "script": { "exec": [
+        "pm.test('Verify responded 2xx', function(){pm.expect(pm.response.code).to.be.within(200,299);});"
+      ] } } ]
+    }
+  ]
+}
