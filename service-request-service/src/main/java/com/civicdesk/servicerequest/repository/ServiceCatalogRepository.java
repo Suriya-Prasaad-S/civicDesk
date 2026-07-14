@@ -14,4 +14,5 @@ public interface ServiceCatalogRepository extends JpaRepository<ServiceCatalog, 
     List<ServiceCatalog> findByCategory(ServiceCategory category);
     List<ServiceCatalog> findByDepartmentId(String departmentId);
     List<ServiceCatalog> findByCategoryAndStatus(ServiceCategory category, ServiceStatus status);
+    boolean existsByServiceNameIgnoreCase(String serviceName);
 }
