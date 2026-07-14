@@ -1,15 +1,26 @@
 package com.civicdesk.citizen.repository;
 
-import com.civicdesk.citizen.entity.CitizenDocument;
-import com.civicdesk.citizen.enums.DocumentType;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+
+import com.civicdesk.citizen.entity.CitizenDocument;
 
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Data access for {@link CitizenDocument}.
+ */
 @Repository
-public interface CitizenDocumentRepository extends JpaRepository<CitizenDocument, Long> {
-    List<CitizenDocument> findByCitizenProfile_CitizenId(Long citizenId);
-    Optional<CitizenDocument> findByCitizenProfile_CitizenIdAndDocumentType(Long citizenId, DocumentType type);
+public interface CitizenDocumentRepository extends JpaRepository<CitizenDocument, String> {
+
+    /** Backs GET /{citizenId}/getAllDocuments. */
+    List<CitizenDocument> findByCitizenId(String citizenId);
+
+    /** Backs the "max 5 documents per citizen" rule. */
+    long countByCitizenId(String citizenId);
+
+    /** Backs GET /{citizenId}/getDocumentById/{documentId}, scoped to the owning citizen. */
+    Optional<CitizenDocument> findByDocumentIdAndCitizenId(String documentId, String citizenId);
 }

@@ -1,8 +1,12 @@
 package com.civicdesk.citizen.enums;
 
+/**
+ * Allowed document types. Enforced at the API layer and at the DB layer
+ * via a CHECK constraint.
+ */
 public enum DocumentType {
-    NATIONAL_ID,
-    RESIDENCE_PROOF,
-    BIRTH_CERTIFICATE,
-    INCOME_CERTIFICATE
+    NationalID,
+    ResidenceProof,
+    BirthCertificate,
+    IncomeCertificate
 }
