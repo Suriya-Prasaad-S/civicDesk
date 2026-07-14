@@ -41,6 +41,7 @@ public class AuthServiceImpl implements AuthService {
     private final AuditService auditService;
     private final RevokedTokenRepository revokedTokenRepository;
     private final PasswordResetTokenRepository passwordResetTokenRepository;
+    private final NotificationService notificationService;
 
     @Value("${app.jwt.expiry}")
     private long expiry;
@@ -50,13 +51,15 @@ public class AuthServiceImpl implements AuthService {
                            JwtUtil jwtUtil,
                            AuditService auditService,
                            RevokedTokenRepository revokedTokenRepository,
-                           PasswordResetTokenRepository passwordResetTokenRepository) {
+                           PasswordResetTokenRepository passwordResetTokenRepository,
+                           NotificationService notificationService) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.jwtUtil = jwtUtil;
         this.auditService = auditService;
         this.revokedTokenRepository = revokedTokenRepository;
         this.passwordResetTokenRepository = passwordResetTokenRepository;
+        this.notificationService = notificationService;
     }
 
     @Override
@@ -151,6 +154,14 @@ public class AuthServiceImpl implements AuthService {
         user.setPasswordSet(true);
         userRepository.save(user);
 
+        // Send password changed notification
+        try {
+            notificationService.sendPasswordChangedAlert(Long.parseLong(user.getUserId()));
+        } catch (Exception e) {
+            // Log but don't fail the password set if notification fails
+            System.err.println("Failed to send password changed notification: " + e.getMessage());
+        }
+
         auditService.log(user.getUserId(), AuditAction.SET_PASSWORD.name(), AuditModule.IAM.name(), "SYSTEM");
     }
 
@@ -206,6 +217,15 @@ public class AuthServiceImpl implements AuthService {
 
     private AuthResponse issueToken(User user, String ip) {
         String token = jwtUtil.generateToken(user.getUserId(), user.getRole());
+        
+        // Send login alert notification
+        try {
+            notificationService.sendLoginAlert(Long.parseLong(user.getUserId()), ip);
+        } catch (Exception e) {
+            // Log but don't fail the login if notification fails
+            System.err.println("Failed to send login alert notification: " + e.getMessage());
+        }
+        
         auditService.log(user.getUserId(), AuditAction.LOGIN.name(), AuditModule.IAM.name(), ip);
         return new AuthResponse(token, user.getUserId(), user.getRole(), expiry / 1000);
     }

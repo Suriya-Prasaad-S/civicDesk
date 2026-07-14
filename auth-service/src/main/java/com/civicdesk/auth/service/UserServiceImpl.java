@@ -32,10 +32,12 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final DepartmentRepository departmentRepository;
+    private final NotificationService notificationService;
 
-    public UserServiceImpl(UserRepository userRepository, DepartmentRepository departmentRepository) {
+    public UserServiceImpl(UserRepository userRepository, DepartmentRepository departmentRepository, NotificationService notificationService) {
         this.userRepository = userRepository;
         this.departmentRepository = departmentRepository;
+        this.notificationService = notificationService;
     }
 
     @Override
@@ -85,6 +87,14 @@ public class UserServiceImpl implements UserService {
         user.setPasswordHash(null);
         user.setPasswordSet(false);
         userRepository.save(user);
+
+        // Send account created notification
+        try {
+            notificationService.sendAccountCreatedAlert(Long.parseLong(user.getUserId()), user.getEmail());
+        } catch (Exception e) {
+            // Log but don't fail the create operation if notification fails
+            System.err.println("Failed to send account created notification: " + e.getMessage());
+        }
 
         if (supervisorDepartment != null) {
             supervisorDepartment.setDepartmentSupervisorId(user.getUserId());
@@ -138,11 +148,27 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public UserResponse updateStatus(String userId, String status) {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found"));
+        String oldStatus = user.getStatus();
         user.setStatus(UserStatus.normalize(status));
         userRepository.save(user);
+
+        // Send status change notifications
+        try {
+            String normalizedStatus = UserStatus.normalize(status);
+            if (UserStatus.SUS.getLabel().equals(normalizedStatus)) {
+                notificationService.sendAccountSuspendedAlert(Long.parseLong(userId));
+            } else if (UserStatus.ACT.getLabel().equals(normalizedStatus) && !UserStatus.ACT.getLabel().equals(oldStatus)) {
+                notificationService.sendAccountReactivatedAlert(Long.parseLong(userId));
+            }
+        } catch (Exception e) {
+            // Log but don't fail the status update if notification fails
+            System.err.println("Failed to send status change notification: " + e.getMessage());
+        }
+
         return UserResponse.from(user);
     }
 
