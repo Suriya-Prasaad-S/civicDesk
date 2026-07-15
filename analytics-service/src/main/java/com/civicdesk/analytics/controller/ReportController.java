@@ -5,10 +5,10 @@ import com.civicdesk.analytics.dto.request.GenerateReportRequest;
 import com.civicdesk.analytics.dto.response.ApiResponse;
 import com.civicdesk.analytics.dto.response.ReportSummaryResponse;
 import com.civicdesk.analytics.service.IReportService;
-import com.civicdesk.analytics.enums.AuditAction;
-import com.civicdesk.analytics.enums.AuditModule;
-import com.civicdesk.analytics.client.AuditClient;
-import com.civicdesk.analytics.util.ClientIpUtil;
+// import com.civicdesk.analytics.enums.AuditAction;
+// import com.civicdesk.analytics.enums.AuditModule;
+// import com.civicdesk.analytics.client.AuditClient;
+// import com.civicdesk.analytics.util.ClientIpUtil;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.servlet.http.HttpServletRequest;
@@ -24,7 +24,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/civicDesk/analytics/reports")
+@RequestMapping("/reports")
 @RequiredArgsConstructor
 @Validated
 @Slf4j
@@ -32,7 +32,7 @@ import org.springframework.web.bind.annotation.*;
 public class ReportController {
 
     private final IReportService reportService;
-    private final AuditClient auditClient;
+    // private final AuditClient auditClient;
 
     @PostMapping
     public ResponseEntity<ApiResponse> generateReport(@Valid @RequestBody GenerateReportRequest request,
@@ -40,7 +40,7 @@ public class ReportController {
         String userId = SecurityContextHolder.getContext().getAuthentication().getName();
         log.info("Generating report for user: {}", userId);
         reportService.generateReport(request, userId);
-        auditClient.logAudit(userId, AuditAction.GENERATE_REPORT.name(), AuditModule.ANALYTICS.name(), ClientIpUtil.resolve(httpReq));
+        // auditClient.logAudit(userId, AuditAction.GENERATE_REPORT.name(), AuditModule.ANALYTICS.name(), ClientIpUtil.resolve(httpReq));
         return ResponseEntity.status(201).body(ApiResponse.of("Report is ready", null));
     }
 
@@ -57,7 +57,7 @@ public class ReportController {
             HttpServletRequest httpReq) throws Exception {
         String userId = SecurityContextHolder.getContext().getAuthentication().getName();
         byte[] fileBytes = reportService.downloadReport(id);
-        auditClient.logAudit(userId, AuditAction.DOWNLOAD_REPORT.name(), AuditModule.ANALYTICS.name(), ClientIpUtil.resolve(httpReq));
+        // auditClient.logAudit(userId, AuditAction.DOWNLOAD_REPORT.name(), AuditModule.ANALYTICS.name(), ClientIpUtil.resolve(httpReq));
 
         return ResponseEntity.ok()
             .header(
@@ -75,7 +75,7 @@ public class ReportController {
                                                     HttpServletRequest httpReq) {
         String userId = SecurityContextHolder.getContext().getAuthentication().getName();
         boolean deleted = reportService.softDeleteReport(id);
-        auditClient.logAudit(userId, AuditAction.DELETE_REPORT.name(), AuditModule.ANALYTICS.name(), ClientIpUtil.resolve(httpReq));
+        // auditClient.logAudit(userId, AuditAction.DELETE_REPORT.name(), AuditModule.ANALYTICS.name(), ClientIpUtil.resolve(httpReq));
         if (!deleted) {
             return ResponseEntity.status(404).body(ApiResponse.error("Report not found"));
         }

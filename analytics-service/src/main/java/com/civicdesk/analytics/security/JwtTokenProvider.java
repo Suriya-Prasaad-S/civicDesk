@@ -38,5 +38,5 @@ public class JwtTokenProvider {
 
     public String getEmailFromToken(String token)  { return getClaims(token).get("userId", String.class); }
     public String getRoleFromToken(String token)   { return getClaims(token).get("role", String.class); }
-    public Long   getUserIdFromToken(String token) { return Long.parseLong(getClaims(token).get("userId", String.class)); }
+    public String getUserIdFromToken(String token) { return getClaims(token).get("userId", String.class); }
 }

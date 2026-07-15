@@ -14,6 +14,8 @@ import com.civicdesk.grievance.entity.GrievanceAction;
 import com.civicdesk.grievance.enums.ActionType;
 import com.civicdesk.grievance.enums.EscalationLevel;
 import com.civicdesk.grievance.enums.GrievanceStatus;
+import com.civicdesk.grievance.enums.NotificationType;
+import com.civicdesk.grievance.enums.ReferenceType;
 import com.civicdesk.grievance.exception.GrievanceNotFoundException;
 import com.civicdesk.grievance.exception.InvalidGrievanceDataException;
 import com.civicdesk.grievance.exception.InvalidGrievanceStateException;
@@ -22,12 +24,13 @@ import com.civicdesk.grievance.mapper.GrievanceMapper;
 import com.civicdesk.grievance.repository.GrievanceActionRepo;
 import com.civicdesk.grievance.repository.GrievanceRepo;
 import com.civicdesk.grievance.security.JwtUserContext;
-import com.civicdesk.grievance.client.UserClient;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.civicdesk.grievance.client.AuthClient;
 import com.civicdesk.grievance.dto.response.ApiResponse;
 import com.civicdesk.grievance.dto.response.UserResponse;
 import com.civicdesk.grievance.enums.Role;
 import com.civicdesk.grievance.enums.UserStatus;
-// import com.civicdesk.grievance.util.SecurityContextUtil;
+
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -45,16 +48,37 @@ public class SupervisorGrievanceService {
     private final GrievanceRepo grievanceRepo;
     private final GrievanceActionRepo grievanceActionRepo;
     private final GrievanceMapper mapper;
-    private final UserClient userClient;
+    private final AuthClient userClient;
+    private ObjectMapper objectMapper;
+    private final AuditHelperService auditHelperService;
+    private final NotificationHelperService notificationHelperService;
 
     public SupervisorGrievanceService(GrievanceRepo grievanceRepo,
                                       GrievanceActionRepo grievanceActionRepo,
                                       GrievanceMapper mapper,
-                                      UserClient userClient) {
+                                      AuthClient userClient,
+                                      ObjectMapper objectMapper,
+                                      AuditHelperService auditHelperService,
+                                      NotificationHelperService notificationHelperService) {
         this.grievanceRepo = grievanceRepo;
         this.grievanceActionRepo = grievanceActionRepo;
         this.mapper = mapper;
         this.userClient = userClient;
+        this.objectMapper = objectMapper;
+        this.auditHelperService = auditHelperService;
+        this.notificationHelperService = notificationHelperService;
+    }
+    
+
+    private UserResponse getUserResponse(ApiResponse resp) {
+        if (resp == null || resp.getData() == null) {
+            return null;
+        }
+
+        return objectMapper.convertValue(
+                resp.getData(),
+                UserResponse.class
+        );
     }
 
     /** Grievances in the supervisor's department. */
@@ -81,6 +105,18 @@ public class SupervisorGrievanceService {
         Grievance saved = grievanceRepo.save(grievance);
 
         logAction(grievanceId, ActionType.AS, "Assigned to field officer", req.getMessage());
+
+        notificationHelperService.notify(
+                Long.valueOf(req.getFieldOfficerId()),
+                "Grievance Assigned",
+                "A grievance has been assigned to you for action.",
+                NotificationType.GRIEVANCE_UPDATE,
+                Long.valueOf(saved.getGrievanceId()),
+                ReferenceType.GRIEVANCE
+        );        
+
+        auditHelperService.log("ASSIGN_FIELD_OFFICER");
+        
         return mapper.toSummary(saved);
     }
 
@@ -95,6 +131,17 @@ public class SupervisorGrievanceService {
         Grievance saved = grievanceRepo.save(grievance);
 
         logAction(grievanceId, ActionType.RS, "Grievance resolved by supervisor", req.getMessage());
+
+        notificationHelperService.notify(
+                Long.valueOf(grievance.getCitizenId()),
+                "Grievance Resolved",
+                "Your grievance has been resolved. Please review and close or reopen it.",
+                NotificationType.GRIEVANCE_UPDATE,
+                Long.valueOf(saved.getGrievanceId()),
+                ReferenceType.GRIEVANCE
+        );
+
+        auditHelperService.log("RESOLVE_GRIEVANCE");
         return mapper.toSummary(saved);
     }
 
@@ -114,7 +161,8 @@ public class SupervisorGrievanceService {
     private String supervisorDepartmentId() {
         String userId = JwtUserContext.getCurrentUserId();
         ApiResponse resp = userClient.getUserById(userId);
-        UserResponse supervisor = resp == null ? null : (UserResponse) resp.getData();
+
+        UserResponse supervisor = getUserResponse(resp);
         if (supervisor == null) {
             throw new UnauthorizedGrievanceAccessException("Your account could not be found");
         }
@@ -153,7 +201,8 @@ public class SupervisorGrievanceService {
     /** The chosen field officer must be an active FO in the supervisor's department. */
     private void validateFieldOfficer(String fieldOfficerId, String deptId) {
         ApiResponse officerResp = userClient.getUserById(fieldOfficerId);
-        UserResponse officer = officerResp == null ? null : (UserResponse) officerResp.getData();
+        UserResponse officer = getUserResponse(officerResp);
+
         if (officer == null) {
             throw new InvalidGrievanceDataException("No user found with id: " + fieldOfficerId);
         }

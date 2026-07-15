@@ -75,7 +75,7 @@ spring:
         - id: analytics-service
           uri: lb://analytics-service
           predicates:
-            - Path=/civicDesk/analytics/**
+            - Path=/civicDesk/reports/**
 
         # ── Swagger aggregation: per-service /api-docs ──────────────────────
         - id: auth-service-docs
