@@ -47,6 +47,7 @@ public class ReportServiceImpl implements IReportService {
     private final PermitFeignClient permitFeignClient;
     private final ServiceRequestFeignClient serviceRequestFeignClient;
     private final WorkOrderFeignClient workOrderFeignClient;
+    private final AuditHelperService auditHelperService;
 
         @Override
         @Transactional
@@ -67,33 +68,35 @@ public class ReportServiceImpl implements IReportService {
                         "Unsupported report type: " + reportType);
                 };
 
-                // log.info("Metrics for report type {}: {}", reportType, metrics);
-
-                // return ReportResponse.builder()
-                //         .reportId("123")
-                //         .reportType("Sample")
-                //         .generatedDate(LocalDateTime.now())
-                //         .status("GENERATED")
-                //         .build();                
-
-                CivicReport report = new CivicReport();
-                report.setReportType(reportType);
-                report.setDepartmentId(request.getDepartmentId());
-                report.setFromDate(request.getFromDate());
-                report.setToDate(request.getToDate());
-                report.setMetrics(metrics);
-                report.setGeneratedDate(LocalDateTime.now());
-                report.setCreatedBy(userId);
-                report.setStatus("GENERATED");
-
-                CivicReport saved = repository.save(report);
+                log.info("Metrics for report type {}: {}", reportType, metrics);
 
                 return ReportResponse.builder()
-                        .reportId(saved.getReportId())
-                        .reportType(saved.getReportType())
-                        .generatedDate(saved.getGeneratedDate())
-                        .status(saved.getStatus())
-                        .build();
+                        .reportId("123")
+                        .reportType("Sample")
+                        .generatedDate(LocalDateTime.now())
+                        .status("GENERATED")
+                        .build();                
+
+                // CivicReport report = new CivicReport();
+                // report.setReportType(reportType);
+                // report.setDepartmentId(request.getDepartmentId());
+                // report.setFromDate(request.getFromDate());
+                // report.setToDate(request.getToDate());
+                // report.setMetrics(metrics);
+                // report.setGeneratedDate(LocalDateTime.now());
+                // report.setCreatedBy(userId);
+                // report.setStatus("GENERATED");
+
+                // CivicReport saved = repository.save(report);
+
+                // auditHelperService.log("GENERATE_REPORT");
+
+                // return ReportResponse.builder()
+                //         .reportId(saved.getReportId())
+                //         .reportType(saved.getReportType())
+                //         .generatedDate(saved.getGeneratedDate())
+                //         .status(saved.getStatus())
+                //         .build();
         }
 
         private void validateGenerateReportRequest(
@@ -242,6 +245,8 @@ public class ReportServiceImpl implements IReportService {
                         .orElseThrow(() -> new ResourceNotFoundException("Report not found"));
                 report.setStatus("DOWNLOADED");
                 repository.save(report);
+
+                auditHelperService.log("DOWNLOAD_REPORT");
                 return reportExportService.exportReportToExcel(report);
         }
 
@@ -256,6 +261,8 @@ public class ReportServiceImpl implements IReportService {
                 CivicReport report = opt.get();
                 report.setStatus("DELETED");
                 repository.save(report);
+
+                auditHelperService.log("DELETE_REPORT");
                 return true;
         }
 }

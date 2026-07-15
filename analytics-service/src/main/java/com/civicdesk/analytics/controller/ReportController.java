@@ -24,7 +24,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/civicDesk/reports")
+@RequestMapping("/reports")
 @RequiredArgsConstructor
 @Validated
 @Slf4j

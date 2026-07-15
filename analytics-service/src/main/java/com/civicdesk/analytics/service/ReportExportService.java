@@ -56,10 +56,7 @@ public class ReportExportService {
                                 // exportServiceRequestReport(report);
 
                         case "WORK_ORDER" ->
-                                throw new IllegalArgumentException(
-                                    "Unsupported report type: "
-                                        + reportType);                        
-                                // exportWorkOrderReport(report);
+                                exportWorkOrderReport(report);
 
                         default ->
                                 throw new IllegalArgumentException(
@@ -303,9 +300,9 @@ public class ReportExportService {
                     tableHeaderStyle);
 
             Map<String, Object> inspection =
-                    objectMapper.convertValue(
-                            metrics.get("inspection"),
-                            new TypeReference<Map<String, Object>>() {});
+                    getNestedMap(
+                            metrics,
+                            "inspection");
 
             if (inspection != null) {
 
@@ -335,7 +332,222 @@ public class ReportExportService {
         }
     }        
 
-        private int createTitle(
+    private byte[] exportWorkOrderReport(
+            CivicReport report) throws Exception {
+
+        try (XSSFWorkbook workbook = new XSSFWorkbook();
+            ByteArrayOutputStream outputStream = new ByteArrayOutputStream()) {
+
+            Sheet sheet =
+                    workbook.createSheet("Work Order Report");
+
+            CellStyle titleStyle =
+                    createTitleStyle(workbook);
+
+            CellStyle sectionStyle =
+                    createSectionStyle(workbook);
+
+            CellStyle tableHeaderStyle =
+                    createTableHeaderStyle(workbook);
+
+            int rowIndex = 0;
+
+            // Title
+            rowIndex = createTitle(
+                    sheet,
+                    rowIndex,
+                    "CIVICDESK WORK ORDER REPORT",
+                    titleStyle);
+
+            // Report Details
+            rowIndex = createSectionHeader(
+                    sheet,
+                    rowIndex,
+                    "REPORT DETAILS",
+                    sectionStyle);
+
+            rowIndex = createKeyValueRow(
+                    sheet,
+                    rowIndex,
+                    "Report ID",
+                    report.getReportId());
+
+            rowIndex = createKeyValueRow(
+                    sheet,
+                    rowIndex,
+                    "Report Type",
+                    report.getReportType());
+
+            rowIndex = createKeyValueRow(
+                    sheet,
+                    rowIndex,
+                    "Status",
+                    report.getStatus());
+
+            rowIndex = createKeyValueRow(
+                    sheet,
+                    rowIndex,
+                    "Generated Date",
+                    report.getGeneratedDate());
+
+            rowIndex++;
+
+            Map<String, Object> metrics =
+                    getMetrics(report);
+
+            // Summary
+            rowIndex = createSectionHeader(
+                    sheet,
+                    rowIndex,
+                    "SUMMARY",
+                    sectionStyle);
+
+            rowIndex = createKeyValueRow(
+                    sheet,
+                    rowIndex,
+                    "Total Work Orders",
+                    metrics.getOrDefault(
+                            "totalWorkOrders",
+                            0));
+
+            rowIndex = createKeyValueRow(
+                    sheet,
+                    rowIndex,
+                    "Completed Work Orders",
+                    metrics.getOrDefault(
+                            "completedWorkOrders",
+                            0));
+
+            rowIndex = createKeyValueRow(
+                    sheet,
+                    rowIndex,
+                    "Delayed Work Orders",
+                    metrics.getOrDefault(
+                            "delayedWorkOrders",
+                            0));
+
+            rowIndex = createKeyValueRow(
+                    sheet,
+                    rowIndex,
+                    "Average Completion Days",
+                    metrics.getOrDefault(
+                            "averageCompletionDays",
+                            0));
+
+            rowIndex++;
+
+            // Status Breakdown
+            rowIndex = writeLabelCountSection(
+                    sheet,
+                    rowIndex,
+                    "STATUS BREAKDOWN",
+                    metrics.get("statusBreakdown"),
+                    sectionStyle,
+                    tableHeaderStyle);
+
+            // Category Breakdown
+            rowIndex = writeLabelCountSection(
+                    sheet,
+                    rowIndex,
+                    "CATEGORY BREAKDOWN",
+                    metrics.get("categoryBreakdown"),
+                    sectionStyle,
+                    tableHeaderStyle);
+
+            // Trend
+            rowIndex = writeTrendSection(
+                    sheet,
+                    rowIndex,
+                    "WORK ORDER TREND",
+                    metrics.get("trend"),
+                    sectionStyle,
+                    tableHeaderStyle);
+
+            // Budget Analytics
+            Map<String, Object> budget =
+                    getNestedMap(
+                            metrics,
+                            "budget");
+
+            if (budget != null) {
+
+                rowIndex = createSectionHeader(
+                        sheet,
+                        rowIndex,
+                        "BUDGET ANALYTICS",
+                        sectionStyle);
+
+                rowIndex = createKeyValueRow(
+                        sheet,
+                        rowIndex,
+                        "Allocated Budget",
+                        budget.get("allocated"));
+
+                rowIndex = createKeyValueRow(
+                        sheet,
+                        rowIndex,
+                        "Consumed Budget",
+                        budget.get("consumed"));
+
+                rowIndex = createKeyValueRow(
+                        sheet,
+                        rowIndex,
+                        "Utilization Percentage",
+                        budget.get("utilizationPercentage"));
+
+                rowIndex++;
+            }
+
+            // Milestone Analytics
+            Map<String, Object> milestones =
+                    getNestedMap(
+                            metrics,
+                            "milestones");
+
+            if (milestones != null) {
+
+                rowIndex = createSectionHeader(
+                        sheet,
+                        rowIndex,
+                        "MILESTONE ANALYTICS",
+                        sectionStyle);
+
+                rowIndex = createKeyValueRow(
+                        sheet,
+                        rowIndex,
+                        "Delayed Milestones",
+                        milestones.get("delayedMilestones"));
+
+                rowIndex++;
+
+                rowIndex = writeLabelCountSection(
+                        sheet,
+                        rowIndex,
+                        "MILESTONE STATUS BREAKDOWN",
+                        milestones.get("statusBreakdown"),
+                        sectionStyle,
+                        tableHeaderStyle);
+            }
+
+            sheet.autoSizeColumn(0);
+            sheet.autoSizeColumn(1);
+
+            workbook.write(outputStream);
+
+            return outputStream.toByteArray();
+        }
+    }    
+
+    private Map<String, Object> getNestedMap(
+            Map<String, Object> metrics,
+            String key) {
+
+        return objectMapper.convertValue(
+                metrics.get(key),
+                new TypeReference<Map<String, Object>>() {});
+    }        
+    
+    private int createTitle(
                 Sheet sheet,
                 int rowIndex,
                 String title,

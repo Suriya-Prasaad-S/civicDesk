@@ -3,8 +3,11 @@ package com.civicdesk.grievance.client;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import com.civicdesk.grievance.config.FeignClientConfig;
+import com.civicdesk.grievance.dto.request.CreateAuditLogRequest;
 import com.civicdesk.grievance.dto.response.ApiResponse;
 
 @FeignClient(
@@ -12,7 +15,7 @@ import com.civicdesk.grievance.dto.response.ApiResponse;
         url = "${auth.service.url}",
         configuration = FeignClientConfig.class
 )
-public interface UserClient {
+public interface AuthClient {
 
     @GetMapping("/iam/users/{id}")
     ApiResponse getUserById(@PathVariable("id") String id);
@@ -22,4 +25,9 @@ public interface UserClient {
 
     @GetMapping("/iam/departments/{id}")
     ApiResponse getDepartmentById(@PathVariable("id") String id);
+
+    @PostMapping("/audit/auditLogs")
+    void createAuditLog(
+            @RequestBody CreateAuditLogRequest request
+    );
 }

@@ -24,7 +24,7 @@ public class WorkOrderAnalyticsResponse {
 
     private List<AnalyticsLabelCountDto> categoryBreakdown;
 
-    private List<AnalyticsLabelCountDto> wardBreakdown;
+    private List<AnalyticsTrendDto> trend;
 
     @Data
     public static class BudgetAnalytics {

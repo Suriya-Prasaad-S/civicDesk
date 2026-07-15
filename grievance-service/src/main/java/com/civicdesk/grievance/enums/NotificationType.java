@@ -1,0 +1,19 @@
+package com.civicdesk.grievance.enums;
+
+public enum NotificationType {
+
+    ACCOUNT_CREATED,
+    PASSWORD_CHANGED,
+    ACCOUNT_SUSPENDED,
+    ACCOUNT_REACTIVATED,
+    LOGIN_ALERT,
+    ROLE_CHANGED,
+    SECURITY_ALERT,
+    GRIEVANCE_UPDATE,
+    PERMIT_UPDATE,
+    SERVICE_REQUEST_UPDATE,
+    WORK_ORDER_UPDATE,
+    SLA_BREACH_ALERT,
+    SYSTEM_ALERT,
+    GENERAL
+}

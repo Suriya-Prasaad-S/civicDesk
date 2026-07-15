@@ -7,7 +7,6 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.ArrayList;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,6 +26,8 @@ import com.civicdesk.grievance.enums.ActionType;
 import com.civicdesk.grievance.enums.Category;
 import com.civicdesk.grievance.enums.EscalationLevel;
 import com.civicdesk.grievance.enums.GrievanceStatus;
+import com.civicdesk.grievance.enums.NotificationType;
+import com.civicdesk.grievance.enums.ReferenceType;
 import com.civicdesk.grievance.mapper.GrievanceMapper;
 import com.civicdesk.grievance.repository.GrievanceActionRepo;
 import com.civicdesk.grievance.repository.GrievanceRepo;
@@ -40,7 +41,7 @@ import com.civicdesk.grievance.exception.InvalidGrievanceStateException;
 import com.civicdesk.grievance.exception.UnauthorizedGrievanceAccessException;
 import com.civicdesk.grievance.dto.response.ApiResponse;
 import com.civicdesk.grievance.dto.response.DepartmentResponse;
-import com.civicdesk.grievance.client.UserClient;
+import com.civicdesk.grievance.client.AuthClient;
 // import com.civicdesk.grievance.util.SecurityContextUtil;
 
 import lombok.extern.slf4j.Slf4j;
@@ -57,19 +58,26 @@ public class CitizenGrievanceService {
     private final GrievanceRepo grievanceRepo;
     private final GrievanceActionRepo grievanceActionRepo;
     // private final DepartmentRepository departmentRepository;
-    private final UserClient userClient;
+    private final AuthClient userClient;
     private final GrievanceMapper mapper;
+    // private final AuditLogClient auditLogClient;
+    private final AuditHelperService auditHelperService;
+    private final NotificationHelperService notificationHelperService;    
 
     public CitizenGrievanceService(GrievanceRepo grievanceRepo,
                                    GrievanceActionRepo grievanceActionRepo,
-                                   UserClient userClient,
+                                   AuthClient userClient,
                                    GrievanceMapper mapper,
-                                   ObjectMapper objectMapper) {
+                                   ObjectMapper objectMapper,
+                                   AuditHelperService auditHelperService,
+                                   NotificationHelperService notificationHelperService) {
         this.grievanceRepo = grievanceRepo;
         this.grievanceActionRepo = grievanceActionRepo;
         this.userClient = userClient;
         this.mapper = mapper;
         this.objectMapper = objectMapper;
+        this.auditHelperService = auditHelperService;
+        this.notificationHelperService = notificationHelperService;
     }
 
     /** Raise a grievance; routes to the category's department and lands with its supervisor (L2). */
@@ -95,7 +103,23 @@ public class CitizenGrievanceService {
         Grievance grievance = mapper.toEntity(req, category, citizenId,
                 department.getDepartmentId(), department.getDepartmentSupervisorId());
 
-        return mapper.toResponse(grievanceRepo.save(grievance));
+        Grievance saved = grievanceRepo.save(grievance);
+
+        notificationHelperService.notify(
+                Long.valueOf(department.getDepartmentSupervisorId()),
+                "New Grievance Assigned",
+                "A new grievance has been submitted and assigned to your department.",
+                NotificationType.GRIEVANCE_UPDATE,
+                Long.valueOf(saved.getGrievanceId()),
+                ReferenceType.GRIEVANCE
+        );        
+
+        // createAuditLog("CREATE_GRIEVANCE");
+        auditHelperService.log(
+                "CREATE_GRIEVANCE"
+        );
+
+        return mapper.toResponse(saved);
     }
 
     /** Edit title/description; allowed only while the grievance is Open and owned by the caller. */
@@ -107,7 +131,15 @@ public class CitizenGrievanceService {
         }
         grievance.setGrievanceTitle(req.getGrievanceTitle());
         grievance.setDescription(req.getDescription());
-        return mapper.toResponse(grievanceRepo.save(grievance));
+        // return mapper.toResponse(grievanceRepo.save(grievance));
+        Grievance saved = grievanceRepo.save(grievance);
+
+        // createAuditLog("UPDATE_GRIEVANCE");
+        auditHelperService.log(
+                "UPDATE_GRIEVANCE"
+        );        
+
+        return mapper.toResponse(saved);        
     }
 
     /** The caller's own grievances. */
@@ -134,9 +166,24 @@ public class CitizenGrievanceService {
         Grievance grievance = loadOwned(grievanceId);
         requireResolved(grievance);
         grievance.setStatus(GrievanceStatus.C);
+        // Grievance saved = grievanceRepo.save(grievance);
+        // logAction(grievanceId, ActionType.CL, "Grievance closed by citizen", null);
+        // return mapper.toResponse(saved);
         Grievance saved = grievanceRepo.save(grievance);
-        logAction(grievanceId, ActionType.CL, "Grievance closed by citizen", null);
-        return mapper.toResponse(saved);
+
+        logAction(
+                grievanceId,
+                ActionType.CL,
+                "Grievance closed by citizen",
+                null
+        );
+
+        // createAuditLog("CLOSE_GRIEVANCE");
+        auditHelperService.log(
+                "CLOSE_GRIEVANCE"
+        );        
+
+        return mapper.toResponse(saved);        
     }
 
     /** Citizen rejects a resolved grievance -> Reopened, back to the department supervisor (L2). */
@@ -160,9 +207,36 @@ public class CitizenGrievanceService {
                 grievance.setAssignedToId(department.getDepartmentSupervisorId());
             }
         }
+        // Grievance saved = grievanceRepo.save(grievance);
+        // logAction(grievanceId, ActionType.RP, "Grievance reopened by citizen", req.getReason());
+        // return mapper.toResponse(saved);
         Grievance saved = grievanceRepo.save(grievance);
-        logAction(grievanceId, ActionType.RP, "Grievance reopened by citizen", req.getReason());
-        return mapper.toResponse(saved);
+
+        if (grievance.getAssignedToId() != null) {
+
+            notificationHelperService.notify(
+                    Long.valueOf(grievance.getAssignedToId()),
+                    "Grievance Reopened",
+                    "A citizen has reopened a grievance that requires your review.",
+                    NotificationType.GRIEVANCE_UPDATE,
+                    Long.valueOf(saved.getGrievanceId()),
+                    ReferenceType.GRIEVANCE
+            );
+        }        
+
+        logAction(
+                grievanceId,
+                ActionType.RP,
+                "Grievance reopened by citizen",
+                req.getReason()
+        );
+
+        // createAuditLog("REOPEN_GRIEVANCE");
+        auditHelperService.log(
+                "REOPEN_GRIEVANCE"
+        );        
+
+        return mapper.toResponse(saved);        
     }
 
     // --- helpers ---
@@ -206,6 +280,18 @@ public class CitizenGrievanceService {
     private String currentUserId() {
         return JwtUserContext.getCurrentUserId();
     }
+
+    // private void createAuditLog(String action) {
+
+    //     auditLogClient.createAuditLog(
+    //             CreateAuditLogRequest.builder()
+    //                     .userId(currentUserId())
+    //                     .action(action)
+    //                     .module("GRIEVANCE")
+    //                     .ipAddress(null)
+    //                     .build()
+    //     );
+    // }
 
     private <E extends Enum<E>> List<AnalyticsCountDto> fillEnumCounts(List<AnalyticsCountDto> raw, Class<E> enumClass) {
         Map<String, Long> map = new HashMap<>();

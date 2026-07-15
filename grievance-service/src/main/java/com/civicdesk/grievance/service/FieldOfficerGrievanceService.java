@@ -18,6 +18,8 @@ import com.civicdesk.grievance.enums.ActionStatus;
 import com.civicdesk.grievance.enums.ActionType;
 import com.civicdesk.grievance.enums.EscalationLevel;
 import com.civicdesk.grievance.enums.GrievanceStatus;
+import com.civicdesk.grievance.enums.NotificationType;
+import com.civicdesk.grievance.enums.ReferenceType;
 import com.civicdesk.grievance.exception.ActionNotEditableException;
 import com.civicdesk.grievance.exception.ActionNotFoundException;
 import com.civicdesk.grievance.exception.GrievanceNotFoundException;
@@ -29,7 +31,7 @@ import com.civicdesk.grievance.repository.GrievanceActionRepo;
 import com.civicdesk.grievance.repository.GrievanceRepo;
 import com.civicdesk.grievance.security.JwtUserContext;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.civicdesk.grievance.client.UserClient;
+import com.civicdesk.grievance.client.AuthClient;
 // import com.civicdesk.grievance.util.SecurityContextUtil;
 
 /**
@@ -41,20 +43,26 @@ public class FieldOfficerGrievanceService {
 
     private final GrievanceRepo grievanceRepo;
     private final GrievanceActionRepo grievanceActionRepo;
-    private final UserClient userClient;
+    private final AuthClient userClient;
     private final GrievanceMapper mapper;
     private final ObjectMapper objectMapper;
+    private final AuditHelperService auditHelperService;
+    private final NotificationHelperService notificationHelperService;
 
     public FieldOfficerGrievanceService(GrievanceRepo grievanceRepo,
                                         GrievanceActionRepo grievanceActionRepo,
-                                        UserClient userClient,
+                                        AuthClient userClient,
                                         GrievanceMapper mapper,
-                                        ObjectMapper objectMapper) {
+                                        ObjectMapper objectMapper,
+                                        AuditHelperService auditHelperService,
+                                        NotificationHelperService notificationHelperService) {
         this.grievanceRepo = grievanceRepo;
         this.grievanceActionRepo = grievanceActionRepo;
         this.userClient = userClient;
         this.mapper = mapper;
         this.objectMapper = objectMapper;
+        this.auditHelperService = auditHelperService;
+        this.notificationHelperService = notificationHelperService;
     }
 
     /** Grievances currently assigned to the caller. */
@@ -91,7 +99,14 @@ public class FieldOfficerGrievanceService {
         action.setGrievanceActionTitle(req.getGrievanceActionTitle());
         action.setActionDescription(req.getActionDescription());
         action.setStatus(ActionStatus.O);
-        return mapper.toActionResponse(grievanceActionRepo.save(action));
+        // return mapper.toActionResponse(grievanceActionRepo.save(action));
+        GrievanceAction saved = grievanceActionRepo.save(action);
+
+        auditHelperService.log(
+                "CREATE_GRIEVANCE_ACTION"
+        );
+
+        return mapper.toActionResponse(saved);        
     }
 
     /**
@@ -125,11 +140,38 @@ public class FieldOfficerGrievanceService {
             grievance.setEscalationLevel(EscalationLevel.L2);
             grievance.setAssignedToId(resolveSupervisor(grievance.getDepartmentId()));
             grievanceRepo.save(grievance);
+            if (grievance.getAssignedToId() != null) {
+
+                notificationHelperService.notify(
+                        Long.valueOf(grievance.getAssignedToId()),
+                        "Grievance Ready For Review",
+                        "A grievance has been completed and sent for your review.",
+                        NotificationType.GRIEVANCE_UPDATE,
+                        Long.valueOf(grievance.getGrievanceId()),
+                        ReferenceType.GRIEVANCE
+                );
+            }            
         }
         // If already at L2 (a supervisor doing the work in a no-FO dept), completing just
         // finalizes the action; the supervisor then resolves it directly.
 
-        return mapper.toActionResponse(saved);
+        // return mapper.toActionResponse(saved);
+        // auditHelperService.log(
+        //         "UPDATE_GRIEVANCE_ACTION"
+        // );
+        if (newStatus == ActionStatus.CM) {
+
+            auditHelperService.log(
+                    "COMPLETE_GRIEVANCE_ACTION"
+            );
+
+        } else {
+
+            auditHelperService.log(
+                    "UPDATE_GRIEVANCE_ACTION"
+            );
+        }
+        return mapper.toActionResponse(saved);        
     }
 
     // --- helpers ---

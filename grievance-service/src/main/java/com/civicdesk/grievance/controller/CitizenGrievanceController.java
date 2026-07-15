@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.civicdesk.grievance.dto.request.GrievanceAnalyticsRequest;
 import com.civicdesk.grievance.dto.request.GrievanceCreateReq;
 import com.civicdesk.grievance.dto.request.GrievanceDetailsUpdateReq;
 import com.civicdesk.grievance.dto.request.GrievanceReopenReq;

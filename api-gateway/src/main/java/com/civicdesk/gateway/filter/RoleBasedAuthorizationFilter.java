@@ -40,17 +40,17 @@ public class RoleBasedAuthorizationFilter implements GlobalFilter, Ordered {
 
     static {
         // Admin-only endpoints
-        ROLE_RESTRICTED_PATHS.put("/civicDesk/iam/auth/admin/**", List.of("ADMIN"));
-        ROLE_RESTRICTED_PATHS.put("/civicDesk/analytics/**", List.of("ADMIN", "STAFF"));
+        ROLE_RESTRICTED_PATHS.put("/civicDesk/iam/auth/admin/**", List.of("ADM"));
+        ROLE_RESTRICTED_PATHS.put("/civicDesk/reports/**", List.of("CIT", "FO", "DS", "ENG", "CO", "ADM"));
 
         // Staff-only endpoints
-        ROLE_RESTRICTED_PATHS.put("/civicDesk/permits/**", List.of("STAFF", "ADMIN"));
-        ROLE_RESTRICTED_PATHS.put("/civicDesk/workorders/**", List.of("STAFF", "ADMIN"));
-        ROLE_RESTRICTED_PATHS.put("/civicDesk/grievance/**", List.of("STAFF", "ADMIN"));
+        ROLE_RESTRICTED_PATHS.put("/civicDesk/permits/**", List.of("CIT", "FO", "DS", "ENG", "CO", "ADM"));
+        ROLE_RESTRICTED_PATHS.put("/civicDesk/workorders/**", List.of("CIT", "FO", "DS", "ENG", "CO", "ADM"));
+        ROLE_RESTRICTED_PATHS.put("/civicDesk/grievance/**", List.of("CIT", "FO", "DS", "ENG", "CO", "ADM"));
 
         // Citizen endpoints
-        ROLE_RESTRICTED_PATHS.put("/civicDesk/citizens/**", List.of("CITIZEN", "STAFF", "ADMIN"));
-        ROLE_RESTRICTED_PATHS.put("/civicDesk/serviceRequest/**", List.of("CITIZEN", "STAFF", "ADMIN"));
+        ROLE_RESTRICTED_PATHS.put("/civicDesk/citizens/**", List.of("CIT", "FO", "DS", "ENG", "CO", "ADM"));
+        ROLE_RESTRICTED_PATHS.put("/civicDesk/serviceRequest/**", List.of("CIT", "FO", "DS", "ENG", "CO", "ADM"));
     }
 
     @Override
