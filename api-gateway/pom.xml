@@ -75,11 +75,15 @@
         </dependency>
 
         <!-- Redis for distributed rate limiting -->
+        <!-- Redis removed: using in-memory gateway rate limiting unless gateway is scaled -->
+        
+        <!-- Rest Assured for API testing in tests -->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-redis</artifactId>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>rest-assured</artifactId>
+            <version>5.3.2</version>
+            <scope>test</scope>
         </dependency>
-
         <!-- Actuator for monitoring endpoints -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -104,6 +108,14 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
+    <repositories>
+        <repository>
+            <id>central</id>
+            <name>Maven Central Repository</name>
+            <url>https://repo.maven.apache.org/maven2</url>
+        </repository>
+    </repositories>
 
     <build>
         <plugins>

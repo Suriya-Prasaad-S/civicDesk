@@ -5,6 +5,7 @@ eureka:
   client:
     serviceUrl:
       defaultZone: ${EUREKA_SERVER_URL:http://localhost:8761/eureka/}
+    enabled: true
     register-with-eureka: true
     fetch-registry: true
   instance:
@@ -17,19 +18,7 @@ app:
 spring:
   application:
     name: api-gateway
-
-  # ─── Redis Configuration for Distributed Rate Limiting ──────────────────────
-  data:
-    redis:
-      host: localhost
-      port: 6379
-      timeout: 2000ms
-      jedis:
-        pool:
-          max-active: 20
-          max-idle: 10
-          min-idle: 5
-
+ 
   # ─── Cloud Configuration ──────────────────────────────────────────────────────
   cloud:
     gateway:
@@ -37,12 +26,12 @@ spring:
 
         # ── auth-service (8081) ─────────────────────────────────────────────
         - id: auth-service
-          uri: lb://auth-service
+          uri: http://localhost:8081
           predicates:
             - Path=/civicDesk/iam/**
 
         - id: auth-service-audit
-          uri: lb://auth-service
+          uri: http://localhost:8081
           predicates:
             - Path=/civicDesk/audit/**
 
@@ -90,7 +79,7 @@ spring:
 
         # ── Swagger aggregation: per-service /api-docs ──────────────────────
         - id: auth-service-docs
-          uri: lb://auth-service
+          uri: http://localhost:8081
           predicates:
             - Path=/auth-service/api-docs
           filters:
