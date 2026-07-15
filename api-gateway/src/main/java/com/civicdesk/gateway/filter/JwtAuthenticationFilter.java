@@ -51,7 +51,10 @@ public class JwtAuthenticationFilter implements GlobalFilter, Ordered {
             "/analytics-service/api-docs"
     );
 
-    private static final List<String> PUBLIC_GET_PATHS = List.of();
+        private static final List<String> PUBLIC_GET_PATHS = List.of(
+            "/gateway-test/**",
+            "/gateway-proxy/**"
+        );
 
     private final AntPathMatcher pathMatcher = new AntPathMatcher();
 

@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/civicDesk/serviceRequest")
+@RequestMapping("/serviceRequest")
 @RequiredArgsConstructor
 @SecurityRequirement(name = "BearerAuth")
 @Tag(name = "Service Requests", description = "Submit and manage citizen service requests")

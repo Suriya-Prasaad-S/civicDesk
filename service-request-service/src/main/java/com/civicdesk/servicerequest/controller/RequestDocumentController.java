@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/civicDesk/serviceRequest")
+@RequestMapping("/serviceRequest")
 @RequiredArgsConstructor
 @SecurityRequirement(name = "BearerAuth")
 @Tag(name = "Request Documents", description = "Upload and verify supporting documents for service requests")
