@@ -29,6 +29,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -191,10 +192,8 @@ public class ServiceRequestService {
                 .map(entry -> new ServiceRequestAnalyticsResponse.LabelCount(entry.getKey(), entry.getValue()))
                 .toList();
 
-        List<ServiceRequestAnalyticsResponse.DateCount> trend = requestRepository.getTrend(deptId, fromDate, toDate)
-                .stream()
-                .map(row -> new ServiceRequestAnalyticsResponse.DateCount((LocalDate) row[0], ((Number) row[1]).longValue()))
-                .toList();
+        List<Object[]> rawTrend = requestRepository.getTrend(deptId, fromDate, toDate);
+        List<ServiceRequestAnalyticsResponse.DateCount> trend = buildTrend(fromDate, toDate, rawTrend);
 
         return new ServiceRequestAnalyticsResponse(
                 totalRequests,
@@ -202,6 +201,30 @@ public class ServiceRequestService {
                 serviceBreakdown,
                 trend,
                 overdueRequests);
+    }
+
+    private List<ServiceRequestAnalyticsResponse.DateCount> buildTrend(
+            LocalDate fromDate,
+            LocalDate toDate,
+            List<Object[]> rawTrend) {
+        Map<LocalDate, Long> countsByDate = rawTrend.stream()
+                .collect(Collectors.toMap(
+                        row -> (LocalDate) row[0],
+                        row -> ((Number) row[1]).longValue()));
+
+        if (fromDate == null || toDate == null || fromDate.isAfter(toDate)) {
+            return rawTrend.stream()
+                    .map(row -> new ServiceRequestAnalyticsResponse.DateCount((LocalDate) row[0], ((Number) row[1]).longValue()))
+                    .toList();
+        }
+
+        List<ServiceRequestAnalyticsResponse.DateCount> trend = new ArrayList<>();
+        for (LocalDate date = fromDate; !date.isAfter(toDate); date = date.plusDays(1)) {
+            trend.add(new ServiceRequestAnalyticsResponse.DateCount(
+                    date,
+                    countsByDate.getOrDefault(date, 0L)));
+        }
+        return trend;
     }
 
     @Transactional
