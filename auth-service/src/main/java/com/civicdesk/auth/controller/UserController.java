@@ -56,11 +56,17 @@ public class UserController {
         return ResponseEntity.status(201).body(ApiResponse.of("User created successfully", null));
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<ApiResponse> getUserById(@PathVariable String id) {
-        UserResponse user = userService.getById(id);
-        return ResponseEntity.ok(ApiResponse.data(user));
-    }
+    // NOTE: Commented out to resolve an ambiguous mapping with
+    // UserLookupController#getUserById (@GetMapping("/{userId}")). Both mapped
+    // GET /iam/users/{singleSegment}, so any such request threw at runtime.
+    // The UserLookupController version (returns a bare UserDto) is the one used
+    // by inter-service calls (e.g. citizen-service). Re-enable with a distinct
+    // path if the ApiResponse-wrapped variant is needed by another client.
+    // @GetMapping("/{id}")
+    // public ResponseEntity<ApiResponse> getUserById(@PathVariable String id) {
+    //     UserResponse user = userService.getById(id);
+    //     return ResponseEntity.ok(ApiResponse.data(user));
+    // }
 
     @GetMapping("/{id}/roles")
     public ResponseEntity<ApiResponse> getUserRoles(@PathVariable String id) {
