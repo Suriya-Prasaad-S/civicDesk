@@ -30,6 +30,7 @@ public class JwtAuthenticationFilter implements GlobalFilter, Ordered {
             "/civicDesk/iam/auth/citizen/login",
             "/civicDesk/iam/auth/staff/login",
             "/civicDesk/iam/auth/setPassword",
+            "/civicDesk/citizenProfile/register",
             "/civicDesk/workorders/public/**",
             "/civicDesk/serviceRequest/getAllServices",
             "/civicDesk/serviceRequest/getService/**",
