@@ -50,7 +50,33 @@ public class RoleBasedAuthorizationFilter implements GlobalFilter, Ordered {
 
 
         // Citizen endpoints
-        ROLE_RESTRICTED_PATHS.put("/civicDesk/citizens/**", List.of("CIT", "FO", "DS", "ENG", "CO", "ADM"));
+        // ROLE_RESTRICTED_PATHS.put("/civicDesk/citizenProfile/**", List.of("CIT", "FO", "DS", "ENG", "CO", "ADM"));
+        // Citizen profile endpoints   
+
+        ROLE_RESTRICTED_PATHS.put(
+            "/civicDesk/citizenProfile/me",
+            List.of("CIT")
+        );
+
+        ROLE_RESTRICTED_PATHS.put(
+            "/civicDesk/citizenProfile/pendingVerifications",
+            List.of("FO", "DS", "ADM")
+        );
+
+        ROLE_RESTRICTED_PATHS.put(
+            "/civicDesk/citizenProfile/getAllCitizens",
+            List.of("FO", "DS", "ADM")
+        );
+
+        ROLE_RESTRICTED_PATHS.put(
+            "/civicDesk/citizenProfile/*/verify",
+            List.of("FO", "DS", "ADM")
+        );
+
+        ROLE_RESTRICTED_PATHS.put(
+            "/civicDesk/citizenProfile/*/proof",
+            List.of("CIT", "FO", "DS", "ADM")
+        );     
         ROLE_RESTRICTED_PATHS.put("/civicDesk/serviceRequest/**", List.of("CIT", "FO", "DS", "ENG", "CO", "ADM"));
     }
 

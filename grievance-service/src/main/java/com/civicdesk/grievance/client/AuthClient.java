@@ -12,7 +12,8 @@ import com.civicdesk.grievance.dto.response.ApiResponse;
 
 @FeignClient(
         name = "auth-service",
-        url = "${auth.service.url}",
+        // url = "${auth.service.url}",
+        path = "/civicDesk",
         configuration = FeignClientConfig.class
 )
 public interface AuthClient {

@@ -69,10 +69,14 @@ public class GlobalExceptionHandler {
         return 1;
     }
 
-     /** Catch-all so that no unexpected error ever leaks a raw stack trace to the client. */
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ApiResponse> handleUnexpected(Exception ex) {
-        return error(HttpStatus.INTERNAL_SERVER_ERROR,
-                "An unexpected error occurred. Please try again later.");
+
+        log.error("Unhandled exception occurred", ex);
+
+        return error(
+            HttpStatus.INTERNAL_SERVER_ERROR,
+            "An unexpected error occurred. Please try again later."
+        );
     }
 }
