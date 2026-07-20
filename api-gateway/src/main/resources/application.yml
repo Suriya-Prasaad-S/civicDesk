@@ -39,7 +39,7 @@ spring:
         - id: citizen-service
           uri: lb://citizen-service
           predicates:
-            - Path=/civicDesk/citizens/**
+            - Path=/civicDesk/citizenProfile/**
 
         # ── service-request-service (8083) ──────────────────────────────────
         - id: service-request-service
@@ -170,6 +170,7 @@ gateway:
     - /civicDesk/iam/auth/citizen/login
     - /civicDesk/iam/auth/staff/login
     - /civicDesk/iam/auth/setPassword
+    - /civicDesk/citizenProfile/register
     - /civicDesk/workorders/public/**
     - /civicDesk/serviceRequest/getAllServices
     - /civicDesk/serviceRequest/getService/**

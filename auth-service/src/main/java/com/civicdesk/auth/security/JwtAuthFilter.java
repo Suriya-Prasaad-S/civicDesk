@@ -6,6 +6,7 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -19,9 +20,13 @@ import java.util.List;
 public class JwtAuthFilter extends OncePerRequestFilter {
 
     private static final long REFRESH_THRESHOLD_SECONDS = 600;
+    private static final String INTERNAL_KEY_HEADER = "X-Internal-Key";
 
     private final JwtUtil jwtUtil;
     private final RevokedTokenRepository revokedTokenRepository;
+
+    @Value("${app.internal.api-key}")
+    private String internalApiKey;
 
     public JwtAuthFilter(JwtUtil jwtUtil, RevokedTokenRepository revokedTokenRepository) {
         this.jwtUtil = jwtUtil;
@@ -38,6 +43,19 @@ public class JwtAuthFilter extends OncePerRequestFilter {
         
         // Skip JWT validation for public paths
         if (isPublicPath(path)) {
+            chain.doFilter(req, res);
+            return;
+        }
+
+        // Trusted internal service-to-service call: authenticate via the shared internal key.
+        String internalKey = req.getHeader(INTERNAL_KEY_HEADER);
+        if (internalKey != null && !internalKey.isBlank()
+                && internalApiKey != null && internalApiKey.equals(internalKey)) {
+            UsernamePasswordAuthenticationToken internalAuth =
+                    new UsernamePasswordAuthenticationToken(
+                            "internal-service", null,
+                            List.of(new SimpleGrantedAuthority("ROLE_INTERNAL")));
+            SecurityContextHolder.getContext().setAuthentication(internalAuth);
             chain.doFilter(req, res);
             return;
         }

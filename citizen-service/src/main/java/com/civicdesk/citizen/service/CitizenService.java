@@ -21,6 +21,8 @@ import com.civicdesk.citizen.exception.BusinessRuleException;
 import com.civicdesk.citizen.exception.ForbiddenActionException;
 import com.civicdesk.citizen.client.AuthFeignClient;
 import com.civicdesk.citizen.dto.response.UserDto;
+import com.civicdesk.citizen.enums.NotificationType;
+import com.civicdesk.citizen.enums.ReferenceType;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
@@ -44,11 +46,17 @@ public class CitizenService {
 
     private final CitizenProfileRepository citizenRepository;
     private final AuthFeignClient authFeignClient;
+    private final AuditHelperService auditHelperService;
+    private final NotificationHelperService notificationHelperService;
 
     public CitizenService(CitizenProfileRepository citizenRepository,
-                          AuthFeignClient authFeignClient) {
+                          AuthFeignClient authFeignClient,
+                          AuditHelperService auditHelperService,
+                          NotificationHelperService notificationHelperService) {
         this.citizenRepository = citizenRepository;
         this.authFeignClient = authFeignClient;
+        this.auditHelperService = auditHelperService;
+        this.notificationHelperService = notificationHelperService;
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -95,6 +103,9 @@ public class CitizenService {
         profile.setUserProof(proofPath);
         profile.setStatus(CitizenStatus.Active);
         citizenRepository.save(profile);
+
+        // Public flow: no security context, so attribute the audit to the new citizen's id.
+        auditHelperService.log("REGISTER_CITIZEN", user.getUserId());
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -130,6 +141,8 @@ public class CitizenService {
             profile.setZone(request.zone());
         }
         citizenRepository.save(profile);
+
+        auditHelperService.log("UPDATE_CITIZEN_PROFILE");
     }
 
     /**
@@ -180,6 +193,19 @@ public class CitizenService {
         profile.setVerifiedBy(currentUserId());
         profile.setVerifiedAt(LocalDateTime.now());
         citizenRepository.save(profile);
+
+        boolean verified = target == CitizenStatus.Verified;
+        notificationHelperService.notify(
+                citizenUserId,
+                verified ? "Profile Verified" : "Profile Flagged",
+                verified
+                        ? "Your citizen profile has been verified."
+                        : "Your citizen profile has been flagged for review.",
+                NotificationType.GENERAL,
+                citizenUserId,
+                ReferenceType.USER);
+
+        auditHelperService.log("VERIFY_CITIZEN");
     }
 
     /** Lightweight summary of every citizen in the given ward. */
