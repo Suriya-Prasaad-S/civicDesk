@@ -22,7 +22,7 @@ public interface AuthFeignClient {
     @GetMapping("/iam/users/by-email")
     UserDto getUserByEmail(@RequestParam("email") String email);
 
-    @GetMapping("/iam/users/{userId}")
+    @GetMapping("/iam/users/lookup/{userId}")
     UserDto getUserById(@PathVariable("userId") String userId);
 
     @PostMapping("/iam/users/batch")

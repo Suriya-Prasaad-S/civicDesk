@@ -85,7 +85,6 @@ public class SupervisorGrievanceService {
     @Transactional(readOnly = true)
     public List<GrievanceSummaryResponse> getDepartmentGrievances() {
         String deptId = supervisorDepartmentId();
-        log.info("Testing the logging...");
         return grievanceRepo.findByDepartmentId(deptId)
                 .stream().map(mapper::toSummary).toList();
     }

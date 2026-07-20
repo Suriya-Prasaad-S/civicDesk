@@ -50,10 +50,7 @@ public class ReportExportService {
                                 exportPermitReport(report);
 
                         case "SERVICE_REQUEST" ->
-                                throw new IllegalArgumentException(
-                                    "Unsupported report type: "
-                                        + reportType);
-                                // exportServiceRequestReport(report);
+                                exportServiceRequestReport(report);
 
                         case "WORK_ORDER" ->
                                 exportWorkOrderReport(report);
@@ -528,6 +525,131 @@ public class ReportExportService {
                         sectionStyle,
                         tableHeaderStyle);
             }
+
+            sheet.autoSizeColumn(0);
+            sheet.autoSizeColumn(1);
+
+            workbook.write(outputStream);
+
+            return outputStream.toByteArray();
+        }
+    }    
+
+    private byte[] exportServiceRequestReport(
+            CivicReport report) throws Exception {
+
+        try (XSSFWorkbook workbook = new XSSFWorkbook();
+            ByteArrayOutputStream outputStream = new ByteArrayOutputStream()) {
+
+            Sheet sheet =
+                    workbook.createSheet(
+                            "Service Request Report");
+
+            CellStyle titleStyle =
+                    createTitleStyle(workbook);
+
+            CellStyle sectionStyle =
+                    createSectionStyle(workbook);
+
+            CellStyle tableHeaderStyle =
+                    createTableHeaderStyle(workbook);
+
+            int rowIndex = 0;
+
+            // Title
+            rowIndex = createTitle(
+                    sheet,
+                    rowIndex,
+                    "CIVICDESK SERVICE REQUEST REPORT",
+                    titleStyle);
+
+            // Report Details
+            rowIndex = createSectionHeader(
+                    sheet,
+                    rowIndex,
+                    "REPORT DETAILS",
+                    sectionStyle);
+
+            rowIndex = createKeyValueRow(
+                    sheet,
+                    rowIndex,
+                    "Report ID",
+                    report.getReportId());
+
+            rowIndex = createKeyValueRow(
+                    sheet,
+                    rowIndex,
+                    "Report Type",
+                    report.getReportType());
+
+            rowIndex = createKeyValueRow(
+                    sheet,
+                    rowIndex,
+                    "Status",
+                    report.getStatus());
+
+            rowIndex = createKeyValueRow(
+                    sheet,
+                    rowIndex,
+                    "Generated Date",
+                    report.getGeneratedDate());
+
+            rowIndex++;
+
+            Map<String, Object> metrics =
+                    getMetrics(report);
+
+            // Summary
+            rowIndex = createSectionHeader(
+                    sheet,
+                    rowIndex,
+                    "SUMMARY",
+                    sectionStyle);
+
+            rowIndex = createKeyValueRow(
+                    sheet,
+                    rowIndex,
+                    "Total Requests",
+                    metrics.getOrDefault(
+                            "totalRequests",
+                            0));
+
+            rowIndex = createKeyValueRow(
+                    sheet,
+                    rowIndex,
+                    "Overdue Requests",
+                    metrics.getOrDefault(
+                            "overdueRequests",
+                            0));
+
+            rowIndex++;
+
+            // Status Breakdown
+            rowIndex = writeLabelCountSection(
+                    sheet,
+                    rowIndex,
+                    "STATUS BREAKDOWN",
+                    metrics.get("statusBreakdown"),
+                    sectionStyle,
+                    tableHeaderStyle);
+
+            // Service Breakdown
+            rowIndex = writeLabelCountSection(
+                    sheet,
+                    rowIndex,
+                    "SERVICE BREAKDOWN",
+                    metrics.get("serviceBreakdown"),
+                    sectionStyle,
+                    tableHeaderStyle);
+
+            // Request Trend
+            rowIndex = writeTrendSection(
+                    sheet,
+                    rowIndex,
+                    "REQUEST TREND",
+                    metrics.get("trend"),
+                    sectionStyle,
+                    tableHeaderStyle);
 
             sheet.autoSizeColumn(0);
             sheet.autoSizeColumn(1);

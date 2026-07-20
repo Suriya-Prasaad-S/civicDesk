@@ -1,4 +1,4 @@
-package com.civicdesk.grievance.logging;
+package com.civicdesk.analytics.logging;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -17,8 +17,8 @@ public class LoggingAspect {
      * Trace only the meaningful boundaries — controllers and services. Repositories, DTOs, mappers,
      * config and security classes are intentionally excluded to keep the logs readable.
      */
-    @Pointcut("execution(* com.civicdesk.grievance.controller..*(..)) "
-            + "|| execution(* com.civicdesk.grievance.service..*(..))")
+    @Pointcut("execution(* com.civicdesk.analytics.controller..*(..)) "
+            + "|| execution(* com.civicdesk.analytics.service..*(..))")
     public void controllerAndServicePointcut() {
         // Controller + service methods only.
     }
