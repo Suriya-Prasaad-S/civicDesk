@@ -145,8 +145,6 @@ public class CitizenGrievanceService {
     /** The caller's own grievances. */
     @Transactional(readOnly = true)
     public List<GrievanceSummaryResponse> getMyGrievances() {
-        log.error("This is for the testing purpose just ignore");
-        log.warn("This is for the testing purpose just ignore");
         return grievanceRepo.findByCitizenId(currentUserId())
                 .stream().map(mapper::toSummary).toList();
     }

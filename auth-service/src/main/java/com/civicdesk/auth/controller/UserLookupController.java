@@ -18,7 +18,11 @@ public class UserLookupController {
         this.userRepository = userRepository;
     }
 
-    @GetMapping("/{userId}")
+    // Path is /lookup/{userId} (not /{userId}) to avoid an ambiguous mapping with
+    // UserController#getUserById (@GetMapping("/{id}")), which serves the full user
+    // (with department) at /iam/users/{id}. This lightweight lookup returns a bare UserDto
+    // and is consumed by citizen-service.
+    @GetMapping("/lookup/{userId}")
     public ResponseEntity<UserDto> getUserById(@PathVariable("userId") String userId) {
         return userRepository.findById(userId)
                 .map(this::toDto)

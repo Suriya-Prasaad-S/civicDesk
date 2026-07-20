@@ -12,8 +12,11 @@ import com.civicdesk.grievance.dto.response.ApiResponse;
 
 @FeignClient(
         name = "auth-service",
-        // url = "${auth.service.url}",
-        path = "/civicDesk",
+        // Hardcoded direct URL (non-empty) so Feign calls auth-service directly instead of
+        // load-balancing the "auth-service" name. The "${auth.service.url}" placeholder was
+        // resolving to empty, which forced name-based LB to an address that returns EOF.
+        // Mirrors citizen-service's working AuthFeignClient. The /civicDesk context path is baked in.
+        url = "http://localhost:8081/civicDesk",
         configuration = FeignClientConfig.class
 )
 public interface AuthClient {
